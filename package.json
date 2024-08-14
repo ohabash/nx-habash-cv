@@ -2,8 +2,12 @@
   "name": "@nx-habash-cv/source",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "v20"
+  },
   "scripts": {
-    "dev-next": "nx dev next-habash-cv --port 5700"
+    "next:dev": "nx dev next-habash-cv --port 5700",
+    "next:build": "nx build next-habash-cv"
   },
   "private": true,
   "dependencies": {
