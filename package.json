@@ -7,7 +7,8 @@
   },
   "scripts": {
     "next:dev": "nx dev next-habash-cv --port 5700",
-    "next:build": "nx build next-habash-cv"
+    "next:build": "nx build next-habash-cv",
+    "logs": "heroku logs --tail -a nx-habash-cv"
   },
   "private": true,
   "dependencies": {

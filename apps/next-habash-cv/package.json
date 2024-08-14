@@ -1,0 +1,26 @@
+{
+  "name": "next-habash-cv",
+  "version": "1.0.0",
+  "engines": {
+    "node": "v20"
+  },
+  "description": "next app. part of wider nrwl repo",
+  "main": "next.config.js",
+  "scripts": {
+    "start": "npm i; npx next start",
+    "logs": "heroku logs --tail -a nx-habash-cv",
+    "test": "echo \"Error: no test12 specified\" && exit 1",
+    "deploy": "./deploy.sh $1"
+  },
+  "dependencies": {
+    "next": "14.2.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tslib": "^2.3.0",
+    "@nx/next": "^19.5.7"
+  },
+  "devDependencies": {
+  },
+  "author": "",
+  "license": "ISC"
+}
