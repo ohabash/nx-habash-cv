@@ -2,7 +2,9 @@
   "name": "@nx-habash-cv/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev-next": "nx dev next-habash-cv --port 5700"
+  },
   "private": true,
   "dependencies": {
     "next": "14.2.3",
