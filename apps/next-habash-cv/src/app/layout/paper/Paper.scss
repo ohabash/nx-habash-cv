@@ -1,0 +1,24 @@
+$paper-height: 94vh;
+// .bg-grad-white {
+//   @apply bg-gradient-to-bl to-gray-300 from-white
+// }
+
+.paper-wrapper {
+  @apply flex items-center h-screen;
+  .paper-container {
+    height: $paper-height; // 80% of the viewport height
+    width: calc($paper-height * (8.5 / 11)); // Maintain 8.5x11 aspect ratio based on height
+    // border: 1px solid #ccc;
+    position: relative;
+    box-sizing: border-box;
+    margin-right: 2vw;
+    .paper-content {
+      // @extend .bg-grad-white;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  }
+}
+

@@ -1,0 +1,13 @@
+.bg-wood {
+  background-color: #3e2723;
+  // background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO1dBqNPN_iwVESXOE4L369xmePW8vhA0jOQ&s') no-repeat center center;
+  background: url('../img/wood-3271749_1280.jpg') no-repeat -680px -390px;
+  background-size: 200%;
+}
+
+.bg-grad-white {
+  @apply bg-gradient-to-bl to-gray-400 from-white;
+}
+.bg-grad-slate {
+  @apply bg-gradient-to-bl from-[#2f2f39] to-[#0d0d10];
+}

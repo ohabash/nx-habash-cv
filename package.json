@@ -8,13 +8,15 @@
   "scripts": {
     "next:dev": "nx dev next-habash-cv --port 5700",
     "next:build": "nx build next-habash-cv",
-    "logs": "heroku logs --tail -a nx-habash-cv"
+    "logs": "heroku logs --tail -a nx-habash-cv",
+    "theme": "npx tailwind-config-viewer"
   },
   "private": true,
   "dependencies": {
     "next": "14.2.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-icons": "^5.3.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

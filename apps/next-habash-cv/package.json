@@ -13,13 +13,13 @@
     "deploy": "./deploy.sh $1"
   },
   "dependencies": {
+    "@nx/next": "^19.5.7",
+    "bulma-scss": "^0.9.4",
     "next": "14.2.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tslib": "^2.3.0",
-    "@nx/next": "^19.5.7"
-  },
-  "devDependencies": {
+    "vanilla-tilt": "^1.8.1"
   },
   "author": "",
   "license": "ISC"
