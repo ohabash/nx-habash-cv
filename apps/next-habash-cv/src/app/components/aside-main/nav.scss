@@ -1,0 +1,78 @@
+/* Mixin */
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.v-center {
+  @include vertical-align;
+}
+ul.nav {
+  @apply list-none;
+  // parent li
+  &>li>a{
+    @apply font-[600];
+  }
+  ul.submenu {
+    @apply list-none ml-7 relative mb-4 pb-4;
+    border-bottom: 1px solid var(--subtle);
+    // &:before {
+    //     content: "";
+    //     position: absolute;
+    //     left: 0;
+    //     height: 80%;
+    //     width: 1.2px;
+    //     background-color: var(--subtle);
+    //     margin: 0.5rem 0;
+    //     margin-top: 1px;
+    //   }
+    >li {
+      padding-left: 1em;
+      position: relative;
+      // opacity: 0.5;
+      &:last-child {
+        &:after {
+          height: 50%;
+        }
+      }
+      &:before {
+        @extend .v-center;
+        content: "";
+        position: absolute;
+        left: -1px;
+        height: 2px;
+        width: 1.2em;
+        background-color: var(--subtle);
+        margin: 0.5rem 0;
+        margin-top: 1px;
+      
+        // Create a slight curve with transformations
+        transform: rotate(17deg) translateY(-9px); // RELATED?
+        transform-origin: left center;
+      }
+      &:after {
+        content: "";
+        position: absolute;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        top: -8px; // RELATED?
+        left: 0;
+        height: 100%;
+        width: 1.5px;
+        background-color: var(--subtle);
+        margin: 0.5rem 0;
+        margin-top: 1px;
+      }
+    }
+  }
+  li {
+    >a {
+      @apply px-5 py-3 rounded-md block cursor-pointer;
+      &:hover {
+        @apply bg-lighten-25;
+      }
+    }
+  }
+}
+

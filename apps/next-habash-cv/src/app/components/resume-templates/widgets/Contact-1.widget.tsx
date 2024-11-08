@@ -33,7 +33,7 @@ const data = [
 
 const ContactInfo1 = () => {
   return (
-    <div className="grid grid-rows-4 h-full" id="widget-contact-1">
+    <div className="grid grid-rows-4 h-full scale-90" id="widget-contact-1">
       {/* loop */}
       {data.map((item, index) => (
         <a
@@ -44,8 +44,8 @@ const ContactInfo1 = () => {
         >
           {item.icon}
           <div className="copy">
-            <p className="sm key">{item.key}</p>
-            <p className="sm val">{item.value}</p>
+            <p className="key">{item.key}</p>
+            <p className="val">{item.value}</p>
           </div>
         </a>
       ))}

@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nx-habash/react-lib": ["libs/react-lib/src/index.ts"],
+      "@nx-habash/react-lib/server": ["libs/react-lib/src/server.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -6,4 +6,13 @@
 // }
 
 .resume-1 {
+  section {
+    padding: 1rem;
+    transition: all 2s ease-out;
+  }
+  &.focused {
+    section {
+      padding: 1.5rem;
+    }
+  }
 }

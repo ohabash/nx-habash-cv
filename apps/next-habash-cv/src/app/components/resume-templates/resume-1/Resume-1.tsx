@@ -1,13 +1,12 @@
 import profilePic from '../../../assets/img/profile.webp';
 import Image from 'next/image';
 import './Resume-1.scss';
-import { ThemerService } from '../../../services/themer.service';
+import { ThemerService, ITheme } from '../../../services/themer.service';
 import ContactInfo1 from '../widgets/Contact-1.widget';
-import Education1 from '../widgets/Education-1.widget';
 import Education2 from '../widgets/Education-2.widget';
+import Experience1 from '../widgets/Experience-1.widget';
 
-
-export class Theme {
+export class Theme implements ITheme {
   colors = {
     red: '#cd5f5a',
     green: '#18db93',
@@ -26,14 +25,31 @@ export class Theme {
     return `bg-[${vals[key]}]`;
   }
   sec = {
-    accent1: `${this.bg('red')} text-white`,
-    light: `bg-gray-100 text-${this.text('dark')}  `,
-    dark: `${this.bg('dark')} text-white `,
-    grey: `bg-gray-300 text-black `,
+    accent1: {
+      background: this.vars.accent1,
+      color: '#ffffff',
+    },
+    light: {
+      background: '#ffffff',
+      color: '#000000',
+    },
+    dark: {
+      background: this.vars.dark,
+      color: '#ffffff',
+    },
+    grey: {
+      background: '#f3f4f6',
+      color: '#000000',
+    },
   };
 }
 
-const Resume1 = () => {
+interface Props {
+  // isFocused: boolean;
+}
+
+const Resume1 = ({}: Props) => {
+  
   // skip theme on server
   const isServer = typeof window === 'undefined';
   console.log(`🚀 => Resume1 => isServer:`, isServer)
@@ -57,24 +73,22 @@ const Resume1 = () => {
       themerService.bindThemeToTemplate(el, theme);
       // }, [theme]);
       console.log(`🚀 => //useEffect => theme:`, theme)
-    };
-
+    }
+  // }, []);
 
   // template
   return (
-    <div className="resume-1 h-full">
-      <div className="text-white bg-[#cd5f5a] bg-[#2c2c2c]"></div>
-      <div className="grid grid-rows-[1fr,1.75fr,1fr] h-full">
-        
+    <div className={'resume-1 h-full'}>
+      <div className="grid grid-rows-[1fr,1.5fr,1fr] h-full">
         {/* row 1 */}
-        <div className="grid grid-cols-3">
-          <div className={theme.sec.accent1 + ' p-4 flex items-center'}>
+        <div className="row grid grid-cols-3">
+          <section className={' flex items-center'} style={theme.sec.accent1}>
             <div className="copy -mt-2">
               <h1>Omar Habash</h1>
-              <h2 className="mt-2">Senior UI Developer</h2>
+              <h2 className=" text-lg mt-2">Senior UI Developer</h2>
             </div>
-          </div>
-          <div className="bg-blue-950">
+          </section>
+          <section className="bg-blue-950 m-0 p-0">
             <Image
               className="w-full h-full object-cover opacity-90"
               src={profilePic}
@@ -82,45 +96,64 @@ const Resume1 = () => {
               width={500}
               height={300}
             />
-          </div>
-          <div className={theme.sec.accent1 + ' p-4'}>
+          </section>
+          <section className={''} style={theme.sec.accent1}>
             <ContactInfo1></ContactInfo1>
-          </div>
+          </section>
         </div>
 
         {/* row 2 */}
-        <div className="grid grid-cols-3">
-          <div className={theme.sec.light + 'p-4'}>
-            <Education2></Education2>
-          </div>
-          <div className={theme.sec.dark + ' text-white p-4'}>
-            <div tilt-inner="true">
-              <h3>Skills</h3>
-            </div>
-          </div>
-          <div className={theme.sec.light + 'p-4'}>
-            <div tilt-inner="true">
-              <h3>Experience</h3>
-            </div>
-          </div>
+        <div className="row grid grid-cols-3">
+          <section className={''}>
+            <Education2 theme={theme}></Education2>
+          </section>
+          <section className={''} style={theme.sec.dark}>
+            <Title color="white">Skills</Title>
+          </section>
+          <section className={''}>
+            <Experience1 theme={theme}></Experience1>
+          </section>
         </div>
 
         {/* row 3 */}
-        <div className="grid grid-cols-3">
-          <div className={theme.sec.grey + 'p-4'}>
-            <h3>Mission</h3>
-          </div>
-          <div className={theme.sec.light + 'p-4'}>
-            <h3>References</h3>
-          </div>
-          <div className={theme.sec.grey + 'p-4'}>
-            <h3>Links</h3>
-          </div>
+        <div className="row grid grid-cols-3">
+          <section className={''} style={theme.sec.grey}>
+            <Title>Mission</Title>
+            <p className="key text-justify_">
+              To contribute experience, code, design, and leadership within a
+              talented team dedicated to creating an impactful product at a
+              rapidly growing company. I’m no stranger to fast-paced
+              environments where time is money and quality is paramount.
+            </p>
+          </section>
+          <section className={''} style={theme.sec.light}>
+            <Title>References</Title>
+          </section>
+          <section className={''} style={theme.sec.grey}>
+            <Title>Links</Title>
+          </section>
         </div>
-
       </div>
     </div>
   );
 };
+
+
+
+// section Title component
+interface TitleProps {
+  children: string | JSX.Element | JSX.Element[];
+  color?: string
+}
+export const Title = ({ children, color}: TitleProps) => {
+  const theme = new Theme();
+  color ??= theme.vars.accent1;
+  return <h4
+    className="mb-3"
+    style={{ color }}
+  >{children}</h4>;
+};
+
+
 
 export default Resume1;

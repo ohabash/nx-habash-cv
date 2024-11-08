@@ -1,0 +1,9 @@
+{
+  "name": "react-folio",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/react-folio/src",
+  "projectType": "application",
+  "tags": ["frontend", "react", "folio"],
+  "// targets": "to see all targets run: nx show project react-folio --web",
+  "targets": {}
+}

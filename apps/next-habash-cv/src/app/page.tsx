@@ -1,6 +1,8 @@
-import Resume1 from "./components/resume-templates/resume-1/Resume-1";
-import Paper from "./layout/paper/Paper";
-
+import { ThemeWrapper } from './layout/Theme';
+import { Aside } from './components/aside-main/aside';
+import { Hero } from './components/hero/Hero';
+import { Header } from './components/header/header';
+import { GlobalContext, GlobalProvider } from './global.context';
 
 export default function Index() {
   /*
@@ -10,15 +12,24 @@ export default function Index() {
    */
   return (
     <div>
-      <div className="wrapper">
-        <div className="min-h-screen font-bold bg-grad-white _bg-wood">
-          <div className="_container">
-            <Paper>
-              <Resume1></Resume1>
-            </Paper>
+      <GlobalProvider>
+        {/* <PDFViewer></PDFViewer> */}
+        {/* <PaperWrapper></PaperWrapper> */}
+        <div className="w-[22%] hidden"></div>
+        <div className="w-[1%] hidden"></div>
+        <ThemeWrapper>
+          <div className="min-h-screen">
+            <Header></Header>
+            <div className="columns text-fg m-0">
+              <Aside />
+
+              <div className="column  p-0 HEADER_OFFSET bg-darker">
+                <Hero />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </ThemeWrapper>
+      </GlobalProvider>
     </div>
   );
 }

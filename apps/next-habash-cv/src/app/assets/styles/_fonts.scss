@@ -25,27 +25,36 @@
   font-style: normal;
 }
 
+.montserrat {
+  @include montserrat(400);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
 h1 {
   @include oswald(500);
   text-transform: uppercase;
-  font-size: 3rem;
   line-height: 3.25rem;
 }
 h2 {
   @include montserrat(600);
   text-transform: uppercase;
 }
-h3 {
+h3, h4 {
   @include montserrat(800);
   text-transform: uppercase;
   // font-style: italic;
 }
 p {
   @include roboto(400);
-  font-size: 0.95rem;
   line-height: 1.5rem;
   &.sm {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     line-height: 1.15rem;
   }
   &.key { @apply opacity-60; }

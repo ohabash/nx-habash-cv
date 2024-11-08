@@ -25,4 +25,30 @@ textarea { font-size: 14px; }
 
 
 
+// BULMA INSPIRED
+.level {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.level.is-mobile,
+.level.is-mobile .level-left,
+.level.is-mobile .level-right {
+  display: flex;
+}
+
+.level-left,
+.level-right {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.level-right {
+  align-items: center;
+  justify-content: flex-end;
+}
+
 

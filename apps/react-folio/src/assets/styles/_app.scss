@@ -1,0 +1,14 @@
+// bulma (sass deprecation issues)
+@import 'bulma-scss/utilities/all';
+@import 'bulma-scss/grid/columns';
+@import 'bulma-scss/form/all';
+@import 'bulma-scss/components/level';
+@import './antibulma';
+
+// client styles
+@import './fonts';
+@import './mixins';
+@import './theme';
+@import './base';
+@import './client';
+

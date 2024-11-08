@@ -1,0 +1,32 @@
+.glow-blue ,
+.glow-blue svg {
+  filter:
+    drop-shadow(4px 4px 1px rgba(18, 13, 44, 0.8)) 
+    drop-shadow(5px 5px 20px var(--glow-blue))
+  ;
+}
+
+.type-logo {
+  @extend .glow-blue;
+  @apply text-[8rem];
+  @include roboto(700);
+}
+
+body {
+  @apply bg-1 text-white;
+} 
+
+@layer {
+  :root {
+    --header-1-height: 2.5rem;
+    --header-2-height: 2.75rem;
+    --header-height: calc(var(--header-1-height) + var(--header-2-height));
+    --hero-height: calc(100svh - var(--header-1-height));
+  }
+}
+
+.blurrr {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background-color: rgba(#0f1019, 0.85);
+}

@@ -1,0 +1,28 @@
+table th {
+    color: unset;
+}
+
+.testing {
+	background: red !important;
+}
+
+.select select:focus,
+.textarea:focus,
+.input:focus,
+.select select.is-focused,
+.is-focused.textarea,
+.is-focused.input,
+.select select:active,
+.textarea:active,
+.input:active,
+.select select.is-active,
+.is-active.textarea,
+.is-active.input {
+  box-shadow: 0 0 0 0;
+}
+
+textarea { font-size: 14px; }
+
+
+
+
