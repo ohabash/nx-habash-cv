@@ -52,7 +52,7 @@ export class Theme {
     lg: ['1.1875rem', '1.21'], // 19px
     xl: '1.3125rem', // 21px
     '2xl': '1. 5rem', // 24px
-    '3xl': '1.75rem', // 28px
+    '3xl': ['4rem', '4.25rem'], // 64px
     '4xl': '5rem', // 80px
     '5xl': ['6rem', '1.05'], // 96px
   };

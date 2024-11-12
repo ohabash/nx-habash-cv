@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 
 export function Hero() {
+  const altAnimation = true;
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: videoContainerRef,
@@ -21,9 +22,11 @@ export function Hero() {
     [1, 1, 0]
   );
   const copyRotate = useTransform(scrollYProgress, [0, 0.5, 1], [0, -5, -10]);
+  const line2Translate = useTransform(scrollYProgress, [0, 1], [0, -3000]);
+  const line1Translate = useTransform(scrollYProgress, [0, 1], [0, 3000]);
 
   return (
-    <div className="bg-1 h-[300vh] relative -mt-[var(--header-2-height)]">
+    <div className="bg-1 relative -mt-[var(--header-2-height)] overflow-hidden_">
       {/* bg image */}
       <motion.div
         className="absolute -top-[--header-height] left-0 z-10 w-full h-[200vh] bg-red "
@@ -31,7 +34,10 @@ export function Hero() {
         style={{ opacity: imgOpacity }}
       >
         <motion.img
-          style={{ scale: imgScale, rotate: imgRotate }}
+          style={{ 
+            // scale: imgScale, 
+            // rotate: imgRotate 
+          }}
           className=" object-cover h-[100vh] w-full sticky top-0"
           src={imgHero}
           alt="Omar Habash Hero"
@@ -39,13 +45,31 @@ export function Hero() {
       </motion.div>
 
       {/* copy over image */}
-      <Container className="relative z-10 h-[--hero-height]">
+      {!altAnimation && <Container className="relative z-10 h-[--hero-height]">
+        <motion.div
+          className=" h-full1"
+          style={{opacity: copyOpacity, }}
+        >
+          <h1 className="text-4xl">
+            <motion.div style={{ translateX: line1Translate, originZ: 0.1 }}> Complex problems. <br /> </motion.div>
+            <motion.div style={{ translateX: line2Translate, originZ: 0.1 }}>
+              <Swap
+                words={['Simple', 'Intuitive', 'Impactful', 'Innovative']}
+                className={'text-accent1'}
+              /> UX.
+            </motion.div>
+          </h1>
+        </motion.div>
+      </Container>}
+
+      {/* Alt Copy Animation */}
+      {altAnimation && <Container className="relative z-10 h-[--hero-height]">
         <motion.div
           className="flex flex-col justify-end items-start h-full"
           style={{ 
             opacity: copyOpacity, 
-            scale: copyScale, 
-            rotate: copyRotate 
+            // scale: copyScale, 
+            // rotate: copyRotate 
           }}
         >
           <h1 className="text-4xl mb-20">
@@ -57,7 +81,7 @@ export function Hero() {
             UX.
           </h1>
         </motion.div>
-      </Container>
+      </Container>}
     </div>
   );
 }

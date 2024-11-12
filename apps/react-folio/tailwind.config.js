@@ -38,6 +38,15 @@ module.exports = {
         ...theme.backgrounds
       }
     },
+    keyframes: {
+      "carousel-move": {
+        "0%": { transform: "translateX(0)" },
+        "100%": { transform: "translateX(-100%)" },
+      },
+    },
+    animation: {
+      "carousel-move": "carousel-move var(--duration,80s) infinite",
+    },
   },
   plugins: [],
 };
