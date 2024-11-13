@@ -6,15 +6,16 @@ type Props = {
   className?: string;
   // start loc can be a number between 0 100
   start?: number;
+  delay?: number;
 }
 
-export const FadeIn = ({ children, className, start = 0 }: Props) => {
+export const FadeIn = ({ children, className, start = 75, delay=0 }: Props) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: start }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ margin: `100% 0px -150px 0px` }}
-      transition={{ ease: 'easeOut', duration: 0.4 }}
+      whileInView={{ opacity: 1, y: 1 }}
+      viewport={{ margin: `100% 0px -120px 0px` }}
+      transition={{ ease: 'easeOut', duration: 0.4, delay: delay}}
       className={className}
     >
       {children}

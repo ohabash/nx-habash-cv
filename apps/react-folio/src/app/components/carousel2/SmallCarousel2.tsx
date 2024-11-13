@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { Item } from "./carItems";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { twMerge } from "tailwind-merge";
+import { Item } from "./carItems2";
 
 type SmCarProps = {
   items: Item[];
@@ -10,7 +10,7 @@ type SmCarProps = {
   direction: 'left' | 'right';
 };
 
-export const SmallCarousel = ({ items, carId, className, direction }: SmCarProps) => {
+export const SmallCarousel2 = ({ items, carId, className, direction }: SmCarProps) => {
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
   const offset = (direction === 'left') ? ['start start', 'end start'] : ['end start', 'start start'];
   const { scrollYProgress } = useScroll({

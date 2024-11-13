@@ -1,9 +1,9 @@
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { Item, items, randomItemsSet1, randomItemsSet2 } from "./carItems"
 import { useMemo, useRef, useState } from "react";
 import { useWindowSize } from 'react-use';
 import { Button } from "../button/Button";
-import { FadeIn } from "../animation/FadeIn";
+import { Arrows } from "./Arrows";
+import { items, randomItemsSet1, randomItemsSet2 } from "./carItems";
 import { SmallCarousel } from "./SmallCarousel";
 
 export const Carousel = () => {
@@ -34,7 +34,8 @@ export const Carousel = () => {
       setCarouselVariant('inactive');
     }
   });
-  const middleItemIndex = Math.floor(items.length / 2);
+  // const activeIndex = 1;
+  const activeIndex = Math.floor(items.length / 2);
   const startOuterTransition = 0.6;
   const endOuterTransition = 0.7;
   const outerItemsOpacity = useTransform(scrollYProgress, [startOuterTransition, endOuterTransition], [0, 1]);
@@ -49,7 +50,7 @@ export const Carousel = () => {
     [100, 0]
   );
   function outerTranslate(i:number)  {
-    return i > middleItemIndex ? posterTranslateXRight : posterTranslateXLeft;
+    return i > activeIndex ? posterTranslateXRight : posterTranslateXLeft;
   }
   const bottomOpacity = useTransform(
     scrollYProgress,
@@ -57,13 +58,19 @@ export const Carousel = () => {
     [0, 1]
   );
   function mainCarMotionStyles(i:number) {
-    return i === middleItemIndex
+    return i === activeIndex
       ? { scale }
       : {
           opacity: outerItemsOpacity,
           x: outerTranslate(i),
         };
   }
+  const nextItem = (index:number) => {
+    return (activeIndex+1) === index ? true : false;
+  };
+  const prevItem = (index:number) => {
+    return (activeIndex-1) === index ? true : false;
+  };
                 
   return (
     <motion.div className="bg-darker pb-8" animate={carouselVariant}>
@@ -79,16 +86,18 @@ export const Carousel = () => {
                 style={mainCarMotionStyles(i)}
                 key={i}
                 className={
-                  `shrink-0 w-[60vw] aspect-video relative overflow-hidden1 ` +
-                  (i === middleItemIndex ? 'z-10_' : '')
+                  `shrink-0 w-[60vw] aspect-video relative overflow-hidden ` +
+                  (i === activeIndex ? 'z-10_' : '')
                 }
               >
+                {nextItem(i) && <Arrows mode={'next'} />}
+                {prevItem(i) && <Arrows mode={'prev'} />}
                 <img
                   className="w-full h-full object-cover rounded-2xl z-10"
                   src={item.poster}
                   alt={item.name}
                 />
-                {i === middleItemIndex && item.copy && (
+                {i === activeIndex && item.copy && (
                   <motion.div
                     variants={{
                       active: { opacity: 1, y: 0 },
