@@ -11,7 +11,7 @@ export class Theme {
     // dark: '#111111',
     // darker: '#000000',
     darker: '#0f1019',
-    dark: '#2e2e37',
+    dark: '#1f2937',
     'dark-text': '1d1d1f',
   };
   vars = {

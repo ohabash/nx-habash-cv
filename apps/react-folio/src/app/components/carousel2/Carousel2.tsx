@@ -5,7 +5,7 @@ import { items } from './carItems2';
 import { Arrows2 } from './Arrows2';
 import imgEnd from '../../../../public/theend.png';
 
-const DRAG_BUFFER = 50;
+const DRAG_BUFFER = 1;
 const GAP_WIDTH = 25; // Assuming `gap-8` is 32px (2rem)
 
 const SPRING_OPTIONS = {
@@ -29,24 +29,14 @@ export const Carousel2 = () => {
    // Width occupied by each item including the gap
    const totalItemWidth = imageWidth + GAP_WIDTH;
 
-   // Total width of all items in the carousel
-   const totalCarouselWidth = items.length * totalItemWidth;
-
    // Calculate cumulative offset for the active item
    const cumulativeWidth = imgIndex * totalItemWidth;
 
    // Center offset calculation
    const centeredOffset = screen.width / 2 - imageWidth / 2;
 
-   // Adjust the translateX to center the active item, ensuring it stays within bounds
-   const maxTranslateX = 0; // At the start, the carousel should not translate positively
-   const minTranslateX = -(totalCarouselWidth - screen.width); // Ensures it doesn’t overscroll at the end
-
-   // Final translateX calculation with bounds
-   const translateX = Math.max(
-     Math.min(-cumulativeWidth + centeredOffset, maxTranslateX),
-     minTranslateX
-   );
+   // Final translateX calculation
+   const translateX = -cumulativeWidth + centeredOffset;
 
    return translateX - GAP_WIDTH + 5;
  };
@@ -69,9 +59,11 @@ export const Carousel2 = () => {
           left: 0,
           right: 0,
         }}
-        style={{
-          // x: dragX,
-        }}
+        style={
+          {
+            x: dragX,
+          }
+        }
         onDragEnd={onDragEnd}
         animate={{
           translateX: calculateTranslateX(),
@@ -89,6 +81,15 @@ export const Carousel2 = () => {
   );
 };
 
+
+
+
+
+
+
+
+
+
 type ImageProps = {
   imgIndex: number;
   imageWidth: number;
@@ -103,9 +104,27 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
     return imgIndex - 1 === index ? true : false;
   };
 
+  // ref
+  const carouselWrapperRef = useRef<HTMLDivElement>(null);
+
+  // // wheel
+  // const handleScroll = (e: any) => {
+  //   if (e.deltaX > 0 && imgIndex < items.length - 1) {
+  //     setImgIndex((prevIndex) => prevIndex + 1); // Scroll down/right
+  //   } else if (e.deltaX < 0 && imgIndex > 0) {
+  //     setImgIndex((prevIndex) => prevIndex - 1); // Scroll up/left
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const container = carouselWrapperRef.current;
+  //   if (container) {
+  //     container.addEventListener('wheel', handleScroll); // Add scroll event listener
+  //     return () => container.removeEventListener('wheel', handleScroll); // Clean up event listener
+  //   }
+  // }, [imgIndex]);
 
   // scale:
-  const carouselWrapperRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: carouselWrapperRef,
     offset: ['start start', 'end start'],
@@ -140,12 +159,19 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
     [startOuterTransition, endOuterTransition],
     [100, 0]
   );
+  const copyTranslateY = useTransform(scrollYProgress, [0, 0.6], [200, 0]);
+  const copyOpacity = useTransform(scrollYProgress, [0.3, 0.6], [0, 1]);
   function outerTranslate(i: number) {
     return i > imgIndex ? posterTranslateXRight : posterTranslateXLeft;
   }
+  const translateY = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
   function mainCarMotionStyles(i: number) {
     return i === imgIndex
-      ? { scale }
+      ? {
+          scale,
+          y: translateY,
+          copyOpacity: 1
+        }
       : {
           opacity: outerItemsOpacity,
           x: outerTranslate(i),
@@ -172,16 +198,39 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
                   // marginRight: GAP_WIDTH/2,
                   ...mainCarMotionStyles(idx),
                 }}
-                animate={{
-                  // scale: imgIndex === idx ? 1 : 1,
-                }}
+                animate={
+                  {
+                    // scale: imgIndex === idx ? 1 : 1,
+                  }
+                }
                 transition={SPRING_OPTIONS}
                 className={
                   `aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
                   (imgIndex === idx ? '' : '')
                 }
               >
-                <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1>
+                <motion.div
+                  className={''}
+                  style={{
+                    y: copyTranslateY,
+                    opacity: copyOpacity,
+                  }}
+                >
+                  <div className="mx-10 my-8">
+                    <div className="initials mix-blend-screen montserrat font-[900] hidden">
+                      <span className="text-5xl mix-blend-screen text-accent1 z-20 relative1">
+                        O
+                      </span>
+                      <span className="text-5xl mix-blend-screen relative z-30 text-gray-400 -ml-5 ">
+                        H
+                      </span>
+                    </div>
+                    <div className="bg-darker/80 inline-block font-bold uppercase rounded-md py-2 px-5 text-center">
+                      {item.name}
+                    </div>
+                  </div>
+                </motion.div>
+                {/* <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1> */}
                 {nextItem(idx) && (
                   <Arrows2
                     onClick={(e) => setImgIndex(imgIndex + 1)}
@@ -199,6 +248,12 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
               </motion.div>
             );
           })}
+          <div
+            style={{ width: imageWidth / 3 }}
+            className="ml-5 aspect-video -z-10 mx-8_ shrink-0 rounded-2xl object-cover bg-white_ relative overflow-clip "
+          >
+            <img className="brightness-200" src={imgEnd} alt="" />
+          </div>
         </div>
       </div>
     </div>

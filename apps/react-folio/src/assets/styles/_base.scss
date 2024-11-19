@@ -28,5 +28,10 @@ body {
 .blurrr {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
-  background-color: rgba(#0f1019, 0.85);
+  transition: backdrop-filter 0.2s;
+  background-color: rgba(#1f2937, 0.85);
+}
+
+.dark-shadow {
+  box-shadow: 0 4px 116px 95px var(--dark), 0 1px 3px var(--dark);
 }

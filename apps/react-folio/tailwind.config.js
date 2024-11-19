@@ -1,7 +1,10 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
 const { Theme } = require('./theme-vars');
-var colors = require('colors');
+// var colors = require('colors');
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
 
 const theme = new Theme();
 const vars = {...theme.colors, ...theme.vars};
@@ -36,7 +39,17 @@ module.exports = {
       },
       backgroundColor: {
         ...theme.backgrounds
-      }
+      },
+      animation: {
+        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+      },
+      keyframes: {
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
+      },
     },
     keyframes: {
       "carousel-move": {
@@ -48,5 +61,16 @@ module.exports = {
       "carousel-move": "carousel-move var(--duration,80s) infinite",
     },
   },
-  plugins: [],
+  plugins: [addVariablesForColors],
 };
+
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+ 
+  addBase({
+    ":root": newVars,
+  });
+}
