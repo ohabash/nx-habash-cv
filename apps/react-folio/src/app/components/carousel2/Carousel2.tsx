@@ -1,9 +1,10 @@
 import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
 import { SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
 import { useWindowSize } from 'react-use';
-import { items } from './carItems2';
+import { skills } from './skills.data';
 import { Arrows2 } from './Arrows2';
 import imgEnd from '../../../../public/theend.png';
+import { SmallCarousels2 } from './SmallCarousels2';
 
 const DRAG_BUFFER = 1;
 const GAP_WIDTH = 25; // Assuming `gap-8` is 32px (2rem)
@@ -18,11 +19,17 @@ const SPRING_OPTIONS = {
 export const Carousel2 = () => {
   const screen = useWindowSize();
   const [imgIndex, setImgIndex] = useState(2);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const opacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
 
   const dragX = useMotionValue(0);
   // dragX.set(0);
 
-  const imageWidth = 0.6 * screen.width; // 60vw for each image
+  const imageWidth = 0.58 * screen.width; // 60vw for each image
   const containerOffset = (screen.width - imageWidth) / 2;
 
  const calculateTranslateX = () => {
@@ -44,7 +51,7 @@ export const Carousel2 = () => {
   const onDragEnd = () => {
     const x = dragX.get();
 
-    if (x <= -DRAG_BUFFER && imgIndex < items.length - 1) {
+    if (x <= -DRAG_BUFFER && imgIndex < skills.length - 1) {
       setImgIndex((pv) => pv + 1);
     } else if (x >= DRAG_BUFFER && imgIndex > 0) {
       setImgIndex((pv) => pv - 1);
@@ -52,18 +59,16 @@ export const Carousel2 = () => {
   };
 
   return (
-    <div className="overflow-clip">
+    <div className="overflow-clip h-full" ref={ref}>
       <motion.div
         drag="x"
         dragConstraints={{
           left: 0,
           right: 0,
         }}
-        style={
-          {
-            x: dragX,
-          }
-        }
+        style={{
+          x: dragX,
+        }}
         onDragEnd={onDragEnd}
         animate={{
           translateX: calculateTranslateX(),
@@ -76,6 +81,9 @@ export const Carousel2 = () => {
           imgIndex={imgIndex}
           setImgIndex={setImgIndex}
         />
+      </motion.div>
+      <motion.div style={{opacity}}>
+        <SmallCarousels2 containerRef={ref} />
       </motion.div>
     </div>
   );
@@ -179,83 +187,83 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
   }
 
   return (
-    <div
-      ref={carouselWrapperRef}
-      className="overflow-clip_ mt-[-100vh] h-[300vh] relative bg-yellow_"
-    >
-      <div className="h-screen sticky top-0 flex items-center ">
-        <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-5">
-          {items.map((item, idx) => {
-            return (
-              <motion.div
-                key={idx}
-                style={{
-                  backgroundImage: `url(${item.poster})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  width: imageWidth,
-                  marginLeft: GAP_WIDTH,
-                  // marginRight: GAP_WIDTH/2,
-                  ...mainCarMotionStyles(idx),
-                }}
-                animate={
-                  {
-                    // scale: imgIndex === idx ? 1 : 1,
-                  }
-                }
-                transition={SPRING_OPTIONS}
-                className={
-                  `aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
-                  (imgIndex === idx ? '' : '')
-                }
-              >
+      <div
+        ref={carouselWrapperRef}
+        className="overflow-clip_ mt-[-100vh] h-[300vh] relative bg-yellow_"
+      >
+        <div className="h-screen sticky top-0 flex items-center ">
+          <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-5">
+            {skills.map((item, idx) => {
+              return (
                 <motion.div
-                  className={''}
+                  key={idx}
                   style={{
-                    y: copyTranslateY,
-                    opacity: copyOpacity,
+                    backgroundImage: `url(${item.poster})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    width: imageWidth,
+                    marginLeft: GAP_WIDTH,
+                    // marginRight: GAP_WIDTH/2,
+                    ...mainCarMotionStyles(idx),
                   }}
+                  animate={
+                    {
+                      // scale: imgIndex === idx ? 1 : 1,
+                    }
+                  }
+                  transition={SPRING_OPTIONS}
+                  className={
+                    `aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
+                    (imgIndex === idx ? '' : '')
+                  }
                 >
-                  <div className="mx-10 my-8">
-                    <div className="initials mix-blend-screen montserrat font-[900] hidden">
-                      <span className="text-5xl mix-blend-screen text-accent1 z-20 relative1">
-                        O
-                      </span>
-                      <span className="text-5xl mix-blend-screen relative z-30 text-gray-400 -ml-5 ">
-                        H
-                      </span>
+                  <motion.div
+                    className={''}
+                    style={{
+                      y: copyTranslateY,
+                      opacity: copyOpacity,
+                    }}
+                  >
+                    <div className="mx-10 my-8">
+                      <div className="initials mix-blend-screen montserrat font-[900] hidden">
+                        <span className="text-5xl mix-blend-screen text-accent1 z-20 relative1">
+                          O
+                        </span>
+                        <span className="text-5xl mix-blend-screen relative z-30 text-gray-400 -ml-5 ">
+                          H
+                        </span>
+                      </div>
+                      <div className="bg-darker/80 inline-block font-bold uppercase rounded-md py-2 px-5 text-center">
+                        {item.name}
+                      </div>
                     </div>
-                    <div className="bg-darker/80 inline-block font-bold uppercase rounded-md py-2 px-5 text-center">
-                      {item.name}
-                    </div>
-                  </div>
+                  </motion.div>
+                  {/* <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1> */}
+                  {nextItem(idx) && (
+                    <Arrows2
+                      onClick={(e) => setImgIndex(imgIndex + 1)}
+                      mode={'next'}
+                      className={`fadeInRight d3`}
+                    />
+                  )}
+                  {prevItem(idx) && (
+                    <Arrows2
+                      onClick={(e) => setImgIndex(imgIndex - 1)}
+                      mode={'prev'}
+                      className={`fadeInLeft d3`}
+                    />
+                  )}
                 </motion.div>
-                {/* <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1> */}
-                {nextItem(idx) && (
-                  <Arrows2
-                    onClick={(e) => setImgIndex(imgIndex + 1)}
-                    mode={'next'}
-                    className={`fadeInRight d3`}
-                  />
-                )}
-                {prevItem(idx) && (
-                  <Arrows2
-                    onClick={(e) => setImgIndex(imgIndex - 1)}
-                    mode={'prev'}
-                    className={`fadeInLeft d3`}
-                  />
-                )}
-              </motion.div>
-            );
-          })}
-          <div
-            style={{ width: imageWidth / 3 }}
-            className="ml-5 aspect-video -z-10 mx-8_ shrink-0 rounded-2xl object-cover bg-white_ relative overflow-clip "
-          >
-            <img className="brightness-200" src={imgEnd} alt="" />
+              );
+            })}
+            <div
+              style={{ width: imageWidth / 3 }}
+              className="ml-5 aspect-video -z-10 mx-8_ shrink-0 rounded-2xl object-cover bg-white_ relative overflow-clip "
+            >
+              <img className="brightness-200" src={imgEnd} alt="" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };

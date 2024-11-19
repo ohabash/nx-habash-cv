@@ -1,4 +1,3 @@
-'use client';
 import { motion, MotionValue, useTransform } from 'framer-motion';
 import { ReactNode } from 'react';
 import { cn } from '../../utils/utils';

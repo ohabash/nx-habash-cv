@@ -1,10 +1,10 @@
-'use client';
 import { useScroll, useTransform } from 'framer-motion';
 import React from 'react';
 import { GoogleGeminiEffect } from '../ui/geminiEffect/GoogleGeminiEffect';
 import { Button } from '../button/Button';
 import { PiOpenAiLogo } from 'react-icons/pi';
 import { ChatModal } from '../chat/Chat';
+import { FadeIn } from '../animation/FadeIn';
 
 export function InterviewMe() {
   const ref = React.useRef(null);
@@ -20,25 +20,25 @@ export function InterviewMe() {
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
 
   return (
-    <div
-      className="h-[400vh] -mt-12 z-[60] bg-darker w-full border-b-[1px] border-subtle rounded-md relative pt-40 overflow-clip"
-      ref={ref}
-    >
-      <GoogleGeminiEffect
-        pathLengths={[
-          pathLengthFirst,
-          pathLengthSecond,
-          pathLengthThird,
-          pathLengthFourth,
-          pathLengthFifth,
-        ]}
-        title={<Title />}
-        button={<Btn />}
-        description={
-          'An interactive AI bot that lets you ask questions about my professional experience, skills, and achievements.'
-        }
-      />
-    </div>
+      <div
+        className="h-[400vh] -mt-12 z-[60] bg-darker w-full border-b-[1px] border-subtle rounded-md relative pt-40 overflow-clip"
+        ref={ref}
+      >
+        <GoogleGeminiEffect
+          pathLengths={[
+            pathLengthFirst,
+            pathLengthSecond,
+            pathLengthThird,
+            pathLengthFourth,
+            pathLengthFifth,
+          ]}
+          title={<Title />}
+          button={<Btn />}
+          description={
+            'An interactive AI bot that lets you ask questions about my professional experience, skills, and achievements.'
+          }
+        />
+      </div>
   );
 }
 

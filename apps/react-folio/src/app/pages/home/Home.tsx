@@ -11,6 +11,7 @@ import { Hero } from './../../components/hero/Hero';
 export function Home() {
   // bottom animate 
   const mainWrapperRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   return (
     <>
       <main id={'page-home'} className="relative h-full" ref={mainWrapperRef}>
@@ -18,9 +19,9 @@ export function Home() {
           <Hero />
           <Timeline></Timeline>
         </div>
-        <Carousel2 />
-        <SmallCarousels2 />
-        <SkillsCar></SkillsCar>
+        <div className="car-wrapper relative h-full" ref={containerRef}>
+          <Carousel2 />
+        </div>
         <StickBottom mainWrapperRef={mainWrapperRef}></StickBottom>
       </main>
       <InterviewMe />

@@ -1,22 +1,22 @@
-export type ItemCopy = {
+export type SkillCopy = {
   title?: string;
   button?: string;
 }
-export type Item = {
+export type Skill = {
   poster: string;
   name: string;
   url: string;
   icon?: string;
   iconClass?: string;
-  copy?: ItemCopy;
+  copy?: SkillCopy;
 };
 
-const defaultCopy: ItemCopy = {
+const defaultCopy: SkillCopy = {
   title: 'Best video title ever1',
   button: 'Watch now1',
 };
 
-export const items: Item[] = [
+export const skills: Skill[] = [
   {
     poster: '/img/posters/angular.png',
     name: 'Angular',
@@ -120,28 +120,28 @@ export const items: Item[] = [
   },
 ];
 
-const shuffleAndCheckConsecutive = (items: any[]): any[] => {
-  let shuffledItems = items;
+const shuffleAndCheckConsecutive = (skills: any[]): any[] => {
+  let shuffledSkills = skills;
   let hasConsecutiveDuplicates = true;
 
-  const hasConsecutiveDuplicatesFn = (shuffledItems: any[]): boolean => {
-    return shuffledItems.some((item, index) => {
-      return index > 0 && item === shuffledItems[index - 1];
+  const hasConsecutiveDuplicatesFn = (shuffledSkills: any[]): boolean => {
+    return shuffledSkills.some((item, index) => {
+      return index > 0 && item === shuffledSkills[index - 1];
     });
   };
 
   while (hasConsecutiveDuplicates) {
-    shuffledItems = items
+    shuffledSkills = skills
       .sort(() => Math.random() - 0.5)
-      .concat(items.sort(() => Math.random() - 0.5))
-      .concat(items.sort(() => Math.random() - 0.5));
+      .concat(skills.sort(() => Math.random() - 0.5))
+      .concat(skills.sort(() => Math.random() - 0.5));
 
-    hasConsecutiveDuplicates = hasConsecutiveDuplicatesFn(shuffledItems);
+    hasConsecutiveDuplicates = hasConsecutiveDuplicatesFn(shuffledSkills);
   }
 
-  return shuffledItems;
+  return shuffledSkills;
 };
 
-export const randomItemsSet1 = shuffleAndCheckConsecutive(items);
+export const randomSkillsSet1 = shuffleAndCheckConsecutive(skills);
 
-export const randomItemsSet2 = shuffleAndCheckConsecutive(items).sort(() => Math.random() - 0.5);
+export const randomSkillsSet2 = shuffleAndCheckConsecutive(skills).sort(() => Math.random() - 0.5);

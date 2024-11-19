@@ -1,31 +1,31 @@
-'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '../utils/utils';
+import { Skill } from '../carousel2/skills.data';
+import { LogoCard } from '../logo-card/LogoCard';
+
+type Props = {
+  items: Skill[];
+  groupId: string,
+  // scrollYProgress: MotionValue<number>,
+  direction?: 'left' | 'right';
+  speed?: 'fast' | 'normal' | 'slow' | string;
+  pauseOnHover?: boolean;
+  className?: string;
+};
 
 export const InfiniteMovingCards = ({
   items,
+  groupId,
   direction = 'left',
   speed = 'fast',
   pauseOnHover = true,
   className,
-}: {
-  items: {
-    quote: string;
-    name: string;
-    title: string;
-  }[];
-  direction?: 'left' | 'right';
-  speed?: 'fast' | 'normal' | 'slow';
-  pauseOnHover?: boolean;
-  className?: string;
-}) => {
+}: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    addAnimation();
-  }, []);
+  useEffect(() => addAnimation(), []);
   const [start, setStart] = useState(false);
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
@@ -60,62 +60,50 @@ export const InfiniteMovingCards = ({
   };
   const getSpeed = () => {
     if (containerRef.current) {
-      if (speed === 'fast') {
-        containerRef.current.style.setProperty('--animation-duration', '20s');
-      } else if (speed === 'normal') {
-        containerRef.current.style.setProperty('--animation-duration', '40s');
-      } else {
-        containerRef.current.style.setProperty('--animation-duration', '80s');
+      let duration;
+      switch (speed) {
+        case 'fast':
+          duration = '75s';
+          break;
+        case 'normal':
+          duration = '90s';
+          break;
+        case 'slow':
+          duration = '105s';
+          break;
+        default:
+          duration = speed;
+          break;
       }
+      containerRef.current.style.setProperty('--animation-duration', duration);
     }
   };
   return (
-    <div
-      ref={containerRef}
-      className={cn(
-        'scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
-        className
-      )}
-    >
-      <ul
-        ref={scrollerRef}
+    <div className="wrapper" ref={wrapperRef}>
+      <div
+        ref={containerRef}
         className={cn(
-          ' flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap',
-          start && 'animate-scroll ',
-          pauseOnHover && 'hover:[animation-play-state:paused]'
+          'scroller relative z-20  max-w-screen overflow-clip  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+          className
         )}
       >
-        {items.map((item, idx) => (
-          <li
-            className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
-            style={{
-              background:
-                'linear-gradient(180deg, var(--slate-800), var(--slate-900)',
-            }}
-            key={item.name}
-          >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className=" relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
-                {item.quote}
-              </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.name}
-                  </span>
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.title}
-                  </span>
-                </span>
-              </div>
-            </blockquote>
-          </li>
-        ))}
-      </ul>
+        <ul
+          ref={scrollerRef}
+          className={cn(
+            ' flex min-w-full shrink-0 gap-5 w-max flex-nowrap pb-2',
+            start && 'animate-scroll ',
+            pauseOnHover && 'hover:[animation-play-state:paused]'
+          )}
+        >
+          {items.map((item, idx) => (
+            <LogoCard
+              key={`${groupId}_${idx}`}
+              item={item}
+              // containerRef={wrapperRef}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
