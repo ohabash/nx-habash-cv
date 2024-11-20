@@ -10,21 +10,21 @@ export const LogoCard = ({ item }: Props) => {
   return (
     <a
       className={twMerge(
-        'w-[15vw] overflow-clip shrink-0 aspect-video relative rounded-xl block'
+        'w-[15vw] fadeInUp overflow-clip shrink-0 aspect-video relative rounded-xl block'
       )}
       href={item.url}
       target="_blank"
       rel="noreferrer"
       style={{
-        backgroundImage: `url(${item.poster})`,
-        backgroundSize: 'cover',
+        // backgroundImage: `url(${item.poster})`,
+        // backgroundSize: 'cover',
       }}
     >
       {/* overlay */}
       <div className="absolute top-0 left-0 w-full h-full z-10 p-2__ flex items-center text-center justify-center">
         <motion.div
           className={twMerge(
-            'bg-dark/80 backdrop-blur-[2px] h-full rounded-xl overflow-clip w-full fadeInUp',
+            'bg-dark/80 backdrop-blur-[0px] h-full rounded-xl overflow-clip w-full'
           )}
         >
           <img

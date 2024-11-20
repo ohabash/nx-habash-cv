@@ -44,9 +44,11 @@ export function InterviewMe() {
 
 const Title = () => {
   return (
-    <h1 className="">
+    <h1 className="glow-effect1 -mr-11">
       Interview Me
-      <span className="p-2 text-xs bg-white rounded-md text-black relative ml-2 -top-12">Ai</span>
+      <span className="p-2 text-xs bg-white text-black grad-dark rounded-md  relative ml-2 -top-12 glow-effect">
+        Ai
+      </span>
     </h1>
   );
 }

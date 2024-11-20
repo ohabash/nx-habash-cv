@@ -8,9 +8,7 @@ export class Theme {
     yellow: '#f1ad5e',
     green: '#00fff2',
     'glow-blue': '#0070ff70',
-    // dark: '#111111',
-    // darker: '#000000',
-    darker: '#0f1019',
+    darker: '#0d111d',
     dark: '#1f2937',
     'dark-text': '1d1d1f',
   };

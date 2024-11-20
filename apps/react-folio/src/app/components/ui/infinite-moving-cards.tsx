@@ -5,11 +5,12 @@ import { LogoCard } from '../logo-card/LogoCard';
 
 type Props = {
   items: Skill[];
-  groupId: string,
+  groupId: string;
   // scrollYProgress: MotionValue<number>,
   direction?: 'left' | 'right';
   speed?: 'fast' | 'normal' | 'slow' | string;
   pauseOnHover?: boolean;
+  shadow?: boolean;
   className?: string;
 };
 
@@ -19,6 +20,7 @@ export const InfiniteMovingCards = ({
   direction = 'left',
   speed = 'fast',
   pauseOnHover = true,
+  shadow = false,
   className,
 }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,7 +85,9 @@ export const InfiniteMovingCards = ({
       <div
         ref={containerRef}
         className={cn(
-          'scroller relative z-20  max-w-screen overflow-clip  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+          'scroller relative z-20  max-w-screen overflow-clip',
+          shadow &&
+            '[mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
           className
         )}
       >

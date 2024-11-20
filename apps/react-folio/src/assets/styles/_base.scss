@@ -35,3 +35,184 @@ body {
 .dark-shadow {
   box-shadow: 0 4px 116px 95px var(--dark), 0 1px 3px var(--dark);
 }
+
+.grad-dark {
+  background: linear-gradient(0deg, #000, #262626) !important;
+  color: #fff !important;
+}
+
+/*
+   /$$$$$$  /$$        /$$$$$$  /$$      /$$
+  /$$__  $$| $$       /$$__  $$| $$  /$ | $$
+ | $$  \__/| $$      | $$  \ $$| $$ /$$$| $$
+ | $$ /$$$$| $$      | $$  | $$| $$/$$ $$ $$
+ | $$|_  $$| $$      | $$  | $$| $$$$_  $$$$
+ | $$  \ $$| $$      | $$  | $$| $$$/ \  $$$
+ |  $$$$$$/| $$$$$$$$|  $$$$$$/| $$/   \  $$
+  \______/ |________/ \______/ |__/     \__/                       
+ 
+*/
+// single color
+// $peach: #f5a315;
+// $glow-accent: $peach;
+
+// rainbow colors
+// $Red: #ff0000;
+// $Orange: #ff7300;
+// $Yellow: #fffb00;
+// $Green: #48ff00;
+// $Cyan: #00f7ff;
+// $Blue: #0246ff;
+// $Violet: #b800ff;
+
+
+// // shadow animation
+// $rainbow-shadow-100: 
+//   0 0 10px rgba($Red, 0.8), 
+//   0 0 20px rgba($Yellow, 0.4),
+//   0 0 30px rgba($Green, 0.4),
+//   0 0 40px rgba($Blue, 0.4),
+//   0 0 60px rgba($Violet, 0.4)
+// ;
+// $rainbow-shadow-50: 
+//   0 0 40px rgba($Red, 0.8), 
+//   0 0 40px rgba($Yellow, 0.99),
+//   0 0 40px rgba($Green, 0.99),
+//   0 0 40px rgba($Blue, 0.99),
+//   0 0 40px rgba($Violet, 0.99)
+// ;
+// @keyframes pulsate-shadow {
+//   0%,
+//   100% { box-shadow: $rainbow-shadow-100; }
+//   50% { box-shadow: $rainbow-shadow-50; }
+// }
+
+// // background animation
+
+// @keyframes pulsate-bg {
+//   0% {
+//     background-position: 50% 0%; // Top-center
+//   }
+//   25% {
+//     background-position: 100% 50%; // Right-center
+//   }
+//   50% {
+//     background-position: 50% 100%; // Bottom-center
+//   }
+//   75% {
+//     background-position: 0% 50%; // Left-center
+//   }
+//   100% {
+//     background-position: 50% 0%; // Back to top-center
+//   }
+// }
+
+// .glow-effect_ {
+//   position: relative;
+//   display: inline-block; // Adjust based on your layout
+//   background: #000; // Base background color
+//   border-radius: 20px; // Adjust depending on your shape
+//   padding: 20px; // Optional padding for content
+
+//   // Inner glow effect
+//   // Apply rainbow box-shadow
+//   @include rainbow-box-shadow(10px);
+//   // animation: pulsate-shadow 2s infinite; // Apply pulsating animation
+
+//   // Pseudo-element for the outer glow
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: -10%; // Slightly outside the parent container
+//     left: -10%;
+//     right: -10%;
+//     bottom: -10%;
+//     // background: $rainbow-bg;
+//     // animation: pulsate-bg 4s infinite; // Apply pulsating animation
+//     background-size: 200%; // Enlarges the gradient for smoother movement
+//     // @extend .ease;
+//     filter: blur(10px);
+//     z-index: -1; // Push behind the main element
+//     border-radius: inherit; // Match the parent's border radius
+//   }
+// }
+
+/*
+            /$$                                 /$$ /$$    /$$$$$$ 
+           | $$                                / $$/ $$   /$$__  $$
+   /$$$$$$ | $$  /$$$$$$  /$$  /$$  /$$       /$$$$$$$$$$|__/  \ $$
+  /$$__  $$| $$ /$$__  $$| $$ | $$ | $$      |   $$  $$_/  /$$$$$$/
+ | $$  \ $$| $$| $$  \ $$| $$ | $$ | $$       /$$$$$$$$$$ /$$____/ 
+ | $$  | $$| $$| $$  | $$| $$ | $$ | $$      |_  $$  $$_/| $$      
+ |  $$$$$$$| $$|  $$$$$$/|  $$$$$/$$$$/        | $$| $$  | $$$$$$$$
+  \____  $$|__/ \______/  \_____/\___/         |__/|__/  |________/
+  /$$  \ $$                                                        
+ |  $$$$$$/                                                        
+  \______/                                                         
+*/
+
+$rainbow-colors: (
+  red: #ff0000,
+  orange: #ff7300,
+  yellow: #fffb00,
+  green: #48ff00,
+  cyan: #00f7ff,
+  blue: #0246ff,
+  violet: #b800ff
+);
+
+@mixin rainbow-box-shadow($intensity: 20px, $opacity: 0.99) {
+  box-shadow: 0 0 calc(#{$intensity} * 1) rgba(map-get($rainbow-colors, red), $opacity),
+  // 0 0 calc(#{$intensity} * 1.5) rgba(map-get($rainbow-colors, orange), $opacity),
+  // 0 0 calc(#{$intensity} * 2.0) rgba(map-get($rainbow-colors, yellow), $opacity),
+  0 0 calc(#{$intensity} * 2.5) rgba(map-get($rainbow-colors, green), $opacity),
+  // 0 0 calc(#{$intensity} * 3.0) rgba(map-get($rainbow-colors, cyan), $opacity),
+  // 0 0 calc(#{$intensity} * 3.5) rgba(map-get($rainbow-colors, blue), $opacity),
+  0 0 calc(#{$intensity} * 4.0) rgba(map-get($rainbow-colors, blue), $opacity);
+}
+$rainbow-bg: linear-gradient(90deg, map-get($rainbow-colors, Red), map-get($rainbow-colors, Orange), map-get($rainbow-colors, Yellow), map-get($rainbow-colors, Green), map-get($rainbow-colors, Cyan), map-get($rainbow-colors, Blue), map-get($rainbow-colors, Violet), transparent 80%);
+$offset: 4px;
+$offset-side: calc(-#{$offset} / 2);
+.glow-effect {
+  // @extend .grad-dark;
+  @include rainbow-box-shadow(1px);
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    @apply rounded-md overflow-clip;
+    top: $offset-side;
+    left: $offset-side;
+    width: calc(100% + $offset);
+    height: calc(100% + $offset);
+    filter: blur(5px);
+    background: $rainbow-bg;
+    background-size: 400%;
+    z-index: -1;
+    animation: shadow 20s linear infinite;
+  }
+
+  &:after {
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    filter: blur(24px);
+    opacity: 0.9;
+  }
+
+}
+
+@keyframes shadow {
+  0% {
+    background-position: 0 0;
+  }
+
+  50.01% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}

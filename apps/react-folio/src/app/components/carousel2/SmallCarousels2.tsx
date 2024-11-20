@@ -11,7 +11,7 @@ export const SmallCarousels2 = ({containerRef}: Props) => {
   
   return (
     <div
-      className="d6 -mt-[calc((100vh-(300px*(16/9)))/2)] space-y-3 pt-3 md:-mt-[calc((100vh-(60vw*(9/16)))/2)]"
+      className="d6 -mt-[calc((100vh-(300px*(16/9)))/2)] space-y-3 pt-2 md:-mt-[calc((100vh-(60vw*(9/16)))/2)]"
     >
       <InfiniteMovingCards
         items={randomSkillsSet1}
