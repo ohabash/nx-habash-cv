@@ -5,6 +5,7 @@ import { skills } from './skills.data';
 import { Arrows2 } from './Arrows2';
 import imgEnd from '../../../../public/theend.png';
 import { SmallCarousels2 } from './SmallCarousels2';
+import { twMerge } from 'tailwind-merge';
 
 const DRAG_BUFFER = 1;
 const GAP_WIDTH = 25; // Assuming `gap-8` is 32px (2rem)
@@ -187,83 +188,92 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
   }
 
   return (
-      <div
-        ref={carouselWrapperRef}
-        className="overflow-clip_ mt-[-100vh] h-[300vh] relative bg-yellow_"
-      >
-        <div className="h-screen sticky top-0 flex items-center ">
-          <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-5">
-            {skills.map((item, idx) => {
-              return (
+    <div
+      ref={carouselWrapperRef}
+      className="overflow-clip_ mt-[-100vh] h-[300vh] relative bg-yellow_"
+    >
+      <div className="h-screen sticky top-0 flex items-center ">
+        <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-5">
+          {skills.map((item, idx) => {
+            return (
+              <motion.div
+                key={idx}
+                style={{
+                  backgroundImage: `url(${item.poster})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  width: imageWidth,
+                  marginLeft: GAP_WIDTH,
+                  // marginRight: GAP_WIDTH/2,
+                  ...mainCarMotionStyles(idx),
+                }}
+                animate={
+                  {
+                    // scale: imgIndex === idx ? 1 : 1,
+                  }
+                }
+                transition={SPRING_OPTIONS}
+                className={
+                  `aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
+                  (imgIndex === idx ? '' : '')
+                }
+              >
                 <motion.div
-                  key={idx}
+                  className={''}
                   style={{
-                    backgroundImage: `url(${item.poster})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    width: imageWidth,
-                    marginLeft: GAP_WIDTH,
-                    // marginRight: GAP_WIDTH/2,
-                    ...mainCarMotionStyles(idx),
+                    y: copyTranslateY,
+                    opacity: copyOpacity,
                   }}
-                  animate={
-                    {
-                      // scale: imgIndex === idx ? 1 : 1,
-                    }
-                  }
-                  transition={SPRING_OPTIONS}
-                  className={
-                    `aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
-                    (imgIndex === idx ? '' : '')
-                  }
                 >
-                  <motion.div
-                    className={''}
-                    style={{
-                      y: copyTranslateY,
-                      opacity: copyOpacity,
-                    }}
-                  >
-                    <div className="mx-10 my-8">
-                      <div className="initials mix-blend-screen montserrat font-[900] hidden">
-                        <span className="text-5xl mix-blend-screen text-accent1 z-20 relative1">
-                          O
-                        </span>
-                        <span className="text-5xl mix-blend-screen relative z-30 text-gray-400 -ml-5 ">
-                          H
-                        </span>
-                      </div>
-                      <div className="bg-darker/80 inline-block font-bold uppercase rounded-md py-2 px-5 text-center">
-                        {item.name}
-                      </div>
+                  <div className="mx-10 my-8">
+                    <div className="initials mix-blend-screen montserrat font-[900] hidden">
+                      <span className="text-5xl mix-blend-screen text-accent1 z-20 relative1">
+                        O
+                      </span>
+                      <span className="text-5xl mix-blend-screen relative z-30 text-gray-400 -ml-5 ">
+                        H
+                      </span>
                     </div>
-                  </motion.div>
-                  {/* <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1> */}
-                  {nextItem(idx) && (
-                    <Arrows2
-                      onClick={(e) => setImgIndex(imgIndex + 1)}
-                      mode={'next'}
-                      className={`fadeInRight d3`}
-                    />
-                  )}
-                  {prevItem(idx) && (
-                    <Arrows2
-                      onClick={(e) => setImgIndex(imgIndex - 1)}
-                      mode={'prev'}
-                      className={`fadeInLeft d3`}
-                    />
-                  )}
+                    <div className="bg-darker/80 inline-block font-bold uppercase rounded-md py-2 px-5 text-center">
+                      {item.name}
+                    </div>
+                  </div>
                 </motion.div>
-              );
-            })}
-            <div
-              style={{ width: imageWidth / 3 }}
-              className="ml-5 aspect-video -z-10 mx-8_ shrink-0 rounded-2xl object-cover bg-white_ relative overflow-clip "
+                {/* <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1> */}
+                {nextItem(idx) && (
+                  <Arrows2
+                    onClick={(e) => setImgIndex(imgIndex + 1)}
+                    mode={'next'}
+                    className={`fadeInRight d3`}
+                  />
+                )}
+                {prevItem(idx) && (
+                  <Arrows2
+                    onClick={(e) => setImgIndex(imgIndex - 1)}
+                    mode={'prev'}
+                    className={`fadeInLeft d3`}
+                  />
+                )}
+              </motion.div>
+            );
+          })}
+          <div
+            style={{ width: imageWidth / 3 }}
+            className={twMerge(
+              'ml-5 aspect-video -z-10 mx-8_ shrink-0 rounded-2xl object-cover bg-white_ relative overflow-clip text-center',
+              imgIndex === skills.length && 'hidden z-30'
+            )}
+          >
+            <img className="brightness-200" src={imgEnd} alt="" />
+            <p
+              onClick={(e) => setImgIndex(0)}
+              className="f cursor-pointer hover:text-white"
             >
-              <img className="brightness-200" src={imgEnd} alt="" />
-            </div>
+              Start Over
+            </p>
           </div>
         </div>
       </div>
+    </div>
   );
 };

@@ -13,11 +13,11 @@ type SmCarProps = {
 
 export const SmallCarousel2 = ({ items, carId, className, direction }: SmCarProps) => {
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
-  const offset = (direction === 'left') ? ['start start', 'end start'] : ['end start', 'start start'];
-  const { scrollYProgress } = useScroll({
-    target: carouselWrapperRef,
-    offset: ['end end', 'start start'],
-  });
+  // const offset = (direction === 'left') ? ['start start', 'end start'] : ['end start', 'start start'];
+  // const { scrollYProgress } = useScroll({
+  //   target: carouselWrapperRef,
+  //   offset: ['end end', 'start start'],
+  // });
   const track = (direction === 'left') ? [1000, 0] : [-1000, 0];
   return (
     <div className={`overflow-clip ${className}`} ref={carouselWrapperRef}>
@@ -32,7 +32,6 @@ export const SmallCarousel2 = ({ items, carId, className, direction }: SmCarProp
           <LogoCard
             key={`${carId}-${index}`}
             item={item}
-            scrollYProgress={scrollYProgress}
           />
         ))}
       </motion.div>

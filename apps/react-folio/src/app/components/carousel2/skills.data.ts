@@ -118,6 +118,13 @@ export const skills: Skill[] = [
     icon: '/img/logos/azure.png',
     url: 'https://azure.microsoft.com/',
   },
+  {
+    poster: '/img/posters/monday.webp',
+    name: 'Monday.com App Development',
+    copy: defaultCopy,
+    icon: '/img/logos/monday.webp',
+    url: 'https://azure.microsoft.com/',
+  },
 ];
 
 const shuffleAndCheckConsecutive = (skills: any[]): any[] => {

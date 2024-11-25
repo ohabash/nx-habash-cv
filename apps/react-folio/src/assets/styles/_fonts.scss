@@ -41,6 +41,9 @@ h6 { font-size: 1rem; }
 p, a {
   // @include roboto(100);
   @apply font-light leading-[1.7rem];
+  &.f {
+    @apply text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto;
+  }
   // line-height: 1.5rem;
   // &.sm {
   //   font-size: 0.8rem;
