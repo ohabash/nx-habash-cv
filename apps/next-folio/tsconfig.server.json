@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "noEmit": false,
+    "incremental": true,
+
+    "tsBuildInfoFile": "../../tmp/buildcache/apps/next-folio/server",
+
+    "types": ["node"],
+    "paths": {
+      "@/*": [ "./src/app/*" ],
+      "@components/*": [ "./src/app/components/*" ]
+    },
+  },
+  "include": ["server/**/*.ts"]
+}

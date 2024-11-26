@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "preserve",
+    "baseUrl": "./",
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -11,9 +12,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "plugins": [
       {
         "name": "next"
@@ -22,15 +20,22 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "paths": {
+      "@nx-habash/react-lib": ["../../libs/react-lib/src/index.ts"],
+      "@nx-habash/react-lib/server": ["../../libs/react-lib/src/server.ts"],
+      "@/*": [ "./src/app/*" ],
+      "@components/*": ["./src/app/components/*"],
+      "@public/*": ["./public/*"],
+    },
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    "../../apps/next-habash-cv/.next/types/**/*.ts",
-    "../../dist/apps/next-habash-cv/.next/types/**/*.ts",
+    "../../apps/next-folio/.next/types/**/*.ts",
+    "../../dist/apps/next-folio/.next/types/**/*.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],

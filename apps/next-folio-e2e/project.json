@@ -1,0 +1,9 @@
+{
+  "name": "next-folio-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/next-folio-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["next-folio"],
+  "// targets": "to see all targets run: nx show project next-folio-e2e --web",
+  "targets": {}
+}
