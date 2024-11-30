@@ -1,4 +1,4 @@
-// import { MetAccount } from '@nx-habash-cv/interfaces';
+// import { MetAccount } from '@nx-habash/interfaces';
 
 import { ChatCompletionAssistantMessageParam, ChatCompletionUserMessageParam } from "openai/resources";
 

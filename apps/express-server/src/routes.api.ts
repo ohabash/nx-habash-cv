@@ -1,13 +1,9 @@
 import { Router } from 'express';
-import { 
-  Response as Res, 
-  Request as Req, 
-  NextFunction as Next 
-} from 'express';
+import { Response as Res, Request as Req, NextFunction as Next } from 'express';
 import * as core from 'express-serve-static-core';
 import { errorHandler } from '@nx-habash/utils';
-import { ApiOpenaiRoutes } from '@nx-habash-cv/api-openai';
-// import { MetAccount } from "@nx-habash-cv/interfaces";
+import { ApiOpenaiRoutes } from '@nx-habash/api-openai';
+// import { MetAccount } from "@nx-habash/interfaces";
 
 const sig = '[ api-openai.routes.ts ]'.gray;
 
@@ -23,7 +19,7 @@ export class ApiRoutes {
     this.api = Router();
 
     // handle all endpoints here
-    this.api.use( '*', async (req: Req, res: Res, next: Next) => {
+    this.api.use('*', async (req: Req, res: Res, next: Next) => {
       const account = (req as any).account;
       next();
     });
@@ -34,7 +30,7 @@ export class ApiRoutes {
     });
 
     // "test" => GET
-    this.api.get( '/test', async (req: Req, res: Res) => {
+    this.api.get('/test', async (req: Req, res: Res) => {
       res.send('Test Works!');
     });
 
@@ -44,7 +40,6 @@ export class ApiRoutes {
     // return all api routes
     return this.api;
   }
-
 
   onError(res, error: any) {
     console.log(sig, 'error: '.red.bold, error);

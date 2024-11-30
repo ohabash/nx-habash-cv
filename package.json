@@ -1,5 +1,5 @@
 {
-  "name": "@nx-habash-cv/source",
+  "name": "@nx-habash/source",
   "version": "0.0.0",
   "license": "MIT",
   "engines": {
@@ -10,8 +10,8 @@
     "next:build": "nx build next-habash-cv",
     "logs": "heroku logs --tail -a nx-habash-cv",
     "theme": "npx tailwind-config-viewer",
-    "gen-api": "nx generate @nx-habash-cv/workspace-tools:api",
-    "gen-sdk": "nx generate @nx-habash-cv/workspace-tools:sdk"
+    "gen-api": "nx generate @nx-habash/workspace-tools:api",
+    "gen-sdk": "nx generate @nx-habash/workspace-tools:sdk"
   },
   "private": true,
   "dependencies": {

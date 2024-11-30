@@ -8,7 +8,7 @@ import * as core from 'express-serve-static-core';
 import { errorHandler } from '@nx-habash/utils';
 import { ApiOpenaiSdk } from './api-openai.sdk';
 import { ApiOpenaiConfig, OpenAiConversation, OpenAiConversations } from './api-openai.interface';
-// import { MetAccount } from "@nx-habash-cv/interfaces";
+// import { MetAccount } from "@nx-habash/interfaces";
 
 const sig = '[ api-openai.routes.ts ]'.gray;
 

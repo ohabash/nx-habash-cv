@@ -22,10 +22,12 @@ export function insertBefore(content: string, strToFind: string, content2Append:
 }
 
 export function insertAfter(content: string, strToFind: string, content2Append: string) {
+	console.log(`🚀 => insertAfter => content:`, content)
 	return content.replace(strToFind, `${strToFind} \n ${content2Append}`);
 }
 
 export function insertBeforeLastOccurrence(content, strToFind, content2Append) {
+	console.log(`🚀 => insertBeforeLastOccurrence => content:`, content)
 	const n = content.lastIndexOf(strToFind);
 	if (n < 0) return content;
 	return content.substring(0, n) + '\n' + content2Append + '\n' + content.substring(n);

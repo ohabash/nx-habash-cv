@@ -1,5 +1,5 @@
 {
-  "name": "@nx-habash-cv/api-openai",
+  "name": "@nx-habash/api-openai",
   "version": "0.0.1",
   "dependencies": {
     "columnify": "^1.6.0",

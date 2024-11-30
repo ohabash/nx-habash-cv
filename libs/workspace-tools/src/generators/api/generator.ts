@@ -11,16 +11,20 @@ import { printTree, getFile, insertBeforeLastOccurrence, addImport } from '../he
 export default async function (tree: Tree, schema: Properties) {
 	// default value for schema.type (currently only one type accepted)
 	schema.type ??= "SUBMODULE" // default type
-	schema.workspace ??= '@nx-habash-cv'; // !todo -- make dynamic
+	schema.workspace ??= '@nx-habash'; // !todo -- make dynamic
 	schema.name = `api-${schema.name}` // add prefix
 
 	console.log(`🚀 => schema:`, schema)
 
 	// Start with standard NX Lib
-	await libraryGenerator(tree, { name: schema.name });
+	await libraryGenerator(tree, {
+    name: schema.name,
+    directory: `libs/${schema.name}`,
+  });
 
 	// generate different name variations for substitutions
   const interfaceNames: Names = names(schema.name);
+  console.log(`🚀 => interfaceNames:`, interfaceNames)
 
 	//substitutions
 	const substitutions: ApiGenOptions = {
@@ -28,15 +32,18 @@ export default async function (tree: Tree, schema: Properties) {
 		...interfaceNames, // make the different name variants available as substitutions
 		...schema, // include provide values
 	};
+	console.log(`🚀 => substitutions:`, substitutions)
 
 	// merge ./file with lib
 	const libraryRoot = readProjectConfiguration(tree, schema.name).root;
+	console.log(`🚀 => libraryRoot:`, libraryRoot)
 	generateFiles(
 		tree, // the virtual file system
 		joinPathFragments(__dirname, `./${schema.type}_files`), // path to the file templates
 		libraryRoot, // destination path of the files
 		substitutions // config object to replace variable in file templates
 	);
+	console.log(`🚀 => libraryRoot:2`, libraryRoot);
 
 	// update index.ts
 	await updateIndexTs(tree, schema, substitutions);
@@ -88,6 +95,7 @@ async function updateIndexTs(tree: Tree, schema: Properties, substitutions: ApiG
  * @returns Promise<void>
  */
 export async function updateMainTs(tree: Tree, ops: ApiGenOptions): Promise<void> {
+	console.log(`🚀 => updateMainTs => tree:`, tree)
 	// content
 	const pathToFile = `apps/express-server/src/routes.api.ts`; // UPDATE THIS IN NEW APPS
 	const content = await getFile(tree, pathToFile);
@@ -97,6 +105,7 @@ export async function updateMainTs(tree: Tree, ops: ApiGenOptions): Promise<void
 	// add api import
 	let edits = addImport(pathToFile, apiImportSymbol, `${ops.workspace}/${ops.name}`, content as string, ops);
 
+	console.log(`🚀 => updateMainTs => edits:`, edits)
 	// add api middleware
 	let endpoint = `/api/${ops.fileName}`.replace('api-', '');
 	endpoint = endpoint.replace('//', '/')

@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-habash-cv/api-openai": ["libs/api-openai/src/index.ts"],
-      "@nx-habash-cv/workspace-tools": ["libs/workspace-tools/src/index.ts"],
+      "@nx-habash/api-openai": ["libs/api-openai/src/index.ts"],
+      "@nx-habash/workspace-tools": ["libs/workspace-tools/src/index.ts"],
       "@nx-habash/react-lib": ["libs/react-lib/src/index.ts"],
       "@nx-habash/react-lib/server": ["libs/react-lib/src/server.ts"],
       "@nx-habash/utils": ["libs/utils/src/index.ts"]

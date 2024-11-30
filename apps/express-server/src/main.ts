@@ -4,10 +4,10 @@ import * as colors from 'colors';
 import express from 'express';
 import * as path from 'path';
 import cors from 'cors';
-// import { ApiOpenaiRoutes, OpenAiConversations } from '@nx-habash-cv/api-openai';
+// import { ApiOpenaiRoutes, OpenAiConversations } from '@nx-habash/api-openai';
 import { environment, ErrorObject } from '@nx-habash/utils';
 import { ApiRoutes } from './routes.api';
-import { OpenAiConversations } from '@nx-habash-cv/api-openai';
+import { OpenAiConversations } from '@nx-habash/api-openai';
 colors;
 
 const app = express();

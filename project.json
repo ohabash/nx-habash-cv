@@ -1,5 +1,5 @@
 {
-  "name": "@nx-habash-cv/source",
+  "name": "@nx-habash/source",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
     "local-registry": {
