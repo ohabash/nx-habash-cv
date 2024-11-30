@@ -1,5 +1,9 @@
 import { Router } from "express";
-import * as express from 'express';
+import { 
+  Response as Res, 
+  Request as Req, 
+  NextFunction as Next 
+} from 'express';
 import * as core from "express-serve-static-core";
 import { errorHandler } from '<%= workspace %>/utils';
 import { <%= className %>Sdk } from "./<%= fileName %>.sdk";
@@ -35,8 +39,8 @@ export class <%= className %>Routes {
 				/**
 				 * @example GET: "{{nx-fornida}}/api/{{client-id}}/<%= fileName %>/test"
 				*/
-        this.api.get( '/test', async (req: express.Request & any, res: express.Response) => {
-            return res.send('Test Works!');
+        this.api.get( '/test', async (req: Req, res: Res, next: Next) => {
+            res.send('Test Works!');
         });
 
 				/**
@@ -45,7 +49,7 @@ export class <%= className %>Routes {
 				* @example GET: "{{nx-fornida}}/api/{{client-id}}/<%= fileName %>/test/sampleHttpRequest"
 				*
 				*/
-        this.api.all( '/:module/:method', async (req: express.Request & any, res: express.Response, next: any) => {
+        this.api.all( '/:module/:method', async (req: Req & any, res: Res, next: any) => {
             // use query or body to pass params
             const params = { ...req.query, ...req.body };
 
@@ -72,12 +76,12 @@ export class <%= className %>Routes {
     /**
      *
      * @description make sure the module // method exists
-     * @param req express.Request
+     * @param req Req
      * @param next express.Next
      * @param doRequest callback which will execute the request (when validated)
      * @returns executes request (as callback)
      */
-    async validateRequest(req: express.Request, next: express.NextFunction, doRequest: (method: any) => any) {
+    async validateRequest(req: Req, next: Next, doRequest: (method: any) => any) {
         console.log(sig, `validateRequest: `, 'VALIDATING...'.gray.italic)
         // check
         let method = null;

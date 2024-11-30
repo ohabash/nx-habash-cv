@@ -30,7 +30,7 @@ export function insertBeforeLastOccurrence(content, strToFind, content2Append) {
 	console.log(`🚀 => insertBeforeLastOccurrence => content:`, content)
 	const n = content.lastIndexOf(strToFind);
 	if (n < 0) return content;
-	return content.substring(0, n) + '\n' + content2Append + '\n' + content.substring(n);
+	return content.substring(0, n) + content2Append + '\n' + content.substring(n);
 }
 export function insert(content, pos, content2Append) {
 	if (pos < 0) return content;

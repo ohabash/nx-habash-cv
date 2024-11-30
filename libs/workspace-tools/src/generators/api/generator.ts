@@ -107,12 +107,12 @@ export async function updateMainTs(tree: Tree, ops: ApiGenOptions): Promise<void
 
 	console.log(`🚀 => updateMainTs => edits:`, edits)
 	// add api middleware
-	let endpoint = `/api/${ops.fileName}`.replace('api-', '');
+	let endpoint = `/${ops.fileName}`.replace('api-', '');
 	endpoint = endpoint.replace('//', '/')
 	edits = insertBeforeLastOccurrence(
     edits, // to be modified
     `this.api.use(`, // insert b4 this
-    `app.use('${endpoint}', new ${apiImportSymbol}().routes());` // append this
+    `this.api.use('${endpoint}', new ${apiImportSymbol}().routes());` // append this
   );
 
 	// save edits
