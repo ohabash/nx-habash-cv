@@ -1,0 +1,26 @@
+{
+  "name": "express-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/express-server/src",
+  "projectType": "application",
+  "tags": ["backend", "express"],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "express-server:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "express-server:build:development"
+        },
+        "production": {
+          "buildTarget": "express-server:build:production"
+        }
+      }
+    }
+  }
+}

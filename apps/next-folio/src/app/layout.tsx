@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <div id="MODAL"></div>
         <ThemeWrapper>
           <Header />
           <main>

@@ -1,7 +1,6 @@
-import { RefObject, useRef } from 'react';
+import { RefObject } from 'react';
 import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
-import { randomSkillsSet1, randomSkillsSet2, skills } from './skills.data';
-import { useScroll, motion, useTransform } from 'framer-motion';
+import { skills } from './skills.data';
 
 type Props = { 
   containerRef: RefObject<HTMLDivElement> 

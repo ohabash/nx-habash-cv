@@ -1,0 +1,30 @@
+import { environment, errorHandler } from '<%= workspace %>/utils';
+import { <%= className %>Config } from "./<%= fileName %>.interface";
+import 'colors';
+
+const sig = '[ <%= fileName %>.base.ts ]'.gray;
+
+export class <%= className %>BaseModule {
+  header = {
+		Accept: 'application/json',
+		'Content-Type': 'application/json',
+	};
+	env: any = environment;
+
+  constructor(config: <%= className %>Config) {
+  }
+
+  handleError(error, process, _path?: string) {
+    console.log(sig, 'error :'.bgRed.white.bold, error.toString());
+    const formatted = error.response
+      ? error.response.data || error.response
+      : error;
+    console.log(sig, `${process} (formatted)`.red, formatted);
+    throw errorHandler(error, {
+      title: process,
+      msg: formatted?.title || formatted?.toString(),
+    });
+  }
+
+}
+

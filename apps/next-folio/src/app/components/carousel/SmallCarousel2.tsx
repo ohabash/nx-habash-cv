@@ -20,7 +20,7 @@ export const SmallCarousel2 = ({ items, carId, className, direction }: SmCarProp
   // });
   const track = (direction === 'left') ? [1000, 0] : [-1000, 0];
   return (
-    <div className={`overflow-clip ${className}`} ref={carouselWrapperRef}>
+    <div className={`overflow-clip1 ${className}`} ref={carouselWrapperRef}>
       <motion.div
         className={twMerge(
           `flex gap-5 mb-5 _animate-carousel-move `,

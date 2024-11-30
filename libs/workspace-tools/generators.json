@@ -1,0 +1,14 @@
+{
+  "generators": {
+    "sdk": {
+      "factory": "./src/generators/sdk/generator",
+      "schema": "./src/generators/sdk/schema.json",
+      "description": "libs/workspace-tools/src/generators/sdk/sdk generator"
+    },
+    "api": {
+      "factory": "./src/generators/api/generator",
+      "schema": "./src/generators/api/schema.json",
+      "description": "libs/workspace-tools/src/generators/api/api generator"
+    }
+  }
+}

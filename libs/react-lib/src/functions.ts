@@ -5,3 +5,7 @@ export function zipArrays(arr1: any[], arr2: any[]): Array<any> {
   }
   return result;
 }
+
+export const timeout = (ms: any) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};

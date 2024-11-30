@@ -5,6 +5,10 @@
   transition-timing-function: cubic-bezier(.4, 0, .2, 1);
   transition-duration: .3s;
 }
+.ease2 {
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+}
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;

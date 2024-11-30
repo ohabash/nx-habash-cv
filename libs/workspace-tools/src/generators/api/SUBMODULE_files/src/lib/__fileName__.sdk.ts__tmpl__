@@ -1,0 +1,15 @@
+import { <%= className %>Config } from "./<%= fileName %>.interface";
+import { Test<%= className %> } from "./test/test.<%= fileName %>";
+
+const sig = '[ <%= fileName %>.sdk.ts ]'.gray;
+
+export class <%= className %>Sdk {
+
+    options: <%= className %>Config;
+
+    constructor(options: <%= className %>Config) {
+        this.options = options;
+    }
+
+    get test() { return new Test<%= className %>(this.options); }
+}

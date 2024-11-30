@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "preserve",
     "baseUrl": "./",
+    "jsx": "preserve",
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -24,8 +24,11 @@
     "paths": {
       "@nx-habash/react-lib": ["../../libs/react-lib/src/index.ts"],
       "@nx-habash/react-lib/server": ["../../libs/react-lib/src/server.ts"],
+      "@nx-habash-cv/api-openai": ["../../libs/api-openai/src/index.ts"],
+      "@nx-habash-cv/utils": [ "../../libs/utils/src/index.ts" ],
       "@/*": [ "./src/app/*" ],
       "@components/*": ["./src/app/components/*"],
+      "@ui/*": ["./src/app/components/ui/*"],
       "@public/*": ["./public/*"],
     },
   },

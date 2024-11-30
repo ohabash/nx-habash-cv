@@ -8,6 +8,7 @@ import React, {
   useState,
 } from 'react';
 import { cn } from '../utils/utils';
+import { createPortal } from 'react-dom';
 
 interface ModalContextType {
   open: boolean;
@@ -16,12 +17,20 @@ interface ModalContextType {
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
-export const ModalProvider = ({ children }: { children: ReactNode }) => {
+export const ModalProvider = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
     <ModalContext.Provider value={{ open, setOpen }}>
-      {children}
+      <div className={className}>
+        {children}
+      </div>
     </ModalContext.Provider>
   );
 };
@@ -34,8 +43,14 @@ export const useModal = () => {
   return context;
 };
 
-export function Modal({ children }: { children: ReactNode }) {
-  return <ModalProvider>{children}</ModalProvider>;
+export function Modal({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <ModalProvider className={className}>{children}</ModalProvider>;
 }
 
 export const ModalTrigger = ({
@@ -56,6 +71,26 @@ export const ModalTrigger = ({
       {children}
     </span>
   );
+};
+
+export const ModalBodyPortal = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
+  const [domReady, setDomReady] = useState(false);
+  let el: any = document.getElementById('MODAL');
+  useEffect(() => {
+    el = document.createElement('MODAL');
+    console.log(`🚀 => useEffect => el:`, el)
+    setDomReady(true)
+  }, []);
+  return domReady ? createPortal(
+    <ModalBody className={className}> {children} </ModalBody>,
+    el
+  ): null;
 };
 
 export const ModalBody = ({
@@ -144,7 +179,7 @@ export const ModalContent = ({
   className?: string;
 }) => {
   return (
-    <div className={cn('flex flex-col flex-1 p-8 md:p-10', className)}>
+    <div className={cn('flex flex-col flex-1 p-8 md:p-10 max-h-[70vh] overflow-auto', className)}>
       {children}
     </div>
   );
@@ -160,7 +195,7 @@ export const ModalFooter = ({
   return (
     <div
       className={cn(
-        'flex justify-end p-4 bg-gray-100 dark:bg-dark',
+        'flex_ justify-end_ p-4 bg-dark dark:bg-dark',
         className
       )}
     >

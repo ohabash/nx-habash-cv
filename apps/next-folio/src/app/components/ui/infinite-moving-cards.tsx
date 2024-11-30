@@ -102,6 +102,7 @@ export const InfiniteMovingCards = ({
           {items.map((item, idx) => (
             <LogoCard
               key={`${groupId}_${idx}`}
+              ID={`${groupId}_${idx}`}
               item={item}
               // containerRef={wrapperRef}
             />

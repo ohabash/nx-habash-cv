@@ -3,40 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/next-folio",
   "projectType": "application",
-  "tags": ["frontend", "next", "react"],
-  "targets": {
-    "build": {
-      "dependsOn": ["^build", "build-custom-server"]
-    },
-    "build-custom-server": {
-      "executor": "@nx/js:tsc",
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/next-folio",
-        "main": "apps/next-folio/server/main.ts",
-        "tsConfig": "apps/next-folio/tsconfig.server.json",
-        "clean": false,
-        "assets": []
-      },
-      "configurations": {
-        "development": {},
-        "production": {}
-      }
-    },
-    "serve-custom-server": {
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "production",
-      "options": {
-        "buildTarget": "next-folio:build-custom-server"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "next-folio:build-custom-server:development"
-        },
-        "production": {
-          "buildTarget": "next-folio:build-custom-server:production"
-        }
-      }
-    }
-  }
+  "tags": [],
+  "// targets": "to see all targets run: nx show project next-folio --web",
+  "targets": {}
 }
