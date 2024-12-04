@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { Response as Res, Request as Req, NextFunction as Next } from 'express';
 import * as core from 'express-serve-static-core';
 import { ApiOpenaiRoutes } from '@nx-habash/api-openai';
-import { ApiCatsRoutes } from '@nx-habash/api-cats';
 
 const sig = '[ api-openai.routes.ts ]'.gray;
 
@@ -36,7 +35,6 @@ export class ApiRoutes {
     });
 
     // list APIs here
-    this.api.use('/cats', new ApiCatsRoutes().routes());
     this.api.use('/openai', new ApiOpenaiRoutes().routes());
 
     // return all api routes

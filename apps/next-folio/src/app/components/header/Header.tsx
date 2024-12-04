@@ -1,41 +1,40 @@
-import { InterviewMeTrigger } from '../interview-me/InterviewMe';
+import Link from 'next/link';
+import { AuthNav } from '../auth/AuthNav';
 import { Container } from '../layout/Container';
-import { Tooltip } from '@ui/Tooltip';
 import './header.scss';
 
 export function Header() {
   return (
     <>
-      <header className="bg-darker h-[--header-1-height] flex flex-col justify-center z-20 relative">
-        <Container className="w-full">
-          <div className="level">{/* <Nav /> */}</div>
-        </Container>
-      </header>
-      <header className="header sticky top-0 z-20 blurrr h-[--header-2-height]_ flex flex-col justify-center">
+      <header className="header fixed w-full top-0 z-20 backdrop-blur-md bg-dark/50 h-[--header-2-height]_ flex flex-col justify-center">
         <Container className="w-full">
           <div className="level">
             <div className="level-left">
-              <h2>OH</h2>
+              <Link href={'/'}>
+                {/* <Image src={logo} alt="Omar Habash - UI Developer Logo" className='max-w-[150px] h-auto'/> */}
+                <Logo/>
+              </Link>
             </div>
             <div className="level-right">
-              {/* <div className="flex flex-row items-center justify-center mb-10 w-full">
-                <Tooltip
-                  // className="_absolute relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                  items={[
-                    {
-                      id: 3,
-                      name: 'item.name',
-                      designation: 'Data Scientist',
-                      image: '/img/logos/angular.webp',
-                    },
-                  ]}
-                />
-              </div> */}
-              <InterviewMeTrigger className="text-sm my-3 py-1 pl-4 pr-1"></InterviewMeTrigger>
+              <AuthNav />
+              {/* <InterviewMeTrigger simple={true} className="text-sm my-3 py-1 pl-4 pr-1"></InterviewMeTrigger> */}
+              {/* <Link className='link ml-3' href="/sign-up">Account</Link> */}
             </div>
           </div>
         </Container>
       </header>
     </>
+  );
+}
+
+export function Logo() {
+  return (
+    <div className="w-[120px] py-2 h-auto">
+      <svg id="logo" className='w-full h-full' viewBox="0 0 612 136.6">
+        <path fill={"var(--white)"} d="M67,129.1c-8.3,0-16-1.6-23.3-4.8-7.3-3.2-13.7-7.5-19.1-12.9-5.5-5.5-9.8-11.8-12.9-19.1-3.2-7.3-4.8-15.1-4.8-23.5s1.6-16.1,4.8-23.4c3.2-7.4,7.5-13.8,12.9-19.2s11.8-9.8,19.1-12.9c7.3-3.2,15.1-4.8,23.3-4.8s16.2,1.6,23.5,4.8c7.3,3.2,13.7,7.5,19.1,12.9,5.5,5.5,9.8,11.9,12.9,19.2,3.2,7.4,4.8,15.2,4.8,23.4s-1.6,16.2-4.8,23.5c-3.2,7.3-7.5,13.7-12.9,19.1-5.5,5.5-11.8,9.8-19.1,12.9-7.3,3.2-15.1,4.8-23.5,4.8ZM67.1,29.2c-5.3,0-10.2,1.1-14.8,3.3-4.6,2.2-8.6,5.1-12,8.7-3.4,3.6-6.2,7.8-8.2,12.6-2,4.8-3,9.8-3,15s1,10.3,3,15.1c2,4.8,4.7,9,8.2,12.6s7.4,6.6,12,8.7c4.6,2.2,9.5,3.3,14.8,3.3s10.2-1.1,14.8-3.3c4.6-2.2,8.6-5.1,12-8.7s6.2-7.9,8.2-12.6c2-4.8,3-9.8,3-15.1s-1-10.2-3-15c-2-4.8-4.7-9-8.2-12.6-3.4-3.6-7.4-6.5-12-8.7-4.6-2.2-9.5-3.3-14.8-3.3ZM264.1,10.8v116.1h-22.2v-58.8l-36.4,43.7-36.2-43.7v58.8h-22.2V10.8h1.4l57,67,57.2-67h1.4ZM275.9,126.9l59.4-116.1h2.2l59.4,116.1h-24.1l-9.1-18.3h-54.8l-8.9,18.3h-24.1ZM319.7,89.2h33.2l-16.5-35.1-16.7,35.1ZM426.6,126.9h-22.2V10.6h52.8c5.9,0,11.4,1,16.3,2.9,4.9,2,9.1,4.7,12.6,8.3,3.5,3.5,6.2,7.8,8.2,12.7,2,4.9,2.9,10.3,2.9,16.1,0,8.8-2.2,16.5-6.6,23-4.4,6.6-10.3,11.3-17.6,14.1,9.8,12.9,19.4,25.9,28.9,39.1h-26.5c-4.6-6-9.2-12.1-13.6-18.3-4.4-6.1-8.9-12.4-13.3-18.7h-22v37ZM426.6,70.2h30.6c2,0,4.1-.4,6.3-1.2,2.2-.8,4.1-2,5.8-3.7,1.7-1.6,3.1-3.7,4.2-6.1,1.1-2.4,1.7-5.3,1.7-8.6s-.2-3.7-.6-6c-.4-2.3-1.3-4.6-2.5-6.7-1.3-2.1-3.1-3.9-5.4-5.4-2.3-1.5-5.4-2.2-9.3-2.2h-30.6v39.9Z"/>
+        <path fill={"var(--accent1)"} d="M583.1,25.3v50.4h-9.6v-20h-24.9v20h-9.6V25.3h9.6v21.8h24.9v-21.8h9.6Z"/>
+        <path fill={"var(--accent1)"} d="M580.2,93.2h-38.1c-12.8,0-23.2-10.4-23.2-23.2V31.8c0-12.8,10.4-23.2,23.2-23.2h38.1c12.8,0,23.2,10.4,23.2,23.2v38.1c0,12.8-10.4,23.2-23.2,23.2ZM542.1,20.6c-6.2,0-11.2,5-11.2,11.2v38.1c0,6.2,5,11.2,11.2,11.2h38.1c6.2,0,11.2-5,11.2-11.2V31.8c0-6.2-5-11.2-11.2-11.2h-38.1Z"/>
+      </svg>
+    </div>
   );
 }

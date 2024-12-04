@@ -1,7 +1,9 @@
+"use client";
 import { AnimatePresence, motion } from 'framer-motion';
 import React, {
   ReactNode,
   createContext,
+  use,
   useContext,
   useEffect,
   useRef,
@@ -9,6 +11,7 @@ import React, {
 } from 'react';
 import { cn } from '../utils/utils';
 import { createPortal } from 'react-dom';
+import { openAsBlob } from 'node:fs';
 
 interface ModalContextType {
   open: boolean;
@@ -25,6 +28,9 @@ export const ModalProvider = ({
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    console.log(`🚀 => useEffect modal => open:`, open)
+  }, [open]);
 
   return (
     <ModalContext.Provider value={{ open, setOpen }}>
@@ -37,6 +43,7 @@ export const ModalProvider = ({
 
 export const useModal = () => {
   const context = useContext(ModalContext);
+  console.log(`🚀 => useModal => context:`, context)
   if (!context) {
     throw new Error('useModal must be used within a ModalProvider');
   }
@@ -56,17 +63,20 @@ export function Modal({
 export const ModalTrigger = ({
   children,
   className,
+  onClick,
 }: {
   children: ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => {
-  const { setOpen } = useModal();
+  const { setOpen, open } = useModal();
   return (
     <span
-      className={cn(
-        className
-      )}
-      onClick={() => setOpen(true)}
+      className={cn(className)}
+      onClick={() => {
+        onClick && onClick();
+        setOpen(!open);
+      }}
     >
       {children}
     </span>
@@ -80,16 +90,15 @@ export const ModalBodyPortal = ({
   children: ReactNode;
   className?: string;
 }) => {
-  const [domReady, setDomReady] = useState(false);
-  let el: any = document.getElementById('MODAL');
+  const el = useRef<Element | null>(null);
+  const { setOpen, open } = useModal();
   useEffect(() => {
-    el = document.createElement('MODAL');
-    console.log(`🚀 => useEffect => el:`, el)
-    setDomReady(true)
-  }, []);
-  return domReady ? createPortal(
-    <ModalBody className={className}> {children} </ModalBody>,
-    el
+    el.current = document.getElementById('MODAL');
+    console.log(`🚀 => modal useEffect => el.current:`, el.current);
+  }, [open]);
+  return el.current ? createPortal(
+    <ModalBody className={'__MODALBODY__ ' +className}> {children} </ModalBody>,
+    el.current
   ): null;
 };
 
@@ -136,7 +145,7 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={cn(
-              'min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-darker border border-transparent dark:border-neutral-900 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden',
+              'min-h-[50%] max-h-[90%] backdrop-blur-md_ md:max-w-[40%] border border-transparent dark:border-neutral-900 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden',
               className
             )}
             initial={{
@@ -179,7 +188,7 @@ export const ModalContent = ({
   className?: string;
 }) => {
   return (
-    <div className={cn('flex flex-col flex-1 p-8 md:p-10 max-h-[70vh] overflow-auto', className)}>
+    <div className={cn('flex flex-col flex-1 p-10 max-h-[70vh] overflow-auto pb-[4rem]', className)}>
       {children}
     </div>
   );
@@ -195,7 +204,7 @@ export const ModalFooter = ({
   return (
     <div
       className={cn(
-        'flex_ justify-end_ p-4 bg-dark dark:bg-dark',
+        'flex_ absolute w-full bottom-0 left-0 justify-end_ border-t-2 border-dark p-4 backdrop-blur-md bg-dark/80 dark:bg-dark/20',
         className
       )}
     >
@@ -212,11 +221,11 @@ const Overlay = ({ className }: { className?: string }) => {
       }}
       animate={{
         opacity: 1,
-        backdropFilter: 'blur(10px)',
+        // backdropFilter: 'blur(10px)',
       }}
       exit={{
         opacity: 0,
-        backdropFilter: 'blur(0px)',
+        // backdropFilter: 'blur(0px)',
       }}
       className={`fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
     ></motion.div>

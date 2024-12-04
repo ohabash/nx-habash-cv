@@ -25,6 +25,17 @@ body {
   }
 }
 
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.disable {
+  pointer-events: none;
+  cursor: default;
+}
+
 .blurrr {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -215,4 +226,8 @@ $offset-side: calc(-#{$offset} / 2);
   100% {
     background-position: 0 0;
   }
+}
+
+input.input {
+  @apply w-full px-3 py-7 mb-4 bg-lighten-1 rounded-md outline-none text-white placeholder-gray-500 border-0;
 }

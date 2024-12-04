@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "columnify": "^1.6.0",
-    "openai": "^4.52.7",
+    "openai": "^4.73.1",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",

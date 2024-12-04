@@ -11,6 +11,22 @@ export interface ApiOpenaiConfig {
   [k: string]: any; // replace this with expected api config
 }
 
+export interface Assistant {
+  id: string;
+  object: string;
+  created_at: number;
+  name: string;
+  description: string | null;
+  model: string;
+  instructions: string;
+  tools: { type: string }[];
+  metadata: Record<string, any>;
+  top_p: number;
+  temperature: number;
+  response_format: string;
+}
+
+
 // export interface OpenAiConversation {
 //   role: 'user' | 'assistant';
 //   content: string;

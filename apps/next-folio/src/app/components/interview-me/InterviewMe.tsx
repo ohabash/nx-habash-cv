@@ -5,9 +5,9 @@ import { PiOpenAiLogo } from 'react-icons/pi';
 import { Button } from '../button/Button';
 import { ChatModal } from '../chat/Chat';
 import { GoogleGeminiEffect } from '../ui/geminiEffect/GoogleGeminiEffect';
+import Link from 'next/link';
 
 export function InterviewMe() {
-  console.log(`🚀 => InterviewM1e => pathLengthFifth:`)
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -34,7 +34,7 @@ export function InterviewMe() {
           pathLengthFifth,
         ]}
         title={<Title />}
-        button={<InterviewMeTrigger className="md:mt-24" />}
+        button={<InterviewMeTrigger className="md:mt-41" />}
         description={
           'An interactive AI bot that lets you ask questions about my professional experience, skills, and achievements.'
         }
@@ -54,17 +54,17 @@ const Title = () => {
   );
 }
 
-export const InterviewMeTrigger = ({ className }: { className?: string }) => {
+export const InterviewMeTrigger = ({ className, simple=false }: { className?: string, simple?: boolean }) => {
   return (
     <ChatModal className="z-30">
-      <Button
-        className={`text-darker backdrop-blur-[2px] bg-white/80 text-xl ${className}`}
+      {!simple ? <Button
+        className={` bouncey active:scale-90 scale-100 backdrop-blur-[2px] bg-dark/80 text-xl ${className}`}
         blur={true}
         icon={<PiOpenAiLogo />}
         iconClassName="bg-accent3 text-white"
       >
         Interview Me
-      </Button>
+      </Button> : <a className={'link'}>Interview Me</a>}
     </ChatModal>
   );
 };

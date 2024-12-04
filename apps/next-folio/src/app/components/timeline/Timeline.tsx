@@ -151,7 +151,7 @@ export const Timeline = () => {
               <div className="flex-1">
                 {/* title */}
                 <div className="flex items-center mb-2">
-                  <h3 className="text-lg font-semibold text-accent1">
+                  <h3 className="text-lg font-semibold text-accent2">
                     {item.title}
                   </h3>
                 </div>
@@ -175,7 +175,7 @@ export const Timeline = () => {
           </FadeIn>
         ))}
       </Container>
-      <div className="blurrr bottom-[-14vh] absolute w-full left-0">
+      <div className="blurrr bottom-[-14vh] absolute left-0 w-screen overflow-clip">
         <motion.div
           className="text-accent1 drop-shadow-lg shad font-black text-[9rem] pt-3 py-4"
           style={{

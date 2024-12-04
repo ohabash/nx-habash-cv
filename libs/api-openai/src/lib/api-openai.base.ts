@@ -18,8 +18,20 @@ export class ApiOpenaiBaseModule {
     return new OpenAI({
       organization: openaiCreds.organization,
       project: openaiCreds.project,
-      apiKey: openaiCreds.apiKey_you,
+      apiKey: openaiCreds.apiKey,
     });
+  }
+
+  /**
+   * @description Returns a list models.
+   */
+  async listModels() {
+    try {
+      const response = await this.openai.models.list().then((res) => res.data);
+      return response;
+    } catch (error) {
+      this.handleError(error, 'listAssistants');
+    }
   }
 
   handleError(error, process, _path?: string) {

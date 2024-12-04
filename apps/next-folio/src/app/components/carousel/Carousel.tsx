@@ -63,7 +63,7 @@ export const Carousel = () => {
   };
 
   return (
-    <div className="overflow-clip_ h-full" ref={ref}>
+    <div className="overflow-clip h-full" ref={ref}>
       <motion.div
         drag="x"
         dragConstraints={{

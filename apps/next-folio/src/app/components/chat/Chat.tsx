@@ -12,6 +12,8 @@ import './chat.scss';
 import { ChatConvo } from './ChatConvo';
 import { sampleMessages } from './chat.interface';
 import { timeout } from '@nx-habash/react-lib';
+import { ChatSidebar } from './ChatSidebar';
+import { ChatProvider } from './chat.context';
 
 type Props = {
   children: ReactNode; // wrap you button or trigger
@@ -20,6 +22,7 @@ type Props = {
 
 export function ChatModal({ children, className }: Props) {
   const [messages, setMessages] = useState(sampleMessages);
+  const [revealed, setReveal] = useState(false);
   const randomId = Math.random().toString(36).substring(7);
   const onSubmit = async (val: string, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,23 +45,32 @@ export function ChatModal({ children, className }: Props) {
     setMessages([...messages, userMsg, BotLoadingMsg]);
   };
   return (
-    <div
-      className={twMerge(
-        'CHAT flex items-center justify-center z-30',
-        className
-      )}
-    >
-      <Modal>
-        <ModalTrigger>{children}</ModalTrigger>
-        <ModalBodyPortal className={`md:max-w-[60%] mt-[1rem]`}>
-          <ModalContent className="flex-col-reverse ">
-            <ChatConvo messages={messages} />
-          </ModalContent>
-          <ModalFooter className="gap-4">
-            <ChatInput onSubmit={onSubmit} />
-          </ModalFooter>
-        </ModalBodyPortal>
-      </Modal>
-    </div>
+    <ChatProvider> 
+      <div
+        className={twMerge(
+          'CHAT flex items-center justify-center z-30',
+          className
+        )}
+      >
+        <Modal>
+          <ModalTrigger>{children}</ModalTrigger>
+          <ModalBodyPortal className={`md:max-w-[60%] mt-[1rem]`}>
+            <div className="columns is-gapless">
+              <div className="column-2 bg-dark/85">
+                <ChatSidebar/>
+              </div>
+              <div className="column relative bg-darker/95 ">
+                <ModalContent className="flex-col-reverse ">
+                  <ChatConvo messages={messages} />
+                </ModalContent>
+                <ModalFooter className="gap-4">
+                  <ChatInput onSubmit={onSubmit} />
+                </ModalFooter>
+              </div>
+            </div>
+          </ModalBodyPortal>
+        </Modal>
+      </div>
+    </ChatProvider>
   );
 }

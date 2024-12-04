@@ -5,16 +5,17 @@ export class Theme {
     orange: '#f35528',
     blue: '#4493f8',
     subtle: '#3e3e3e',
+    google: '#4285F4',
     yellow: '#f1ad5e',
-    green: '#00fff2',
+    green: '#13c14e',
     'glow-blue': '#0070ff70',
     darker: '#0d111d',
     dark: '#1f2937',
     'dark-text': '1d1d1f',
   };
   vars = {
-    accent1: this.colors.yellow,
-    accent2: this.colors.orange,
+    accent1: this.colors.orange,
+    accent2: this.colors.yellow,
     accent3: this.colors.blue,
     fg1: this.colors['dark-text'],
     'darken-1': 'rgba(0,0,0,0.1)',
@@ -49,7 +50,7 @@ export class Theme {
     base: '1.0625rem', // 17px
     lg: ['1.1875rem', '1.21'], // 19px
     xl: '1.3125rem', // 21px
-    '2xl': '1. 5rem', // 24px
+    '2xl': '1.5rem', // 24px
     '3xl': ['4rem', '4.25rem'], // 64px
     '4xl': '5rem', // 80px
     '5xl': ['6rem', '1.05'], // 96px
