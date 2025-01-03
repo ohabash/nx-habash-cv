@@ -1,14 +1,12 @@
 import { useStateDebounced } from "@/hooks/debounce.hooks";
 import { useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FieldGroup } from "../forms/FieldGroup";
 import { NXInputProps } from "../forms/Input";
 import { useSession } from "next-auth/react";
 import { NxUser, ProfileService } from "./profile.service";
 import { Button } from "../button/Button";
 import { CiSaveDown1 } from 'react-icons/ci';
-import { User } from "next-auth";
-import { AdapterUser } from "next-auth/adapters";
 
 export type NXProfile = {
   id: string;
