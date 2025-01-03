@@ -1,3 +1,4 @@
+"use client";
 import Link from 'next/link';
 import { AuthNav } from '../auth/AuthNav';
 import { Container } from '../layout/Container';
@@ -7,7 +8,7 @@ export function Header() {
   return (
     <>
       <header className="header fixed w-full top-0 z-20 backdrop-blur-md bg-dark/50 h-[--header-2-height]_ flex flex-col justify-center">
-        <Container className="w-full">
+        <Container className="">
           <div className="level">
             <div className="level-left">
               <Link href={'/'}>

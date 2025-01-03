@@ -1,35 +1,35 @@
-import { Button } from '@components/button/Button';
-import { FaGoogle } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+"use client";
+import { auth } from '@/firebase/firebase.config';
+import {
+  SignUpActions,
+  SignUpSubHeaderCopy,
+} from '@components/auth/SignUpActions';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-export const page = () => {
+const Page = () => {
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+  if (user) return router.push('/auth/settings');
   const headerCopy = 'Step beyond the basics. Learn more about me.';
-  const subHeaderCopy = (
-    <>
-      Sign up to connect with me, view my resume, explore{' '}
-      <em className="font-bold text-accent2">Interview Me</em>, or dive into my
-      source code.
-    </>
-  );
   return (
     <>
       <h1 className="text-[3.25rem] font-normal">{headerCopy}</h1>
-      <p className="f text-left mb-8">{subHeaderCopy}</p>
+      <p className="f text-left mb-8">
+        <SignUpSubHeaderCopy />
+      </p>
       <div className="ops mt-[2vh] flex_">
-        <Button className="w-full py-4 bg-google text-white hover:brightness-110">
-          <FaGoogle className="mr-3 font-black" />
-          Continue with Google
-        </Button>
-        <Button
-          className="w-full py-4 mt-5 hover:brightness-95 "
-          href="/auth/sign-up-form"
-        >
-          <MdEmail className="mr-3" />
-          Continue with Email
-        </Button>
+        <SignUpActions />
       </div>
+      <Link
+        className="link ml-0 mt-2 block pl-0 font-normal"
+        href={'/auth/why'}
+      >
+        Why Do I Ask You to Log In?
+      </Link>
     </>
   );
 };
 
-export default page;
+export default Page;

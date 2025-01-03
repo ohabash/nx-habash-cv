@@ -43,7 +43,6 @@ export const ModalProvider = ({
 
 export const useModal = () => {
   const context = useContext(ModalContext);
-  console.log(`🚀 => useModal => context:`, context)
   if (!context) {
     throw new Error('useModal must be used within a ModalProvider');
   }
@@ -94,7 +93,7 @@ export const ModalBodyPortal = ({
   const { setOpen, open } = useModal();
   useEffect(() => {
     el.current = document.getElementById('MODAL');
-    console.log(`🚀 => modal useEffect => el.current:`, el.current);
+    // console.log(`🚀 => modal useEffect => el.current:`, el.current);
   }, [open]);
   return el.current ? createPortal(
     <ModalBody className={'__MODALBODY__ ' +className}> {children} </ModalBody>,

@@ -1,5 +1,8 @@
 'use client';
 import { createContext, ReactNode, SetStateAction, useContext, useState } from "react";
+import { useAssistant } from './useChatAssistant';
+import { useChatThread } from "./useChatThread";
+import { ProfileService } from "../profile/profile.service";
 
 
 // ===== || interface || ===== >
@@ -23,19 +26,34 @@ export const ChatContext = createContext<IChatContext | undefined>(
 
 
 // ===== || Provider component || ===== >
-export const ChatProvider = ({ children }: { children: ReactNode }) => {
+export const ChatProvider = ({
+  children,
+  profileService,
+}: {
+  children: ReactNode;
+  profileService: ProfileService | null;
+}) => {
   // stuff
   const [navOpen, setNavState] = useState(true);
+
+  // get / set assistant
+  const assistant = useAssistant({ 
+    profileService,
+    aid: 'asst_Cae6sgwNIYjDDqj2GPnah7QH' 
+  });
+
+  // get / set thread
+  const thread = useChatThread({ 
+    aid: 'asst_Cae6sgwNIYjDDqj2GPnah7QH',
+    profileService,
+    threadId: profileService?.profile?.threadId
+  });
 
   // final data
   const data: IChatContext = { navOpen, setNavState };
 
   // return wrapper markup
-  return (
-      <ChatContext.Provider value={data}>
-        {children}
-      </ChatContext.Provider>
-    );
+  return <ChatContext.Provider value={data}>{children}</ChatContext.Provider>;
 };
 
 // ===== || consumer usecontext || ===== >

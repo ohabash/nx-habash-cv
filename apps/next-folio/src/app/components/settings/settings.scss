@@ -1,0 +1,30 @@
+.settings-panel {
+  @apply flex flex-row gap-4 flex-wrap;
+  .item-row {
+    @apply grow flex gap-4;
+    .settings-header {
+      @apply py-1 flex justify-start pr-8 items-center;
+      i, svg { @apply mr-2; }
+    }
+    .item {
+      @apply border-[2px] rounded-md p-2 border-white/20 w-full bg-darken-1;
+      // &.stacked button {
+      //   @apply last-of-type:rounded-b-md first-of-type:rounded-t-md;
+      // }
+      button {
+        @apply
+          p-2
+          block
+          my-2
+          w-full
+          text-white/50
+          hover:bg-dark/20
+          hover:text-white
+        ;
+        &.active {
+          @apply bg-dark/70 text-white;
+        }
+      }
+    }
+  }
+}

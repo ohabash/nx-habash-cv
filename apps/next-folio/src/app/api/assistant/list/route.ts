@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const response = await openai.beta.assistants.list({
       order: "desc",
-      limit: 10,
+      limit: 20,
     });
 
     const assistants = response.data;

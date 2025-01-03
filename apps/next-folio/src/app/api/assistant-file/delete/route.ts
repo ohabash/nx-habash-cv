@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   const openai = new OpenAI();
 
   try {
-    const deletedFile = await openai.beta.assistants.files.del(
+    const deletedFile = await (openai as any).beta.assistants.files.del(
       assistantId,
       fileId
     );

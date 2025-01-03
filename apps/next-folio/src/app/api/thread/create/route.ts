@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-export async function GET() {
+export async function POST() {
   const openai = new OpenAI();
 
   try {
@@ -8,7 +8,7 @@ export async function GET() {
 
     console.log(thread);
 
-    return Response.json({ thread: thread });
+    return Response.json(thread);
   } catch (e) {
     console.log(e);
     return Response.json({ error: e });

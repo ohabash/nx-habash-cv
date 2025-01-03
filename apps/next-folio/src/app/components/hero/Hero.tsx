@@ -28,50 +28,54 @@ export function Hero() {
   const line1Translate = useTransform(scrollYProgress, [0, 1], [0, 3000]);
 
   return (
-      <div className="bg-1 relative -mt-[var(--header-2-height)]" >
-        {/* bg image */}
-        <motion.div
-          className="absolute -top-[--header-height] left-0 z-10 w-full h-[200vh] bg-red "
-          ref={videoContainerRef}
-          style={{ opacity: imgOpacity }}
-        >
-          <motion.img
-            style={{ 
-              scale: imgScale, 
-              rotate: imgRotate 
-            }}
-            className=" object-cover h-[100vh] w-full sticky top-0"
-            src={imgHero}
-            alt="Omar Habash Hero"
-          />
-        </motion.div>
+    <div className="bg-1 relative -mt-[var(--header-2-height)]">
+      {/* bg image */}
+      <motion.div
+        className="absolute -top-[--header-height] left-0 z-10 w-full h-[200vh] bg-red "
+        ref={videoContainerRef}
+        style={{ opacity: imgOpacity }}
+      >
+        <motion.img
+          style={{
+            scale: imgScale,
+            rotate: imgRotate,
+          }}
+          className=" object-cover h-[100vh] w-full sticky top-0"
+          src={imgHero}
+          alt="Omar Habash Hero"
+        />
+      </motion.div>
 
-        {/* copy over image */}
-        {!altAnimation && <Container className="relative z-10 h-[--hero-height]">
-          <motion.div
-            className=" h-full1"
-            style={{opacity: copyOpacity, }}
-          >
+      {/* copy over image */}
+      {!altAnimation && (
+        <Container className="relative z-10 h-[--hero-height]">
+          <motion.div className=" h-full1" style={{ opacity: copyOpacity }}>
             <h1 className="text-4xl">
-              <motion.div style={{ translateX: line1Translate, originZ: 0.1 }}> Complex problems. <br /> </motion.div>
+              <motion.div style={{ translateX: line1Translate, originZ: 0.1 }}>
+                {' '}
+                Complex problems. <br />{' '}
+              </motion.div>
               <motion.div style={{ translateX: line2Translate, originZ: 0.1 }}>
                 <Swap
                   words={['Simple', 'Intuitive', 'Impactful', 'Innovative']}
                   className={'text-accent2'}
-                /> UX.
+                />{' '}
+                UX.
               </motion.div>
             </h1>
           </motion.div>
-        </Container>}
+        </Container>
+      )}
 
-        {/* Alt Copy Animation */}
-        {altAnimation && <Container className="relative z-10 h-[--hero-height]">
+      {/* Alt Copy Animation */}
+      {altAnimation && (
+        <Container className="relative z-10 h-[--hero-height]">
           <motion.div
             className="flex flex-col justify-end items-start h-full"
-            style={{ 
-              opacity: copyOpacity, 
-              // scale: copyScale, 
-              // rotate: copyRotate 
+            style={{
+              opacity: copyOpacity,
+              // scale: copyScale,
+              // rotate: copyRotate
             }}
           >
             <h1 className="text-4xl mb-20">
@@ -83,7 +87,8 @@ export function Hero() {
               UX.
             </h1>
           </motion.div>
-        </Container>}
-      </div>
+        </Container>
+      )}
+    </div>
   );
 }

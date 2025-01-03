@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const openai = new OpenAI();
 
   try {
-    const assistantFiles = await openai.beta.assistants.files.list(assistantId);
+    const assistantFiles = await (openai as any).beta.assistants.files.list(assistantId);
 
     console.log(assistantFiles);
 

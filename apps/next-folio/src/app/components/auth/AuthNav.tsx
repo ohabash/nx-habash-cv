@@ -1,42 +1,51 @@
-"use client";
-import { IoMdLogOut } from "react-icons/io"; 
-import { MdOutlineAccountCircle } from "react-icons/md"; 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { twMerge } from "tailwind-merge";
-import { auth } from "@/firebase/firebase.config";
-import { signOut } from "firebase/auth";
+'use client';
+import { signIn, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { MdOutlineAccountCircle } from 'react-icons/md';
+import { twMerge } from 'tailwind-merge';
 
 export const AuthNav = () => {
-  const [user] = useAuthState(auth);
-  console.log(`🚀 => AuthNav => user:`, user)
+  const { data: session } = useSession();
+  const user = session?.user;
   const pathname = usePathname();
   const isAuthLink = pathname.includes('auth/');
-  const logout = async () => {
-    signOut(auth);
-    sessionStorage.removeItem('user');
-  };
+
   return (
     <div className="flex justify-center items-center">
-      {isAuthLink ? (
+      {isAuthLink && !user ? (
         <>
-          <Item path={'/auth/sign-up'} customActive={pathname.includes('sign-up')}>Sign Up</Item>
+          <Item
+            path={'/auth/sign-up'}
+            customActive={pathname.includes('sign-up')}
+          >
+            Sign Up
+          </Item>
           <Item path={'/auth/login'}>Login</Item>
         </>
       ) : (
         <>
           {/* signin (from home) */}
-          {!user && <Item path={'/auth/sign-up'} className="text-2xl"><MdOutlineAccountCircle /></Item>}
+          {!user && (
+            // <a onClick={(e) => signIn()} className="link">
+            //   Sign In
+            // </a>
+            <Item path={'/auth/sign-up'} className="">
+              Sign In
+            </Item>
+          )}
         </>
       )}
 
-      {/* logout */}
-      {user && <a onClick={logout} className="link text-2xl"><IoMdLogOut /></a>}
+      {/* Profile  */}
+      {user && (
+        <Item path={'/auth/settings'} className="text-2xl">
+          <MdOutlineAccountCircle />
+        </Item>
+      )}
     </div>
   );
-}
-
+};
 
 interface ItemProps {
   children: React.ReactNode;
@@ -44,9 +53,13 @@ interface ItemProps {
   className?: string;
   customActive?: boolean;
 }
-export const Item = ({ children, path, className, customActive }: ItemProps) => {
+export const Item = ({
+  children,
+  path,
+  className,
+  customActive,
+}: ItemProps) => {
   const pathname = usePathname();
-  console.log(`🚀 => Item => path:`, { path, pathname });
   const isActive = pathname.replace('/', '') === path?.replace('/', '');
   return (
     <Link

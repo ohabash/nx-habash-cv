@@ -12,7 +12,7 @@ export default function Index() {
   return (
     <>
       <main id={'page-home'} className="relative h-full">
-        <div className="bg-1 relative z-10">
+        <div className="bg-1 relative z-10 max-w-screen contain-paint">
           <Hero />
           <Timeline></Timeline>
         </div>

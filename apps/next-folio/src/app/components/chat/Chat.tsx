@@ -5,7 +5,7 @@ import {
   ModalFooter,
   ModalTrigger
 } from '@ui/modal';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import ChatInput from './ChatInput';
 import './chat.scss';
@@ -14,6 +14,8 @@ import { sampleMessages } from './chat.interface';
 import { timeout } from '@nx-habash/react-lib';
 import { ChatSidebar } from './ChatSidebar';
 import { ChatProvider } from './chat.context';
+import { useGlobalContext } from '@/global.context';
+import { ProfileService } from '../profile/profile.service';
 
 type Props = {
   children: ReactNode; // wrap you button or trigger
@@ -23,10 +25,18 @@ type Props = {
 export function ChatModal({ children, className }: Props) {
   const [messages, setMessages] = useState(sampleMessages);
   const [revealed, setReveal] = useState(false);
+  const global = useGlobalContext();
   const randomId = Math.random().toString(36).substring(7);
+  // let profileService: ProfileService | null;
+  const [profileService, setProfileService] = useState<ProfileService | null>(null);
+  useEffect(() => {
+    console.log(`🚀 => useEffect => global.uid (changed):`, global)
+    const service = ProfileService.init( global.uid, () => {}, '<ChatModal/>' );
+    setProfileService(service);
+  }, [global.uid]);
   const onSubmit = async (val: string, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(`🚀 => onSubmit => submitted:`, val);
+    console.log(`🚀 => 1onSubmit => submitted:`, val);
     const userMsg = {
       id: `${randomId}`,
       user: 'Bob',
@@ -45,7 +55,7 @@ export function ChatModal({ children, className }: Props) {
     setMessages([...messages, userMsg, BotLoadingMsg]);
   };
   return (
-    <ChatProvider> 
+    <ChatProvider profileService={profileService}>
       <div
         className={twMerge(
           'CHAT flex items-center justify-center z-30',
@@ -57,7 +67,7 @@ export function ChatModal({ children, className }: Props) {
           <ModalBodyPortal className={`md:max-w-[60%] mt-[1rem]`}>
             <div className="columns is-gapless">
               <div className="column-2 bg-dark/85">
-                <ChatSidebar/>
+                <ChatSidebar />
               </div>
               <div className="column relative bg-darker/95 ">
                 <ModalContent className="flex-col-reverse ">

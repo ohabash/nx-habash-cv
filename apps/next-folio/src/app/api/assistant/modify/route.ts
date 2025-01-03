@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
   try {
     const updatedAssistant = await openai.beta.assistants.update(assistantId, {
       file_ids: [fileId],
-    });
+    } as any);
 
     console.log(updatedAssistant);
 

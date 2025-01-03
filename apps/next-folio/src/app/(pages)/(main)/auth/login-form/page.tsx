@@ -1,20 +1,23 @@
 'use client';
 import { Button } from '@/components/button/Button';
-import { auth } from '@/firebase/firebase.config';
+import { ErrorMsg } from '@/components/ErrorMsg';
+import { auth, rtdb } from '@/firebase/firebase.config';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { BiChevronRightCircle } from 'react-icons/bi';
 import { twMerge } from 'tailwind-merge';
 
-const page = () => {
+const Page = () => {
   const headerCopy = 'Sign In';
+  const [user] = useAuthState(auth);
   const [email, setEmail] = useState('');
   const [showError, setShowError] = useState<false | string>(false);
   const [password, setPassword] = useState('');
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, userCredential, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const router = useRouter();
+  if (user) return router.push('/auth/settings');
   const handleSignIn = async () => {
     try {
       const res = await signInWithEmailAndPassword(email, password).catch((e) => {
@@ -23,14 +26,20 @@ const page = () => {
       console.log(`🚀 => handleSignIn => res:`, res)
       sessionStorage.setItem('user', 'true');
       if (!res) throw('Close, but no cigar. Try again!');
-      setEmail('');
-      setPassword('');
-      router.push('/'); 
+      loginActions();
     } catch (e) {
       console.log(`🚀 => handleSignIn => e:`, e)
       setShowError(`${e}`);
     }
   };
+  
+  async function loginActions() {
+    setEmail('');
+    setPassword('');
+    router.push('/auth/settings'); 
+    if (!userCredential?.user) return;
+    // await saveProfile(userCredential.user);
+  }
   const subHeaderCopy = (
     <>
       Your data is safe with me. I will never share your email or information
@@ -81,15 +90,13 @@ const page = () => {
           <BiChevronRightCircle className="mr-3" />
           {!loading ? 'Sign In' : 'Loading...'}
         </Button>
-        {error?.message && showError && (
-          <div className="bg-red text-white w-full block p-2 rounded-md mt-3">
-            <div className="font-bold">{showError}</div>
-            {error.message}
-          </div>
-        )}
+        {error?.message && showError && <ErrorMsg 
+          code={error.code} 
+          onClick={() => setShowError(false)}
+        />}
       </div>
     </>
   );
 };
 
-export default page;
+export default Page;

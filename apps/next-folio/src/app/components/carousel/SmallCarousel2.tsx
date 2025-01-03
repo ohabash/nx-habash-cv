@@ -30,7 +30,7 @@ export const SmallCarousel2 = ({ items, carId, className, direction }: SmCarProp
       >
         {items.map((item, index) => (
           <LogoCard
-            key={`${carId}-${index}`}
+            ID={`${carId}-${index}`}
             item={item}
           />
         ))}

@@ -42,7 +42,7 @@ export const AuthAside = () => {
       // dragControls={controls}
       style={styles}
     >
-      <div className={`img-wrapper`}>
+      <div className={`img-wrapper  `}>
         {/* <motion.div
           className='z-20's
           initial={{ opacity: 0, scale: 0.8 }}
@@ -60,7 +60,7 @@ export const AuthAside = () => {
           <Image
             src={authPoster}
             alt="All developers go to heaven."
-            className={''}
+            className={'rounded-lg overflow-hidden'}
           ></Image>
         {/* </motion.div> */}
         <motion.div

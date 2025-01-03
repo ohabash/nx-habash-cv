@@ -1,24 +1,45 @@
 "use client";
 import { Button } from '@/components/button/Button';
-import { auth } from '@/firebase/firebase.config';
+import { auth, errMsg } from '@/firebase/firebase.config';
 import { useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { BiChevronRightCircle } from "react-icons/bi";
+import { ErrorMsg } from "@components/ErrorMsg";
+import { useRouter } from 'next/navigation';
+import { NxUser, ProfileService } from '@/components/profile/profile.service';
+import { useSession } from 'next-auth/react';
+import { User } from 'next-auth';
 
-const page = () => {
+const Page = () => {
+  const [user] = useAuthState(auth);
+  const router = useRouter();
   const headerCopy = 'Sign Up';
   const [email, setEmail] = useState('');
+  const [showError, setShowError] = useState<false | string>(false);
   const [password, setPassword] = useState('');
-  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, userCreds, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  if (user) return router.push('/auth/settings');
   const handleSignUp = async () => {
+    const { data: session } = useSession();
+    const user = session?.user || {};
+    const profileService = ProfileService.init(
+      (user as any)?.id
+      {} as any,
+      '<24353425345/>'
+    );
     try {
       const res = await createUserWithEmailAndPassword(email, password);
       console.log({ res });
       sessionStorage.setItem('user', 'true');
+      if (!res) throw 'Close, but no cigar. Try again!';
       setEmail('');
       setPassword('');
+      if (!userCreds?.user) return;
+      await profileService?.saveProfile(user as any);
     } catch (e) {
       console.error(e);
+      setShowError(`${e}`);
     }
   };
   const subHeaderCopy = (
@@ -37,7 +58,10 @@ const page = () => {
           id="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setShowError(false);
+            setEmail(e.target.value);
+          }}
           className="input"
           pattern=".+@example\.com"
         />
@@ -46,7 +70,10 @@ const page = () => {
           id="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setShowError(false);
+            setPassword(e.target.value);
+          }}
           className="input"
         />
         <Button
@@ -56,9 +83,13 @@ const page = () => {
           <BiChevronRightCircle className="mr-3" />
           Sign Up
         </Button>
+        {error?.message && showError && <ErrorMsg 
+          code={error.code} 
+          onClick={() => setShowError(false)}
+        />}
       </div>
     </>
   );
 };
 
-export default page;
+export default Page;

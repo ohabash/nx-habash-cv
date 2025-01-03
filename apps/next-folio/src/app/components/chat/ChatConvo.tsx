@@ -6,8 +6,8 @@ import { RateResponse } from "./RateResponse";
 export const ChatConvo = ({ messages }: ChatConvoProps) => {
   return (
     <div className="chat-convo">
-      {messages.map((msg) => (
-        <div className="msg-wrapper" key={msg.id}>
+      {messages.map((msg, i) => (
+        <div className="msg-wrapper" key={`${i}_${msg.id}`}>
           <MsgBubble msg={msg} />
         </div>
       ))}
