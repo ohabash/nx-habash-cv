@@ -5,9 +5,6 @@ export async function POST() {
 
   try {
     const thread = await openai.beta.threads.create();
-
-    console.log(thread);
-
     return Response.json(thread);
   } catch (e) {
     console.log(e);

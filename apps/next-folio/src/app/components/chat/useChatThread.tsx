@@ -2,13 +2,19 @@ import { Thread, ThreadCreateParams } from 'openai/resources/beta/threads/thread
 import { useEffect, useMemo, useState } from 'react';
 import { ProfileService } from '../profile/profile.service';
 
+export interface ThreadHookResp {
+  thread: Thread | null;
+  threadSetter: (thread: Thread) => void;
+  deleteThread: (id: string) => Promise<any>;
+}
+
 interface Props {
   profileService: ProfileService | null;
   threadId?: string | null;
   aid: string;
 }
 
-export const useChatThread = ({ threadId, profileService, aid }: Props) => {
+export const useChatThread = ({ threadId, profileService, aid }: Props): ThreadHookResp => {
   const [thread, setThread] = useState<Thread | null>(null);
   
   // should be the only way to change thread

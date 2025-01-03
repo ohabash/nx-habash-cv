@@ -12,9 +12,6 @@ export async function GET(request: NextRequest) {
 
   try {
     const response = await openai.beta.assistants.del(assistantId);
-
-    console.log(response);
-
     return Response.json(response);
   } catch (e) {
     console.log(e);

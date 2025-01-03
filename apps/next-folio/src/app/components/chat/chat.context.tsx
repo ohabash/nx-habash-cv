@@ -1,14 +1,18 @@
 'use client';
 import { createContext, ReactNode, SetStateAction, useContext, useState } from "react";
-import { useAssistant } from './useChatAssistant';
-import { useChatThread } from "./useChatThread";
+import { AssistantHookResp, useAssistant } from './useChatAssistant';
+import { ThreadHookResp, useChatThread } from "./useChatThread";
 import { ProfileService } from "../profile/profile.service";
+import { MessagesResp, useMessages } from "./useChatMessages";
 
 
 // ===== || interface || ===== >
 export type IChatContext = {
   navOpen: boolean;
-  setNavState: (value: SetStateAction<boolean>) => void
+  setNavState: (value: SetStateAction<boolean>) => void;
+  assistant: AssistantHookResp;
+  thread: ThreadHookResp;
+  messages: MessagesResp;
 };
 
 export const serverSideChatContext = {
@@ -20,7 +24,7 @@ export const serverSideChatContext = {
 
 // ===== || create context || ===== >
 export const ChatContext = createContext<IChatContext | undefined>(
-  serverSideChatContext
+  serverSideChatContext as any
 );
 
 
@@ -36,21 +40,36 @@ export const ChatProvider = ({
   // stuff
   const [navOpen, setNavState] = useState(true);
 
+  // hard code assistant id (for now)
+  const aid = 'asst_Cae6sgwNIYjDDqj2GPnah7QH';
+
   // get / set assistant
-  const assistant = useAssistant({ 
+  const assistant = useAssistant({
     profileService,
-    aid: 'asst_Cae6sgwNIYjDDqj2GPnah7QH' 
+    aid,
   });
 
   // get / set thread
-  const thread = useChatThread({ 
-    aid: 'asst_Cae6sgwNIYjDDqj2GPnah7QH',
+  const thread = useChatThread({
+    aid,
     profileService,
-    threadId: profileService?.profile?.threadId
+    threadId: profileService?.profile?.chatThreadId,
+  });
+
+  // get / set thread messages
+  const messages = useMessages({
+    profileService,
+    threadId: profileService?.profile?.chatThreadId,
   });
 
   // final data
-  const data: IChatContext = { navOpen, setNavState };
+  const data: IChatContext = {
+    navOpen,
+    setNavState,
+    assistant,
+    thread,
+    messages,
+  };
 
   // return wrapper markup
   return <ChatContext.Provider value={data}>{children}</ChatContext.Provider>;

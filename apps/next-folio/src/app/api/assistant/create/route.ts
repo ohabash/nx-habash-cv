@@ -16,8 +16,6 @@ export async function GET() {
       model: "gpt-4-1106-preview",
     });
 
-    console.log(assistant);
-
     return Response.json({ assistant: assistant });
   } catch (e) {
     console.log(e);

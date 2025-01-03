@@ -14,9 +14,6 @@ export async function POST(req: NextRequest) {
       role: "user",
       content: message,
     });
-
-    console.log(threadMessage);
-
     return Response.json({ message: threadMessage });
   } catch (e) {
     console.log(e);
