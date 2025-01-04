@@ -16,12 +16,12 @@ export const ChatConvo = ({ messages }: ChatConvoProps) => {
 };
 
 export const MsgBubble = ({ msg }: { msg: ChatMessage }) => {
-  const botId = 'Bot';
+  const botId = 'assistant';
   return (
     <div
       className={twMerge(
         'flex user-bubble mb-5',
-        msg.user.includes(botId)
+        msg.role.includes(botId)
           ? 'justify-start bot-bubble'
           : 'justify-end user-bubble'
       )}
@@ -34,17 +34,17 @@ export const MsgBubble = ({ msg }: { msg: ChatMessage }) => {
           <div
             className={twMerge(
               'flex space-x-2',
-              msg.user.includes(botId) ? 'justify-start' : 'justify-end'
+              msg.role.includes(botId) ? 'justify-start' : 'justify-end'
             )}
           >
-            {!msg.loading && <span className="font-semibold text-xs text-gray-900 dark:text-white">
-              {msg.user}
-            </span>}
+            <span className="font-semibold text-xs text-gray-900 dark:text-white">
+              {msg.displayName || msg.role}
+            </span>
           </div>
           <div
             className={twMerge(
               'flex flex-col leading-1.5 p-1 px-4 border-gray-200 bg-gray-100 dark:bg-dark min-w-[10rem] max-w-[40rem] dark:border-gray-600',
-              msg.user.includes(botId)
+              msg.role.includes(botId)
                 ? 'rounded-ss-xl rounded-r-xl'
                 : 'rounded-s-xl rounded-se-xl bg-blue dark:bg-blue'
             )}
@@ -53,23 +53,23 @@ export const MsgBubble = ({ msg }: { msg: ChatMessage }) => {
               "font-normal text-gray-900 dark:text-white",
               msg.loading && 'italic dark:text-lighten-5'
             )}>
-              {msg.text}
+              {msg.content[0].type === 'text' ? msg.content[0]?.text?.value : '[not text]'}
             </p>
           </div>
           <div className="level">
             <span className="level-left text-xs font-normal text-gray-500 dark:text-gray-400 opacity-0 group-hover:opacity-100 ">
-              <Moment format="MMM D, h:mm">{msg.timestamp}</Moment>
+              <Moment format="MMM D, h:mm">{new Date(msg.created_at * 1000)}</Moment>
             </span>
-            {!msg.user.includes(botId) && (
+            {!msg.role.includes(botId) && (
               <span className="level-right font-normal text-xs text-gray-500 dark:text-gray-400">
-                Delivered
+                {msg.status}
               </span>
             )}
           </div>
         </div>
 
         {/* rate response */}
-        {msg.user.includes(botId) && <RateResponse />}
+        {msg.role.includes(botId) && <RateResponse />}
       </div>
     </div>
   );

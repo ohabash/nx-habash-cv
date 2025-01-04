@@ -1,20 +1,22 @@
 import { NextRequest } from "next/server";
 import OpenAI from "openai";
+import { MessageCreateParams } from "openai/resources/beta/threads/messages";
+
+export interface CreateMessageParams {
+  threadId: string;
+  body: MessageCreateParams;
+}
 
 export async function POST(req: NextRequest) {
-  const { message, threadId } = await req.json();
+  const { body, threadId } = (await req.json()) as CreateMessageParams;
 
-  if (!threadId || !message)
-    return Response.json({ error: "Invalid message" }, { status: 400 });
+  if (!threadId || !body) return Response.json({ error: "Invalid message params provided" }, { status: 400 });
 
   const openai = new OpenAI();
 
   try {
-    const threadMessage = await openai.beta.threads.messages.create(threadId, {
-      role: "user",
-      content: message,
-    });
-    return Response.json({ message: threadMessage });
+    const threadMessage = await openai.beta.threads.messages.create(threadId, body);
+    return Response.json(threadMessage);
   } catch (e) {
     console.log(e);
     return Response.json({ error: e });

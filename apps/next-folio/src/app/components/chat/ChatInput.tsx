@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { PlaceholdersAndVanishInput } from '@ui/placeholders-and-vanish-input';
 
 type Props = {
   // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (val: string, e: React.FormEvent<HTMLFormElement>) => void;
+  running: boolean;
 };
-const ChatInput = ({onSubmit}: Props) => {
+const ChatInput = ({onSubmit, running}: Props) => {
   const [val, setVal] = React.useState('');
   const placeholders = [
     'Where did you go to school?',
@@ -31,6 +32,7 @@ const ChatInput = ({onSubmit}: Props) => {
         placeholders={placeholders}
         onChange={handleChange}
         onSubmit={valAndSubmit}
+        running={running}
       />
     </div>
   );
