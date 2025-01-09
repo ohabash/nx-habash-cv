@@ -103,7 +103,7 @@ export function ChatModal({ children, className }: Props) {
     }
 
     // update messages
-    await updateMessages(threadId as string, setMessagesFn);
+    await updateMessages(threadId as string, 'onSubmit', setMessagesFn);
 
     // allow next chat
     setRunning(false);
@@ -119,9 +119,9 @@ export function ChatModal({ children, className }: Props) {
       >
         <Modal>
           <ModalTrigger>{children}</ModalTrigger>
-          <ModalBodyPortal className={`md:max-w-[60%] mt-[1rem]`}>
+          <ModalBodyPortal className={`md:max-w-[75%] mt-[1rem]`}>
             <div className="columns is-gapless">
-              <div className="column-2 bg-dark/85">
+              <div className="column is-4 bg-dark/85">
                 <ChatSidebar />
               </div>
               <div className="column relative bg-darker/95 ">

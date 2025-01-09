@@ -6,6 +6,7 @@ import { getServerSession } from 'next-auth';
 
 // global styles
 import './../styles.scss';
+import QueryProvider from '@/providers/QueryProvider';
 
 export const metadata = {
   title: 'Omar Habash',
@@ -22,13 +23,15 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <div id="MODAL"></div>
-        <SessionProvider session={session}>
-          <GlobalProvider>
-            <ThemeWrapper>
-              <main>{children}</main>
-            </ThemeWrapper>
-          </GlobalProvider>
-        </SessionProvider>
+        <QueryProvider>
+          <SessionProvider session={session}>
+            <GlobalProvider>
+              <ThemeWrapper>
+                <main>{children}</main>
+              </ThemeWrapper>
+            </GlobalProvider>
+          </SessionProvider>
+        </QueryProvider>
       </body>
     </html>
   );

@@ -5,7 +5,6 @@ import { PiOpenAiLogo } from 'react-icons/pi';
 import { Button } from '../button/Button';
 import { ChatModal } from '../chat/Chat';
 import { GoogleGeminiEffect } from '../ui/geminiEffect/GoogleGeminiEffect';
-import Link from 'next/link';
 
 export function InterviewMe() {
   const ref = React.useRef(null);
@@ -21,25 +20,25 @@ export function InterviewMe() {
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
 
   return (
-    <div
-      className="h-[400vh] -mt-8 z-[10] bg-darker w-full border-b-[1px] border-subtle rounded-md relative pt-52 overflow-clip"
-      ref={ref}
-    >
-      <GoogleGeminiEffect
-        pathLengths={[
-          pathLengthFirst,
-          pathLengthSecond,
-          pathLengthThird,
-          pathLengthFourth,
-          pathLengthFifth,
-        ]}
-        title={<Title />}
-        button={<InterviewMeTrigger className="md:mt-41" />}
-        description={
-          'An interactive AI bot that lets you ask questions about my professional experience, skills, and achievements.'
-        }
-      />
-    </div>
+      <div
+        className="h-[400vh] -mt-8 z-[10] bg-darker w-full border-b-[1px] border-subtle rounded-md relative pt-52 overflow-clip"
+        ref={ref}
+      >
+        <GoogleGeminiEffect
+          pathLengths={[
+            pathLengthFirst,
+            pathLengthSecond,
+            pathLengthThird,
+            pathLengthFourth,
+            pathLengthFifth,
+          ]}
+          title={<Title />}
+          button={<InterviewMeTrigger className="md:mt-41" />}
+          description={
+            'An interactive AI bot that lets you ask questions about my professional experience, skills, and achievements.'
+          }
+        />
+      </div>
   );
 }
 
@@ -56,16 +55,20 @@ const Title = () => {
 
 export const InterviewMeTrigger = ({ className, simple=false }: { className?: string, simple?: boolean }) => {
   return (
-    <ChatModal className="z-30">
-      {!simple ? <Button
-        className={` bouncey active:scale-90 scale-100 backdrop-blur-[2px] bg-dark/80 text-xl ${className}`}
-        blur={true}
-        icon={<PiOpenAiLogo />}
-        iconClassName="bg-accent3 text-white"
-      >
-        Interview Me
-      </Button> : <a className={'link'}>Interview Me</a>}
-    </ChatModal>
+      <ChatModal className="z-30">
+        {!simple ? (
+          <Button
+            className={` bouncey active:scale-90 scale-100 backdrop-blur-[2px] bg-dark/80 text-xl ${className}`}
+            blur={true}
+            icon={<PiOpenAiLogo />}
+            iconClassName="bg-accent3 text-white"
+          >
+            Interview Me
+          </Button>
+        ) : (
+          <a className={'link'}>Interview Me</a>
+        )}
+      </ChatModal>
   );
 };
 

@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react'
 import { ProfileService } from '../profile/profile.service';
 import { Assistant } from 'openai/resources/beta/assistants';
+import { useQuery } from '@tanstack/react-query';
 
 export interface AssistantHookResp {
   assistant: Assistant | null;
-  setAssistant: Dispatch<SetStateAction<Assistant | null>>;
+  // setAssistant: Dispatch<SetStateAction<Assistant | null>>;
   deleteAssistant: (id: string) => Promise<any>;
 }
 
@@ -14,22 +15,42 @@ interface Props {
 }
 
 export const useAssistant = ({aid, profileService}: Props): AssistantHookResp => {
-  const [assistant, setAssistant] = useState(null as Assistant | null);
-  useMemo(() => {
-    fetch(`/api/assistant/get?assistantId=${aid}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(`🚀 => fetchAssistant => data:`, aid, data);
-        setAssistant(data);
-      });
-  }, [aid]);
+  // const [assistant, setAssistant] = useState(null as Assistant | null);
+  const {data: assistant, isLoading, } = useQuery({
+    queryFn: () => fetchAssistant(aid),
+    queryKey: ['assistant', aid],
+  })
+  // useMemo(() => {
+    // fetchAssistant(aid).then((d) => setAssistant(d));
+  // }, [aid]);
+
+  useEffect(() => {
+    console.log(`🚀 => useAssistant => assistant:`, assistant);
+  }, [assistant]);
 
   return {
     assistant,
-    setAssistant,
+    // setAssistant,
     deleteAssistant,
   };
 }
+
+const fetchAssistant = async (id: string) => {
+  console.log(`🚀 [ACTION] => fetchAssistant => id:`, id);
+  const url = new URL('/api/assistant/get', window?.location.origin || process.env.HOST);
+  url.searchParams.append('assistantId', id);
+
+  const res = await fetch(url.toString(), {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await res.json();
+  console.log(`🚀 => fetchAssistant => res.json():`, data);
+  return data;
+};
 
 const deleteAssistant = async (id: string) => {
   const url = new URL('/api/assistant/delete', window.location.origin);

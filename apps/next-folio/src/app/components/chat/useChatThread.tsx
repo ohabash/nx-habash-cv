@@ -4,6 +4,7 @@ import { ProfileService } from '../profile/profile.service';
 
 export interface ThreadHookResp {
   thread: Thread | null;
+  threadId: string | null;
   threadSetter: (thread: Thread) => void;
   deleteThread: (id: string) => Promise<any>;
 }
@@ -28,23 +29,21 @@ export const useChatThread = ({ threadId, profileService, aid }: Props): ThreadH
   }
 
   useEffect(() => {
-    console.log(
-      `🚀 => useChatThread => profileService?.profile:`,
-      profileService?.profile
-    );
+    // otherwise we create a thread for no reason
     if (!profileService?.profile) return;
-    if (threadId) {
-      retrieveThread(threadId).then((data) => threadSetter(data));
-    }
-    if (!threadId) {
-      createThread({}).then((data) => threadSetter(data));
-    }
+    
+    // fetch current thread id
+    if (threadId) retrieveThread(threadId).then((data) => threadSetter(data));
+    
+    // if no thread id, create a new thread
+    if (!threadId) createThread({}).then((data) => threadSetter(data));
   }, [threadId, profileService?.profile]);
 
   return {
     thread,
     threadSetter,
     deleteThread,
+    threadId: threadId as any,
   };
 };
 
@@ -82,7 +81,8 @@ const deleteThread = async (id: string) => {
 
 const createThread = async (data: ThreadCreateParams) => {
   console.log(`🚀 [ACTION] => createThread => data:`, data);
-  const res = await fetch('/api/thread/create', {
+  const host = process.env.HOST || '';
+  const res = await fetch(host+'/api/thread/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

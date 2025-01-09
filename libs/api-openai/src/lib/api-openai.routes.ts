@@ -1,13 +1,8 @@
-import { Router } from 'express';
-import { 
-  Response as Res, 
-  Request as Req, 
-  NextFunction as Next 
-} from 'express';
-import * as core from 'express-serve-static-core';
 import { errorHandler } from '@nx-habash/utils';
+import { NextFunction as Next, Request as Req, Response as Res, Router } from 'express';
+import * as core from 'express-serve-static-core';
+import { ApiOpenaiConfig } from './api-openai.interface';
 import { ApiOpenaiSdk } from './api-openai.sdk';
-import { ApiOpenaiConfig, OpenAiConversation, OpenAiConversations } from './api-openai.interface';
 // import { MetAccount } from "@nx-habash/interfaces";
 
 const sig = '[ api-openai.routes.ts ]'.gray;
@@ -15,7 +10,7 @@ const sig = '[ api-openai.routes.ts ]'.gray;
 export class ApiOpenaiRoutes {
   api!: core.Router;
   account!: any;
-  sdk: ApiOpenaiSdk;
+  sdk!: ApiOpenaiSdk;
   // conversations: OpenAiConversations = {}; // session storage
 
   constructor() {}

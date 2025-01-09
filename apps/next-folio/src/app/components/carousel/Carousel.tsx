@@ -152,7 +152,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
   }, [width, height]);
   const scale = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.7],
+    [0, 0.43, 0.7],
     [maximumScale * 1.1, maximumScale, 1]
   );
 
@@ -176,12 +176,12 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
   function outerTranslate(i: number) {
     return i > imgIndex ? posterTranslateXRight : posterTranslateXLeft;
   }
-  const translateY = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const translateY = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
   function mainCarMotionStyles(i: number) {
     return i === imgIndex
       ? {
           scale,
-          y: translateY,
+          // y: translateY,
           copyOpacity: 1
         }
       : {

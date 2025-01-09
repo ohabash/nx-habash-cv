@@ -29,6 +29,7 @@ export const LogoCard = ({ item, ID }: Props) => {
           className={twMerge(
             'bg-dark/80 backdrop-blur-[0px] h-full rounded-xl overflow-clip1 w-full relative',
           )}
+          title={item.desc}
         >
           <Image
             className={twMerge(

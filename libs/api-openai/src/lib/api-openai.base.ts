@@ -34,7 +34,7 @@ export class ApiOpenaiBaseModule {
     }
   }
 
-  handleError(error, process, _path?: string) {
+  handleError(error: any, process: any, _path?: string) {
     console.log(sig, 'error :'.bgRed.white.bold, error.toString());
     const formatted = error.response
       ? error.response.data || error.response

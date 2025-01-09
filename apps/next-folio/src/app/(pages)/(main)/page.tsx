@@ -1,9 +1,11 @@
+'use server';
 import { Hero } from '@components/hero/Hero';
 import { Timeline } from '@components/timeline/Timeline';
 import { Carousel } from '@components/carousel/Carousel';
 import { InterviewMe } from '@components/interview-me/InterviewMe';
+import { InterviewMeWrapper } from '../../components/interview-me/InterviewMeWrapper';
 
-export default function Index() {
+export default async function Index() {
   /*
    * Replace the elements below with your own.
    *
@@ -21,7 +23,9 @@ export default function Index() {
         </div>
         {/* <StickBottom mainWrapperRef={mainWrapperRef}></StickBottom> */}
       </main>
-      <InterviewMe />
+      {/* <InterviewMeWrapper> */}
+        <InterviewMe />
+      {/* </InterviewMeWrapper> */}
       <div className="min-h-screen"></div>
       <div className="min-h-screen"></div>
       <div className="min-h-screen"></div>

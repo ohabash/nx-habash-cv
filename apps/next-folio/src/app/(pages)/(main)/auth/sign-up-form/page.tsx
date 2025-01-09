@@ -24,7 +24,7 @@ const Page = () => {
     const { data: session } = useSession();
     const user = session?.user || {};
     const profileService = ProfileService.init(
-      (user as any)?.id
+      (user as any)?.id,
       {} as any,
       '<24353425345/>'
     );
