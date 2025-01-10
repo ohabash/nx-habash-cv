@@ -7,7 +7,7 @@ export type ChatMessage = Message & {
   displayName?: string,
 };
 export type ChatConvoProps = {
-  messages: ChatMessage[] ;
+  // messages: ChatMessage[] ;
 }
 // export type ChatMessage = {
 //   id: string;

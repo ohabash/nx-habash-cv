@@ -1,11 +1,6 @@
+import { CreateMessageParams } from "@/components/chat/messages.interface";
 import { NextRequest } from "next/server";
 import OpenAI from "openai";
-import { MessageCreateParams } from "openai/resources/beta/threads/messages";
-
-export interface CreateMessageParams {
-  threadId: string;
-  body: MessageCreateParams;
-}
 
 export async function POST(req: NextRequest) {
   const { body, threadId } = (await req.json()) as CreateMessageParams;

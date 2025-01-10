@@ -2,7 +2,7 @@ import { use, useContext, useEffect } from "react";
 import { ChatContext } from "./chat.context";
 import { useChatThread } from "./useChatThread";
 import Moment from "react-moment";
-import { useMessages } from "./useChatMessages";
+import { useMessages } from "./messages.hook";
 
 interface Props {
   threadId: string;
@@ -22,7 +22,7 @@ export const ThreadThumb = ({threadId}: Props) => {
   const messagesService = useMessages({
     profileService: null,
     threadId,
-    summary: true
+    includeSummary: true
   });
 
   useEffect(() => {

@@ -10,6 +10,9 @@ export const useChatRun = () => {
 }
 
 const createRun = async (data: RunCreateParams): Promise<Run> => {
+  // add response type
+  data.params.response_format = 'auto';
+  data.params.additional_instructions = 'Generate strictly HTML. Only return HTML between <div className="ai-msg"> and </div>';
   console.log(`🚀 [ACTION] => createRun => data:`, data);
   const res = await fetch('/api/run/create', {
     method: 'POST',

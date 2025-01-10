@@ -1,9 +1,11 @@
 'use client';
-import { createContext, ReactNode, SetStateAction, useContext, useState } from "react";
+import { Message } from "openai/resources/beta/threads/messages";
+import { createContext, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
+import { ProfileService } from "../profile/profile.service";
+import { useMessages } from "./messages.hook";
 import { AssistantHookResp, useAssistant } from './useChatAssistant';
 import { ThreadHookResp, useChatThread } from "./useChatThread";
-import { ProfileService } from "../profile/profile.service";
-import { MessagesResp, useMessages } from "./useChatMessages";
+import { MessagesResp } from "./messages.interface";
 
 
 // ===== || interface || ===== >
@@ -12,7 +14,7 @@ export type IChatContext = {
   setNavState: (value: SetStateAction<boolean>) => void;
   assistant: AssistantHookResp;
   thread: ThreadHookResp;
-  messages: MessagesResp;
+  messageData: MessagesResp;
 };
 
 export const serverSideChatContext = {
@@ -57,9 +59,10 @@ export const ChatProvider = ({
   });
 
   // get / set thread messages
-  const messages = useMessages({
+  const messageData = useMessages({
     profileService,
     threadId: profileService?.profile?.chatThreadId,
+    includeSummary: false,
   });
 
   // final data
@@ -68,8 +71,13 @@ export const ChatProvider = ({
     setNavState,
     assistant,
     thread,
-    messages,
+    messageData,
   };
+
+  // DEV ONLY
+  useEffect(() => {
+    console.log(`🚀 => B4ChatConvo => messages:`, messageData.messages);
+  }, [messageData.messages]);
 
   // return wrapper markup
   return <ChatContext.Provider value={data}>{children}</ChatContext.Provider>;
