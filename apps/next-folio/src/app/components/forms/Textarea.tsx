@@ -11,13 +11,13 @@ export type NXInputProps = {
   handleSubmit?: (e: KeyboardEvent<HTMLInputElement>) => void;
   pattern?: string;
   className?: string | undefined;
-  fieldClassName?: string | undefined;
   rows?: number | undefined;
+  fieldClassName?: string | undefined;
   hideLabel?: boolean;
   fieldType?: 'Input' | 'Dropdown' | 'Textarea';
 };
 
-export const Input = ({
+export const Textarea = ({
   value = "",
   onChange = () => {},
   handleSubmit = () => {},
@@ -29,19 +29,21 @@ export const Input = ({
   className,
   fieldClassName,
   hideLabel,
+  rows
 }: NXInputProps) => {
   return (
     <>
-      <input
-        type={type || 'text'}
+      <textarea
+        // type={type || 'text'}
         id={id || label}
         placeholder={placeholder || label}
         value={value as any}
         onChange={e => onChange(e.target.value)}
-        className={twMerge('input', className)}
-        pattern={pattern}
+        className={twMerge('input h-auto', className)}
+        rows={rows || 4}
+        // pattern={pattern}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') handleSubmit(e);
+          if (e.key === 'Enter') handleSubmit(e as any);
         }}
       />
     </>

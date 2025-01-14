@@ -7,7 +7,7 @@ import { ChatContext } from "./chat.context";
 
 export const ChatConvo = ({ }: ChatConvoProps) => {
   const chatContext = useContext(ChatContext);
-  const { messages } = chatContext?.messageData!;
+  const { messages } = chatContext?.messageClient!;
   useEffect(() => {
     console.log(`🚀 => ChatConvo => messages:`, messages);
   }, [messages]);
@@ -62,7 +62,7 @@ export const MsgBubble = ({ msg }: { msg: ChatMessage }) => {
           >
             <div className={twMerge(
               "font-normal text-gray-900 dark:text-white p-2",
-              msg.loading && 'italic dark:text-lighten-5'
+              msg.loading && 'text-loading'
             )}>
               {render()}
             </div>

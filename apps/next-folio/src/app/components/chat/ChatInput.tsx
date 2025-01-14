@@ -1,12 +1,13 @@
-import React, { Dispatch, SetStateAction, useContext, useEffect } from 'react'
-import { PlaceholdersAndVanishInput } from '@ui/placeholders-and-vanish-input';
-import { threadId } from 'worker_threads';
-import { CreateMessageParams } from './messages.interface';
 import { useGlobalContext } from '@/global.context';
+import { PlaceholdersAndVanishInput } from '@ui/placeholders-and-vanish-input';
+import { Run } from 'openai/resources/beta/threads/runs/runs';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
+import { useCannedResponses } from './canned-responses.hook';
 import { ChatContext } from './chat.context';
+import { CreateMessageParams } from './messages.interface';
+import { useChatRun } from './runner.hook';
 
 type Props = {
-  // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit?: (val: string, e: React.FormEvent<HTMLFormElement>) => void;
   running: boolean;
   setRunning: Dispatch<SetStateAction<boolean>>;
@@ -14,13 +15,16 @@ type Props = {
 const ChatInput = ({ running, setRunning }: Props) => {
   const globalState = useGlobalContext();
   const chatContext = useContext(ChatContext);
+  const assistantId = globalState.profile.chatAssistantId;
+  const runner = useChatRun();
   const threadId = globalState.profile.chatThreadId;
   const [val, setVal] = React.useState('');
+  const cannedResponses = useCannedResponses();
 
   const placeholders = [
     'Where did you go to school?',
     'Do you know how to use React?',
-    'What’s your experience with front-end development?',
+    'What’s your experience with front-end deve`lopment?',
     'What’s your experience with back-end development?',
     'How do you handle tight deadlines?',
     'Write a Javascript method to reverse a string',
@@ -50,85 +54,25 @@ const ChatInput = ({ running, setRunning }: Props) => {
     };
 
     const { createMessage, updateMessages, setMessagesFn, messages } =
-      chatContext?.messageData!;
+      chatContext?.messageClient!;
 
     // optimistic update
-    setMessagesFn(
-      [
-        {
-          role: 'user',
-          loading: true,
-          status: 'sending',
-          content: [
-            {
-              text: {
-                value: payload.body.content as string,
-                annotations: [],
-              },
-              type: 'text',
-            },
-          ],
-          id: 'temp-id',
-          created_at: new Date().valueOf(),
-        } as any,
-      ],
-      true,
-      false
-    );
-
-    // show assistant loading msg (for later)
-    setMessagesFn(
-      [
-        {
-          role: 'assistant',
-          loading: true,
-          status: 'sending',
-          content: [
-            {
-              text: {
-                value: 'Let me think about that...',
-                annotations: [],
-              },
-              type: 'text',
-            },
-          ],
-          id: 'temp-id',
-          created_at: new Date().valueOf(),
-        } as any,
-      ],
-      true,
-      false
-    );
+    cannedResponses.optimisticUpdate(payload.body.content as string);
 
     // create msg and display
-    // const resp = await createMessage(payload);
+    const resp = await createMessage(payload);
 
-    // // update ui
-    // await setMessagesFn(messages, false);
-
-    // // run (request a response)
-    // let runResp = await runner.run({
-    //   threadId: threadId as string,
-    //   params: {
-    //     assistant_id: assistantId as string,
-    //     stream: false,
-    //   },
-    // });
-
-    // // display loading msg
-    // displayLoadingMsg();
-    // console.log(`🚀 => onSubmit => runResp:`, runResp);
+    // show assistant loading msg (for later)
+    cannedResponses.assistantLoading();
 
     // // keep checking until run is completed
-    // while (runResp.status !== 'completed') {
-    //   await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second before retrying
-    //   runResp = await runner.retrieveRun(threadId as string, runResp.id);
-    //   await timeout(500);
-    //   console.log(`🚀 => polling onSubmit => runResp:`, runResp);
-    // }
-
-    // // update messages
-    // await updateMessages(threadId as string, 'onSubmit', setMessagesFn);
+    const completedRun: Run = await cannedResponses.runPollUpdate({
+      threadId: threadId as string,
+      params: {
+        assistant_id: assistantId as string,
+        stream: false,
+      },
+    });
 
     // allow next chat
     setRunning(false);

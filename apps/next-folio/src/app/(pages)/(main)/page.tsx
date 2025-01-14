@@ -1,9 +1,9 @@
 'use server';
-import { Hero } from '@components/hero/Hero';
-import { Timeline } from '@components/timeline/Timeline';
+import { Timeline } from '@/components/timeline/Timeline';
+import Contact from '@/components/contact/Contact';
 import { Carousel } from '@components/carousel/Carousel';
+import { Hero } from '@components/hero/Hero';
 import { InterviewMe } from '@components/interview-me/InterviewMe';
-import { InterviewMeWrapper } from '../../components/interview-me/InterviewMeWrapper';
 
 export default async function Index() {
   /*
@@ -16,19 +16,19 @@ export default async function Index() {
       <main id={'page-home'} className="relative h-full">
         <div className="bg-1 relative z-10 max-w-screen contain-paint">
           <Hero />
-          <Timeline></Timeline>
+          <Timeline />
+          {/* <TimelineAlt/> */}
         </div>
         <div className="car-wrapper relative h-full">
           <Carousel />
         </div>
-        {/* <StickBottom mainWrapperRef={mainWrapperRef}></StickBottom> */}
       </main>
-      {/* <InterviewMeWrapper> */}
-        <InterviewMe />
-      {/* </InterviewMeWrapper> */}
-      <div className="min-h-screen"></div>
-      <div className="min-h-screen"></div>
-      <div className="min-h-screen"></div>
+      <InterviewMe />
+      <Contact/>
+      <div className="p-8 text-center bg-darkest relative z-10 shadow-2xl border-t-2 border-darkBlue/20">
+        <h2 className="text-darkBlue font-extrabold">Thank you.</h2>
+        <p className="f max-w-screen">There is so much more planned &mdash; come back again.</p>
+      </div>
     </>
   );
 }

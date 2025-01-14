@@ -36,6 +36,10 @@ body {
   cursor: default;
 }
 
+.time-glow {
+  box-shadow: 1px 0px 67px -29px var(--glow-blue);
+}
+
 .blurrr {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -50,6 +54,18 @@ body {
 .grad-dark {
   background: linear-gradient(0deg, #000, #262626) !important;
   color: #fff !important;
+}
+
+// .grad-darkBlue { //
+//   @apply bg-gradient-to-r to-darkBlue from-black
+// }
+
+.grad-darkBlue {
+  background-image: radial-gradient(ellipse at right, var(--tw-gradient-stops));
+  --tw-gradient-from: #0b1e44 var(--tw-gradient-from-position);
+  --tw-gradient-via: var(--darker) var(--tw-gradient-via-position);
+  --tw-gradient-to: var(--darkest) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
 }
 
 /*
@@ -230,4 +246,25 @@ $offset-side: calc(-#{$offset} / 2);
 
 input.input, .input {
   @apply w-full px-3 py-7 mb-4 bg-dark/70 rounded-md outline-none text-white placeholder-gray-500 border-0 ;
+}
+
+.text-loading {
+  padding: 64px;
+  background: linear-gradient(to right, hsl(0, 0%, 30%) 0, hsl(0, 0%, 100%) 10%, hsl(0, 0%, 30%) 20%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+
+  60% {
+    background-position: 600px;
+  }
+
+  100% {
+    background-position: 600px;
+  }
 }

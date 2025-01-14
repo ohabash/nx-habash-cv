@@ -21,7 +21,7 @@ export function InterviewMe() {
 
   return (
       <div
-        className="h-[400vh] -mt-8 z-[10] bg-darker w-full border-b-[1px] border-subtle rounded-md relative pt-52 overflow-clip"
+        className="h-[275vh] -mt-8_ z-[1] bg-darker w-full border-b-[1px] border-darkBlue/60 rounded-md relative pt-60 overflow-clip"
         ref={ref}
       >
         <GoogleGeminiEffect

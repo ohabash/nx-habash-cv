@@ -21,7 +21,7 @@ export const FadeIn = ({ children, className, scale, start = 75, delay=0, ref }:
   // const copyScale = useTransform(scrollYProgress, [0, 0.1], [0.8, 2]);
   const low = scale ? 0.5 : 1;
   return (
-    <div className="">
+    <div className="h-full">
       <motion.div
         ref={wrapperEl}
         initial={{ opacity: 0, y: start, scale: low }}

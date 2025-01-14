@@ -1,6 +1,6 @@
 import { use, useContext, useEffect } from "react";
 import { ChatContext } from "./chat.context";
-import { useChatThread } from "./useChatThread";
+import { useChatThread } from "./thread.hook";
 import Moment from "react-moment";
 import { useMessages } from "./messages.hook";
 

@@ -1,5 +1,5 @@
 "use client";
-import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
 import { SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
 import { skills } from './skills.data';
 import { Arrows2 } from './Arrows2';
@@ -63,32 +63,35 @@ export const Carousel = () => {
   };
 
   return (
-    <div className="overflow-clip h-full" ref={ref}>
-      <motion.div
-        drag="x"
-        dragConstraints={{
-          left: 0,
-          right: 0,
-        }}
-        style={{
-          x: dragX,
-        }}
-        onDragEnd={onDragEnd}
-        animate={{
-          translateX: calculateTranslateX(),
-        }}
-        transition={SPRING_OPTIONS}
-        className="relative _bg-purple-600 overflow-clip_"
-      >
-        <Images
-          imageWidth={imageWidth}
-          imgIndex={imgIndex}
-          setImgIndex={setImgIndex}
-        />
-      </motion.div>
-      <motion.div className='relative z-[11]' style={{opacity}}>
-        <SmallCarousels2 containerRef={ref} />
-      </motion.div>
+    <div>
+      <div className="p-[31rem]_ bg-red_"></div>
+      <div className="overflow-clip h-full" ref={ref}>
+        <motion.div
+          drag="x"
+          dragConstraints={{
+            left: 0,
+            right: 0,
+          }}
+          style={{
+            x: dragX,
+          }}
+          onDragEnd={onDragEnd}
+          animate={{
+            translateX: calculateTranslateX(),
+          }}
+          transition={SPRING_OPTIONS}
+          className="relative _bg-purple-600 overflow-clip_"
+        >
+          <Images
+            imageWidth={imageWidth}
+            imgIndex={imgIndex}
+            setImgIndex={setImgIndex}
+          />
+        </motion.div>
+        <motion.div className='relative z-[11]' style={{opacity}}>
+          <SmallCarousels2 containerRef={ref} />
+        </motion.div>
+      </div>
     </div>
   );
 };
@@ -161,18 +164,33 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
     [startOuterTransition, endOuterTransition],
     [0, 1]
   );
-  const posterTranslateXLeft = useTransform(
-    scrollYProgress,
-    [startOuterTransition, endOuterTransition],
-    [-100, 0]
-  );
-  const posterTranslateXRight = useTransform(
-    scrollYProgress,
-    [startOuterTransition, endOuterTransition],
-    [100, 0]
-  );
+  const frame = [startOuterTransition + 0.0, endOuterTransition + 0.0];
+  const posterTranslateXLeft = useTransform(scrollYProgress, frame, [-100, 0]);
+  const posterTranslateXRight = useTransform(scrollYProgress, frame, [100, 0]);
   const copyTranslateY = useTransform(scrollYProgress, [0, 0.6], [200, 0]);
   const copyOpacity = useTransform(scrollYProgress, [0.3, 0.6], [0, 1]);
+
+  // curtain
+  // const springScroll = useSpring(scrollYProgress, {
+  //   stiffness: 200,
+  //   damping: 20,
+  //   restDelta: 0.001,
+  // });
+  // const scrollVelocity = useVelocity(scrollYProgress);
+  // const smoothVelocity = useSpring(scrollVelocity, {
+  //   stiffness: 100,
+  //   damping: 200,
+  //   restDelta: 0.001,
+  // });
+  const curtainY = useTransform(
+    scrollYProgress,
+    [0, 0.42, 0.95],
+    [0, 0, -900],
+    {
+      clamp: false,
+    }
+  );
+
   function outerTranslate(i: number) {
     return i > imgIndex ? posterTranslateXRight : posterTranslateXLeft;
   }
@@ -182,7 +200,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
       ? {
           scale,
           // y: translateY,
-          copyOpacity: 1
+          copyOpacity: 1,
         }
       : {
           opacity: outerItemsOpacity,
@@ -199,7 +217,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
       className="overflow-clip_ mt-[-100vh] h-[300vh] relative bg-yellow_"
     >
       <div className="h-screen sticky top-0 flex items-center ">
-        <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-5">
+        <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-3">
           {pinnedSkills.map((item, idx) => {
             return (
               <motion.div
@@ -224,6 +242,22 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
                   (imgIndex === idx ? '' : '')
                 }
               >
+                {/* blurred curtain */}
+                {imgIndex === idx && (
+                  <motion.div
+                    className="z-10 absolute top-0 left-0 w-full h-full backdrop-blur-md bg-darker/10 flex flex-col justify-end"
+                    style={{
+                      y: curtainY,
+                    }}
+                  >
+                    <div className="p-8">
+                      <h2 className="font-bold">Skills</h2>
+                      <h3 className="font-bold text-yellow">
+                        The right tools for the job.
+                      </h3>
+                    </div>
+                  </motion.div>
+                )}
                 <motion.div
                   className={''}
                   style={{
@@ -232,20 +266,21 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
                   }}
                 >
                   <div className="mx-10 my-8">
-                    <div className="initials mix-blend-screen montserrat font-[900] hidden">
+                    {/* <div className="initials mix-blend-screen montserrat font-[900] hidden_">
                       <span className="text-5xl mix-blend-screen text-accent1 z-20 relative1">
                         O
                       </span>
                       <span className="text-5xl mix-blend-screen relative z-30 text-gray-400 -ml-5 ">
                         H
                       </span>
-                    </div>
+                    </div> */}
                     <div className="bg-darker/80 inline-block font-bold uppercase rounded-md py-2 px-5 text-center">
                       {item.name}
                     </div>
                   </div>
                 </motion.div>
                 {/* <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1> */}
+
                 {nextItem(idx) && (
                   <Arrows2
                     onClick={(e) => setImgIndex(imgIndex + 1)}

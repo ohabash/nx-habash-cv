@@ -5,5 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .bg-radial-darkBlue {
+    background-image: radial-gradient(ellipse at right, var(--tw-gradient-stops));
+    --tw-gradient-from: theme('colors.darkBlue');
+    --tw-gradient-via: theme('colors.darker');
+    --tw-gradient-to: theme('colors.black');
+  }
+}
+
 // client styles
 @import './assets/styles/app';

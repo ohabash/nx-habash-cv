@@ -16,7 +16,7 @@ import { ChatContext, ChatProvider } from './chat.context';
 import './chat.scss';
 import { useMessages } from './messages.hook';
 import { CreateMessageParams } from './messages.interface';
-import { useChatRun } from './useChatRun';
+import { useChatRun } from './runner.hook';
 
 type Props = {
   children: ReactNode; // wrap you button or trigger
@@ -24,7 +24,7 @@ type Props = {
 }
 
 export function ChatModal({ children, className }: Props) {
-
+  const chatContext = useContext(ChatContext);
   const globalState = useGlobalContext();
   const [running, setRunning] = useState(false);
   const [profileService, setProfileService] = useState<ProfileService | null>(null);
