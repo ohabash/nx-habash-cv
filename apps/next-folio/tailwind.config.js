@@ -1,6 +1,6 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
-const { Theme } = require('./theme-vars');
+const { Theme } = require('./theme/theme-vars');
 // var colors = require('colors');
 const {
   default: flattenColorPalette,

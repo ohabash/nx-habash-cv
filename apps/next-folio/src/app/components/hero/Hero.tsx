@@ -24,12 +24,12 @@ export function Hero() {
   // const copyRotate = useTransform(scrollYProgress, [0, 0.5, 1], [0, -5, -10]);
   // const line2Translate = useTransform(scrollYProgress, [0, 1], [0, -3000]);
   // const line1Translate = useTransform(scrollYProgress, [0, 1], [0, 3000]);
-
+  const heroHeight = 2 * 100 + 'vh';
   return (
     <div className="bg-1 relative -mt-[var(--header-2-height)]">
       {/* bg image */}
       <motion.div
-        className="absolute -top-[--header-height] left-0 z-10 w-full h-[200vh] bg-red "
+        className={`absolute -top-[--header-height] left-0 z-10 w-full h-[${heroHeight}] bg-red`}
         ref={videoContainerRef}
         style={{ opacity: imgOpacity }}
       >
@@ -70,3 +70,5 @@ export function Hero() {
     </div>
   );
 }
+
+

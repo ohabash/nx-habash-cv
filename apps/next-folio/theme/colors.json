@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "red": "#cd5f5a",
+    "pink": "#F35A7C",
+    "orange": "#f35528",
+    "blue": "#4493f8",
+    "darkBlue": "#14274c",
+    "subtle": "#3e3e3e",
+    "google": "#4285F4",
+    "yellow": "#f1ad5e",
+    "green": "#0e926f",
+    "glow-blue": "#0070ff70",
+    "darkest": "#0d0f14",
+    "darker": "#0d111d",
+    "dark": "#1f2937",
+    "dark-text": "#1d1d1f"
+  }
+}

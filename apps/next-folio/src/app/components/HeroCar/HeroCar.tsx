@@ -1,14 +1,18 @@
-"use client";
-import { motion, useMotionValue, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
-import { SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
-import { skills } from './skills.data';
-import { Arrows2 } from './Arrows2';
+'use client';
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform
+} from 'framer-motion';
+import { SetStateAction, useMemo, useRef, useState } from 'react';
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import imgEnd from '@public/img/theend.png';
-import { SmallCarousels2 } from './SmallCarousels2';
-import { twMerge } from 'tailwind-merge';
-import Image from 'next/image';
 import { useWindowSize } from '@nx-habash/react-lib';
+import imgEnd from '@public/img/theend.png';
+import Image from 'next/image';
+import { twMerge } from 'tailwind-merge';
+import { Arrows2 } from '../carousel/Arrows2';
+import { skills } from '../carousel/skills.data';
 
 const DRAG_BUFFER = 1;
 const GAP_WIDTH = 25; // Assuming `gap-8` is 32px (2rem)
@@ -20,7 +24,7 @@ const SPRING_OPTIONS = {
   damping: 50,
 };
 
-export const Carousel = () => {
+export const HeroCar = () => {
   const screen = useWindowSize();
   const [imgIndex, setImgIndex] = useState(1);
   const ref = useRef<HTMLDivElement>(null);
@@ -36,21 +40,21 @@ export const Carousel = () => {
   const imageWidth = 0.58 * screen.width; // 60vw for each image
   const containerOffset = (screen.width - imageWidth) / 2;
 
- const calculateTranslateX = () => {
-   // Width occupied by each item including the gap
-   const totalItemWidth = imageWidth + GAP_WIDTH;
+  const calculateTranslateX = () => {
+    // Width occupied by each item including the gap
+    const totalItemWidth = imageWidth + GAP_WIDTH;
 
-   // Calculate cumulative offset for the active item
-   const cumulativeWidth = imgIndex * totalItemWidth;
+    // Calculate cumulative offset for the active item
+    const cumulativeWidth = imgIndex * totalItemWidth;
 
-   // Center offset calculation
-   const centeredOffset = screen.width / 2 - imageWidth / 2;
+    // Center offset calculation
+    const centeredOffset = screen.width / 2 - imageWidth / 2;
 
-   // Final translateX calculation
-   const translateX = -cumulativeWidth + centeredOffset;
+    // Final translateX calculation
+    const translateX = -cumulativeWidth + centeredOffset;
 
-   return translateX - GAP_WIDTH + 5;
- };
+    return translateX - GAP_WIDTH + 5;
+  };
 
   const onDragEnd = () => {
     const x = dragX.get();
@@ -67,15 +71,6 @@ export const Carousel = () => {
       <div className="p-[31rem]_ bg-red_"></div>
       <div className="overflow-clip h-full" ref={ref}>
         <motion.div
-          drag="x"
-          dragConstraints={{
-            left: 0,
-            right: 0,
-          }}
-          style={{
-            x: dragX,
-          }}
-          onDragEnd={onDragEnd}
           animate={{
             translateX: calculateTranslateX(),
           }}
@@ -88,22 +83,13 @@ export const Carousel = () => {
             setImgIndex={setImgIndex}
           />
         </motion.div>
-        <motion.div className='relative z-[11]' style={{opacity}}>
-          <SmallCarousels2 containerRef={ref} />
+        <motion.div className="relative z-[11]" style={{ opacity }}>
+          <h1>After</h1>
         </motion.div>
       </div>
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
 
 type ImageProps = {
   imgIndex: number;
@@ -182,14 +168,9 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
   //   damping: 200,
   //   restDelta: 0.001,
   // });
-  const curtainY = useTransform(
-    scrollYProgress,
-    [0, 0.42, 0.9],
-    [0, 0, -900],
-    {
-      clamp: false,
-    }
-  );
+  const curtainY = useTransform(scrollYProgress, [0, 0.42, 0.9], [0, 0, -900], {
+    clamp: false,
+  });
 
   function outerTranslate(i: number) {
     return i > imgIndex ? posterTranslateXRight : posterTranslateXLeft;
@@ -209,7 +190,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
   }
   const startOver = () => setImgIndex(0);
 
-  const pinnedSkills = skills.filter((i) => i.pinned);
+  const pinnedSkills = skills.filter((itm) => itm.pinned);
 
   return (
     <div

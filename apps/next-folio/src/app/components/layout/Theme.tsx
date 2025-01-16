@@ -1,7 +1,7 @@
 'use client';
 // import { ITheme, ThemerService } from '@nx-habash/services/react-lib';
 import { createContext, ReactNode, useState } from 'react';
-import { Theme } from '../../../../theme-vars';
+import { Theme } from '../../../../theme/theme-vars';
 import { ITheme, ThemerService } from '@nx-habash/react-lib';
 
 interface Props {

@@ -20,6 +20,15 @@ const defaultCopy: SkillCopy = {
 
 export const skills: Skill[] = [
   {
+    poster: '/img/posters/openai.webp',
+    name: 'OpenAI',
+    desc: 'Experience with OpenAI API for building intelligent applications that leverage natural language processing and machine learning.',
+    copy: defaultCopy,
+    icon: '/img/logos/openai.png',
+    url: 'https://beta.openai.com/docs/',
+    pinned: true,
+  },
+  {
     poster: '/img/posters/js.jpg',
     name: 'JavaScript',
     desc: 'Over a decade of experience building dynamic and interactive web applications using JavaScript. Key for creating user-facing elements and handling client-side logic effectively.',

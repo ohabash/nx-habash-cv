@@ -1,9 +1,11 @@
 'use server';
-import { Timeline } from '@/components/timeline/Timeline';
 import Contact from '@/components/contact/Contact';
+import { Hero } from '@/components/hero/Hero';
+import { Timeline } from '@/components/timeline/Timeline';
 import { Carousel } from '@components/carousel/Carousel';
-import { Hero } from '@components/hero/Hero';
 import { InterviewMe } from '@components/interview-me/InterviewMe';
+import { Hero2 } from '@/components/hero/Hero2';
+import { HeroCar } from '@/components/HeroCar/HeroCar';
 
 export default async function Index() {
   /*
@@ -15,7 +17,10 @@ export default async function Index() {
     <>
       <main id={'page-home'} className="relative h-full">
         <div className="bg-1 relative z-10 max-w-screen contain-paint">
-          <Hero />
+          <div className="car-wrapper relative h-full">
+            <HeroCar />
+          </div>
+          {/* <Hero2 /> */}
           <Timeline />
           {/* <TimelineAlt/> */}
         </div>
@@ -24,10 +29,10 @@ export default async function Index() {
         </div>
       </main>
       <InterviewMe />
-      <Contact/>
+      <Contact />
       <div className="p-8 text-center bg-darkest relative z-10 shadow-2xl border-t-2 border-darkBlue/20">
         <h2 className="text-darkBlue font-extrabold">Thank you.</h2>
-        <p className="f max-w-screen">There is so much more planned &mdash; come back again.</p>
+        <p className="f max-w-screen">More planned &mdash; come back again.</p>
       </div>
     </>
   );
