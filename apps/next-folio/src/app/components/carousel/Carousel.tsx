@@ -1,7 +1,7 @@
 "use client";
 import { motion, useMotionValue, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
 import { SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
-import { skills } from './skills.data';
+import { skills } from '../../data/data-skills';
 import { Arrows2 } from './Arrows2';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import imgEnd from '@public/img/theend.png';
@@ -214,7 +214,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
   return (
     <div
       ref={carouselWrapperRef}
-      className="overflow-clip_ mt-[-100vh] h-[300vh] relative bg-yellow_"
+      className="overflow-clip_ mt-[-100vh]__ h-[300vh] relative bg-yellow_"
     >
       <div className="h-screen sticky top-0 flex items-center ">
         <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-3">
@@ -252,9 +252,9 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
                   >
                     <div className="p-16">
                       <h2 className="font-bold">Skills</h2>
-                      <h3 className="font-bold text-yellow">
+                      <h4 className="font-bold text-yellow">
                         The right tools for the job.
-                      </h3>
+                      </h4>
                     </div>
                   </motion.div>
                 )}

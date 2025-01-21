@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { twMerge } from "tailwind-merge";
-import { Skill } from "./skills.data";
+import { Skill } from "../../data/data-skills";
 import { LogoCard } from "../logo-card/LogoCard";
 
 type SmCarProps = {

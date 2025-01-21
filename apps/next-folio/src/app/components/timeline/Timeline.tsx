@@ -1,12 +1,15 @@
 "use client";
+
+import { allData } from "@/data";
+import { useWindowSize } from '@nx-habash/react-lib';
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { experience } from "../../data/data-experience";
+import { skills } from "../../data/data-skills";
 import { FadeIn } from "../animation/FadeIn";
 import { Container } from "../layout/Container";
-import { useRef } from "react";
-import Image, { StaticImageData } from "next/image";
-import { useWindowSize } from '@nx-habash/react-lib';
-import { experience } from "./timeline.data";
 
+import Image from "next/image";
 
 export const Timeline = () => {
   const screen = useWindowSize();
@@ -28,10 +31,14 @@ export const Timeline = () => {
     [0.6, 1, 0.6]
   );
   const skillsX = useTransform(scrollYProgress, [0.8, 1], [0, screen.width]);
+  useEffect(() => {
+    console.log('=-=-=-=-=-=-=-=->> DATA FOR AI:', allData);
+  }, [experience, skills]);
   return (
     <div
-      className="py-[15vh] [--borderW:8px] bg-darker__ dark-shadow__ overflow-clip w-full"
+      className="pb-[15vh] [--borderW:8px] bg-darker__ dark-shadow__ overflow-clip w-full"
       ref={wrapperEl}
+      id="experience"
     >
       <Container className="font-semibold space-y-12 relative z-10 px-[7vw]_">
         <motion.h1
@@ -101,19 +108,6 @@ export const Timeline = () => {
           </FadeIn>
         ))}
       </Container>
-      <div className="blurrr bottom-[-14vh] absolute left-0 w-screen overflow-clip">
-        <motion.div
-          className="text-accent1 drop-shadow-lg shad font-black text-[9rem] pt-3 py-4"
-          style={
-            {
-              // x: skillsX,
-              // scale: skillsScale
-            }
-          }
-        >
-          <h1>SKILLS</h1>
-        </motion.div>
-      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import { Skill } from "../carousel/skills.data";
+import { Skill } from "../../data/data-skills";
 
 type Props = {
   item: Skill;

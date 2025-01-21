@@ -47,11 +47,11 @@ export function ChatModal({ children, className }: Props) {
       >
         <Modal>
           <ModalTrigger>{children}</ModalTrigger>
-          <ModalBodyPortal className={`md:max-w-[75%] mt-[1rem]`}>
+          <ModalBodyPortal className={`md:max-w-[50%] mt-[1rem]`}>
             <div className="columns is-gapless">
-              <div className="column is-4 bg-dark/85">
+              {/* <div className="column is-4 bg-dark/85">
                 <ChatSidebar />
-              </div>
+              </div> */}
               <div className="column relative bg-darker/95 ">
                 <ModalContent className="flex-col-reverse ">
                   <ChatConvo />

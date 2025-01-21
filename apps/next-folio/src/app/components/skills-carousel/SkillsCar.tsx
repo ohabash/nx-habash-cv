@@ -1,5 +1,5 @@
 import { useScroll } from 'framer-motion';
-import { skills } from '../carousel/skills.data';
+import { skills } from '../../data/data-skills';
 import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
 import { RefObject } from 'react';
 

@@ -1,0 +1,10 @@
+.a-menu {
+  @apply text-lg;
+  a {
+    @apply mr-8 font-bold;
+    font-family: "Roboto", sans-serif;
+    :last-child {
+      @apply mr-0;
+    }
+  }
+}

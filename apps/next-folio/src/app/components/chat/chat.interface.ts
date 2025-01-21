@@ -3,6 +3,7 @@ import { RunCreateParamsNonStreaming } from "openai/resources/beta/threads/runs/
 
 export type ChatMessage = Message & { 
   loading?: boolean,
+  error?: boolean,
   status?: string,
   displayName?: string,
 };

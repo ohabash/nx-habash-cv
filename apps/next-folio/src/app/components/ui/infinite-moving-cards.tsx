@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '../utils/utils';
-import { Skill } from '../carousel/skills.data';
+import { Skill } from '../../data/data-skills';
 import { LogoCard } from '../logo-card/LogoCard';
 
 type Props = {

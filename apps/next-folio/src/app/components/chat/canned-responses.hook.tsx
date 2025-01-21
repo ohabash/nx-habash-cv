@@ -81,6 +81,34 @@ export const useCannedResponses = (): CannedResp => {
     );
   }
 
+  const setRunError = (run: Run) => {
+    msgClient.setMessagesFn(
+      [
+        {
+          role: 'assistant',
+          loading: false,
+          error: true,
+          status: run.last_error?.code as any || 'Unknown Error',
+          content: [
+            {
+              text: {
+                value:
+                  run.last_error?.message ||
+                  'I apologize. Please let me know about this error.',
+                annotations: [],
+              },
+              type: 'text',
+            },
+          ],
+          id: 'temp-id',
+          created_at: new Date().valueOf(),
+        },
+      ],
+      true,
+      false
+    );
+  }
+
   const introduction = async () => {
     // create msg and display
     const msg: CreateMessageParams = {
@@ -116,6 +144,20 @@ export const useCannedResponses = (): CannedResp => {
   
       // update messages
       await msgClient.updateMessages(threadId as string, 'onSubmit', msgClient.setMessagesFn);
+
+      // add run error
+      console.log(`🚀 FINAL => runPollUpdate => completedRun:`, completedRun)
+      if (completedRun.last_error) setRunError(completedRun);
+
+      if ((completedRun as any).error?.error?.message) {
+        const er = (completedRun as any).error.error.message;
+        setRunError({
+          last_error: {
+            message: er,
+            code: 'Unknown Error [9291]' as any,
+          }
+        }as any);
+      }
   
       // return run
       return completedRun;

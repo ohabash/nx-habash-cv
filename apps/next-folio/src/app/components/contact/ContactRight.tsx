@@ -247,17 +247,20 @@ const LastStep = ({ info, updateInfo }: InfoProps) => {
 
   if (submitted) {
     return (
-      <div className="h-full w-full">
+      <div className="h-full w-full relative">
         <div
           className={
             'flex w-full flex-col items-center justify-center h-full px-12'
           }
         >
           <p className="mb-5 curly text-2xl text-blue">Thank you for reaching out!</p>
-          <p className="text-white text-[1.1rem] leading-8 mb-2 max-w-lg text-center">
-            I will get back to you as soon as possible. If you can not wait that long, please feel free to call or text.
+
+        </div>
+        <div className="absolute bottom-0 w-full py-4 px-8 rounded-md mt-2 bg-darker/90_ text-center pb-10">
+          <p className="text-white text-[1.1rem] leading-8 mb-2 text-center block">
+            Call or text if you prefer.
           </p>
-          <a href="tel:214-470-5176" className="text-yellow/80 font-bold tracking-wide">
+          <a href="tel:214-470-5176" className="font-bold tracking-wide">
             214-470-5176
           </a>
         </div>

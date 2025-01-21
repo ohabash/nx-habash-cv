@@ -1,21 +1,16 @@
 'use client';
 import {
   motion,
-  useMotionValue,
+  MotionValue,
   useScroll,
   useTransform
 } from 'framer-motion';
 import { SetStateAction, useMemo, useRef, useState } from 'react';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { useWindowSize } from '@nx-habash/react-lib';
-import imgEnd from '@public/img/theend.png';
-import Image from 'next/image';
-import { twMerge } from 'tailwind-merge';
-import { Arrows2 } from '../carousel/Arrows2';
-import { skills } from '../carousel/skills.data';
-
-const DRAG_BUFFER = 1;
-const GAP_WIDTH = 25; // Assuming `gap-8` is 32px (2rem)
+import { heroItem, HeroItem } from './HeroCar.data';
+import "./HeroCar.scss";
+import Link from 'next/link';
 
 const SPRING_OPTIONS = {
   type: 'spring',
@@ -25,277 +20,176 @@ const SPRING_OPTIONS = {
 };
 
 export const HeroCar = () => {
-  const screen = useWindowSize();
-  const [imgIndex, setImgIndex] = useState(1);
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
+  // ref
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: itemScrollYProg } = useScroll({
+    target: containerRef,
     offset: ['start start', 'end start'],
   });
-  const opacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
-
-  const dragX = useMotionValue(0);
-  // dragX.set(0);
-
-  const imageWidth = 0.58 * screen.width; // 60vw for each image
-  const containerOffset = (screen.width - imageWidth) / 2;
-
-  const calculateTranslateX = () => {
-    // Width occupied by each item including the gap
-    const totalItemWidth = imageWidth + GAP_WIDTH;
-
-    // Calculate cumulative offset for the active item
-    const cumulativeWidth = imgIndex * totalItemWidth;
-
-    // Center offset calculation
-    const centeredOffset = screen.width / 2 - imageWidth / 2;
-
-    // Final translateX calculation
-    const translateX = -cumulativeWidth + centeredOffset;
-
-    return translateX - GAP_WIDTH + 5;
-  };
-
-  const onDragEnd = () => {
-    const x = dragX.get();
-
-    if (x <= -DRAG_BUFFER && imgIndex < skills.length - 1) {
-      setImgIndex((pv) => pv + 1);
-    } else if (x >= DRAG_BUFFER && imgIndex > 0) {
-      setImgIndex((pv) => pv - 1);
+  const height = useTransform(
+    itemScrollYProg,
+    [0, 0.6, 0.8],
+    ['100%', '100%', '0%'],
+    {
+      clamp: false,
     }
-  };
-
+  );
   return (
-    <div>
-      <div className="p-[31rem]_ bg-red_"></div>
-      <div className="overflow-clip h-full" ref={ref}>
+    <motion.div
+      className="w-full z-30 relative"
+      ref={containerRef}
+      style={{ height }}
+    >
+      <div className="overflow-clip h-full">
+        <div className="relative">
+          <Item />
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+
+/*
+ 
+  /$$   /$$                            
+ |__/  | $$                            
+  /$$ /$$$$$$    /$$$$$$  /$$$$$$/$$$$ 
+ | $$|_  $$_/   /$$__  $$| $$_  $$_  $$
+ | $$  | $$    | $$$$$$$$| $$ \ $$ \ $$
+ | $$  | $$ /$$| $$_____/| $$ | $$ | $$
+ | $$  |  $$$$/|  $$$$$$$| $$ | $$ | $$
+ |__/   \___/   \_______/|__/ |__/ |__/
+*/
+
+const Item = () => {
+  const item = heroItem;
+
+  // ref
+  const ItemWrapperRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: itemScrollYProg } = useScroll({
+    target: ItemWrapperRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // value bank
+  const screen = useWindowSize();
+  const { Scale, height } = new (class Config {
+    height = '150vh';
+    start = 0;
+    Scale = {
+      start: this.start,
+      end: this.start + 0.3,
+      final: 0.83,
+    };
+  })();
+
+  // scale
+  const scale = useTransform(
+    itemScrollYProg,
+    [0, Scale.start, Scale.end],
+    [1.025, 1.025, Scale.final]
+  );
+  return (
+    <div
+      ref={ItemWrapperRef}
+      className={`mt-[-100vh]_ -mt-9 relative`}
+      style={{ height }}
+    >
+      <div className="h-screen sticky top-0 bg-darkBlue_">
         <motion.div
-          animate={{
-            translateX: calculateTranslateX(),
+          style={{
+            backgroundImage: `url(${item.poster})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            ...{
+              scale,
+              // y: translateY,
+              copyOpacity: 1,
+            },
           }}
+          animate={
+            {
+              // scale: imgIndex === idx ? 1 : 1,
+            }
+          }
           transition={SPRING_OPTIONS}
-          className="relative _bg-purple-600 overflow-clip_"
+          className={`rounded-2xl object-cover bg-black relative overflow-clip w-full h-full`}
         >
-          <Images
-            imageWidth={imageWidth}
-            imgIndex={imgIndex}
-            setImgIndex={setImgIndex}
-          />
-        </motion.div>
-        <motion.div className="relative z-[11]" style={{ opacity }}>
-          <h1>After</h1>
+          {/* curtain */}
+          <Curtain itemScrollYProg={itemScrollYProg} item={item} />
+
         </motion.div>
       </div>
     </div>
   );
 };
 
-type ImageProps = {
-  imgIndex: number;
-  imageWidth: number;
-  setImgIndex: (value: SetStateAction<number>) => void;
-};
 
-const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
-  const nextItem = (index: number) => {
-    return imgIndex + 1 === index ? true : false;
-  };
-  const prevItem = (index: number) => {
-    return imgIndex - 1 === index ? true : false;
-  };
 
-  // ref
-  const carouselWrapperRef = useRef<HTMLDivElement>(null);
 
-  // // wheel
-  // const handleScroll = (e: any) => {
-  //   if (e.deltaX > 0 && imgIndex < items.length - 1) {
-  //     setImgIndex((prevIndex) => prevIndex + 1); // Scroll down/right
-  //   } else if (e.deltaX < 0 && imgIndex > 0) {
-  //     setImgIndex((prevIndex) => prevIndex - 1); // Scroll up/left
-  //   }
-  // };
 
-  // useEffect(() => {
-  //   const container = carouselWrapperRef.current;
-  //   if (container) {
-  //     container.addEventListener('wheel', handleScroll); // Add scroll event listener
-  //     return () => container.removeEventListener('wheel', handleScroll); // Clean up event listener
-  //   }
-  // }, [imgIndex]);
 
-  // scale:
-  const { scrollYProgress } = useScroll({
-    target: carouselWrapperRef,
-    offset: ['start start', 'end start'],
-  });
-  const { width, height } = useWindowSize();
-  const startOuterTransition = 0.6;
-  const endOuterTransition = 0.7;
-  const maximumScale = useMemo(() => {
-    const windowYRatio = height / width;
-    const xScale = 1.66667;
-    const yScale = xScale * (16 / 9) * windowYRatio;
-    return Math.max(xScale, yScale);
-  }, [width, height]);
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.43, 0.7],
-    [maximumScale * 1.1, maximumScale, 1]
+/*
+ 
+                                  /$$               /$$          
+                                 | $$              |__/          
+   /$$$$$$$ /$$   /$$  /$$$$$$  /$$$$$$    /$$$$$$  /$$ /$$$$$$$ 
+  /$$_____/| $$  | $$ /$$__  $$|_  $$_/   |____  $$| $$| $$__  $$
+ | $$      | $$  | $$| $$  \__/  | $$      /$$$$$$$| $$| $$  \ $$
+ | $$      | $$  | $$| $$        | $$ /$$ /$$__  $$| $$| $$  | $$
+ |  $$$$$$$|  $$$$$$/| $$        |  $$$$/|  $$$$$$$| $$| $$  | $$
+  \_______/ \______/ |__/         \___/   \_______/|__/|__/  |__/ 
+*/
+interface CurtainProps {
+  itemScrollYProg: MotionValue<number>;
+  item: HeroItem;
+}
+const Curtain = ({itemScrollYProg, item}: CurtainProps) => {
+  const y = useTransform(
+    itemScrollYProg,
+    [0, 0.4, 0.8],
+    [0, 10, -1000],
+    {
+      clamp: false,
+    }
   );
-
-  const outerItemsOpacity = useTransform(
-    scrollYProgress,
-    [startOuterTransition, endOuterTransition],
-    [0, 1]
-  );
-  const frame = [startOuterTransition + 0.0, endOuterTransition + 0.0];
-  const posterTranslateXLeft = useTransform(scrollYProgress, frame, [-100, 0]);
-  const posterTranslateXRight = useTransform(scrollYProgress, frame, [100, 0]);
-  const copyTranslateY = useTransform(scrollYProgress, [0, 0.6], [200, 0]);
-  const copyOpacity = useTransform(scrollYProgress, [0.3, 0.6], [0, 1]);
-
-  // curtain
-  // const springScroll = useSpring(scrollYProgress, {
-  //   stiffness: 200,
-  //   damping: 20,
-  //   restDelta: 0.001,
-  // });
-  // const scrollVelocity = useVelocity(scrollYProgress);
-  // const smoothVelocity = useSpring(scrollVelocity, {
-  //   stiffness: 100,
-  //   damping: 200,
-  //   restDelta: 0.001,
-  // });
-  const curtainY = useTransform(scrollYProgress, [0, 0.42, 0.9], [0, 0, -900], {
-    clamp: false,
-  });
-
-  function outerTranslate(i: number) {
-    return i > imgIndex ? posterTranslateXRight : posterTranslateXLeft;
-  }
-  const translateY = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
-  function mainCarMotionStyles(i: number) {
-    return i === imgIndex
-      ? {
-          scale,
-          // y: translateY,
-          copyOpacity: 1,
-        }
-      : {
-          opacity: outerItemsOpacity,
-          x: outerTranslate(i),
-        };
-  }
-  const startOver = () => setImgIndex(0);
-
-  const pinnedSkills = skills.filter((itm) => itm.pinned);
-
+  const height = useTransform(
+    itemScrollYProg,
+    [0, 0.6],
+    ['100%', '0%'],
+    {
+      clamp: false,
+    }
+  )
   return (
-    <div
-      ref={carouselWrapperRef}
-      className="overflow-clip_ mt-[-100vh] h-[300vh] relative bg-yellow_"
+    <motion.div
+      className="z-10 absolute bottom-0 left-0 w-full h-full_ backdrop-blur-md bg-darker/10 min-h-fit"
+      style={
+        {
+          // height
+        }
+      }
     >
-      <div className="h-screen sticky top-0 flex items-center ">
-        <div className="flex items-center cursor-grab active:cursor-grabbing gap-8_ relative gap-5__ mb-3">
-          {pinnedSkills.map((item, idx) => {
-            return (
-              <motion.div
-                key={idx}
-                style={{
-                  backgroundImage: `url(${item.poster})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  width: imageWidth,
-                  marginLeft: GAP_WIDTH,
-                  // marginRight: GAP_WIDTH/2,
-                  ...mainCarMotionStyles(idx),
-                }}
-                animate={
-                  {
-                    // scale: imgIndex === idx ? 1 : 1,
-                  }
-                }
-                transition={SPRING_OPTIONS}
-                className={
-                  `aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
-                  (imgIndex === idx ? '' : '')
-                }
-              >
-                {/* blurred curtain */}
-                {imgIndex === idx && (
-                  <motion.div
-                    className="z-10 absolute top-0 left-0 w-full h-full backdrop-blur-md bg-darker/10 flex flex-col justify-end"
-                    style={{
-                      y: curtainY,
-                    }}
-                  >
-                    <div className="p-16">
-                      <h2 className="font-bold">Skills</h2>
-                      <h3 className="font-bold text-yellow">
-                        The right tools for the job.
-                      </h3>
-                    </div>
-                  </motion.div>
-                )}
-                <motion.div
-                  className={''}
-                  style={{
-                    y: copyTranslateY,
-                    opacity: copyOpacity,
-                  }}
-                >
-                  <div className="mx-10 my-8">
-                    {/* <div className="initials mix-blend-screen montserrat font-[900] hidden_">
-                      <span className="text-5xl mix-blend-screen text-accent1 z-20 relative1">
-                        O
-                      </span>
-                      <span className="text-5xl mix-blend-screen relative z-30 text-gray-400 -ml-5 ">
-                        H
-                      </span>
-                    </div> */}
-                    <div className="bg-darker/80 inline-block font-bold uppercase rounded-md py-2 px-5 text-center">
-                      {item.name}
-                    </div>
-                  </div>
-                </motion.div>
-                {/* <h1 className={imgIndex === idx ? 'text-blue' : ''}>{idx}</h1> */}
-
-                {nextItem(idx) && (
-                  <Arrows2
-                    onClick={(e) => setImgIndex(imgIndex + 1)}
-                    mode={'next'}
-                    className={`fadeInRight d3`}
-                  />
-                )}
-                {prevItem(idx) && (
-                  <Arrows2
-                    onClick={(e) => setImgIndex(imgIndex - 1)}
-                    mode={'prev'}
-                    className={`fadeInLeft d3`}
-                  />
-                )}
-              </motion.div>
-            );
-          })}
-          <div
-            style={{ width: imageWidth / 3 }}
-            className={twMerge(
-              'ml-5 aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-white_ relative overflow-clip text-center',
-              imgIndex === pinnedSkills.length - 1 ? 'z-30' : '-z-10'
-            )}
-          >
-            <Image className="brightness-200" src={imgEnd} alt="" />
-            <p
-              onClick={startOver}
-              className="f cursor-pointer hover:text-white"
-            >
-              Start Over
-            </p>
+      <div className="px-16 py-14">
+        <div className="level">
+          <div className="level-left">
+            <div className="title-block">
+              <h4 className="font-bold text-yellow -mb-2">
+                Senior Software Engineer
+              </h4>
+              <h3 className="font-bold">OMAR HABASH</h3>
+            </div>
+          </div>
+          <div className="level-right a-menu">
+            <Link href="#experience" className='link'>Experience</Link>
+            <Link href="#skills" className='link'>Skills</Link>
+            <Link href="#interview-me" className='link'>Interview Me</Link>
+            <Link href="#contact" className='link'>Contact</Link>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
-};
+}
+    

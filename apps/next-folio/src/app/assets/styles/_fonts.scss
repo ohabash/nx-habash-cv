@@ -5,6 +5,8 @@ $base-font-size: 15px;
 
 html {
   font-size: $base-font-size;
+  font-family: "Roboto", sans-serif;
+  // scroll-behavior: smooth;
 }
 
 body {
@@ -44,7 +46,8 @@ body {
 
 h1 { @apply text-5xl font-bold; }
 h2 { @apply text-3xl; }
-h4 { @apply text-[1rem] font-bold; }
+h3 { @apply text-[2.75rem]; }
+h4 { @apply text-[1.2rem] font-bold; }
 
 p, a, li {
   // @include roboto(100);
@@ -53,7 +56,7 @@ p, a, li {
     @apply text-xs md:text-xl font-normal text-center text-neutral-400 mt-4;
   }
   &.ff{
-    @apply text-center max-w-lg mx-auto;
+    @apply text-center mx-auto;
   }
   &.link {
     @apply hover:text-accent2 cursor-pointer p-2;
@@ -66,4 +69,47 @@ p, a, li {
   // }
   // &.key { @apply opacity-60; }
   // &.value {}
+}
+
+.wysiwyg {
+
+  /* Paragraphs */
+  p {
+    margin: 10px 0;
+  }
+
+  /* Strong Text */
+  strong {
+    font-weight: bold;
+  }
+
+  /* Unordered List */
+  ul {
+    margin: 20px 0;
+    padding-left: 40px;
+    list-style-type: disc;
+  }
+
+  li {
+    margin-bottom: 15px;
+  }
+
+  /* Links (if needed) */
+  a {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Code block (optional for coding elements) */
+  code {
+    font-family: monospace;
+    background: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #d63384;
+  }
 }

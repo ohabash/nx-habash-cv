@@ -20,25 +20,26 @@ export function InterviewMe() {
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
 
   return (
-      <div
-        className="h-[275vh] -mt-8_ z-[1] bg-darker w-full border-b-[1px] border-darkBlue/60 rounded-md relative pt-60 overflow-clip"
-        ref={ref}
-      >
-        <GoogleGeminiEffect
-          pathLengths={[
-            pathLengthFirst,
-            pathLengthSecond,
-            pathLengthThird,
-            pathLengthFourth,
-            pathLengthFifth,
-          ]}
-          title={<Title />}
-          button={<InterviewMeTrigger className="md:mt-41" />}
-          description={
-            'An interactive AI bot that lets you ask questions about my professional experience, skills, and achievements.'
-          }
-        />
-      </div>
+    <div
+      id="interview-me"
+      className="h-[275vh] -mt-8_ z-[1] bg-darker w-full border-b-[1px] border-darkBlue/60 rounded-md relative pt-60 overflow-clip"
+      ref={ref}
+    >
+      <GoogleGeminiEffect
+        pathLengths={[
+          pathLengthFirst,
+          pathLengthSecond,
+          pathLengthThird,
+          pathLengthFourth,
+          pathLengthFifth,
+        ]}
+        title={<Title />}
+        button={<InterviewMeTrigger className="md:mt-41" />}
+        description={
+          'An interactive AI bot that lets you ask questions about my professional experience, skills, and achievements.'
+        }
+      />
+    </div>
   );
 }
 

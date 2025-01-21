@@ -2,11 +2,22 @@ import { timeout } from "@nx-habash/utils";
 import { Run } from "openai/resources/beta/threads/runs/runs";
 
 export const pollRunCompletion = async (threadId: string, run: Run): Promise<Run> => {
-  while (run.status !== 'completed') {
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second before retrying
+  let count = 0;
+  const max_retry = 7;
+  const timeBetweenPolls = 1400; // lowering this will speed up the response time but will increase the number of requests
+  while (run.status !== 'completed' && count < 5 && run.status !== 'failed') {
+    count++;
     run = await retrieveRun(threadId, run.id);
-    await timeout(500);
-    console.log(`🚀 => waitForRunCompletion => run:`, run);
+    await timeout(timeBetweenPolls);
+    console.log(`🚀 => [${count}] ::: waitForRunCompletion => run:`, run);
+  }
+  if (run.status === 'failed') {
+    console.error(`🚨🚨🚨 => run.status === 'failed'`, run);
+    return run;
+  };
+  if (count === max_retry) {
+    console.error(`🚨🚨🚨 => waitForRunCompletion => max retries reached`);
+    throw new Error('Something went wrong. Max retries reached [5]. Refresh to look for response.');
   }
   return run;
 };

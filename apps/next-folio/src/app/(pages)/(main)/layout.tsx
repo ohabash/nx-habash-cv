@@ -13,7 +13,7 @@ export default function MainLayout({
   return (
     <>
       <Header />
-      <div className="MainLayout">{children}</div>
+      <div className="MainLayout z-0 relative">{children}</div>
     </>
   );
 }

@@ -11,7 +11,7 @@ export const Contact = () => {
     offset: ['start start', 'end start'],
   });
   return (
-    <div className="relative h-[220vh] bg-red_" ref={ref}>
+    <div id="contact" className="relative h-[220vh] bg-red_" ref={ref}>
       <div className="bg-darker h-screen sticky top-0">
         {' '}
         {/* Parent */}

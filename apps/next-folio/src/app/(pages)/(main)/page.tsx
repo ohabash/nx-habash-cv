@@ -1,11 +1,9 @@
 'use server';
 import Contact from '@/components/contact/Contact';
-import { Hero } from '@/components/hero/Hero';
+import { HeroCar } from '@/components/HeroCar/HeroCar';
 import { Timeline } from '@/components/timeline/Timeline';
 import { Carousel } from '@components/carousel/Carousel';
 import { InterviewMe } from '@components/interview-me/InterviewMe';
-import { Hero2 } from '@/components/hero/Hero2';
-import { HeroCar } from '@/components/HeroCar/HeroCar';
 
 export default async function Index() {
   /*
@@ -15,21 +13,17 @@ export default async function Index() {
    */
   return (
     <>
-      <main id={'page-home'} className="relative h-full">
-        <div className="bg-1 relative z-10 max-w-screen contain-paint">
-          <div className="car-wrapper relative h-full">
-            <HeroCar />
-          </div>
-          {/* <Hero2 /> */}
-          <Timeline />
-          {/* <TimelineAlt/> */}
-        </div>
-        <div className="car-wrapper relative h-full">
-          <Carousel />
-        </div>
-      </main>
+      {/* <main id={'page-home'} className="relative h-full"> */}
+      <HeroCar />
+      <div className="bg-1 relative z-10 max-w-screen contain-paint">
+        <Timeline />
+      </div>
+      <div id="skills" className="car-wrapper relative h-full">
+        <Carousel />
+      </div>
       <InterviewMe />
       <Contact />
+      {/* </main> */}
       <div className="p-8 text-center bg-darkest relative z-10 shadow-2xl border-t-2 border-darkBlue/20">
         <h2 className="text-darkBlue font-extrabold">Thank you.</h2>
         <p className="f max-w-screen">More planned &mdash; come back again.</p>

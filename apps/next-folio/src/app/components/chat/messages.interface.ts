@@ -6,7 +6,7 @@ export interface MessagesResp {
   messages: Message[];
   summary: string | null;
   setMessagesFn: (
-    data: ChatMessage[],
+    data: Array<Partial<ChatMessage>>,
     update: boolean,
     reverse?: boolean
   ) => Message[];

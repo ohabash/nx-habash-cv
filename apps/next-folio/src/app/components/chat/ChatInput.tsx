@@ -6,6 +6,7 @@ import { useCannedResponses } from './canned-responses.hook';
 import { ChatContext } from './chat.context';
 import { CreateMessageParams } from './messages.interface';
 import { useChatRun } from './runner.hook';
+import { timeout } from '@nx-habash/utils';
 
 type Props = {
   onSubmit?: (val: string, e: React.FormEvent<HTMLFormElement>) => void;
@@ -52,6 +53,7 @@ const ChatInput = ({ running, setRunning }: Props) => {
         role: 'user' as 'user' | 'assistant',
       },
     };
+    console.log(`🚀 => onSubmit => payload:`, payload)
 
     const { createMessage, updateMessages, setMessagesFn, messages } =
       chatContext?.messageClient!;
@@ -64,6 +66,7 @@ const ChatInput = ({ running, setRunning }: Props) => {
 
     // show assistant loading msg (for later)
     cannedResponses.assistantLoading();
+
 
     // // keep checking until run is completed
     const completedRun: Run = await cannedResponses.runPollUpdate({

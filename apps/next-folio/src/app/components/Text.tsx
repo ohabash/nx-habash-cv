@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import { skills } from './carousel/skills.data';
+import { skills } from '../data/data-skills';
 
 export const CarouselTEST = () => {
   useEffect(() => {

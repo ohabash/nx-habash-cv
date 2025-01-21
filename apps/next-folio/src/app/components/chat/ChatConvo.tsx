@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import { RateResponse } from "./RateResponse";
 import { useContext, useEffect } from "react";
 import { ChatContext } from "./chat.context";
+import ReactMarkdown from "react-markdown";
 
 export const ChatConvo = ({ }: ChatConvoProps) => {
   const chatContext = useContext(ChatContext);
@@ -13,6 +14,7 @@ export const ChatConvo = ({ }: ChatConvoProps) => {
   }, [messages]);
   return (
     <div className="chat-convo">
+      {!messages.length && <div className="text-center"><h4>[new-convo-view]</h4></div>}
       {messages && messages.map((msg, i) => (
         <div className="msg-wrapper" key={`${i}_${msg.id}`}>
           <MsgBubble msg={msg} />
@@ -55,21 +57,29 @@ export const MsgBubble = ({ msg }: { msg: ChatMessage }) => {
           <div
             className={twMerge(
               'flex flex-col leading-1.5 p-1 px-4 border-gray-200 bg-gray-100 dark:bg-dark min-w-[4rem] max-w-[40rem] dark:border-gray-600',
+              msg.error &&
+                'dark:bg-red/25 bg-red/25 border-2 dark:border-red border-red',
               msg.role.includes(botId)
                 ? 'rounded-ss-xl rounded-r-xl'
                 : 'rounded-s-xl rounded-se-xl bg-blue dark:bg-blue'
             )}
           >
-            <div className={twMerge(
-              "font-normal text-gray-900 dark:text-white p-2",
-              msg.loading && 'text-loading'
-            )}>
-              {render()}
+            <div
+              className={twMerge(
+                'wysiwyg font-normal text-gray-900 dark:text-white',
+                msg.loading && 'text-loading'
+              )}
+            >
+              <ReactMarkdown>
+                {(msg as any).content[0]?.text?.value}
+              </ReactMarkdown>
             </div>
           </div>
           <div className="level">
             <span className="level-left text-xs font-normal text-gray-500 dark:text-gray-400 opacity-0 group-hover:opacity-100 ">
-              <Moment format="MMM D, h:mm">{new Date(msg.created_at * 1000)}</Moment>
+              <Moment format="MMM D, h:mm">
+                {new Date(msg.created_at * 1000)}
+              </Moment>
             </span>
             {!msg.role.includes(botId) && (
               <span className="level-right font-normal text-xs text-gray-500 dark:text-gray-400">
