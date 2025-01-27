@@ -1,16 +1,16 @@
 "use client";
 import { Button } from '@/components/button/Button';
-import { auth, errMsg } from '@/firebase/firebase.config';
+import { ProfileService } from '@/components/profile/profile.service';
+import { auth } from '@/firebase/firebase.config';
+import { ErrorMsg } from "@components/ErrorMsg";
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { BiChevronRightCircle } from "react-icons/bi";
-import { ErrorMsg } from "@components/ErrorMsg";
-import { useRouter } from 'next/navigation';
-import { NxUser, ProfileService } from '@/components/profile/profile.service';
-import { useSession } from 'next-auth/react';
-import { User } from 'next-auth';
 
 const Page = () => {
+  const { data: session } = useSession();
   const [user] = useAuthState(auth);
   const router = useRouter();
   const headerCopy = 'Sign Up';
@@ -21,7 +21,6 @@ const Page = () => {
     useCreateUserWithEmailAndPassword(auth);
   if (user) return router.push('/auth/settings');
   const handleSignUp = async () => {
-    const { data: session } = useSession();
     const user = session?.user || {};
     const profileService = ProfileService.init(
       (user as any)?.id,

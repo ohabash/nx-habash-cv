@@ -9,7 +9,7 @@ import { OptionBox } from "../ui/OptionBox";
 
 export const ChatConvo = ({ setPrompt }: ChatConvoProps) => {
   const chatContext = useContext(ChatContext);
-  const { messages } = chatContext?.messageClient!;
+  const { messages } = chatContext?.messageClient || { messages: [] };
   const [threadId, setThreadId] = useState<string | null>(null);
   useEffect(() => {
     setThreadId(chatContext?.thread?.thread?.id || null);

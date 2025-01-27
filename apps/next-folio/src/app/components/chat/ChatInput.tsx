@@ -68,8 +68,11 @@ const ChatInput = ({ running, setRunning, val }: Props) => {
       },
     };
 
-    const { createMessage, updateMessages, setMessagesFn, messages } =
-      chatContext?.messageClient!;
+    const messageClient = chatContext?.messageClient;
+    if (!messageClient) {
+      return;
+    }
+    const { createMessage, updateMessages, setMessagesFn, messages } = messageClient;
 
     // optimistic update
     cannedResponses.optimisticUpdate(payload.body.content as string);

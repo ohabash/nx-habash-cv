@@ -36,7 +36,7 @@ export const ProfileForm = ({
   // const user = auth.currentUser;
   const router = useRouter();
 
-  let profileService: ProfileService | null = useMemo( () => {
+  const profileService: ProfileService | null = useMemo( () => {
     const x = ProfileService.init(user.id, setProfile, '<ProfileForm/>');
     console.log(`🚀 => useLayoutEffect => profileService:`, x)
     return x;

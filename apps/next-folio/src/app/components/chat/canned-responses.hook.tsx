@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ChatContext } from "./chat.context";
 import { useChatRun } from "./runner.hook";
 import { RunCreateParams } from "./chat.interface";
 import { pollRunCompletion } from "./runner.actions";
 import { Run } from "openai/resources/beta/threads/runs/runs";
-import { CreateMessageParams } from "./messages.interface";
+import { CreateMessageParams, MessagesResp } from "./messages.interface";
 import { ProfileService } from "../profile/profile.service";
 import { GlobalContext } from "@/global.context";
 
@@ -15,6 +15,7 @@ interface CannedResp {
   setRunError: (run: Run | null, val?: {code: string, message: string}) => void;
 }
 interface Props {
+  [key: string]: any;
 }
 
 export const useCannedResponses = (): CannedResp => {
@@ -22,18 +23,18 @@ export const useCannedResponses = (): CannedResp => {
   const globalContext = useContext(GlobalContext);
   const profile = globalContext?.profile;
   const runner = useChatRun();
-  let threadId = chatContext?.thread.threadId;
-  let assistantId = chatContext?.assistant.assistant?.id;
-  let msgClient = chatContext?.messageClient!;
+  const threadIdRef = useRef(null as string|null);
+  const assistantIdRef = useRef(null as string|null);
+  const msgClientRef = useRef(null as MessagesResp | null);;
 
-  useEffect(() => {
-    threadId = chatContext?.thread.threadId;
-    assistantId = chatContext?.assistant.assistant?.id;
-    msgClient = chatContext?.messageClient!;
-  }, [chatContext]);
+   useEffect(() => {
+     threadIdRef.current = chatContext?.thread?.threadId ?? null;
+     assistantIdRef.current = chatContext?.assistant?.assistant?.id ?? null;
+     msgClientRef.current = chatContext?.messageClient ?? null;
+   }, [chatContext]);
 
   const assistantLoading = (value = 'Let me think about that...') => {
-    msgClient.setMessagesFn(
+    msgClientRef.current?.setMessagesFn(
       [
         {
           role: 'assistant',
@@ -58,7 +59,7 @@ export const useCannedResponses = (): CannedResp => {
   };
 
   const optimisticUpdate = (value: string) => {
-    msgClient.setMessagesFn(
+    msgClientRef.current?.setMessagesFn(
       [
         {
           role: 'user',
@@ -90,7 +91,7 @@ export const useCannedResponses = (): CannedResp => {
       if (code) val.code = code;
       if (message) val.message = message;
     }
-    msgClient.setMessagesFn(
+    msgClientRef.current?.setMessagesFn(
       [
         {
           role: 'assistant',
@@ -118,7 +119,7 @@ export const useCannedResponses = (): CannedResp => {
   const introduction = async () => {
     // create msg and display
     const msg: CreateMessageParams = {
-      threadId: threadId as string,
+      threadId: threadIdRef.current as string,
       body: {
         content: `Hi, I am ${profile?.name} from the company ${profile?.company}. I would like to ask you some questions about your expierence as a Designer, Leader, Programmer.`,
         role: 'user' as 'user' | 'assistant',
@@ -129,13 +130,13 @@ export const useCannedResponses = (): CannedResp => {
     optimisticUpdate(msg.body.content as string);
 
     // create msg and display
-    const resp = await msgClient.createMessage(msg);
+    const resp = await msgClientRef.current?.createMessage(msg);
 
     // run (request a response)
-    let runResp = await runPollUpdate({
-      threadId: threadId as string,
+    const runResp = await runPollUpdate({
+      threadId: threadIdRef.current as string,
       params: {
-        assistant_id: assistantId as string,
+        assistant_id: assistantIdRef.current as string,
         stream: false,
       },
     });
@@ -143,16 +144,16 @@ export const useCannedResponses = (): CannedResp => {
 
   const runPollUpdate = async (runParams: RunCreateParams): Promise<Run> => {
       // run (request a response)
-      let runResp = await runner.run(runParams, {
+      const runResp = await runner.run(runParams, {
         name: profile?.name as string,
         company: profile?.company as string,
       });
   
       // keep checking until run is completed (!! this might timeout)
-      const completedRun = await pollRunCompletion(threadId!, runResp);
+      const completedRun = await pollRunCompletion(threadIdRef.current!, runResp);
   
       // update messages
-      await msgClient.updateMessages(threadId as string, 'onSubmit', msgClient.setMessagesFn);
+      await msgClientRef.current?.updateMessages(threadIdRef.current as string, 'onSubmit', msgClientRef.current?.setMessagesFn);
 
       // add run error
       console.log(`🚀 FINAL => runPollUpdate => completedRun:`, completedRun)

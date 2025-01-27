@@ -19,12 +19,9 @@ import { NoAuthError } from '../auth/NoAuthError';
 import { signOut, useSession } from 'next-auth/react';
 import { NxUser, ProfileService } from './profile.service';
 
-type Props = {
-  // originalProfile: NXProfile;
-};
-export const ProfileSettings = ({  }: Props) => {
-  const router = useRouter();
+export const ProfileSettings = () => {
   const auth = useSession();
+  const router = useRouter();
   const user = auth.data?.user as NxUser;
   console.log(`🚀 => ProfileSettings => auth::`, auth)
   console.log(`🚀 => ProfileSettings => auth:: => profile`, (auth as any).data?.user?.profile)
@@ -42,14 +39,15 @@ export const ProfileSettings = ({  }: Props) => {
     signOut();
     sessionStorage.removeItem('user');
   };
-
-  // no auth error
-  if (!user) return <NoAuthError />;
-
+  
   useEffect(() => {
     console.log(`🚀 => => => ProfileSettings => INIT:`, user);
     profileService = ProfileService.init(user.id, setOriginalProfile, '<ProfileSettings/>');
   }, []);
+
+  // no auth error
+  if (!user) return <NoAuthError />;
+
 
   return (
     <div id="settings">
