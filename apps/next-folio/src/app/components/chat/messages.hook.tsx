@@ -23,7 +23,12 @@ export const useMessages = ({ profileService, threadId, includeSummary: includeS
     append: boolean,
     reverse = true
   ): Message[] => {
-    data ??= [];
+    if (!data) data = [];
+    // handle errors
+    if ((data as any).error) {
+      console.error('🚨setMessagesFn => Error in data', data);
+      return [];
+    }
     // add status "delivered" if is empty
     data.map((m) => {
       m.status = m.status || ('Delivered' as any);
@@ -36,7 +41,6 @@ export const useMessages = ({ profileService, threadId, includeSummary: includeS
 
     // final messages
     const final = append ? [...messages, ...msgs] : msgs;             
-    console.log(`🚀 => useMessages => final:`, final)
 
     // update ui
     setMessagesLocal((cur) => (append ? [...cur, ...msgs] : msgs));

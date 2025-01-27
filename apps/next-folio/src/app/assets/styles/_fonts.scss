@@ -37,7 +37,8 @@ body {
 }
 
 ::selection {
-  background: var(--accent1);
+  background: var(--accent1) !important;
+  color: #fff !important;
 }
 
 .montserrat {

@@ -15,18 +15,10 @@ interface Props {
 }
 
 export const useAssistant = ({aid, profileService}: Props): AssistantHookResp => {
-  // const [assistant, setAssistant] = useState(null as Assistant | null);
   const {data: assistant, isLoading, } = useQuery({
     queryFn: () => fetchAssistant(aid),
     queryKey: ['assistant', aid],
   })
-  // useMemo(() => {
-    // fetchAssistant(aid).then((d) => setAssistant(d));
-  // }, [aid]);
-
-  useEffect(() => {
-    console.log(`🚀 => useAssistant => assistant:`, assistant);
-  }, [assistant]);
 
   return {
     assistant,
@@ -36,7 +28,6 @@ export const useAssistant = ({aid, profileService}: Props): AssistantHookResp =>
 }
 
 const fetchAssistant = async (id: string) => {
-  console.log(`🚀 [ACTION] => fetchAssistant => id:`, id);
   const url = new URL('/api/assistant/get', window?.location.origin || process.env.HOST);
   url.searchParams.append('assistantId', id);
 
@@ -48,7 +39,6 @@ const fetchAssistant = async (id: string) => {
   });
 
   const data = await res.json();
-  console.log(`🚀 => fetchAssistant => res.json():`, data);
   return data;
 };
 

@@ -15,7 +15,7 @@ export const ThreadThumb = ({threadId}: Props) => {
   const threadService = useChatThread({
     aid: chatContext?.assistant.assistant?.id as string,
     profileService: null,
-    threadId: threadId,
+    providedThreadId: threadId,
   });
 
   // get / set thread messages

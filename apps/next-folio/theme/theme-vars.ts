@@ -3,7 +3,7 @@ import colors from './colors.json';
 export class Theme {
   colors = colors.colors;
   vars = {
-    accent1: this.colors.pink,
+    accent1: this.colors.red,
     accent2: this.colors.yellow,
     accent3: this.colors.blue,
     fg1: this.colors['dark-text'],

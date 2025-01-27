@@ -52,10 +52,11 @@ export const ChatProvider = ({
   });
 
   // get / set thread
+  const providedThreadId = profileService?.profile?.chatThreadId;
   const thread = useChatThread({
     aid,
     profileService,
-    threadId: profileService?.profile?.chatThreadId,
+    providedThreadId
   });
 
   // get / set thread messages
@@ -75,9 +76,9 @@ export const ChatProvider = ({
   };
 
   // DEV ONLY
-  useEffect(() => {
-    console.log(`🚀 => B4ChatConvo => messages:`, messageClient.messages);
-  }, [messageClient.messages]);
+  // useEffect(() => {
+  //   console.log(`🚀 => B4ChatConvo => messages:`, messageClient.messages);
+  // }, [messageClient.messages]);
 
   // return wrapper markup
   return <ChatContext.Provider value={data}>{children}</ChatContext.Provider>;

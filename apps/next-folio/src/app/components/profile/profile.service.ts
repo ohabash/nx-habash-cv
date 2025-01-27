@@ -24,15 +24,7 @@ export class ProfileService {
     this.debug = debug;
     this.path = `users/${this.uid}`;
     this.setProfile();
-    console.log(
-      `[${debug}] ::: 🚀 =======> ProfileService =======> constructor =======> uid:`,
-      uid
-    );
   }
-
-  // get profile(): Partial<NXProfile> {
-  //   return this.getProfile();
-  // }
 
   static init(
     uid: string,
@@ -56,13 +48,6 @@ export class ProfileService {
 
   saveProfile = async (profile?: User | AdapterUser | Partial<NXProfile>) => {
     if (!this.uid) return;
-    // const updates: Partial<NXProfile> = {
-    //   email: this.user.email || (null as any),
-    //   name: this.user.name || (null as any),
-    //   image: this.user.image || (null as any),
-    //   // phone: this.user.phoneNumber || (null as any), // TODO: Add phone number to user obj in route.ts
-    //   lastUpdated: new Date().toISOString(),
-    // };
     return await rtdb.update(this.path, profile);
   };
 

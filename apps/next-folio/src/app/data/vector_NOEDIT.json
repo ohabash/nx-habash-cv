@@ -1,0 +1,462 @@
+{
+  "experience": [
+    {
+      "title": "Senior Software Developer",
+      "date": "Jun 2018 — Jul 2024",
+      "description": "Trained and managed a team of developers, played a central role in launching the company’s ecommerce & ERP software stack. My tenure was marked by achievements that transformed Fornida’s autonomous software landscape, Angular, NodeJS, Stripe, Mongo, Amazon SP-API, Microsoft Graph, BigCommerce",
+      "reasonForLeaving": "TODO",
+      "company": "Fornida",
+      "logo": {
+        "src": "/_next/static/media/fn.366f728b.png",
+        "height": 983,
+        "width": 983,
+        "blurDataURL": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffn.366f728b.png&w=8&q=70",
+        "blurWidth": 8,
+        "blurHeight": 8
+      },
+      "projects": [
+        {
+          "name": "ZaynTek.com & Fornida.com",
+          "desc": "Leveraged Angular to build dynamic E-commerce storefronts - featuring a one-ofa- kind frontend editing experience that redefined product management for site administrators. Our NestJS backend facilitated integrations, including BigCommerce, for enhanced e-commerce capabilities. With tens of thousands of carefully categorized products we had to build robust SEO features which provided google with the latest product descriptions, reviews, prices, images and even stock levels. Today we proudly occupy first page results in google for most of our industries top products"
+        },
+        {
+          "name": "Internal Listing Dashboard*",
+          "desc": "This dashboard allowed admins to add 1000s of products to our e-com stores with ease. By providing a list of part numbers this tool would reach out to various APIs to combine product images, descriptions, tech specs, downloads, stock levels and sales history to create product pages which then automatically updated each sites’ sitemap and informed google of new data."
+        },
+        {
+          "name": "Microsoft Business Central ERP Dashboard",
+          "desc": "Today, Fornida’s employees all use “DASH,” a custom ERP dashboard that combines all our major business processes in one software. It gives salespeople instant access to their performance metrics, quotes, orders, and invoices. Admins can tailor access per role, enhancing each user’s experience. DASH integrates with platforms like BigCommerce, Amazon, Shopify, and eBay, centralizing orders into standardized sales orders. For warehouse staff, it provides live KPIs like open orders and pending shipments, and for drop-shipped orders, it automatically updates the BuyReport, advising on procurement and streamlining purchase order creation."
+        }
+      ]
+    },
+    {
+      "title": "Senior Software Developer",
+      "date": "Feb 2018 — Oct 2020",
+      "description": "Co-founded JOMA Tech with two former colleagues, building on our shared experience at SUCCESS Partners to address the unique challenges of the eCommerce industry. At JOMA Tech, we delivered tailored eCommerce solutions that set us apart—no two sites were alike, each featuring completely unique capabilities designed to fit our clients’ business needs like a glove. This position taught me the importance of leadership in a technical role, as many relied on me to deliver solutions that seemed impossible at the time. By adopting cutting-edge technologies and crafting innovative tools, we consistently exceeded expectations. I’m proud to say we delivered on our promise, creating a service that was unmatched in the industry. Our success enabled us to sustain a team of five full-time employees for over two years before joining Fornida to bring our expertise to an enterprise level.",
+      "reasonForLeaving": "TODO",
+      "company": "JOMA Tech",
+      "logo": {
+        "src": "/_next/static/media/joma.eb88ee8e.png",
+        "height": 983,
+        "width": 983,
+        "blurDataURL": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fjoma.eb88ee8e.png&w=8&q=70",
+        "blurWidth": 8,
+        "blurHeight": 8
+      },
+      "projects": [
+        {
+          "name": "Meteorite CMS",
+          "desc": "Meteorite CMS was built to transform headless eCommerce by addressing the limitations of the BigCommerce API. The system leveraged a PostgreSQL database, synchronized in real-time via webhooks, to provide developers with instant access to data, enabling them to work with unmatched efficiency. Meteorite unlocked the potential for advanced features, seamless workflow automation, and dynamic UI experiences, while extending functionality to include theming and page control. This project not only powered effortless SEO optimization for sites still thriving today but also ignited a deep passion in me to build tools that supercharge developer workflows, allowing them to do more with less effort! Available for a live demo upon request."
+        },
+        {
+          "name": "AMEC Home Loans",
+          "desc": "Developed a custom website for AMEC Home Loans, designed to reflect their professionalism and build trust with customers seeking mortgage solutions. The site featured advanced home mortgage calculators, enabling customers to gain clear expectations and a deeper understanding of their mortgage qualifications and status. A geolocation-based agent finder connected users with local agents, each of whom was provided a personalized subdomain (e.g., bob.amec.com). Administrators could seamlessly manage these agent sites through the Meteorite CMS, while agents had tools to customize their pages for a tailored client experience. Each subdomain operated as a standalone entity in Google search rankings, boosting visibility and supporting AMEC’s mission to connect customers with reliable loan solutions."
+        },
+        {
+          "name": "Fornida Custom Server Builder",
+          "desc": "At Fornida, I developed a powerful server configurator to simplify the complex process of building custom servers, ensuring compatibility across components and addressing the unique needs of customers. This tool tackled significant challenges, including creating an intuitive interface to display thousands of configuration possibilities and enabling administrators to set up and manage configurations effortlessly. It also facilitated seamless client interaction before purchase, providing customers with confidence in their multi-thousand-dollar investments. Overcoming BigCommerce’s SKU limitations, the configurator efficiently handled over 100,000 potential configurations while maintaining an exceptional user experience. The result was a tool that empowered both administrators and customers—check it out at Fornida.com."
+        }
+      ]
+    },
+    {
+      "title": "eCommerce Developer",
+      "date": "Mar 2015 — Feb 2018",
+      "description": "Frontend Developer specializing in creating user-facing elements for ecommerce sites, with a strong foundation in development and design. Successfully designed, developed, and maintained over 30 ecommerce sites on Magento and BigCommerce. Led the migration of 14 Magento sites to BigCommerce, and developed a unique BigCommerce app that converts user ‘points’ into discounts, automatically syncing with accounting records. Used javascript and PHP",
+      "reasonForLeaving": "TODO",
+      "company": "SUCCESS Partners",
+      "logo": {
+        "src": "/_next/static/media/sp.fa877d0a.png",
+        "height": 983,
+        "width": 983,
+        "blurDataURL": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsp.fa877d0a.png&w=8&q=70",
+        "blurWidth": 8,
+        "blurHeight": 8
+      },
+      "projects": [
+        {
+          "name": "Launched 20 BigCommerce Stores in 6 Months",
+          "desc": "Transitioned from Magento to BigCommerce, launching 20 new eCommerce stores within just six months. The cornerstone of this achievement was a custom-built code generator that scaffolded a new store, complete with all business logic, in a single command. This approach streamlined the process, leaving only theming as the final step for each store. A critical feature for these stores was Print on Demand (POD), allowing customers to customize products digitally, review proofs, and approve designs before completing their purchase. To handle the dynamic and evolving nature of the POD feature, we developed a centralized BigCommerce app. This app enabled us to push updates and bug fixes across all stores simultaneously, ensuring consistency and efficiency in operations. This innovative approach allowed us to deliver high-quality, fully functional eCommerce stores at an unprecedented pace."
+        },
+        {
+          "name": "Magento Monorepo",
+          "desc": "Spearheaded the development of a PHP monorepo engineered to streamline and standardize the operation of 25 Magento websites. Upon arrival, I identified an urgent need to eliminate developer overhead caused by maintaining separate codebases for each site. My solution was to create a centralized codebase that housed 90% of the business logic required for these websites, with individual sites differing only in their theming. By the project's completion, SUCCESS Partners could spin up a new website with the majority of the work already complete. The process was simplified to applying a unique theme and configuring deployment scripts with environment-specific credentials. This monorepo significantly increased efficiency, reduced maintenance overhead, and empowered the team to launch new projects quickly and consistently."
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "poster": "/img/posters/openai.webp",
+      "name": "OpenAI",
+      "desc": "Experience with OpenAI API for building intelligent applications that leverage natural language processing and machine learning.",
+      "desc2": "I used OpenAI's GPT-3 to generate human-like text, enabling chatbots, content creation, and more for this portfolio. I used it to automate listing creation at HabashRVs ",
+      "icon": "/img/logos/openai.png",
+      "url": "https://beta.openai.com/docs/",
+      "pinned": true
+    },
+    {
+      "poster": "/img/posters/js.jpg",
+      "name": "JavaScript",
+      "desc": "Over a decade of experience building dynamic and interactive web applications using JavaScript. Key for creating user-facing elements and handling client-side logic effectively.",
+      "desc2": "JavaScript is the foundation of my web development journey. I've used it for 12 years now. ",
+      "icon": "/img/logos/js.webp",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "pinned": true
+    },
+    {
+      "poster": "/img/posters/angular.png",
+      "name": "Angular",
+      "desc": "Expert in Angular, building complex and performant web applications. Leveraged it for projects like eCommerce platforms with dynamic UI and advanced SEO capabilities.",
+      "desc2": "I have used Angular for 7 years now. Back when it was called AngularJS even. When it first came out I remember how exciting and different it was to code within a reactive SPA.",
+      "icon": "/img/logos/angular.webp",
+      "url": "https://angular.io/",
+      "pinned": true
+    },
+    {
+      "poster": "/img/posters/react.png",
+      "name": "React",
+      "desc": "Learning React to expand my skillset in component-based frameworks and enhance my ability to create efficient, reusable front-end components.",
+      "desc2": "React is my most recent addition to my skillset. I've been using it for 1 years now. I never remember a time choosing Angular over React. Angular was simply the one i learned first and kept building on to it; making that my go-to. However now that I know both very well I can easily say that they both have pros and cons. There are features from both that i never want to code without. I especially love how portable and loose React components are.",
+      "icon": "/img/logos/react.webp",
+      "url": "https://reactjs.org/",
+      "pinned": true,
+      "iconClass": "w-[60%]"
+    },
+    {
+      "poster": "/img/posters/ts.png",
+      "name": "TypeScript",
+      "desc": "Extensive experience using TypeScript for writing maintainable and scalable codebases, enabling type safety and reducing runtime errors in complex projects.",
+      "desc2": "Learning Typescript was a game changer for me. I've been using it for 5 years now. I remember how much I struggled with JavaScript and how much I loved it. I remember not knowing why i needed TypeScript. However now days i never want to go back to programming without Type safety again. It's a must for me now.",
+      "icon": "/img/logos/ts.png",
+      "url": "https://www.typescriptlang.org/",
+      "pinned": true
+    },
+    {
+      "poster": "/img/posters/nodejs.png",
+      "name": "NodeJS",
+      "desc": "Proficient in building server-side applications and APIs with NodeJS, ensuring high performance and scalability in backend systems.",
+      "desc2": "Ive been using NodeJS for almost as long as ive been using JavaScript. Years ago PHP was my go-to for backend. However now days using TypeScript on the front and back is a must for me. Combine that with a mono repo you have a stack that is hard to beat and easy to learn.",
+      "icon": "/img/logos/nodejs.png",
+      "url": "https://nodejs.org/",
+      "pinned": true
+    },
+    {
+      "poster": "/img/posters/stripe.png",
+      "name": "Stripe API",
+      "desc": "Integrated Stripe API to enable secure and efficient payment processing across multiple projects, streamlining eCommerce transactions.",
+      "desc2": "I started using stripe to make custom carts and checkouts for various projects. I love their API and how easy it is to use. I've been using it for 3 years now.",
+      "icon": "/img/logos/stripe.png",
+      "url": "https://stripe.com/docs/api",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/mongo.png",
+      "name": "MongoDB",
+      "desc": "Experience with MongoDB in building NoSQL databases for scalable, real-time applications, optimizing data storage and retrieval.",
+      "desc2": "MongoDB was a game changer for me. I love the flexibility and speed of it. It has been my go to database for 5 years now. I have so much reusable code to jump start a backend or frontend project with. Let me know if you would like for me to share some of it with you.",
+      "icon": "/img/logos/mongo.webp",
+      "url": "https://www.mongodb.com/",
+      "pinned": true
+    },
+    {
+      "poster": "/img/posters/nextjs.png",
+      "name": "NextJs",
+      "desc": "Skilled in using Next.js for server-side rendering and building SEO-friendly React applications with fast load times.",
+      "desc2": "After using Angular for so many years struggling to render pages server side. I was so happy to find NextJs. I've been using it for a year now. I love how easy it is to use and how fast it is to render pages server side. Bluring the lines between frontend and backend is something i thought about long before being introduced to next. I honestly wish i started it sooner.",
+      "icon": "/img/logos/nextjs.png",
+      "url": "https://nextjs.org/docs",
+      "pinned": true
+    },
+    {
+      "poster": "/img/posters/amazon.png",
+      "name": "Amazon Selling Partner API",
+      "desc": "Developed tools to integrate with the Amazon SP-API, automating inventory management and enhancing eCommerce functionalities.",
+      "desc2": "I have extensive experience building custom applications using the Amazon Selling Partner API (SP-API). My projects include solutions for fulfillment, inventory tracking, automated listing creation, and pricing algorithms that outperformed the competition. Several of these applications are still actively in production. I'd be happy to showcase them upon request.",
+      "icon": "/img/logos/amazon.png",
+      "url": "https://developer-docs.amazon.com/sp-api",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/msbc.jpg",
+      "name": "Microsoft Business Central",
+      "desc": "I have hands-on experience working with Microsoft Business Central, leveraging its robust ERP capabilities to streamline business processes and drive operational efficiency during my time at Fornida. One standout project involved using event listeners to build replica databases in MongoDB for nearly every major dataset in Business Central. This enabled real-time synchronization, enhanced reporting, and seamless custom integrations. Additionally, I implemented tailored workflows, automated reporting, and configured modules for finance, inventory management, and sales to align with organizational needs. My expertise also includes creating custom APIs and integrating third-party tools to ensure scalability and agility. I’d be happy to provide a demo showcasing these solutions upon request.",
+      "desc2": "defaultCopy",
+      "icon": "/img/logos/msbc.png",
+      "iconClass": "w-[80%]",
+      "url": "https://dynamics.microsoft.com/en-us/business-central/",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/shopify.jpg",
+      "name": "Shopify",
+      "desc": "Worked on Shopify integrations, optimizing storefronts and backend systems to align with unique business requirements.",
+      "desc2": "I used Shopify to build custom eCommerce solutions for clients, including theme development, app integrations, and API customizations. I have experience with Shopify Plus and have developed scalable solutions for high-volume stores. I also created custom apps to automate workflows, enhance customer experiences, and improve operational efficiency. I’d be happy to provide a demo of these projects upon request.",
+      "icon": "/img/logos/shopify.png",
+      "url": "https://www.shopify.com/",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/shopify.jpg",
+      "name": "Shopify",
+      "desc": "Worked on Shopify integrations, optimizing storefronts and backend systems to align with unique business requirements.",
+      "desc2": "I used Shopify to build custom eCommerce solutions for clients, including theme development, app integrations, and API customizations. I have experience with Shopify Plus and have developed scalable solutions for high-volume stores. I also created custom apps to automate workflows, enhance customer experiences, and improve operational efficiency. I’d be happy to provide a demo of these projects upon request.",
+      "icon": "/img/logos/shopify.png",
+      "url": "https://www.shopify.com/",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/bigcommerce.jpeg",
+      "name": "BigCommerce",
+      "desc": "At JOMA Tech, BigCommerce’s go-to partner, I built innovative tools like a server builder, headless commerce solutions, and dynamic B2B features.",
+      "desc2": "At JOMA Tech, a certified BigCommerce partner and their trusted agency for complex challenges, I led the development of innovative eCommerce solutions that set new standards for the industry. As a co-founder alongside two colleagues from SUCCESS Partners, I helped establish JOMA Tech to address the limitations of the eCommerce tools available at the time. We provided clients with speed, control, and beautiful designs by creating tools that served their unique needs while maintaining individuality across sites. One of our flagship innovations was Meteorite CMS, a headless solution that overcame the limitations of the BigCommerce API by syncing datasets to a Postgres SQL database with webhooks for real-time updates. This allowed us to query and join datasets, automate workflows, and enable non-commerce features like theming and page control. Meteorite not only gave developers the freedom to build any feature but also provided unparalleled SEO capabilities, with several of our sites still performing exceptionally today. In addition to my work at JOMA Tech, I also led groundbreaking projects at SUCCESS Partners and Fornida. At SUCCESS Partners, I created a monorepo architecture to support 25 Magento sites, consolidating 90% of business logic into a single codebase. This streamlined development, allowing new sites to be launched with minimal effort by simply adding a theme and deployment configuration. Later, I spearheaded the migration of 20 Magento stores to BigCommerce in just six months. I developed a code generator that scaffolded stores with all business logic in one command, leaving only the theming to be customized. To support features like Print on Demand (POD), I built a centralized BigCommerce app that allowed for real-time digital customizations and seamless updates across all stores. At Fornida, I tackled the complexities of custom server configurations by building a robust server configurator. This tool allowed administrators to easily set up and manage configurations, interact with clients during the pre-purchase process, and handle thousands of potential component combinations through a user-friendly Angular interface. By overcoming BigCommerce’s SKU limitations and integrating real-time client collaboration, the configurator empowered customers to confidently invest in high-value, custom-built servers. Through these projects, I demonstrated a consistent ability to leverage cutting-edge technologies, streamline development workflows, and deliver innovative solutions that met complex client needs while maintaining scalability and efficiency.",
+      "icon": "/img/logos/bigcommerce.png",
+      "url": "https://developer.bigcommerce.com/docs/api",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/py.jpg",
+      "name": "Python",
+      "desc": "Applied Python for scripting and building backend services, leveraging its simplicity and versatility in data processing.",
+      "desc2": "python was my first backend experience. I used it with drupal and flask apps. I even used it to build custom Alexa apps.",
+      "icon": "/img/logos/py.png",
+      "url": "https://www.python.org/",
+      "pinned": false,
+      "iconClass": "w-[80%] mt-2"
+    },
+    {
+      "poster": "/img/posters/firebase.jpg",
+      "name": "Firebase",
+      "desc": "Utilized Firebase for real-time databases, authentication, and hosting, simplifying app development and deployment.",
+      "desc2": "Firebase has been my go-to backend-as-a-service solution for the past five years, especially for small to medium-sized projects requiring real-time features. It excels in providing quick and reliable storage, authentication, hosting, and cloud functions, making it a powerful tool when time is of the essence. While it may not be the right fit for every project, I fully appreciate its ease of use and flexibility, and I know I can always count on it to deliver when needed. Im not the type of developer that will deny it extreme convenience and cost savings.",
+      "icon": "/img/logos/firebase.webp",
+      "url": "https://firebase.google.com/",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/nx.jpg",
+      "name": "NX Monorepos",
+      "desc": "Experienced in using NX to manage monorepos, improving code reuse and streamlining development workflows in large projects.",
+      "desc2": "Oh my god I love using NX to manage monorepos. I have been using it for 4 years now. I love how easy it is to use and how much time it saves me. I have so much reusable code to jump start a backend or frontend project with. I love the code generators that i use to scaffold and maintain consistency on my teams.",
+      "icon": "/img/logos/nx.png",
+      "url": "https://nx.dev/",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/azure.jpg",
+      "name": "Azure",
+      "desc": "Worked with Azure for cloud solutions, including hosting, serverless computing, and database management.",
+      "desc2": "Azure is my go-to cloud solution for enterprise projects. I have been using it for 5 years now. I love how easy it is to use and how much time it saves me. ",
+      "icon": "/img/logos/azure.png",
+      "url": "https://azure.microsoft.com/",
+      "pinned": false
+    },
+    {
+      "poster": "/img/posters/monday.webp",
+      "name": "Monday.com App Development",
+      "desc": "Developed custom apps on Monday.com to automate workflows and improve team collaboration through tailored solutions.",
+      "desc2": "I helped automate the family business with monday.com. I have been using it for 2 years now. I love how easy it is to customize the views and extract data from it. Ask about a project i made that allowed HabashRVs to manage their WIX inventory with monday. In terms of Micro SaaS I would start here.",
+      "icon": "/img/logos/monday.webp",
+      "url": "https://azure.microsoft.com/",
+      "pinned": false
+    }
+  ],
+  "questions": {
+    "education": [
+      {
+        "question": "What is your educational background?",
+        "answer": "I hold an Associate of Science in Computer Science from Tarrant County College, where I graduated with a 3.8 GPA. My academic foundation provided me with a strong understanding of the core principles of computer science, including programming, algorithms, and system design. What truly sets me apart, though, is my hands-on experience and continuous self-education in the field. Over the years, I’ve dedicated myself to mastering technologies and tools through real-world projects, certifications, and self-paced learning. I’ve built production-grade software that requires minimal maintenance, mentored developers, and even led teams to deliver high-quality apps that exceeded expectations. In addition, I earned my FAA Private Pilot's License (VFR/IFR) from Rose State College in 2009, which not only demonstrates my commitment to mastering technical and challenging skills but also highlights my ability to stay calm under pressure, focus on detail, and make critical decisions—traits I bring to my software development work. While I don’t hold a 4-year degree, I believe my combined academic background, self-taught expertise, and years of practical experience have uniquely equipped me to contribute meaningfully to your team."
+      }
+    ],
+    "leadership": [
+      {
+        "question": "Can you share an example of how you mentored a team member or intern?",
+        "answer": "In my previous role at Fornida, I implemented an intern training program that focused on developer mindset, including critical thinking, tool optimization, and problem-solving. Every intern who joined the program stayed for years and became a significant contributor to the team. I provided a stress-free coding and testing environment to ensure they could focus on delivering high-quality work without disruptions."
+      },
+      {
+        "question": "How do you handle team members with different skill levels?",
+        "answer": "I customize my approach to each individual. For less experienced team members, I focus on fundamentals and provide hands-on guidance. For senior developers, I encourage autonomy while providing strategic direction. By fostering collaboration and mutual respect, I ensure everyone contributes to the team’s success."
+      },
+      {
+        "question": "How do you ensure a project is delivered on time while maintaining quality?",
+        "answer": "I start projects early and break them down into manageable milestones, allowing time for iterations and feedback. In a previous role, I worked around my manager’s tendency to review close to deadlines by delivering preliminary versions early, ensuring there was ample time to address changes without impacting quality."
+      }
+    ],
+    "project_management": [
+      {
+        "question": "How do you manage last-minute changes in a project?",
+        "answer": "I prioritize clear communication with stakeholders and team members. If changes are necessary, I assess the impact on the timeline and resources and propose realistic adjustments. For instance, in a recent project, I effectively balanced last-minute feedback by reallocating resources and focusing on critical deliverables without sacrificing quality."
+      },
+      {
+        "question": "What’s an example of a complex project you led successfully?",
+        "answer": "I once spearheaded a mono-repo project for internal tools focusing on security. Despite challenges, I ensured the project stayed on track by clearly defining requirements, managing risks, and maintaining transparency with the team. The result was a highly secure and scalable solution that exceeded expectations."
+      },
+      {
+        "question": "How do you prioritize tasks when managing multiple projects?",
+        "answer": "I rely on frameworks like Agile for task prioritization, focusing on high-impact deliverables first. For instance, when managing eCommerce store projects, I prioritized features that directly improved user experience and SEO, ensuring immediate value to stakeholders."
+      }
+    ],
+    "personality": [
+      {
+        "question": "What motivates you in your work?",
+        "answer": "I’m driven by the opportunity to create meaningful solutions and mentor others. I enjoy seeing the tangible impact of my work, whether it’s launching a software project or helping a team member grow professionally."
+      },
+      {
+        "question": "How do you handle stress or pressure?",
+        "answer": "I stay organized and focus on proactive planning to mitigate stress. For example, when faced with tight deadlines, I leverage my project management skills to break tasks into smaller goals. I also value taking short breaks and enjoying hobbies like flying or working on my RV to recharge."
+      },
+      {
+        "question": "How would your previous team describe you?",
+        "answer": "They would describe me as a calm and supportive leader who fosters a collaborative environment. My team appreciated my ability to balance technical expertise with empathy, ensuring everyone felt valued and motivated."
+      }
+    ],
+    "working_from_home": [
+      {
+        "question": "How do you stay productive when working from home?",
+        "answer": "I thrive in a remote work environment because I create a structured routine that balances flexibility and focus. I set clear goals each day, prioritize tasks using Agile methods, and maintain open communication with my team through tools like Slack or Microsoft Teams. Having a dedicated home office, which I recently renovated in my RV, helps me stay focused and minimizes distractions. My ability to self-manage and deliver results remotely has been a key strength throughout my career."
+      },
+      {
+        "question": "What are the challenges of working from home, and how do you address them?",
+        "answer": "One challenge is maintaining work-life boundaries. To address this, I establish a clear start and end to my workday and schedule regular breaks to recharge. I also ensure I stay connected with my team through virtual meetings to foster collaboration and avoid isolation. My proactive approach to communication and strong time management skills help me excel in remote roles."
+      },
+      {
+        "question": "Are you only open to remote work, or are you open to on-site roles as well?",
+        "answer": "While I excel in remote roles, I am open to on-site opportunities that align with my career goals and values. I value the benefits of both remote and on-site work and am adaptable to different work environments. My priority is finding a role where I can make a meaningful impact and continue to grow professionally. I am not oppose to moving closer to the office for the right project and team."
+      }
+    ],
+    "mission": [
+      {
+        "question": "What drives you to pursue a career in software development?",
+        "answer": "I’m driven by a deep passion for crafting user-centered solutions. My ultimate mission is to join a team where we can collaborate to deliver software that genuinely solves real-world problems. It doesn’t need to be the most technically advanced; what truly matters is creating meaningful value—whether for end users, employees, or fellow developers. Contributing to impactful solutions is all the satisfaction I seek in my career."
+      },
+      {
+        "question": "What is your main mission?",
+        "answer": "I’m driven by a deep passion for crafting user-centered solutions. My ultimate mission is to join a team where we can collaborate to deliver software that genuinely solves real-world problems. It doesn’t need to be the most technically advanced; what truly matters is creating meaningful value—whether for end users, employees, or fellow developers. Contributing to impactful solutions is all the satisfaction I seek in my career."
+      }
+    ],
+    "hobbies_and_personality": [
+      {
+        "question": "How do your hobbies influence your professional life?",
+        "answer": "My hobbies, like flying as a private pilot and working on RV renovations, enhance my problem-solving skills and attention to detail. Flying has taught me precision and calm decision-making under pressure, while RV renovations help me think creatively and manage projects with hands-on execution."
+      },
+      {
+        "question": "What do you do to unwind outside of work?",
+        "answer": "I enjoy exploring new places in my RV and working on its design. It combines my love for travel and creativity. I also spend time learning new technologies, like React, to keep growing professionally."
+      },
+      {
+        "question": "How do you stay inspired in your career?",
+        "answer": "I find inspiration in mentoring others and solving complex problems. Seeing a team succeed or delivering a project that exceeds expectations keeps me passionate about what I do."
+      }
+    ],
+    "misc": [
+      {
+        "question": "Are you willing to relocate for a job?",
+        "answer": "I eventually woulb be willing to relocate for the right team and project."
+      },
+      {
+        "question": "What are your salary expectations?",
+        "answer": "I’m open to discussing salary expectations based on the role and responsibilities. I value fair compensation that reflects my experience and contributions to the team. I’m more interested in finding the right fit where I can grow professionally and make a meaningful impact."
+      },
+      {
+        "question": "What are your long-term career goals?",
+        "answer": "My long-term goal is to create software that positively impacts people’s lives. I aspire to lead a team of developers to deliver innovative solutions that solve real-world problems. I’m committed to continuous learning and growth to stay at the forefront of technology and contribute meaningfully to my team and the industry."
+      }
+    ]
+  },
+  "rules": {
+    "aggregated_rules": {
+      "personal_growth": [
+        "Don’t become good at something you hate.",
+        "Go to bed and wake up at the exact same time every day.",
+        "Take care of your body; it’s the only one you have.",
+        "Stay close to people who want more for you, not from you.",
+        "Normalize leaving people in the reality they’ve chosen.",
+        "Being humble is thinking of yourself less, not thinking less of yourself.",
+        "You get tested the most when it’s your time to level up.",
+        "Improve yourself daily—make that your only addiction.",
+        "You teach people how to treat you.",
+        "Admit you’ve walked through the wrong door instead of staying in the wrong room.",
+        "Waiting for a sign is a sign.",
+        "Nothing you’ve gone through has made you weaker.",
+        "Everything wants you when you want nothing.",
+        "Be willing to be misunderstood for long periods of time to be successful.",
+        "When things get easy, go hard.",
+        "Only ask for advice from people who have been where you want to go.",
+        "The word 'No' is a complete sentence.",
+        "Don’t dim your light to make others comfortable.",
+        "Have a primary aim for your life.",
+        "Stop reading books, start studying them.",
+        "Always assume positive intent.",
+        "Put your own mask on first before helping others.",
+        "Look for problems, don’t avoid them.",
+        "Your new life will cost you your old one.",
+        "Confidence comes from keeping commitments you make to yourself in private.",
+        "Dedicate a decade, not a day, to your goals.",
+        "Treat others the way you want to be treated.",
+        "Tell people about themselves; acknowledge their strengths.",
+        "If you keep running into bad people, you may be the problem.",
+        "Avoid drama and gossip at all costs.",
+        "Fear gives bad advice.",
+        "It’s never too late to change.",
+        "Get rid of all your vices.",
+        "If you’re addicted to your phone, your life isn’t interesting enough.",
+        "Take on as much responsibility as you can.",
+        "Don’t blame anyone else but yourself for your circumstances.",
+        "Be blissfully dissatisfied with where you’re at in life.",
+        "Make time for what matters to you.",
+        "Respect comes from admiration, not fear.",
+        "Life is a mirror, not a window."
+      ],
+      "developer_guidelines": [
+        "Master the basics before chasing trends: Strong fundamentals make learning new technologies easier and more meaningful.",
+        "Write code for humans, not just machines: Prioritize readability and maintainability in your code. Comment only where necessary but make your logic self-explanatory.",
+        "Plan before you code: Spend time understanding the problem and designing the solution. Clear thinking upfront saves debugging time later.",
+        "Automate repetitive tasks: If you do it twice, script it. Your future self will thank you.",
+        "Adopt a consistent workflow: Use tools like Git effectively and stick to a clear commit structure and branching strategy.",
+        "Focus on one task at a time: Multitasking kills productivity and leads to errors. Use methods like Pomodoro or time-blocking to maintain focus.",
+        "Keep learning, but don’t overconsume: Balance learning new frameworks and tools with actually building and shipping projects.",
+        "Test your code early and often: Embrace testing—unit tests, integration tests, and user testing—to prevent small bugs from becoming big problems.",
+        "Refactor regularly: Avoid 'perfect' code from the start. Write functional code first and improve it iteratively.",
+        "Adopt naming conventions: Good names in variables, methods, and classes make the codebase intuitive for others and for you months later.",
+        "Learn to say no: Decline unnecessary meetings, avoid over-engineering, and push back on unrealistic deadlines.",
+        "Respect deadlines but don’t sacrifice quality: Deliver working software on time, but not at the expense of technical debt or poor practices.",
+        "Take breaks: Step away from your screen regularly to avoid burnout and maintain mental clarity.",
+        "Stay curious but focused: Experiment with new tools, but don’t jump onto every shiny new thing—evaluate its relevance to your work.",
+        "Document as you go: Maintain concise, up-to-date documentation for your projects to save time for yourself and others.",
+        "Pair program or code review frequently: Collaboration strengthens code quality and helps you learn from others.",
+        "Own your bugs: Debugging is a learning opportunity. Always investigate what went wrong and why.",
+        "Set daily goals: Start each day with clear objectives and a prioritized list of tasks.",
+        "Create an ergonomic workspace: Invest in a comfortable chair, an adjustable desk, and proper lighting for long coding sessions.",
+        "Adopt version control discipline: Commit early, commit often, and never commit broken code to the main branch.",
+        "Focus on impact, not lines of code: The best code is clean, concise, and does its job effectively.",
+        "Contribute to open source or teach others: Sharing knowledge sharpens your skills and gives back to the community.",
+        "Take care of your body and mind: Regular exercise, healthy eating, and mindfulness will improve your focus and creativity.",
+        "Accept feedback gracefully: Learn from code reviews and critiques. They’re about the code, not you.",
+        "Know when to walk away: If a solution isn’t working, step back, take a break, and approach it with fresh eyes.",
+        "Use the right tool for the job: Don't overcomplicate by forcing a tool or language into a scenario where it doesn’t fit.",
+        "Stay updated, but avoid FOMO: Learn about new trends and technologies, but only adopt what genuinely benefits your projects.",
+        "Avoid premature optimization: Write functional code first; optimize only when necessary for performance or scalability.",
+        "Protect your deep work time: Turn off notifications and create uninterrupted blocks of time for coding.",
+        "Celebrate small wins: Acknowledge progress, no matter how small—it keeps motivation high. A software launch is not the time to celebrate though."
+      ]
+    }
+  },
+  "education": [
+    {
+      "degree": "Associates of Science in Computer Science",
+      "institution": "Tarrant County College",
+      "graduated": "2011",
+      "gpa": "3.8"
+    },
+    {
+      "institution": "Rose State College",
+      "degree": "FAA Private Pilots License (VFR/IFR)",
+      "graduated": "2009"
+    }
+  ],
+  "contactInfo": {
+    "email": "contactOmarNow@gmail.com",
+    "phone": "214-470-5176",
+    "address": "New Braunfels, TX. I eventually woulb be willing to relocate for the right team and project.",
+    "linkedIn": "https://www.linkedin.com/in/omar-habash-71877b40/"
+  }
+}

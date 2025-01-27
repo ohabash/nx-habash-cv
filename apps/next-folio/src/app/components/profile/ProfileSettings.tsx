@@ -59,7 +59,7 @@ export const ProfileSettings = ({  }: Props) => {
             <h1 className="text-lg">Profile & Settings</h1>
           </div>
           <div className="level-right">
-            <p className="text-sm text-accent1">{user?.email}</p>
+            <p className="text-sm text-accent1 font-medium tracking-normal">{user?.email}</p>
           </div>
         </div>
       </div>

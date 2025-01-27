@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
   const openai = new OpenAI();
 
   try {
+    console.log(`🚀 => POST => threadId, params:`, threadId, params)
     const run = await openai.beta.threads.runs.create(threadId, params);
     return Response.json(run);
   } catch (e) {

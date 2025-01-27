@@ -9,7 +9,7 @@ import { slugify2 } from "@nx-habash/utils";
 // ===== || interface || ===== >
 export type IGlobalContext = {
   navOpen: boolean;
-  uid: string;
+  uid: string | null;
   setNavState: (value: SetStateAction<boolean>) => void,
   profile: NXProfile,
   setProfile: (value: SetStateAction<NXProfile>) => void
@@ -17,7 +17,7 @@ export type IGlobalContext = {
 
 export const serverSideGlobalContext = {
   navOpen: true,
-  uid: 'xxx',
+  uid: null,
   setNavState: (value: SetStateAction<boolean>) => {},
   profile: {} as NXProfile,
   setProfile: (value: SetStateAction<NXProfile>) => {}
@@ -40,7 +40,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
   // profile
   const auth = useSession();
   const [profile, setProfile] = useState({} as NXProfile);
-  const [uid, setUID] = useState('xxx' as string);
+  const [uid, setUID] = useState(null as string | null);
   useEffect(() => {
     if (auth.data?.user) {
       const uid = slugify2(auth.data.user.email as string);

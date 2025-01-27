@@ -5,12 +5,22 @@ export const pollRunCompletion = async (threadId: string, run: Run): Promise<Run
   let count = 0;
   const max_retry = 7;
   const timeBetweenPolls = 1400; // lowering this will speed up the response time but will increase the number of requests
-  while (run.status !== 'completed' && count < 5 && run.status !== 'failed') {
+  while (
+    run.status !== 'completed'
+     && count < 5
+     && run.status !== 'failed'
+     && !(run as any).error
+    ) {
     count++;
     run = await retrieveRun(threadId, run.id);
     await timeout(timeBetweenPolls);
-    console.log(`🚀 => [${count}] ::: waitForRunCompletion => run:`, run);
+    console.log(`🚀 => [Attempt: ${count}] ::: waitForRunCompletion => run:`, run);
   }
+  // if ((run as any).error) {
+  //   throw new Error(
+  //     'Something went wrong. Max retries reached [5]. Refresh to look for response.'
+  //   );
+  // }
   if (run.status === 'failed') {
     console.error(`🚨🚨🚨 => run.status === 'failed'`, run);
     return run;
@@ -23,7 +33,6 @@ export const pollRunCompletion = async (threadId: string, run: Run): Promise<Run
 };
 
 export const retrieveRun = async (threadId: string, runId: string): Promise<Run> => {
-  console.log(`🚀 [ACTION] => retrieveRun => threadId:`, threadId);
 
   const url = new URL('/api/run/retrieve', window.location.origin);
   url.searchParams.append('threadId', threadId);

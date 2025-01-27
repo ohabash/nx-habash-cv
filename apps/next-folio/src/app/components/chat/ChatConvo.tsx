@@ -2,28 +2,102 @@ import { twMerge } from "tailwind-merge";
 import { ChatConvoProps, ChatMessage } from "./chat.interface";
 import Moment from 'react-moment';
 import { RateResponse } from "./RateResponse";
-import { useContext, useEffect } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { ChatContext } from "./chat.context";
 import ReactMarkdown from "react-markdown";
+import { OptionBox } from "../ui/OptionBox";
 
-export const ChatConvo = ({ }: ChatConvoProps) => {
+export const ChatConvo = ({ setPrompt }: ChatConvoProps) => {
   const chatContext = useContext(ChatContext);
   const { messages } = chatContext?.messageClient!;
+  const [threadId, setThreadId] = useState<string | null>(null);
   useEffect(() => {
-    console.log(`🚀 => ChatConvo => messages:`, messages);
-  }, [messages]);
+    setThreadId(chatContext?.thread?.thread?.id || null);
+  }, [chatContext]);
+
+  if (!threadId) {
+    return (
+      <div className="flex items-center justify-center">
+        <h4 className="text-center text-loading">Loading Thread...</h4>
+      </div>
+    );
+  }
   return (
     <div className="chat-convo">
-      {!messages.length && <div className="text-center"><h4>[new-convo-view]</h4></div>}
-      {messages && messages.map((msg, i) => (
-        <div className="msg-wrapper" key={`${i}_${msg.id}`}>
-          <MsgBubble msg={msg} />
-        </div>
-      ))}
+      {!messages.length && <NewConvoView setPrompt={setPrompt} />}
+      {messages &&
+        messages.map((msg, i) => (
+          <div className="msg-wrapper" key={`${i}_${msg.id}`}>
+            <MsgBubble msg={msg} />
+          </div>
+        ))}
     </div>
   );
 };
 
+
+
+
+/*
+ 
+                                                                                           
+                                                                                           
+  /$$$$$$$   /$$$$$$  /$$  /$$  /$$        /$$$$$$$  /$$$$$$  /$$$$$$$  /$$    /$$ /$$$$$$ 
+ | $$__  $$ /$$__  $$| $$ | $$ | $$       /$$_____/ /$$__  $$| $$__  $$|  $$  /$$//$$__  $$
+ | $$  \ $$| $$$$$$$$| $$ | $$ | $$      | $$      | $$  \ $$| $$  \ $$ \  $$/$$/| $$  \ $$
+ | $$  | $$| $$_____/| $$ | $$ | $$      | $$      | $$  | $$| $$  | $$  \  $$$/ | $$  | $$
+ | $$  | $$|  $$$$$$$|  $$$$$/$$$$/      |  $$$$$$$|  $$$$$$/| $$  | $$   \  $/  |  $$$$$$/
+ |__/  |__/ \_______/ \_____/\___/        \_______/ \______/ |__/  |__/    \_/    \______/ 
+                                                                                           
+                                                                                           
+                                                                                           
+ 
+*/
+export const NewConvoView = ({ setPrompt }: { 
+  setPrompt: (prompt:string) => void
+}) => {
+  const sameples = [
+    'Tell me about yourself.',
+    'Summarize you you professional experience.',
+    'Are you open to relocation?',
+    'What are your expectations?',
+    'What are your long-term career goals?',
+  ];
+  return (
+    <div className="mb-6">
+      <h4 className="mb-6">
+        Welcome. Get started by asking a question about me.
+      </h4>
+      {sameples.map((sample, i) => {
+        return (
+          <OptionBox key={i} onClick={() => setPrompt(sample)}>
+            {sample}
+          </OptionBox>
+        );
+      })}
+    </div>
+  );
+};
+
+
+
+
+
+/*
+ 
+  /$$$$$$$            /$$       /$$       /$$          
+ | $$__  $$          | $$      | $$      | $$          
+ | $$  \ $$ /$$   /$$| $$$$$$$ | $$$$$$$ | $$  /$$$$$$ 
+ | $$$$$$$ | $$  | $$| $$__  $$| $$__  $$| $$ /$$__  $$
+ | $$__  $$| $$  | $$| $$  \ $$| $$  \ $$| $$| $$$$$$$$
+ | $$  \ $$| $$  | $$| $$  | $$| $$  | $$| $$| $$_____/
+ | $$$$$$$/|  $$$$$$/| $$$$$$$/| $$$$$$$/| $$|  $$$$$$$
+ |_______/  \______/ |_______/ |_______/ |__/ \_______/
+                                                       
+                                                       
+                                                       
+ 
+*/
 export const MsgBubble = ({ msg }: { msg: ChatMessage }) => {
   const botId = 'assistant';
   const render = () => {
@@ -95,3 +169,6 @@ export const MsgBubble = ({ msg }: { msg: ChatMessage }) => {
     </div>
   );
 };
+
+
+    

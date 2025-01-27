@@ -30,7 +30,7 @@ export const ContactRight = () => {
    const hasRun = useRef(false);
   useEffect(() => {
     if (hasRun.current || !profile?.email) return; // so it doesnt reset mid form
-    console.log(`🚀 => useEffect => profile:`, profile);
+    // console.log(`🚀 => useEffect => profile:`, profile);
     setInfo({
       name: profile?.name || '',
       email: profile?.email || '',
@@ -175,7 +175,7 @@ const Step2 = ({ info, updateInfo }: InfoProps) => {
     },
   ];
   const handleChanges = (changes: Partial<InfoProps['info']>) => {
-    console.log(`🚀 => (step2) handleChanges => changes:`, changes);
+    // console.log(`🚀 => (step2) handleChanges => changes:`, changes);
     updateInfo(changes);
   };
   function handleSaveProfile(): void {
@@ -227,7 +227,7 @@ const LastStep = ({ info, updateInfo }: InfoProps) => {
     },
   ];
   const handleChanges = (changes: Partial<InfoProps['info']>) => {
-    console.log(`🚀 => (step2) handleChanges => changes:`, changes);
+    // console.log(`🚀 => (step2) handleChanges => changes:`, changes);
     updateInfo(changes);
   };
   function handleSaveProfile(): void {
@@ -236,10 +236,10 @@ const LastStep = ({ info, updateInfo }: InfoProps) => {
 
   async function handleSubmit() {
     setSubmitting(true);
-    console.log(`🚀 => handleSubmit => info:`, info);
+    // console.log(`🚀 => handleSubmit => info:`, info);
     const resp = await rtdb.push('/contact-requests', info);
     await timeout(2000);
-    console.log(`🚀 => handleSubmit => resp:`, resp)
+    // console.log(`🚀 => handleSubmit => resp:`, resp)
     setSubmitting(false);
     setSubmitted(true);
     return resp;

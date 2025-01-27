@@ -56,6 +56,7 @@ const Title = () => {
 
 export const InterviewMeTrigger = ({ className, simple=false }: { className?: string, simple?: boolean }) => {
   return (
+    <> 
       <ChatModal className="z-30">
         {!simple ? (
           <Button
@@ -70,6 +71,7 @@ export const InterviewMeTrigger = ({ className, simple=false }: { className?: st
           <a className={'link'}>Interview Me</a>
         )}
       </ChatModal>
+    </>
   );
 };
 

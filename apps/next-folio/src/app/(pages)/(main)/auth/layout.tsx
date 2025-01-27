@@ -19,7 +19,7 @@ export default function AuthLayout({
         id="SignUp"
       >
         <Container className="">
-          <div className="columns is-gapless fadeInUp animated d8 max-h relative">
+          <div className="columns is-gapless max-h relative">
             <div className="column is-6 sticky_ top-24_ self-start">
               <AuthAside />
             </div>

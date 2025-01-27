@@ -107,4 +107,18 @@ export const questions = {
         'I find inspiration in mentoring others and solving complex problems. Seeing a team succeed or delivering a project that exceeds expectations keeps me passionate about what I do.',
     },
   ],
+  misc: [
+    {
+      question: 'Are you willing to relocate for a job?',
+      answer: 'I eventually woulb be willing to relocate for the right team and project.',
+    },
+    {
+      question: 'What are your salary expectations?',
+      answer: 'I’m open to discussing salary expectations based on the role and responsibilities. I value fair compensation that reflects my experience and contributions to the team. I’m more interested in finding the right fit where I can grow professionally and make a meaningful impact.',
+    },
+    {
+      question: 'What are your long-term career goals?',
+      answer: 'My long-term goal is to create software that positively impacts people’s lives. I aspire to lead a team of developers to deliver innovative solutions that solve real-world problems. I’m committed to continuous learning and growth to stay at the forefront of technology and contribute meaningfully to my team and the industry.',
+    },
+  ],
 };

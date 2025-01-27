@@ -28,9 +28,6 @@ export const ModalProvider = ({
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    console.log(`🚀 => useEffect modal => open:`, open)
-  }, [open]);
 
   return (
     <ModalContext.Provider value={{ open, setOpen }}>
@@ -93,7 +90,6 @@ export const ModalBodyPortal = ({
   const { setOpen, open } = useModal();
   useEffect(() => {
     el.current = document.getElementById('MODAL');
-    // console.log(`🚀 => modal useEffect => el.current:`, el.current);
   }, [open]);
   return el.current ? createPortal(
     <ModalBody className={'__MODALBODY__ ' +className}> {children} </ModalBody>,

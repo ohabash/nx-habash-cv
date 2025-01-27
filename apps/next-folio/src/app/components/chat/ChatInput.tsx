@@ -1,26 +1,34 @@
 import { useGlobalContext } from '@/global.context';
 import { PlaceholdersAndVanishInput } from '@ui/placeholders-and-vanish-input';
 import { Run } from 'openai/resources/beta/threads/runs/runs';
-import React, { Dispatch, SetStateAction, useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { useCannedResponses } from './canned-responses.hook';
 import { ChatContext } from './chat.context';
 import { CreateMessageParams } from './messages.interface';
 import { useChatRun } from './runner.hook';
-import { timeout } from '@nx-habash/utils';
+
 
 type Props = {
   onSubmit?: (val: string, e: React.FormEvent<HTMLFormElement>) => void;
   running: boolean;
   setRunning: Dispatch<SetStateAction<boolean>>;
+  val?: string;
 };
-const ChatInput = ({ running, setRunning }: Props) => {
+const ChatInput = ({ running, setRunning, val }: Props) => {
   const globalState = useGlobalContext();
   const chatContext = useContext(ChatContext);
   const assistantId = globalState.profile.chatAssistantId;
   const runner = useChatRun();
-  const threadId = globalState.profile.chatThreadId;
-  const [val, setVal] = React.useState('');
+  const [value, setVal] = React.useState(val||'');
   const cannedResponses = useCannedResponses();
+  const [threadId, setThreadId] = useState<string | null>(null);
+  useEffect(() => {
+    setThreadId(chatContext?.thread?.thread?.id || null);
+  }, [chatContext]);
+
+  useEffect(() => {
+    setVal(val || '');
+  }, [val])
 
   const placeholders = [
     'Where did you go to school?',
@@ -40,11 +48,17 @@ const ChatInput = ({ running, setRunning }: Props) => {
 
   const valAndSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(val, e);
+    onSubmit(value, e);
   };
 
   const onSubmit = async (val: string, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!threadId) {
+      return cannedResponses.setRunError(null, { 
+        code: 'No threadId', 
+        message: 'There is no active thread. Please try refreshing. Contact me if the problem persists.' 
+      });
+    }
     setRunning(true);
     const payload: CreateMessageParams = {
       threadId: threadId as string,
@@ -53,7 +67,6 @@ const ChatInput = ({ running, setRunning }: Props) => {
         role: 'user' as 'user' | 'assistant',
       },
     };
-    console.log(`🚀 => onSubmit => payload:`, payload)
 
     const { createMessage, updateMessages, setMessagesFn, messages } =
       chatContext?.messageClient!;
@@ -82,12 +95,13 @@ const ChatInput = ({ running, setRunning }: Props) => {
   };
   return (
     <div className="relative">
-      <PlaceholdersAndVanishInput
+      {threadId && <PlaceholdersAndVanishInput
         placeholders={placeholders}
         onChange={handleChange}
         onSubmit={valAndSubmit}
         running={running}
-      />
+        val={value}
+      />}
     </div>
   );
 };

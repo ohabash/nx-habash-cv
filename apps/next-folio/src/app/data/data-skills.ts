@@ -137,16 +137,6 @@ export const skills: Skill[] = [
     pinned: false,
   },
   {
-    poster: '/img/posters/shopify.jpg',
-    name: 'Shopify',
-    desc: 'Worked on Shopify integrations, optimizing storefronts and backend systems to align with unique business requirements.',
-    desc2:
-      'I used Shopify to build custom eCommerce solutions for clients, including theme development, app integrations, and API customizations. I have experience with Shopify Plus and have developed scalable solutions for high-volume stores. I also created custom apps to automate workflows, enhance customer experiences, and improve operational efficiency. I’d be happy to provide a demo of these projects upon request.',
-    icon: '/img/logos/shopify.png',
-    url: 'https://www.shopify.com/',
-    pinned: false,
-  },
-  {
     poster: '/img/posters/bigcommerce.jpeg',
     name: 'BigCommerce',
     desc: 'At JOMA Tech, BigCommerce’s go-to partner, I built innovative tools like a server builder, headless commerce solutions, and dynamic B2B features.',

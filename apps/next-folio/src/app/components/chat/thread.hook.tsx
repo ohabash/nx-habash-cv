@@ -13,16 +13,19 @@ export interface ThreadHookResp {
 
 interface Props {
   profileService: ProfileService | null;
-  threadId?: string | null;
+  providedThreadId?: string | null;
   aid: string;
 }
 
-export const useChatThread = ({ threadId, profileService, aid }: Props): ThreadHookResp => {
+export const useChatThread = ({ providedThreadId, profileService, aid }: Props): ThreadHookResp => {
   const [thread, setThread] = useState<Thread | null>(null);
-
+  const [threadId, setThreadId] = useState<string | null>(null);
   const threadSetter = async (thread: Thread, isNewThread = false) => {
     // set
     setThread(thread);
+
+    // update thread id
+    setThreadId(thread.id);
 
     // update profile with thread id
     updateProfile(thread, profileService, aid);
@@ -31,7 +34,7 @@ export const useChatThread = ({ threadId, profileService, aid }: Props): ThreadH
   // fetch current thread id
   const { isLoading: isFetching } = useQuery({
     queryFn: async () => {
-      const debug = 'useMessages=>useQuery=>retrieveMessages';
+      const debug = 'useChatThread=>useQuery=>retrieveMessages';
       const thread = await retrieveThread(threadId as string);
       threadSetter(thread);
       return thread;
@@ -45,8 +48,12 @@ export const useChatThread = ({ threadId, profileService, aid }: Props): ThreadH
     if (!profileService?.profile) return;
 
     // if no thread id, create a new thread
-    if (!threadId) createThread({}).then((data) => threadSetter(data, true));
-  }, [threadId, profileService?.profile]);
+    if (!providedThreadId) {
+      createThread({}).then((data) => threadSetter(data, true));
+    } else {
+      setThreadId(providedThreadId);
+    }
+  }, [providedThreadId, profileService?.profile]);
 
   return {
     thread,
@@ -59,7 +66,6 @@ export const useChatThread = ({ threadId, profileService, aid }: Props): ThreadH
 // should be the only way to change thread
 const updateProfile = async (thread: Thread, profileService: ProfileService|null, aid: string) => {
   if (profileService) {
-    console.log(`🚀 => threadSetter => SAVING PROFILE:`, thread);
     return await profileService.saveProfile({
       chatThreadId: thread.id,
       chatAssistantId: aid,

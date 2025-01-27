@@ -12,6 +12,7 @@ interface CannedResp {
   assistantLoading: () => void;
   optimisticUpdate: (value: string) => void;
   runPollUpdate: (runParams: RunCreateParams) => Promise<Run>;
+  setRunError: (run: Run | null, val?: {code: string, message: string}) => void;
 }
 interface Props {
 }
@@ -81,20 +82,25 @@ export const useCannedResponses = (): CannedResp => {
     );
   }
 
-  const setRunError = (run: Run) => {
+  const setRunError = (run: Run | null, val?: {code: string, message: string}) => {
+    console.log(`🚀 => setRunError => run:`, run)
+    if (!val) val = {code: 'Unknown Error', message: 'I apologize. Please let me know about this error.'};
+    if (run?.last_error) {
+      const {code, message} = run.last_error;
+      if (code) val.code = code;
+      if (message) val.message = message;
+    }
     msgClient.setMessagesFn(
       [
         {
           role: 'assistant',
           loading: false,
           error: true,
-          status: run.last_error?.code as any || 'Unknown Error',
+          status: val.code as any,
           content: [
             {
               text: {
-                value:
-                  run.last_error?.message ||
-                  'I apologize. Please let me know about this error.',
+                value: val.message,
                 annotations: [],
               },
               type: 'text',
@@ -137,7 +143,10 @@ export const useCannedResponses = (): CannedResp => {
 
   const runPollUpdate = async (runParams: RunCreateParams): Promise<Run> => {
       // run (request a response)
-      let runResp = await runner.run(runParams);
+      let runResp = await runner.run(runParams, {
+        name: profile?.name as string,
+        company: profile?.company as string,
+      });
   
       // keep checking until run is completed (!! this might timeout)
       const completedRun = await pollRunCompletion(threadId!, runResp);
@@ -167,5 +176,6 @@ export const useCannedResponses = (): CannedResp => {
     assistantLoading,
     optimisticUpdate,
     runPollUpdate,
+    setRunError,
   };
 }

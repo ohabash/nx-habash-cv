@@ -8,8 +8,9 @@ export type ChatMessage = Message & {
   displayName?: string,
 };
 export type ChatConvoProps = {
+  setPrompt: (value: string) => void;
   // messages: ChatMessage[] ;
-}
+};
 // export type ChatMessage = {
 //   id: string;
 //   text: string;
