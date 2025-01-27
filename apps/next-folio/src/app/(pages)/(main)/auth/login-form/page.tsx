@@ -87,8 +87,10 @@ const Page = () => {
           )}
           onClick={handleSignIn}
         >
-          <BiChevronRightCircle className="mr-3" />
-          {!loading ? 'Sign In' : 'Loading...'}
+          <>
+            <BiChevronRightCircle className="mr-3" />
+            {!loading ? 'Sign In' : 'Loading...'}
+          </>
         </Button>
         {error?.message && showError && <ErrorMsg 
           code={error.code} 
