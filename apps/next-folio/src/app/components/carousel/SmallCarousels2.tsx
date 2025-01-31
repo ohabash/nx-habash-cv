@@ -3,7 +3,7 @@ import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
 import { skills } from '../../data/data-skills';
 
 type Props = { 
-  containerRef: RefObject<HTMLDivElement> 
+  containerRef: RefObject<HTMLDivElement | null> 
 };
 
 export const SmallCarousels2 = ({containerRef}: Props) => {
