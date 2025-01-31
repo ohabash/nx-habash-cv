@@ -4,7 +4,7 @@ import { PiOpenAiLogo } from 'react-icons/pi';
 import { StickBottomMotion } from './StickBottom.motion';
 
 type Props = {
-  mainWrapperRef?: RefObject<HTMLDivElement>;
+  mainWrapperRef?: RefObject<HTMLDivElement | null>;
 };
 export const StickBottom = ({ mainWrapperRef }: Props) => {
   return (

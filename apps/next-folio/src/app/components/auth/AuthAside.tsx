@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import { useDragControls } from 'framer-motion';
 
 type Props = {
-  // scrollContainer: RefObject<HTMLDivElement>;
+  // scrollContainer: RefObject<HTMLDivElement | null>;
 };
 
 export const AuthAside = () => {

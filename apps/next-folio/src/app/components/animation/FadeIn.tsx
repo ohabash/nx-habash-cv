@@ -8,7 +8,7 @@ type Props = {
   start?: number;
   delay?: number;
   scale?: boolean;
-  ref?: RefObject<HTMLDivElement>;
+  ref?: RefObject<HTMLDivElement | null>;
 };
 
 export const FadeIn = ({ children, className, scale, start = 75, delay=0, ref }: Props) => {

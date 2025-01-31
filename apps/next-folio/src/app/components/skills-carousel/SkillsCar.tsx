@@ -4,7 +4,7 @@ import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
 import { RefObject } from 'react';
 
 type Props = {
-  containerRef: RefObject<HTMLDivElement>;
+  containerRef: RefObject<HTMLDivElement | null>;
   groupId: string;
 };
 export function SkillsCar({ containerRef, groupId }: Props) {

@@ -10,7 +10,7 @@ type Props = {
   start?: number;
   delay?: number;
   scale?: boolean;
-  refPassed: RefObject<HTMLDivElement>;
+  refPassed: RefObject<HTMLDivElement | null>;
 };
 
 const ScrollScalingDiv = ({ children, className, scale, start = 75, delay=0, refPassed }: Props) => {

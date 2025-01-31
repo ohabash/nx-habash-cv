@@ -3,7 +3,7 @@ import { ReactNode, RefObject, useEffect, useState } from "react";
 import { useWindowSize } from 'react-use';
 
 type Props = {
-  target: RefObject<HTMLDivElement>;
+  target: RefObject<HTMLDivElement | null>;
   children: ReactNode;
   className?: string;
 };
