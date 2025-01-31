@@ -30,6 +30,9 @@
       "@components/*": ["./src/app/components/*"],
       "@ui/*": ["./src/app/components/ui/*"],
       "@public/*": ["./public/*"],
+      "react": [
+        "./node_modules/@types/react"
+      ]
     },
   },
   "include": [
