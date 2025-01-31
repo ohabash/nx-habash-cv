@@ -23,7 +23,7 @@ export const HeroCar = () => {
   // ref
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: itemScrollYProg } = useScroll({
-    target: containerRef,
+    target: containerRef as any,
     offset: ['start start', 'end start'],
   });
   const height = useTransform(
