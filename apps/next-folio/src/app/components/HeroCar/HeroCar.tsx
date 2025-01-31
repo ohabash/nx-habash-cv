@@ -21,7 +21,7 @@ const SPRING_OPTIONS = {
 
 export const HeroCar = () => {
   // ref
-  const containerRef = useRef<HTMLDivElement>();
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: itemScrollYProg } = useScroll({
     target: containerRef as any,
     offset: ['start start', 'end start'],
@@ -66,7 +66,7 @@ const Item = () => {
   const item = heroItem;
 
   // ref
-  const ItemWrapperRef = useRef<HTMLDivElement>();
+  const ItemWrapperRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: itemScrollYProg } = useScroll({
     target: ItemWrapperRef as any,
     offset: ['start start', 'end start'],
