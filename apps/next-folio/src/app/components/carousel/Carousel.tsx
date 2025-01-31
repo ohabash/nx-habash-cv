@@ -23,7 +23,7 @@ const SPRING_OPTIONS = {
 export const Carousel = () => {
   const screen = useWindowSize();
   const [imgIndex, setImgIndex] = useState(1);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
