@@ -66,9 +66,9 @@ const Item = () => {
   const item = heroItem;
 
   // ref
-  const ItemWrapperRef = useRef<HTMLDivElement>(null);
+  const ItemWrapperRef = useRef<HTMLDivElement>();
   const { scrollYProgress: itemScrollYProg } = useScroll({
-    target: ItemWrapperRef,
+    target: ItemWrapperRef as any,
     offset: ['start start', 'end start'],
   });
 
