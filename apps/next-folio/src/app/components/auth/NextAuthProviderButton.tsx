@@ -45,7 +45,7 @@ export function NextAuthProviderButton({
       )}
     >
       <span className="mr-3 font-black text-lg">{icon}</span>
-      {copy}*
+      {copy}
     </Button>
   );
 }
