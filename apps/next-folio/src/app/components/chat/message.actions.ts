@@ -20,8 +20,8 @@ export const retrieveMessages = async (
   id: string,
   debug: string
 ): Promise<Message[]> => {
-  console.log(`🚀 [ACTION] => retrieveMessages => id:`, debug, id);
   const url = new URL('/api/message/list', process.env.HOST);
+  console.log(`🚀 [ACTION] => retrieveMessages => id:`, debug, id, url);
   url.searchParams.append('threadId', id);
 
   const res = await fetch(url.toString(), {
