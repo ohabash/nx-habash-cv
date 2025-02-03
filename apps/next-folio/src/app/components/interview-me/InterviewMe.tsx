@@ -5,7 +5,7 @@ import { PiOpenAiLogo } from 'react-icons/pi';
 import { Button } from '../button/Button';
 import { ChatModal } from '../chat/Chat';
 import { GoogleGeminiEffect } from '../ui/geminiEffect/GoogleGeminiEffect';
-
+// 1
 export function InterviewMe() {
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
