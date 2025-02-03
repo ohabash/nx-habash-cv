@@ -17,6 +17,7 @@ const authOptions: NextAuthOptions = {
       return Promise.resolve(true);
     },
     async jwt(params) { 
+      console.log(`🚀 => jwt => process.env.GOOGLE_ID:`, process.env.GOOGLE_ID);
       if (params.user) {
         // user only available on sign in
         params.token = await addToToken(params);
@@ -24,7 +25,7 @@ const authOptions: NextAuthOptions = {
         params.user.id = params.token?.id as string;
         // update profile
         const profile = updateProfile(params.user);
-      }
+      }``
 
       // dev
       // console.log(`🚀🔒🔒🔒🔒🔒🔒🔒🔒 => CALLBACK.JWT => params:`, params);
