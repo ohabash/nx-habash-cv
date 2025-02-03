@@ -112,7 +112,7 @@ export const ModalBody = ({
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [open]);x
+  }, [open]);
 
   const modalRef = useRef(null as HTMLDivElement | null);
   const { setOpen } = useModal();
