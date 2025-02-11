@@ -34,10 +34,7 @@ export const pollRunCompletion = async (threadId: string, run: Run): Promise<Run
 
 export const retrieveRun = async (threadId: string, runId: string): Promise<Run> => {
 
-  const url = new URL(
-    '/api/run/retrieve',
-    window?.location.origin || process.env.HOST || ''
-  );
+  const url = new URL('/api/run/retrieve', process.env.HOST);
   url.searchParams.append('threadId', threadId);
   url.searchParams.append('runId', runId);
 
