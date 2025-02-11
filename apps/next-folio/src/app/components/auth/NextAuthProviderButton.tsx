@@ -18,7 +18,7 @@ interface Props {
 export function NextAuthProviderButton({
   copy = "Sign In with Google",
   provider = "google",
-  callbackUrl = `${window.location.origin}/${"auth/settings"}`,
+  callbackUrl = `${window?.location.origin}/${"auth/settings"}`,
   icon = <FaGoogle/>,
   className
 }: Props) {

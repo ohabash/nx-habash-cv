@@ -16,7 +16,7 @@ export function GoogleButton({
   const router = useRouter();
 
   async function signInWithGoogle() {
-    const callbackUrl = `${window.location.origin}/${'auth/settings'}`;
+    const callbackUrl = `${window?.location.origin}/${'auth/settings'}`;
     console.log(`🚀 => signInWithGoogle => callbackUrl:`, callbackUrl);
     const resp = await signIn('google', { callbackUrl });
     console.log(`🚀 => signInWithGoogle => resp:`, resp)

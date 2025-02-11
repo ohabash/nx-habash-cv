@@ -45,7 +45,10 @@ const fetchAssistant = async (id: string) => {
 };
 
 const deleteAssistant = async (id: string) => {
-  const url = new URL('/api/assistant/delete', window.location.origin);
+  const url = new URL(
+    '/api/assistant/delete',
+    window?.location.origin || process.env.HOST || ''
+  );
   url.searchParams.append('assistantId', id);
 
   const res = await fetch(url.toString(), {

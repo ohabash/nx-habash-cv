@@ -22,7 +22,7 @@ export const NoAuthError = () => {
 
       <script
         dangerouslySetInnerHTML={{
-          __html: `setTimeout(() => { window.location.href = '/auth/login'; }, 3000);`,
+          __html: `setTimeout(() => { window?.location.href = '/auth/login'; }, 3000);`,
         }}
       ></script>
     </div>
