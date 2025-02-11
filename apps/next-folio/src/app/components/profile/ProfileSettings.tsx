@@ -23,8 +23,8 @@ export const ProfileSettings = () => {
   const auth = useSession();
   const router = useRouter();
   const user = auth.data?.user as NxUser;
-  console.log(`🚀 => ProfileSettings => auth::`, auth)
-  console.log(`🚀 => ProfileSettings => auth:: => profile`, (auth as any).data?.user?.profile)
+  // console.log(`🚀 => ProfileSettings => auth::`, auth)
+  // console.log(`🚀 => ProfileSettings => auth:: => profile`, (auth as any).data?.user?.profile)
   const [originalProfile, setOriginalProfile] = useState({} as NXProfile);
   const [loggingOut, setLoggingOut] = useState(false);
   let profileService: ProfileService | null;
@@ -42,7 +42,7 @@ export const ProfileSettings = () => {
   
   useEffect(() => {
     console.log(`🚀 => => => ProfileSettings => INIT:`, user);
-    profileService = ProfileService.init(user.id, setOriginalProfile, '<ProfileSettings/>');
+    profileService = ProfileService.init(user?.id, setOriginalProfile, '<ProfileSettings/>');
   }, []);
 
   // no auth error

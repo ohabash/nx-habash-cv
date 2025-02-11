@@ -14,11 +14,11 @@ export const SignUpActions = () => {
         icon={<AiFillGithub />}
       />
       <Button
-        className="w-full py-4 mt-5 hover:brightness-95 "
+        className="w-full py-4 mt-5 hover:brightness-95 disabled"
         href="/auth/sign-up-form"
       >
         <MdEmail className="mr-3" />
-        Continue with Email
+        Continue with Email (soon)
       </Button>
     </div>
   );

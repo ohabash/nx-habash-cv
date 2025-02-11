@@ -25,11 +25,11 @@ export const ThreadThumb = ({threadId}: Props) => {
     includeSummary: true
   });
 
-  useEffect(() => {
-    console.log(`🚀 => ThreadThumb => messagesService: summ`, messagesService);
-  }, [messagesService]);
+  // useEffect(() => {
+  //   console.log(`🚀 => ThreadThumb => messagesService: summ`, messagesService);
+  // }, [messagesService]);
 
-  console.log(`🚀 => ThreadThumb => threadService:`, threadId, threadService);
+  // console.log(`🚀 => ThreadThumb => threadService:`, threadId, threadService);
   
   return (
     <div 

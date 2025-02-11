@@ -26,7 +26,7 @@ export function NextAuthProviderButton({
 
   async function signInWithGoogle() {
     const resp = await signIn(provider, { callbackUrl });
-    console.log(`🚀 => signInWithGoogle => resp:`, resp);
+    // console.log(`🚀 => signInWithGoogle => resp:`, resp);
   }
 
   async function loginActions(resp: any) {

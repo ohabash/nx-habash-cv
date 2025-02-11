@@ -36,7 +36,6 @@ export function ChatModal({ children, className }: Props) {
   }, [globalState.uid]);
 
   const runner = useChatRun();
-  console.log(`🚀 => ChatModal => globalState:`, globalState)
   if (!globalState.uid) {
     return (
       <>

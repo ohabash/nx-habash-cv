@@ -32,7 +32,7 @@ export const ProfileForm = ({
   const { data: session } = useSession();
   const user = session?.user as NxUser;
   const [profile, setProfile] = useState<Partial<NXProfile>>(originalProfile || {});
-  console.log(`🚀 => originalProfile:`, originalProfile)
+  // console.log(`🚀 => originalProfile:`, originalProfile)
   // const user = auth.currentUser;
   const router = useRouter();
 

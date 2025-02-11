@@ -14,7 +14,7 @@ export const pollRunCompletion = async (threadId: string, run: Run): Promise<Run
     count++;
     run = await retrieveRun(threadId, run.id);
     await timeout(timeBetweenPolls);
-    console.log(`🚀 => [Attempt: ${count}] ::: waitForRunCompletion => run:`, run);
+    // console.log(`🚀 => [Attempt: ${count}] ::: waitForRunCompletion => run:`, run);
   }
   // if ((run as any).error) {
   //   throw new Error(

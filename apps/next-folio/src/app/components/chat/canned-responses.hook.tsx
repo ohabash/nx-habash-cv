@@ -84,7 +84,7 @@ export const useCannedResponses = (): CannedResp => {
   }
 
   const setRunError = (run: Run | null, val?: {code: string, message: string}) => {
-    console.log(`🚀 => setRunError => run:`, run)
+    // console.log(`🚀 => setRunError => run:`, run)
     if (!val) val = {code: 'Unknown Error', message: 'I apologize. Please let me know about this error.'};
     if (run?.last_error) {
       const {code, message} = run.last_error;

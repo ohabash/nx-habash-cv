@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const useAssistant = ({aid, profileService}: Props): AssistantHookResp => {
-  console.log(`🚀 => useAssistant => aid:`, aid)
+  // console.log(`🚀 => useAssistant => aid:`, aid)
   const {data: assistant, isLoading, } = useQuery({
     queryFn: () => fetchAssistant(aid),
     queryKey: ['assistant', aid],
@@ -29,12 +29,12 @@ export const useAssistant = ({aid, profileService}: Props): AssistantHookResp =>
 }
 
 const fetchAssistant = async (id: string) => {
-  console.log(`🚀 => fetchAssistant => id:`, id);
+  // console.log(`🚀 => fetchAssistant => id:`, id);
   const url = new URL(
     '/api/assistant/get',
     window?.location.origin || process.env.HOST
   );
-  console.log(`🚀 => fetchAssistant => url:`, url, url.toString());
+  // console.log(`🚀 => fetchAssistant => url:`, url, url.toString());
   url.searchParams.append('assistantId', id);
 
   try {
@@ -68,7 +68,7 @@ const deleteAssistant = async (id: string) => {
   });
 
   const data = await res.json();
-  console.log(`🚀 => deleteAssistant => res.json():`, data);
+  // console.log(`🚀 => deleteAssistant => res.json():`, data);
   return data;
 };
 

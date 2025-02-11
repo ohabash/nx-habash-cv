@@ -17,9 +17,9 @@ export function GoogleButton({
 
   async function signInWithGoogle() {
     const callbackUrl = `${window?.location.origin}/${'auth/settings'}`;
-    console.log(`🚀 => signInWithGoogle => callbackUrl:`, callbackUrl);
+    // console.log(`🚀 => signInWithGoogle => callbackUrl:`, callbackUrl);
     const resp = await signIn('google', { callbackUrl });
-    console.log(`🚀 => signInWithGoogle => resp:`, resp)
+    // console.log(`🚀 => signInWithGoogle => resp:`, resp)
   }
 
   async function loginActions(resp: any) {
