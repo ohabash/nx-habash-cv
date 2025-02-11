@@ -29,19 +29,28 @@ export const useAssistant = ({aid, profileService}: Props): AssistantHookResp =>
 }
 
 const fetchAssistant = async (id: string) => {
-  console.log(`🚀 => fetchAssistant => id:`, id)
-  const url = new URL('/api/assistant/get', window?.location.origin || process.env.HOST);
+  console.log(`🚀 => fetchAssistant => id:`, id);
+  const url = new URL(
+    '/api/assistant/get',
+    window?.location.origin || process.env.HOST
+  );
+  console.log(`🚀 => fetchAssistant => url:`, url, url.toString());
   url.searchParams.append('assistantId', id);
 
-  const res = await fetch(url.toString(), {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  try {
+    const res = await fetch(url.toString(), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching assistant:', error);
+    throw error;
+  }
 };
 
 const deleteAssistant = async (id: string) => {
