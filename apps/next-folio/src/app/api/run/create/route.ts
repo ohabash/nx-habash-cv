@@ -3,7 +3,9 @@ import { NextRequest } from "next/server";
 import OpenAI from "openai";
 
 export async function POST(req: NextRequest) {
+  
   const { params, threadId } = (await req.json()) as RunCreateParams;
+  console.log('[API] run creating...', params, threadId);
 
   if (!threadId) return Response.json({ error: "No thread id provided" }, { status: 400 });
   if (!params.assistant_id) return Response.json(

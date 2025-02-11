@@ -51,6 +51,7 @@ export const useMessages = ({ profileService, threadId, includeSummary: includeS
   // query messages
   const { data: MessagesResp, isLoading: msgsLoading } = useQuery({
     queryFn: async () => {
+      console.log(`🚀 => queryFn: => threadId:`, threadId)
       const debug = 'useMessages=>useQuery=>retrieveMessages';
       const resp = await actions.retrieveMessages(threadId as string, debug);
       return setMessagesFn(resp || [], false)
@@ -66,6 +67,7 @@ export const useMessages = ({ profileService, threadId, includeSummary: includeS
         return (await d)?.choices?.[0]?.text || 'No summary available';
       });
     },
+    
     queryKey: ['summary', threadId],
     enabled: !!messages.length && includeSummary,
   });

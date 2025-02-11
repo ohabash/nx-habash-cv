@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 
 export async function POST() {
+  console.log("[API] Creating thread...");
   const openai = new OpenAI();
 
   try {

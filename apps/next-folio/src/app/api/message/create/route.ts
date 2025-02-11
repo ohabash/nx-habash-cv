@@ -4,6 +4,7 @@ import OpenAI from "openai";
 
 export async function POST(req: NextRequest) {
   const { body, threadId } = (await req.json()) as CreateMessageParams;
+  console.log('[API] Creating Message...', body, threadId);
 
   if (!threadId || !body) return Response.json({ error: "Invalid message params provided" }, { status: 400 });
 

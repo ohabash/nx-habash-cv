@@ -15,6 +15,7 @@ interface Props {
 }
 
 export const useAssistant = ({aid, profileService}: Props): AssistantHookResp => {
+  console.log(`🚀 => useAssistant => aid:`, aid)
   const {data: assistant, isLoading, } = useQuery({
     queryFn: () => fetchAssistant(aid),
     queryKey: ['assistant', aid],
@@ -28,6 +29,7 @@ export const useAssistant = ({aid, profileService}: Props): AssistantHookResp =>
 }
 
 const fetchAssistant = async (id: string) => {
+  console.log(`🚀 => fetchAssistant => id:`, id)
   const url = new URL('/api/assistant/get', window?.location.origin || process.env.HOST);
   url.searchParams.append('assistantId', id);
 
