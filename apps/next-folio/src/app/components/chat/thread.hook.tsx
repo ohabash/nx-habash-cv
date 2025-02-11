@@ -35,6 +35,7 @@ export const useChatThread = ({ providedThreadId, profileService, aid }: Props):
   const { isLoading: isFetching } = useQuery({
     queryFn: async () => {
       const debug = 'useChatThread=>useQuery=>retrieveMessages';
+      console.log(`🚀 => queryFn: => FETCH THREAD:`, threadId)
       const thread = await retrieveThread(threadId as string);
       threadSetter(thread);
       return thread;

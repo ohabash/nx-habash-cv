@@ -3,7 +3,10 @@
 import { ThreadCreateParams } from "openai/resources/beta/threads/threads";
 
 export const retrieveThread = async (id: string) => {
-  const url = new URL('/api/thread/get', process.env.HOST || '');
+  const url = new URL(
+    '/api/thread/get',
+    window?.location.origin || process.env.HOST || ''
+  );
   console.log(`🚀 [ACTION] => retrieveThread => id:`, id, url)
   url.searchParams.append('threadId', id);
 
