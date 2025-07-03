@@ -53,3 +53,8 @@ out
 vite.config.*.timestamp*
 
 libs/utils/src/lib/environment.ts
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md

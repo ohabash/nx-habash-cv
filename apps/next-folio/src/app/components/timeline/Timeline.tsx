@@ -31,9 +31,6 @@ export const Timeline = () => {
     [0.6, 1, 0.6]
   );
   const skillsX = useTransform(scrollYProgress, [0.8, 1], [0, screen.width]);
-  useEffect(() => {
-    console.log('=-=-=-=-=-=-=-=->> DATA FOR AI:', allData);
-  }, [experience, skills]);
   return (
     <div
       className="pb-[15vh] [--borderW:8px] bg-darker__ dark-shadow__ overflow-clip w-full"
