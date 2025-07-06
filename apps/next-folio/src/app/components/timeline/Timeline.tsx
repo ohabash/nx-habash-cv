@@ -30,6 +30,11 @@ export const Timeline = () => {
     [0, 0.5, 1],
     [0.6, 1, 0.6]
   );
+  const copyMarginTop = useTransform(
+    dialScrollYProgress,
+    [0, 0.5, 1],
+    [0, 100, 0]
+  );
   const skillsX = useTransform(scrollYProgress, [0.8, 1], [0, screen.width]);
   return (
     <div
@@ -39,7 +44,7 @@ export const Timeline = () => {
     >
       <Container className="font-semibold space-y-12 relative z-10 px-[7vw]_">
         <motion.h1
-          className="sticky top-[8.9rem] text-dark text-[3.5rem]"
+          className="sticky top-[8.9rem] text-dark text-[3.5rem] max-lg:top-[10.5rem] max-lg:text-[2.5rem] max-md:text-[2rem]"
           style={{
             opacity: titleOpacity,
             // scale: titleScale
@@ -49,13 +54,14 @@ export const Timeline = () => {
         </motion.h1>
         {experience.map((item, index) => (
           <FadeIn key={'e-' + index}>
-            <div className="flex border-b-[0px] border-subtle pb-16 ">
+            <div className="flex border-b-[0px] border-subtle pb-16">
               {/* logo // company // time  */}
-              <div className="flex pr-4 sticky top-14 self-start text-right">
+              <div className="flex pr-4 sticky top-14 max-lg:top-20 self-start text-right max-md:text-left">
                 {/* company // Time */}
-                <div className="flex items-center bg-gray-800 border-[var(--borderW)] border-white h-[6rem] border-r-0 mr-[-3rem] px-[5rem]">
+                <div className="flex items-center bg-gray-800 border-[var(--borderW)] border-white h-[6rem] border-r-0 mr-[-3rem] px-[5rem] max-md:hidden ">
                   <div>
-                    <p className="font-bold">{item.date}</p>
+                    <p className="font-bold max-[1000px]:hidden">{item.date}</p>
+                    <p className="font-bold min-[1000px]:hidden">{item.shortDate}</p>
                     <span className="text-lighten-7 font-medium">
                       {item.company}
                     </span>
@@ -91,8 +97,8 @@ export const Timeline = () => {
                   {item.projects?.map((project, idx) => (
                     <FadeIn scale={false} key={'p-' + idx} ref={dialEl}>
                       <motion.div
-                        className="mt-4"
-                        // style={{ scale: copyScale }}
+                        className="mt-4_"
+                        style={{ marginTop: copyMarginTop }}
                       >
                         <p className="font-bold text-accent3">{project.name}</p>
                         <p className="">{project.desc}</p>

@@ -53,7 +53,7 @@ export const ProfileSettings = () => {
     <div id="settings">
       <div className="pb-4 mb-6 border-b-[1px] border-subtle/40">
         <div className="level mb-0">
-          <div className="level-left">
+          <div className="level-left 5">
             <h1 className="text-lg">Profile & Settings</h1>
           </div>
           <div className="level-right">

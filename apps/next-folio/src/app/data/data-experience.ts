@@ -13,6 +13,7 @@ export type Project = {
 export type TimelineItem = {
   title: string;
   date: string;
+  shortDate: string;
   description: string;
   company: string;
   logo: StaticImageData;
@@ -23,6 +24,7 @@ export const experience: TimelineItem[] = [
   {
     title: 'Senior Software Developer',
     date: 'Jun 2018 — Jul 2024',
+    shortDate: '6/18 — 7/24',
     description:
       'Trained and managed a team of developers, played a central role in launching the company’s ecommerce & ERP software stack. My tenure was marked by achievements that transformed Fornida’s autonomous software landscape, Angular, NodeJS, Stripe, Mongo, Amazon SP-API, Microsoft Graph, BigCommerce',
     reasonForLeaving: 'TODO',
@@ -46,6 +48,7 @@ export const experience: TimelineItem[] = [
   {
     title: 'Senior Software Developer',
     date: 'Feb 2018 — Oct 2020',
+    shortDate: '2/18 — 10/20',
     description:
       'Co-founded JOMA Tech with two former colleagues, building on our shared experience at SUCCESS Partners to address the unique challenges of the eCommerce industry. At JOMA Tech, we delivered tailored eCommerce solutions that set us apart—no two sites were alike, each featuring completely unique capabilities designed to fit our clients’ business needs like a glove. This position taught me the importance of leadership in a technical role, as many relied on me to deliver solutions that seemed impossible at the time. By adopting cutting-edge technologies and crafting innovative tools, we consistently exceeded expectations. I’m proud to say we delivered on our promise, creating a service that was unmatched in the industry. Our success enabled us to sustain a team of five full-time employees for over two years before joining Fornida to bring our expertise to an enterprise level.',
     reasonForLeaving: 'TODO',
@@ -69,6 +72,7 @@ export const experience: TimelineItem[] = [
   {
     title: 'eCommerce Developer',
     date: 'Mar 2015 — Feb 2018',
+    shortDate: '3/15 — 2/18',
     description:
       'Frontend Developer specializing in creating user-facing elements for ecommerce sites, with a strong foundation in development and design. Successfully designed, developed, and maintained over 30 ecommerce sites on Magento and BigCommerce. Led the migration of 14 Magento sites to BigCommerce, and developed a unique BigCommerce app that converts user ‘points’ into discounts, automatically syncing with accounting records. Used javascript and PHP',
     reasonForLeaving: 'TODO',

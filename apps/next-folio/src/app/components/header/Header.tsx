@@ -9,14 +9,14 @@ export function Header() {
     <>
       <header className="header fixed w-full top-0 z-20 backdrop-blur-md bg-dark/50 h-[--header-2-height]_ flex flex-col justify-center">
         <Container className="">
-          <div className="level">
-            <div className="level-left">
-              <Link href={'/'}>
+          <div className="level max-lg:flex-col">
+            <div className="level-left 1">
+              <Link className="max-lg:my-3" href={'/'}>
                 {/* <Image src={logo} alt="Omar Habash - UI Developer Logo" className='max-w-[150px] h-auto'/> */}
                 <Logo/>
               </Link>
             </div>
-            <div className="level-right">
+            <div className="level-right max-lg:hidden">
               <AuthNav />
               {/* <InterviewMeTrigger simple={true} className="text-sm my-3 py-1 pl-4 pr-1"></InterviewMeTrigger> */}
               {/* <Link className='link ml-3' href="/sign-up">Account</Link> */}

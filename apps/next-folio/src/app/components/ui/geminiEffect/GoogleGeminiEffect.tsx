@@ -27,7 +27,7 @@ export const GoogleGeminiEffect = ({
     <div className={cn('sticky top-[21vh]', className)}>
       <div className="relative z-20">
         <div className="text-center">{title || 'Default Title'}</div>
-        <p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">
+        <p className="text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">
           {description || `Default Description`}
         </p>
       </div>

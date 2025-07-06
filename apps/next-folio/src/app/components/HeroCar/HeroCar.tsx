@@ -172,20 +172,33 @@ const Curtain = ({itemScrollYProg, item}: CurtainProps) => {
       }
     >
       <div className="px-16 py-14">
-        <div className="level">
-          <div className="level-left">
+        <div className="level max-lg:flex-col">
+          <div className="level-left 4">
             <div className="title-block">
-              <h4 className="font-bold text-yellow -mb-2">
+              <h4 className="font-bold text-yellow -mb-2 max-lg:mb-4 max-lg:text-2xl">
                 Senior Software Engineer
               </h4>
-              <h3 className="font-bold">OMAR HABASH</h3>
+              <h3 className="font-bold max-lg:hidden">OMAR HABASH</h3>
             </div>
           </div>
-          <div className="level-right a-menu">
-            <Link href="#experience" className='link'>Experience</Link>
-            <Link href="#skills" className='link'>Skills</Link>
-            <Link href="#interview-me" className='link'>Interview Me</Link>
-            <Link href="#contact" className='link'>Contact</Link>
+          <div className="level-right a-menu max-lg:pt-3">
+            <p className="p-3 px-4 rounded-md hidden max-sm:block bg-red/60 font-bold">
+              Short on time. Best viewed on desktop.
+            </p>
+            <div className="flex max-sm:hidden">
+              <Link href="#experience" className="link">
+                Experience
+              </Link>
+              <Link href="#skills" className="link">
+                Skills
+              </Link>
+              <Link href="#interview-me" className="link">
+                Interview Me
+              </Link>
+              <Link href="#contact" className="link">
+                Contact
+              </Link>
+            </div>
           </div>
         </div>
       </div>

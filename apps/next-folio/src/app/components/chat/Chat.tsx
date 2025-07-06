@@ -42,7 +42,7 @@ export function ChatModal({ children, className }: Props) {
         <div className="max-w-screen w-[600px]">
           <Link
             href={'/auth/login'}
-            className="relative z-20 text-center level mb-0 bg-darkBlue/90 p-4 rounded-md border-[1px] border-blue/70 cursor-pointer hover:border-blue"
+            className="relative z-20 text-center level mb-0 bg-darkBlue/90 p-4 rounded-md border-[1px] border-blue/70 cursor-pointer hover:border-blue max-md:flex max-md:mt-10 max-sm:mx-8"
           >
             <div className="level-left max-w-[80%]">
               <p className="text-white text-left">

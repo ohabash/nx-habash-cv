@@ -12,7 +12,7 @@ export const Paper = ({children}: Props) => {
   const c = usePaperContext(); 
   return (
     <div className="_level" id="resume-theme-here">
-      <div className="level-left"></div>
+      <div className="level-left 6"></div>
       <div className="level-right">
         <div className="paper-wrapper">
           <div className={`paper-container ${c.isFocused ? 'focused' : ''}`}>

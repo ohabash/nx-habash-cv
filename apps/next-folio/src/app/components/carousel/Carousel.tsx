@@ -238,7 +238,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
                 }
                 transition={SPRING_OPTIONS}
                 className={
-                  `aspect-video mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
+                  `sm:aspect-video max-sm:h-[50vh] mx-8_ shrink-0 rounded-2xl object-cover bg-black relative overflow-clip ` +
                   (imgIndex === idx ? '' : '')
                 }
               >
@@ -250,11 +250,13 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
                       y: curtainY,
                     }}
                   >
-                    <div className="p-16">
-                      <h2 className="font-bold">Skills</h2>
-                      <h4 className="font-bold text-yellow">
-                        The right tools for the job.
-                      </h4>
+                    <div className="p-16 max-lg:text-center max-lg:scale-[0.7]">
+                      <div className="">
+                        <h2 className="font-bold">Skills</h2>
+                        <h4 className="font-bold text-yellow">
+                          The right tools for the job.
+                        </h4>
+                      </div>
                     </div>
                   </motion.div>
                 )}

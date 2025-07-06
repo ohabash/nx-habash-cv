@@ -9,7 +9,7 @@ export const Dropdown = () => {
 
       {/* Trigger */}
       <div className="w-full level input m-0" onClick={e => setIsOpen(v => !v)}> 
-        <div className="level-left">Options </div>
+        <div className="level-left 3">Options </div>
         <div className="level-right"><BiChevronDown /></div>
       </div>
 

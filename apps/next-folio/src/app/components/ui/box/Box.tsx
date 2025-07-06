@@ -24,7 +24,7 @@ export const BoxGroup = ({ items, setItems }: {
     setItems(newItems);
   };
   return (
-    <div className="flex flex-wrap w-full gap-3 justify-center">
+    <div className="flex flex-wrap w-full gap-3 justify-center max-lg:flex-col ">
       {items.map((item) => (
         <Box onClick={toggleItem} key={item.id} item={item} />
       ))}
@@ -39,7 +39,7 @@ export const Box = ({ item, onClick }: {
   return (
     <a
       className={twMerge(
-        'flex-1 group cursor-pointer py-[5rem] font-medium text-center rounded-md border-2 inline-block relative bg-darker/80',
+        'flex-1 group cursor-pointer py-[5rem] font-medium text-center rounded-md border-2 inline-block relative bg-darker/80 max-lg:py-10',
         item.className,
         item.selected ? 'border-blue' : 'border-darkBlue hover:border-blue/30'
       )}

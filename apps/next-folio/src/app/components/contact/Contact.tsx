@@ -18,12 +18,12 @@ export const Contact = () => {
         <div className="flex h-full">
           {' '}
           {/* Left */}
-          <div className="flex-1 relative overflow-clip">
+          <div className="flex relative overflow-clip">
             <Lines scrollYProgress={scrollYProgress} />
             <ContactLeft />
           </div>
           {/* right */}
-          <div className="flex-1 bg-darkest relative border-l-[1px] border-darkBlue time-glow">
+          <div className="flex bg-darkest relative border-l-[1px] border-darkBlue time-glow max-sm:hidden">
             <ContactRight />
           </div>
         </div>

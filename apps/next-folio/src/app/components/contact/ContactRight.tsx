@@ -114,7 +114,7 @@ const Step1 = ({info, updateInfo}: InfoProps) => {
   return (
     <div className="h-full">
       <div className={'flex flex-col items-center justify-center h-full px-12'}>
-        <p className="f mb-10 text-white">
+        <p className="f mb-10 text-white max-md:text-left max-md:text-xl">
           Select the items that best reflect your intersts.
         </p>
         <BoxGroup setItems={handleUpdates} items={items} />
@@ -310,7 +310,7 @@ const Toolbar = ({next = 'false', prev = 'false', onSubmit, submitting}: Toolbar
   const css = "f text-white hover:text-yellow cursor-pointer text-sm";
   return (
     <div className={'mt-4 level w-full ' + (submitting ? 'disabled' : '')}>
-      <div className="level-left">
+      <div className="level-left 2">
         <a
           className={twMerge(css, prev)}
           onClick={() => context.previousStep()}
