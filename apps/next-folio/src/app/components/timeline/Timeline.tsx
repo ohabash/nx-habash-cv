@@ -10,6 +10,8 @@ import { FadeIn } from "../animation/FadeIn";
 import { Container } from "../layout/Container";
 
 import Image from "next/image";
+import { useCopilotReadable } from "@copilotkit/react-core";
+import { useCopilotChatSuggestions } from "@copilotkit/react-ui";
 
 export const Timeline = () => {
   const screen = useWindowSize();
@@ -36,6 +38,14 @@ export const Timeline = () => {
     [0, 100, 0]
   );
   const skillsX = useTransform(scrollYProgress, [0.8, 1], [0, screen.width]);
+  useCopilotChatSuggestions(
+    { instructions: 'Suggest the most relevant next interview question about your skills, experience, projects, or things about you.' },
+    [allData]
+  );
+  useCopilotReadable({
+    description: 'Information about Omar Habash',
+    value: JSON.stringify(allData),
+  });
   return (
     <div
       className="pb-[15vh] [--borderW:8px] bg-darker__ dark-shadow__ overflow-clip w-full"
@@ -90,7 +100,7 @@ export const Timeline = () => {
                 </div>
 
                 {/* desc */}
-                <p className=" ">*{item.description}</p>
+                <p className=" ">{item.description}</p>
 
                 {/* projects */}
                 <div className="flex-1">

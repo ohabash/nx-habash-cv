@@ -197,4 +197,64 @@ export const skills: Skill[] = [
     url: 'https://azure.microsoft.com/',
     pinned: false,
   },
+  {
+    poster: '/img/posters/copilotkit.webp',
+    name: 'CopilotKit',
+    desc: 'Framework for building custom AI copilots, chatbots, and in-app AI agents. Provides React UI components and elegant infrastructure for creating intelligent assistants.',
+    desc2:
+      'CopilotKit has revolutionized how I build AI-powered user interfaces. I use it to create intelligent copilots that integrate seamlessly with React applications, providing users with contextual AI assistance. The framework makes it incredibly easy to add AI chatbots, generative UI, and agent workflows to any application. I especially love how it handles real-time context and enables actions directly from the AI interface.',
+    icon: '/img/logos/copilotkit.png',
+    url: 'https://www.copilotkit.ai/',
+    pinned: false,
+  },
+  {
+    poster: '/img/posters/ag-grid.webp',
+    name: 'AG Grid',
+    desc: 'High-performance React data grid for building enterprise-grade tables with advanced features like filtering, sorting, pagination, and custom cell renderers.',
+    desc2:
+      'AG Grid has been my go-to solution for complex data presentation in React applications. I use it to build sophisticated data tables with features like server-side pagination, advanced filtering, row grouping, and custom cell components. The performance with large datasets is unmatched, and the flexibility to customize every aspect of the grid makes it perfect for enterprise applications. I have implemented complex dashboards using AG Grid that handle thousands of rows with ease.',
+    icon: '/img/logos/ag-grid.png',
+    url: 'https://www.ag-grid.com/',
+    pinned: false,
+  },
+  {
+    poster: '/img/posters/claude-code.webp',
+    name: 'Claude Code',
+    desc: 'AI-powered coding assistant by Anthropic integrated into VS Code. Provides intelligent code suggestions, explanations, and debugging assistance.',
+    desc2:
+      'Claude Code has become an essential part of my development workflow. I use it as a VS Code extension to get intelligent code suggestions, explanations of complex code, and help with debugging. The AI understands context incredibly well and provides suggestions that are both relevant and helpful. It has significantly improved my productivity, especially when working with unfamiliar codebases or implementing complex algorithms.',
+    icon: '/img/logos/claude-code.png',
+    url: 'https://www.anthropic.com/solutions/coding',
+    pinned: false,
+  },
+  {
+    poster: '/img/posters/jira.webp',
+    name: 'JIRA',
+    desc: 'Project management and issue tracking software by Atlassian. Essential for agile development workflows, sprint planning, and team collaboration.',
+    desc2:
+      'JIRA has been my primary project management tool for coordinating development teams and tracking project progress. I use it to manage sprints, track bugs, plan releases, and coordinate with stakeholders. The customizable workflows and integration with development tools make it perfect for agile methodologies. I have configured complex JIRA instances with custom fields, workflows, and automation rules to fit specific team needs.',
+    icon: '/img/logos/jira.png',
+    url: 'https://www.atlassian.com/software/jira',
+    pinned: false,
+  },
+  {
+    poster: '/img/posters/betterauth.webp',
+    name: 'BetterAuth',
+    desc: 'Modern authentication library for TypeScript applications with built-in security features, MFA support, and seamless Next.js integration.',
+    desc2:
+      'BetterAuth has simplified authentication implementation in my Next.js projects. I love how it provides comprehensive security features out of the box, including multi-factor authentication, rate limiting, and session management. The developer experience is outstanding with clear documentation and TypeScript support. I have used it to implement secure authentication flows in multiple projects, and the built-in security best practices give me confidence in the safety of user data.',
+    icon: '/img/logos/betterauth.png',
+    url: 'https://www.better-auth.com/',
+    pinned: false,
+  },
+  {
+    poster: '/img/posters/cursor.webp',
+    name: 'Cursor IDE',
+    desc: 'AI-first code editor built on VS Code foundation. Features intelligent code completion, natural language editing, and deep codebase understanding for extraordinary productivity.',
+    desc2:
+      'Cursor IDE has revolutionized my coding workflow as the ultimate AI-powered development environment. Built as a VS Code fork, it provides all the familiar features I love while adding game-changing AI capabilities. The Tab completion is incredibly smart, predicting multi-line edits and understanding my coding patterns. I use the Chat feature (Cmd+L) to ask questions about my codebase and get instant, contextual answers. The Cmd+K editing feature lets me describe changes in natural language and watch the AI implement them perfectly. What sets Cursor apart is its deep understanding of entire codebases - it can analyze project architecture, suggest improvements, and maintain consistency across files. The seamless VS Code compatibility means I imported all my settings and extensions instantly. Having used it extensively, I can confidently say it has at least doubled my coding productivity.',
+    icon: '/img/logos/cursor.png',
+    url: 'https://cursor.sh/',
+    pinned: false,
+  },
 ];
