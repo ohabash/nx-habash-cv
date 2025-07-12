@@ -12,6 +12,7 @@ import { Container } from "../layout/Container";
 import Image from "next/image";
 import { useCopilotReadable } from "@copilotkit/react-core";
 import { useCopilotChatSuggestions } from "@copilotkit/react-ui";
+import { useCopilotActions } from "../copilotKit/actions.hook";
 
 export const Timeline = () => {
   const screen = useWindowSize();

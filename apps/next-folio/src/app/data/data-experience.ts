@@ -41,7 +41,7 @@ export const experience: TimelineItem[] = [
       },
       {
         name: 'Microsoft Business Central ERP Dashboard',
-        desc: 'Built "DASH," custom ERP dashboard combining major business processes. Integrated BigCommerce, Amazon, Shopify, eBay centralizing orders. Provided live KPIs, automated BuyReport updates, streamlined purchase order creation for warehouse operations.',
+        desc: 'A React dashboard. "DASH" is a custom ERP dashboard combining major business processes. Integrated BigCommerce, Amazon, Shopify, eBay centralizing orders. Provided live KPIs, automated BuyReport updates, streamlined purchase order creation for warehouse operations.',
       },
     ],
   },

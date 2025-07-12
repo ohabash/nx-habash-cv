@@ -268,3 +268,23 @@ input.input, .input {
     background-position: 600px;
   }
 }
+
+.copilotKitMessage.copilotKitAssistantMessage {
+  background: #172433 !important;
+  padding: 0.75em !important;
+  margin-top: 0.25em !important;
+  &:hover {
+    .copilotKitMessageControls {
+      display: flex !important;
+    }
+  }
+  .copilotKitMessageControls {
+    display: none !important;
+    background: #172433 !important;
+    transition: opacity 0.2s;
+    @apply rounded-lg py-1 border-4 border-darker;
+    padding: 0.25em 0.75em !important;
+    left: initial !important;
+    right: 1.5em !important;
+  }
+}

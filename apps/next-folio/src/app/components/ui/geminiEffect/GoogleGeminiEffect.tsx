@@ -1,6 +1,8 @@
 import { motion, MotionValue, useTransform } from 'framer-motion';
 import { ReactNode } from 'react';
 import { cn } from '../../utils/utils';
+import { useChatContext } from '@copilotkit/react-ui';
+import { CannonAnimation } from '../CannonAnimation';
 
 
 const transition = {
@@ -23,17 +25,28 @@ export const GoogleGeminiEffect = ({
   className,
   button
 }: Props) => {
+  const { open, setOpen } = useChatContext();
   return (
     <div className={cn('sticky top-[21vh]', className)}>
-      <div className="relative z-20">
-        <div className="text-center">{title || 'Default Title'}</div>
-        <p className="text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">
-          {description || `Default Description`}
-        </p>
-      </div>
-      <div className="w-full h-[890px] -top-60 md:-top-48  flex items-center justify-center bg-red-transparent absolute ">
-        {button}
-      </div>
+
+
+      <>
+        <div className="relative z-20">
+          {/* title */}
+          <div className="text-center">{title || 'Default Title'}</div>
+          {/* desc */}
+          {!open &&<p className="text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">
+            {description || `Default Description`}
+          </p>}
+        </div>
+        {/* trigger */}
+        <div className="w-full h-[890px] -top-60 md:-top-48  flex items-center justify-center bg-red-transparent absolute ">
+          {!open && button}
+          {open && <CannonAnimation />}
+        </div>
+      </>
+
+
       <svg
         width="1440"
         height="890"

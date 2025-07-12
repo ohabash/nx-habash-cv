@@ -1,12 +1,13 @@
 import { RefObject } from 'react';
 import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
-import { skills } from '../../data/data-skills';
+import { skills as SKILLS } from '../../data/data-skills';
 
 type Props = { 
   containerRef: RefObject<HTMLDivElement | null> 
 };
 
 export const SmallCarousels2 = ({containerRef}: Props) => {
+  const skills = [...SKILLS].sort(() => Math.random() - 0.5);
   const skillsLn = skills.length;
   const firstHalf = skills.slice(0, skillsLn/2);
   const secondHalf = skills.slice(skillsLn/2, skillsLn);
