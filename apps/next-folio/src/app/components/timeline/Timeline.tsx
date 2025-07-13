@@ -3,16 +3,13 @@
 import { allData } from "@/data";
 import { useWindowSize } from '@nx-habash/react-lib';
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { experience } from "../../data/data-experience";
-import { skills } from "../../data/data-skills";
 import { FadeIn } from "../animation/FadeIn";
 import { Container } from "../layout/Container";
 
 import Image from "next/image";
-import { useCopilotReadable } from "@copilotkit/react-core";
-import { useCopilotChatSuggestions } from "@copilotkit/react-ui";
-import { useCopilotActions } from "../copilotKit/actions.hook";
+import { useCopilotProfessionalContext } from "../copilotKit/useReadable";
 
 export const Timeline = () => {
   const screen = useWindowSize();
@@ -39,14 +36,11 @@ export const Timeline = () => {
     [0, 100, 0]
   );
   const skillsX = useTransform(scrollYProgress, [0.8, 1], [0, screen.width]);
-  useCopilotChatSuggestions(
-    { instructions: 'Suggest the most relevant next interview question about your skills, experience, projects, or things about you.' },
-    [allData]
-  );
-  useCopilotReadable({
-    description: 'Information about Omar Habash',
-    value: JSON.stringify(allData),
-  });
+
+  // Initialize professional CopilotKit context for interview-style interactions
+  useCopilotProfessionalContext();
+  
+
   return (
     <div
       className="pb-[15vh] [--borderW:8px] bg-darker__ dark-shadow__ overflow-clip w-full"

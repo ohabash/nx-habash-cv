@@ -91,6 +91,7 @@ export const InterviewMeTrigger = ({ className, simple = false }: { className?: 
   return (
     <>
       {!open && <CopilotTriggerButton  className={className} simple={simple} />} 
+      {/* {open && <CannonAnimation />}  */}
     </>
   );
 };

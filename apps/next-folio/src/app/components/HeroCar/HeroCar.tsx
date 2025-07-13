@@ -11,6 +11,7 @@ import { useWindowSize } from '@nx-habash/react-lib';
 import { heroItem, HeroItem } from './HeroCar.data';
 import "./HeroCar.scss";
 import Link from 'next/link';
+import { useCopilotActions } from '../copilotKit/useActions';
 
 const SPRING_OPTIONS = {
   type: 'spring',
@@ -20,6 +21,7 @@ const SPRING_OPTIONS = {
 };
 
 export const HeroCar = () => {
+  useCopilotActions();
   // ref
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: itemScrollYProg } = useScroll({

@@ -270,7 +270,7 @@ input.input, .input {
 }
 
 .copilotKitMessage.copilotKitAssistantMessage {
-  background: #172433 !important;
+  background: var(--subtle) !important;
   padding: 0.75em !important;
   margin-top: 0.25em !important;
   &:hover {
@@ -280,11 +280,33 @@ input.input, .input {
   }
   .copilotKitMessageControls {
     display: none !important;
-    background: #172433 !important;
+    background: var(--subtle) !important;
     transition: opacity 0.2s;
     @apply rounded-lg py-1 border-4 border-darker;
     padding: 0.25em 0.75em !important;
     left: initial !important;
     right: 1.5em !important;
+  }
+}
+
+a.copilotKitMarkdownElement {
+  color: var(--accent2) !important;
+}
+
+.copilotKitSidebar .copilotKitWindow.open {
+  @apply border-l border-[var(--subtle)];
+}
+
+strong {
+  @apply font-bold;
+}
+
+.copilotKitMarkdown {
+  @apply text-white/80;
+  li, p {
+    @apply leading-relaxed mb-4;
+  }
+  strong {
+    @apply text-white font-bold underline;
   }
 }

@@ -50,7 +50,7 @@ export const skills: Skill[] = [
     name: 'React',
     desc: 'Learning React to expand my skillset in component-based frameworks and enhance my ability to create efficient, reusable front-end components.',
     desc2:
-      "React is my most recent addition to my skillset. I've been using it for 1 years now. I never remember a time choosing Angular over React. Angular was simply the one i learned first and kept building on to it; making that my go-to. However now that I know both very well I can easily say that they both have pros and cons. There are features from both that i never want to code without. I especially love how portable and loose React components are.",
+      "React is my most recent addition to my skillset. I've been using it for 2 years now. I never remember a time choosing Angular over React. Angular was simply the one i learned first and kept building on to it; making that my go-to. However now that I know both very well I can easily say that they both have pros and cons. There are features from both that i never want to code without. I especially love how portable and loose React components are.",
     icon: '/img/logos/react.webp',
     url: 'https://reactjs.org/',
     pinned: true,

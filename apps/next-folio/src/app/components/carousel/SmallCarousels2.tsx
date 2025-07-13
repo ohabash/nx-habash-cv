@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const SmallCarousels2 = ({containerRef}: Props) => {
-  const skills = [...SKILLS].sort(() => Math.random() - 0.5);
+  const skills = SKILLS;
   const skillsLn = skills.length;
   const firstHalf = skills.slice(0, skillsLn/2);
   const secondHalf = skills.slice(skillsLn/2, skillsLn);
