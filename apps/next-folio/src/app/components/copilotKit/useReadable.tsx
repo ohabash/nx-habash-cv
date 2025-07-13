@@ -6,7 +6,7 @@ import { useCopilotChatSuggestions } from "@copilotkit/react-ui";
 import { useMemo, useCallback } from "react";
 
 
-// Static configuration objects
+// Static configuration objects 1
 const STATIC_CONTEXTS = {
   profileOverview: {
     name: "Omar Habash",
