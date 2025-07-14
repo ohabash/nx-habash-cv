@@ -1,6 +1,6 @@
 'use client';
 import { useCopilotAction, useCopilotAdditionalInstructions } from "@copilotkit/react-core";
-import { SkillsList } from './components/SkillsList';
+import { SkillsList } from '../components/SkillsList';
 
 const sig = `[ useSkillsListAction ] ::: `;
 

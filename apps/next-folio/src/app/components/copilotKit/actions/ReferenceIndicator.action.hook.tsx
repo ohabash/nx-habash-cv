@@ -1,7 +1,7 @@
 'use client';
 import { useCopilotAction, useCopilotAdditionalInstructions } from "@copilotkit/react-core";
 import { allData } from '@/data';
-import { ReferenceIndicator } from './ReferenceIndicator';
+import { ReferenceIndicator } from '../components/ReferenceIndicator';
 
 export const ReferenceIndicatorActions = () => {
   const {

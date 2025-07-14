@@ -1,7 +1,7 @@
-import { useIdontKnowAction } from "./IdontKnow.action.hook";
-import { ReferenceIndicatorActions } from "./ReferenceIndicator.action.hook";
-import { useSkillsListAction } from "./skills-list.action.hook";
-import { useSkillsPosterAction } from "./skills-poster.action.hook";
+import { useIdontKnowAction } from "./actions/IdontKnow.action.hook";
+import { ReferenceIndicatorActions } from "./actions/ReferenceIndicator.action.hook";
+import { useSkillsListAction } from "./actions/skills-list.action.hook";
+import { useSkillsPosterAction } from "./actions/skills-poster.action.hook";
 
 export const useCopilotActions = () => {
 
@@ -13,5 +13,5 @@ export const useCopilotActions = () => {
 
   // nothing to return at the moment
   return {};
-  
+
 }
