@@ -53,7 +53,7 @@ const SkillPreview = ({ skill }: { skill: Skill }) => {
 
   return (
     <div 
-      className="flex items-center gap-3 p-4 bg-darker/80 backdrop-blur-md border border-darkBlue/30 rounded-lg hover:border-blue/40 transition-all duration-200 cursor-pointer group"
+      className="flex items-center gap-3 p-4 bg-darker/80 backdrop-blur-md border border-subtle rounded-lg hover:border-blue/40 transition-all duration-200 cursor-pointer group"
       onClick={handleClick}
     >
       {/* Skill Icon */}
@@ -73,14 +73,14 @@ const SkillPreview = ({ skill }: { skill: Skill }) => {
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1">
           <h4 className="text-white font-semibold text-sm truncate group-hover:text-blue transition-colors duration-200">{skill.name}</h4>
-          {skill.pinned && (
+          {/* {skill.pinned && (
             <div className="flex items-center gap-1 px-2 py-0.5 bg-yellow/20 border border-yellow/30 rounded-full">
               <MdStars className="text-yellow text-xs" />
               <span className="text-yellow text-xs font-medium">Featured</span>
             </div>
-          )}
+          )} */}
         </div>
-        <p className="text-white/60 text-xs line-clamp-2 group-hover:text-white/80 transition-colors duration-200">{skill.desc}</p>
+        <p className="text-white/60 text-xs line-clamp-2 leading-5 group-hover:text-white/80 transition-colors duration-200">{skill.desc}</p>
       </div>
 
       {/* Click indicator */}
@@ -133,12 +133,12 @@ const SkillShowcaseComponent = ({ skillName, isMultipleContext, defaultDetailsMo
 
   // Handle multiple skills context
   if (isMultipleContext) {
-    const pinnedSkills = allData.skills.filter(s => s.pinned).slice(0, 3);
+    const pinnedSkills = allData.skills.filter(s => s.pinned).slice(0, 6);
     const displaySkills = pinnedSkills.length > 0 ? pinnedSkills : allData.skills.slice(0, 3);
     
     return (
       <div className="flex flex-col gap-3 max-w-lg mx-auto">
-        <div className="text-center mb-2">
+        <div className="text-center mb-2 mt-6">
           <h3 className="text-white font-bold text-lg">Omar's Technical Skills</h3>
           <p className="text-white/60 text-sm">Featured technologies and expertise</p>
         </div>
@@ -239,7 +239,7 @@ const SkillShowcaseComponent = ({ skillName, isMultipleContext, defaultDetailsMo
                   e.currentTarget.style.display = 'none';
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-darker/90 via-darker/0 to-darker/0" />
+              <div className="absolute inset-0 bg-gradient-to-r from-darker/60 via-darker/0 to-darker/60" />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-darker" />
             </>
           )}
@@ -353,6 +353,8 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       
       ALWAYS CHECK SKILLS FIRST: Before using any other action (especially 'dataNotFound'), ALWAYS check if the user is asking about technical skills that exist in Omar's skills data.
       
+      🚨 CRITICAL: When using the 'showcaseSkill' action, DO NOT generate any additional text response. The action renders a complete UI component that answers the user's question. Simply execute the action and let the rendered component be the full response.
+      
       🔍 AUTOMATIC CONTEXT DETECTION - CRITICAL:
       Analyze the user's question to determine if they're asking about:
       
@@ -424,8 +426,8 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       
       if (isMultipleSkillsContext) {
         console.log(sig, `📋 Multiple skills context detected: ${skillName}`);
-        // Return empty string to prevent additional text response - only render component
-        return "";
+        // Return undefined to prevent additional text response - only render component
+        return undefined;
       }
       
       // Single skill context - find the specific skill
@@ -439,8 +441,12 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       }
       
       console.log(sig, `✅ Found single skill: ${skill.name}`);
-      // Return empty string to prevent additional text response - only render component
-      return "";
+      // Return undefined to prevent additional text response - only render component
+      // Alternative approaches if undefined doesn't work:
+      // return null;
+      // return void 0;
+      // Don't return anything (implicit undefined)
+      return undefined;
     },
     render: ({ args }) => {
       if (!args?.skillName) {

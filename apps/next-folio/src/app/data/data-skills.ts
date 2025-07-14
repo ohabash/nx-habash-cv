@@ -63,7 +63,7 @@ export const skills: Skill[] = [
     desc2:
       "Tailwind is my go-to CSS framework for building responsive and consistent user interfaces. It's a powerful tool that allows me to create beautiful designs quickly and efficiently. I've been using it for 2 years now and it has become an essential part of my workflow.",
     icon: '/img/logos/tailwind.png',
-    url: 'https://tailwind.com/',
+    url: 'https://tailwindcss.com',
     pinned: true,
     iconClass: 'w-[60%]',
   },

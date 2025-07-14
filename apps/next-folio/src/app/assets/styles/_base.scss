@@ -302,7 +302,7 @@ strong {
 }
 
 .copilotKitMarkdown {
-  @apply text-white/80;
+  @apply text-white/80 leading-5;
   li, p {
     @apply leading-relaxed mb-4;
   }
@@ -326,6 +326,20 @@ strong {
     min-height: 75px;
     margin: 0 auto;
     width: 90%;
-    @extend .blurrr;
     @apply border-4 border-darker;
+    -webkit-backdrop-filter: blur(4px) !important;
+    backdrop-filter: blur(4px) !important;
+    transition: backdrop-filter 0.2s !important;
+    background-color: rgba(#1f2937, 0.85) !important;
 }
+
+// .copilotKitWindow {
+//   display: block !important;
+//   position: relative !important;
+//   overflow: scroll !important;
+//   height: 100vh !important;
+// }
+
+// .copilotKitSidebar {
+//   bottom: 0 !important;
+// }
