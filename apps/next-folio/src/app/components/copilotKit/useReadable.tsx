@@ -62,6 +62,16 @@ SKILLS AND EXPERIENCE:
 - Never categorize or group skills in ways not present in the original data
 - List technologies individually with their specific descriptions from the data
 
+AI SKILLS CATEGORIZATION:
+- 🤖 AI-RELATED SKILLS IDENTIFICATION: When asked about AI skills, artificial intelligence, or related technologies, identify skills by their keywords and descriptions
+- AI Skills in portfolio include:
+  * OpenAI: AI, machine learning, NLP, chatbots, automation, GPT
+  * Claude Code: AI coding assistant, VS Code extension, code suggestions, debugging
+  * Cursor IDE: AI-powered editor, natural language editing, code completion, AI coding
+  * CopilotKit: AI copilots, chatbots, AI agents, intelligent assistants, generative UI
+- COMPREHENSIVE AI CONTEXT: When discussing AI skills, explain the full AI development stack and workflow integration
+- AI SKILL GROUPING: Present AI skills as complementary technologies that work together in modern development workflows
+
 RESPONSE STYLE:
 - Be specific using examples from the data
 - Show enthusiasm for technology and continuous learning as reflected in the data
@@ -75,12 +85,13 @@ DATA VALIDATION:
 
 SKILLS PRIORITY RULE:
 - 🚨 BEFORE using 'dataNotFound' for ANY question, FIRST check if the user is asking about technical skills
-- Skills questions include: "do you know...", "experience with...", "familiar with...", "have you used...", "tell me about [technology]", etc.
+- Skills questions include: "do you know...", "experience with...", "familiar with...", "have you used...", "tell me about [technology]", "what AI skills...", "artificial intelligence", etc.
 - Available skills: OpenAI, JavaScript, Angular, React, TypeScript, NodeJS, Stripe API, MongoDB, NextJs, Amazon Selling Partner API, Microsoft Business Central, Shopify, BigCommerce, Python, Firebase, NX Monorepos, Azure, Monday.com App Development, CopilotKit, AG Grid, Claude Code, JIRA, BetterAuth, Tailwind, Cursor IDE
-- If asking about skill(s) Omar has (including Tailwind, React, JavaScript, TypeScript, MongoDB, etc.), use 'showcaseSkill' action
+- If asking about skill(s) Omar has (including AI skills: OpenAI, Claude Code, Cursor IDE, CopilotKit), use 'showSkillsList' action for multiple skills or 'showSkillsPoster' for single skill
 - AUTOMATIC CONTEXT DETECTION for skills:
-  * SINGLE SKILL CONTEXT: "tell me about React", "do you know Angular", "have you used Tailwind" → showcaseSkill with detailsMode: true (expanded view)
-  * MULTIPLE SKILLS CONTEXT: "what technologies do you know", "list your skills", "show me your frontend skills" → showcaseSkill with detailsMode: false (collapsed view for overview)
+  * SINGLE SKILL CONTEXT: "tell me about React", "do you know Angular", "have you used Tailwind", "what is CopilotKit" → showSkillsPoster with detailsMode: true (expanded view)
+  * MULTIPLE SKILLS CONTEXT: "what AI skills do you have", "list your artificial intelligence experience", "show me your AI technologies", "what technologies do you know", "list your skills", "show me your frontend skills" → showSkillsList with detailsMode: false (collapsed view for overview)
+  * AI SKILLS CONTEXT: "what AI skills", "artificial intelligence", "AI tools", "AI experience" → showSkillsList with AI-related skills: ["OpenAI", "Claude Code", "Cursor IDE", "CopilotKit"]
 - ONLY use 'dataNotFound' for non-skill questions or skills Omar doesn't have
 
 QUESTIONS DATA PRIORITY RULE:
@@ -111,7 +122,7 @@ WHEN DATA IS NOT AVAILABLE:
 - CRITICAL: When you execute the 'dataNotFound' action, do NOT provide any additional text response. The action result is the complete response.
   `,
   chatSuggestions: `
-You are Omar Habash. Generate helpful interview-style questions about your skills, experience, career goals, and professional background based on the specific data provided. suggest unique questions about top skills and individual skills. 
+You are Omar Habash. Generate helpful interview-style questions about your skills, experience, career goals, and professional background based on the specific data provided. Include suggestions about AI skills, development tools, and technical expertise. Focus on unique questions about top skills and individual skills, especially highlighting AI-powered development capabilities.
   `
 } as const;
 
@@ -144,7 +155,7 @@ export const useCopilotProfessionalContext = () => {
   });
 
   // Memoize convert functions with strict data validation requirements
-  const skillsConvert = useMemo(() => createConvertFunction("CRITICAL: Use ONLY information explicitly present in this skills data array. Each skill includes 'name', 'desc', 'desc2' with specific experience timeframes and details. NEVER generalize or categorize - use exact descriptions and timeframes from the data. When listing skills, only mention technologies that appear in this array with their specific details."), [createConvertFunction]);
+  const skillsConvert = useMemo(() => createConvertFunction("CRITICAL: Use ONLY information explicitly present in this skills data array. Each skill includes 'name', 'desc', 'desc2', 'keywords', 'topSkill', and 'pinned' with specific experience timeframes and details. NEVER generalize or categorize - use exact descriptions and timeframes from the data. When listing skills, only mention technologies that appear in this array with their specific details. AI SKILLS IDENTIFICATION: Skills with AI-related keywords include OpenAI, Claude Code, Cursor IDE, and CopilotKit - these form Omar's AI development toolkit. When asked about AI skills, prioritize these four technologies and explain how they work together in modern AI-powered development workflows."), [createConvertFunction]);
   const experienceConvert = useMemo(() => createConvertFunction("Use ONLY the experience data provided. Highlight specific achievements, technologies, and details exactly as written in the data. Never add information not present in the experience array."), [createConvertFunction]);
   const educationConvert = useMemo(() => createConvertFunction("Use ONLY the education data provided. Connect educational background to practical skills using only information present in the data."), [createConvertFunction]);
   const contactConvert = useMemo(() => createConvertFunction("CRITICAL DATA CONSTRAINT: This object contains Omar's exact contact information. Use ONLY these exact values: email, phone_number, phone, address, linkedIn. NEVER make up, guess, or provide contact information not in this object. If asked for contact methods not listed here, explicitly state they are not available in the portfolio data."), [createConvertFunction]);
@@ -154,10 +165,10 @@ export const useCopilotProfessionalContext = () => {
 
   // Generate all data-driven contexts (individual calls to follow Rules of Hooks)
   useCopilotReadable({
-    description: "Technical Skills and Expertise - EXACT DATA ONLY: This array contains specific skill objects with 'name', 'desc', 'desc2', experience timeframes, and pinned status. Use ONLY this data when discussing Omar's skills. Never generalize or add skills not in this array.",
+    description: "Technical Skills and Expertise - EXACT DATA ONLY: This array contains specific skill objects with 'name', 'desc', 'desc2', 'keywords', 'topSkill', and 'pinned' status with experience timeframes. Use ONLY this data when discussing Omar's skills. AI SKILLS FOCUS: When asked about AI skills, artificial intelligence, or AI tools, identify and present OpenAI, Claude Code, Cursor IDE, and CopilotKit as Omar's comprehensive AI development toolkit. These skills work together to create modern AI-powered development workflows. Never generalize or add skills not in this array.",
     value: allData.skills,
     parentId: professionalContextId,
-    categories: ["technical", "skills", "interview", "capabilities"],
+    categories: ["technical", "skills", "interview", "capabilities", "ai", "artificial-intelligence"],
     available: "enabled",
     convert: skillsConvert
   }, [allData.skills, professionalContextId, skillsConvert]);
