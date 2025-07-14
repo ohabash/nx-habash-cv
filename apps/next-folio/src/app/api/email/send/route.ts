@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
     // Default from address - use environment variable or default
     const defaultFrom = process.env.DEFAULT_FROM_EMAIL || process.env.ADMIN_EMAIL;
     console.log(sig,`defaultFrom:`, defaultFrom)
-    console.log(sig,`process.env.DEFAULT_FROM_EMAIL:`, process.env)
+    // console.log(sig,`process.env.DEFAULT_FROM_EMAIL:`, process.env)
     if (!defaultFrom && !from) {
       return Response.json({ error: "From address not configured" }, { status: 500 });
     }

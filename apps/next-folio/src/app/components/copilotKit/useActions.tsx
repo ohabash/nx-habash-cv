@@ -2,6 +2,8 @@ import { useIdontKnowAction } from "./actions/IdontKnow.action.hook";
 import { ReferenceIndicatorActions } from "./actions/ReferenceIndicator.action.hook";
 import { useSkillsListAction } from "./actions/skills-list.action.hook";
 import { useSkillsPosterAction } from "./actions/skills-poster.action.hook";
+import { useBusinessCardAction } from "./actions/business-card.action.hook";
+import { useContactFormAction } from "./actions/contact-form.action.hook";
 
 export const useCopilotActions = () => {
 
@@ -9,7 +11,9 @@ export const useCopilotActions = () => {
   ReferenceIndicatorActions();
   useIdontKnowAction();
   useSkillsPosterAction({ detailsMode: false }); // Context-aware: auto-detects single vs multiple skills
-  useSkillsListAction()
+  useSkillsListAction();
+  useBusinessCardAction(); // Business card for contact information
+  useContactFormAction(); // Detailed contact form for inquiries
 
   // nothing to return at the moment
   return {};

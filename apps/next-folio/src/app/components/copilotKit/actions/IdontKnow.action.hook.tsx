@@ -1,9 +1,8 @@
 'use client';
 import { useCopilotAction, useCopilotAdditionalInstructions } from "@copilotkit/react-core";
 import { allData } from '@/data';
-import { MdEmail, MdInfoOutline } from 'react-icons/md';
-import { sendContactNotification } from '@/services/email.service';
-import { useState } from 'react';
+import { MdInfoOutline } from 'react-icons/md';
+import { SendMessage } from '../components/SendMessage';
 
 const sig = `[ useIdontKnowAction ] ::: `;
 export const useIdontKnowAction = () => {
@@ -75,35 +74,6 @@ export const useIdontKnowAction = () => {
       return `The requested information "${requestedInfo}" is not available in my current portfolio data. I've provided an option to contact Omar directly for this information.`;
     },
     render: ({ args }) => {
-      const [isLoading, setIsLoading] = useState(false);
-      const [emailSent, setEmailSent] = useState(false);
-      const [error, setError] = useState<string | null>(null);
-
-      const handleEmailOmar = async () => {
-        console.log(sig, '📧 Email Omar button clicked');
-        console.log(sig, `User wanted info about: ${args.requestedInfo}`);
-        
-        setIsLoading(true);
-        setError(null);
-        
-        try {
-          const response = await sendContactNotification(args.requestedInfo || 'Unknown request');
-          
-          if (response.success) {
-            console.log(sig, '✅ Email sent successfully');
-            setEmailSent(true);
-          } else {
-            console.error(sig, '❌ Email sending failed:', response.error);
-            setError(response.error || 'Failed to send email');
-          }
-        } catch (err) {
-          console.error(sig, '❌ Error sending email:', err);
-          setError(err instanceof Error ? err.message : 'Failed to send email');
-        } finally {
-          setIsLoading(false);
-        }
-      };
-
       return (
         <div className="flex flex-col gap-4 p-4 bg-darker backdrop-blur-md border-[2px] border-darkBlue/30 rounded-xl relative overflow-hidden">
           {/* Header with icon */}
@@ -124,60 +94,18 @@ export const useIdontKnowAction = () => {
             </p>
           </div>
 
-          {/* Error message */}
-          {error && (
-            <div className="bg-red/10 border border-red/20 rounded-lg p-3">
-              <p className="text-red/90 text-sm">
-                <span className="font-medium">Error:</span> {error}
-              </p>
-            </div>
-          )}
-
-          {/* Success message */}
-          {emailSent && (
-            <div className="bg-green/10 border border-green/20 rounded-lg p-3">
-              <p className="text-green/90 text-sm">
-                <span className="font-medium">✅ Email sent!</span> Omar will be notified about your request.
-              </p>
-            </div>
-          )}
-
-          {/* Email button */}
-          <button
-            onClick={handleEmailOmar}
-            disabled={isLoading || emailSent}
-            className={`w-full font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 group ${
-              emailSent
-                ? 'bg-green/20 text-green cursor-not-allowed'
-                : isLoading
-                ? 'bg-blue/50 text-white cursor-not-allowed'
-                : 'bg-blue hover:bg-blue/90 text-white'
-            }`}
-          >
-            {isLoading ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                Sending...
-              </>
-            ) : emailSent ? (
-              <>
-                <span>✅</span>
-                Email Sent
-              </>
-            ) : (
-              <>
-                <MdEmail className="text-lg group-hover:scale-110 transition-transform duration-200" />
-                Contact Omar Directly
-              </>
-            )}
-          </button>
+          {/* Send Message Component */}
+          <SendMessage
+            requestInfo={args.requestedInfo || 'Unknown request'}
+            buttonText="Contact Omar Directly"
+            successMessage="Omar has been notified and will respond soon"
+            iconType="email"
+            className="mt-2"
+          />
 
           {/* Footer note */}
           <p className="text-white/40 text-xs text-center">
-            {emailSent
-              ? 'Omar has been notified and will respond soon'
-              : 'For questions beyond my portfolio scope, reach out personally'
-            }
+            For questions beyond my portfolio scope, reach out personally
           </p>
 
           {/* Subtle gradient overlay */}
