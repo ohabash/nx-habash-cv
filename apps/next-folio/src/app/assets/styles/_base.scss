@@ -310,3 +310,22 @@ strong {
     @apply text-white font-bold underline;
   }
 }
+
+.copilotKitMessages footer .suggestions button {
+  @extend .blurrr;
+  @apply px-2 py-1 rounded-md border border-subtle hover:bg-white/10 text-xs;
+}
+
+.copilotKitInput {
+    cursor: text;
+    position: relative;
+    background-color: initial;
+    border-radius: 0.375rem !important;
+    border: initial;
+    padding: 12px 14px;
+    min-height: 75px;
+    margin: 0 auto;
+    width: 90%;
+    @extend .blurrr;
+    @apply border-4 border-darker;
+}

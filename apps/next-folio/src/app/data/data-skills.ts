@@ -57,6 +57,17 @@ export const skills: Skill[] = [
     iconClass: 'w-[60%]',
   },
   {
+    poster: '/img/posters/tailwind.webp',
+    name: 'Tailwind',
+    desc: 'Tailwind is a utility-first CSS framework for rapidly building custom designs. It provides a comprehensive set of pre-built classes that can be combined to create complex UI components with minimal custom CSS.',
+    desc2:
+      "Tailwind is my go-to CSS framework for building responsive and consistent user interfaces. It's a powerful tool that allows me to create beautiful designs quickly and efficiently. I've been using it for 2 years now and it has become an essential part of my workflow.",
+    icon: '/img/logos/tailwind.png',
+    url: 'https://tailwind.com/',
+    pinned: true,
+    iconClass: 'w-[60%]',
+  },
+  {
     poster: '/img/posters/ts.png',
     name: 'TypeScript',
     desc: 'Extensive experience using TypeScript for writing maintainable and scalable codebases, enabling type safety and reducing runtime errors in complex projects.',

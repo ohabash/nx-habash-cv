@@ -1,0 +1,438 @@
+# Styling and Design Guidelines
+
+## Dark Mode Theme Architecture
+
+This Next.js application uses a sophisticated dark mode theme system built around a centralized `Theme` class and CSS custom properties. The theme provides consistent colors, spacing, and effects throughout the application.
+
+## Theme System Overview
+
+### Core Architecture
+
+The theme system consists of several key components:
+
+1. **`theme/colors.json`** - Base color palette
+2. **`theme/theme-vars.ts`** - Theme class with extended variables
+3. **`ThemeWrapper`** component - Binds theme to DOM
+4. **CSS Custom Properties** - Runtime theme variables
+5. **Tailwind Integration** - Utility classes + custom properties
+
+### Theme Class Structure
+
+```typescript
+// theme/theme-vars.ts
+export class Theme {
+  colors = colors.colors;  // From colors.json
+  vars = {
+    // Opacity variations
+    'darken-1': 'rgba(0,0,0,0.1)',
+    'lighten-25': 'rgba(255,255,255,0.035)',
+    // Theme accents
+    accent1: this.colors.red,    // #DB3153
+    accent2: this.colors.yellow, // #f1ad5e  
+    accent3: this.colors.blue,   // #4493f8
+  };
+  backgrounds = { /* ... */ };
+  fontSizes = { /* ... */ };
+}
+```
+
+## Color Palette
+
+### Primary Colors
+```json
+{
+  "darkest": "#0d0f14",   // Deepest background
+  "darker": "#0d111d",    // Primary background  
+  "dark": "#1f2937",      // Secondary background
+  "subtle": "#172433",    // Borders, dividers
+  "darkBlue": "#14274c",  // Accent background
+  "blue": "#4493f8",      // Primary accent
+  "red": "#DB3153",       // Error, accent1
+  "yellow": "#f1ad5e",    // Warning, accent2
+  "green": "#0e926f"      // Success
+}
+```
+
+### Usage Guidelines
+- **`darkest`**: Main app background, deepest containers
+- **`darker`**: Primary content backgrounds, cards
+- **`dark`**: Secondary backgrounds, input fields
+- **`subtle`**: Borders, dividers, disabled states
+- **`blue`**: Primary actions, links, focus states
+- **`red`**: Errors, destructive actions, accent highlights
+- **`yellow`**: Warnings, secondary accents
+
+## CSS Custom Properties
+
+### How Theme Variables Work
+
+The `ThemeWrapper` component binds theme variables to the document body as CSS custom properties:
+
+```typescript
+// Automatically creates CSS variables like:
+// --accent1: #DB3153
+// --accent2: #f1ad5e  
+// --darker: #0d111d
+// --subtle: #172433
+// --lighten-25: rgba(255,255,255,0.035)
+```
+
+### Usage Patterns
+
+#### 1. Direct CSS Custom Properties
+```scss
+.element {
+  background: var(--darker);
+  border: 1px solid var(--subtle);
+  color: var(--lighten-8);
+  box-shadow: 1px 0px 67px -29px var(--glow-blue);
+}
+```
+
+#### 2. SCSS with @apply + Custom Properties
+```scss
+.container {
+  @apply text-white rounded-xl;
+  background: var(--darker);
+  border: 2px solid var(--darkBlue);
+}
+```
+
+#### 3. Tailwind + CSS Variables
+```html
+<div className="bg-[var(--darker)] border-[var(--subtle)]">
+  <!-- Content -->
+</div>
+```
+
+#### 4. Pure Tailwind (Preferred)
+```html
+<div className="bg-darker border-subtle text-white">
+  <!-- Content -->
+</div>
+```
+
+## Best Practices
+
+### 1. Color Usage Priority
+
+**Preferred:** Use Tailwind utility classes when available
+```html
+<div className="bg-darker text-white border-darkBlue/30">
+```
+
+**Acceptable:** CSS custom properties for complex styles
+```scss
+.custom-element {
+  background: linear-gradient(to bottom, var(--darker), var(--darkest));
+  box-shadow: 0 4px 116px 95px var(--dark);
+}
+```
+
+**Avoid:** Hard-coded hex values
+```html
+<!-- ❌ Don't do this -->
+<div style="background: #0d111d">
+
+<!-- ✅ Do this instead -->
+<div className="bg-darker">
+```
+
+### 2. Opacity and Transparency
+
+Use the built-in transparency system:
+
+```html
+<!-- Tailwind opacity utilities -->
+<div className="bg-blue/20 border-darkBlue/30 text-white/80">
+
+<!-- Or use CSS custom properties -->
+<div style="background: var(--lighten-25)">
+```
+
+### 3. Component Styling Patterns
+
+#### Card/Container Pattern
+```html
+<div className="bg-darker backdrop-blur-md border-[2px] border-darkBlue/30 rounded-xl relative overflow-hidden">
+  <!-- Content -->
+</div>
+```
+
+#### Button Pattern
+```html
+<button className="bg-blue hover:bg-blue/90 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200">
+  <!-- Content -->
+</button>
+```
+
+#### Input Pattern
+```html
+<input className="w-full px-3 py-7 mb-4 bg-dark/70 rounded-md outline-none text-white placeholder-gray-500 border-0">
+```
+
+### 4. Effects and Shadows
+
+#### Backdrop Blur
+```html
+<div className="backdrop-blur-md bg-darker/80">
+```
+
+#### Box Shadows
+```scss
+.time-glow {
+  box-shadow: 1px 0px 67px -29px var(--glow-blue);
+}
+
+.dark-shadow {
+  box-shadow: 0 4px 116px 95px var(--dark), 0 1px 3px var(--dark);
+}
+```
+
+#### Gradient Backgrounds
+```scss
+.grad-darkBlue {
+  background-image: radial-gradient(ellipse at right, var(--tw-gradient-stops));
+  --tw-gradient-from: #0b1e44;
+  --tw-gradient-via: var(--darker);
+  --tw-gradient-to: var(--darkest);
+}
+```
+
+## Typography
+
+### Font Hierarchy
+```scss
+h1 { @apply text-5xl font-bold; }
+h2 { @apply text-3xl; }
+h3 { @apply text-[2.75rem]; }
+h4 { @apply text-[1.2rem] font-bold; }
+
+p, a, li {
+  @apply font-light leading-[1.7rem];
+  
+  &.f {
+    @apply text-xs md:text-xl font-normal text-center text-neutral-400 mt-4;
+  }
+}
+```
+
+### Font Colors
+```html
+<!-- Primary text -->
+<p className="text-white">
+
+<!-- Secondary text -->
+<p className="text-white/80">
+
+<!-- Muted text -->
+<p className="text-white/60">
+
+<!-- Subtle text -->
+<p className="text-white/40">
+
+<!-- Accent text -->
+<p className="text-blue">
+<p className="text-accent2"> <!-- yellow -->
+```
+
+## Animation and Transitions
+
+### Standard Transitions
+```html
+<div className="transition-all duration-200">
+<button className="transition-colors duration-300">
+```
+
+### Loading States
+```scss
+.text-loading {
+  background: linear-gradient(to right, hsl(0, 0%, 30%) 0, hsl(0, 0%, 100%) 10%, hsl(0, 0%, 30%) 20%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+}
+```
+
+### Hover Effects
+```html
+<button className="group hover:bg-blue/90">
+  <span className="group-hover:scale-110 transition-transform">
+</button>
+```
+
+## When to Modify theme-vars.ts
+
+### ✅ Add New Variables For:
+- New color variations (darken-10, lighten-10)
+- Brand-specific colors
+- Component-specific variables
+- Animation durations
+
+### ✅ Modify Existing For:
+- Color palette updates
+- Opacity adjustments
+- Font size changes
+
+### ❌ Avoid Modifying For:
+- Component-specific styles (use CSS/SCSS instead)
+- One-off customizations
+- Complex calculations (use CSS calc() instead)
+
+## Examples in Practice
+
+### CopilotKit Integration
+```typescript
+// Using theme in component props
+<div style={{
+  "--copilot-kit-primary-color": theme.colors.blue,
+  "--copilot-kit-background-color": theme.colors.darker,
+  "--copilot-kit-separator-color": theme.vars['lighten-25'],
+}}>
+```
+
+### Complex Components
+```html
+<!-- Email Omar Button Component -->
+<div className="flex flex-col gap-4 p-4 bg-darker backdrop-blur-md border-[2px] border-darkBlue/30 rounded-xl relative overflow-hidden">
+  <div className="w-8 h-8 bg-blue/20 rounded-full flex items-center justify-center">
+    <MdInfoOutline className="text-blue text-lg" />
+  </div>
+  <button className="w-full bg-blue hover:bg-blue/90 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 group">
+    <MdEmail className="text-lg group-hover:scale-110 transition-transform duration-200" />
+    Contact Omar Directly
+  </button>
+</div>
+```
+
+## Development Workflow
+
+1. **Start with Tailwind utilities** for common patterns
+2. **Use CSS custom properties** for complex styles or animations
+3. **Extend theme-vars.ts** only for reusable design tokens
+4. **Test in both light/dark** modes (if implementing theme switching)
+5. **Maintain consistency** with existing component patterns
+
+This system ensures consistent theming, maintainable code, and a cohesive user experience across the entire application.
+
+## CopilotKit Action UI Patterns
+
+### Action Component Design Standards
+
+When creating CopilotKit actions with UI components, follow this established pattern for consistency:
+
+```tsx
+// Main container - backdrop blur with dark theme
+<div className="flex flex-col gap-4 p-6 bg-darker backdrop-blur-md border-[2px] border-darkBlue/30 rounded-xl relative overflow-hidden max-w-lg mx-auto">
+  
+  {/* Dynamic gradient background with geometric shapes */}
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-blue/15 via-darkBlue/10 to-transparent" />
+    <div className="absolute top-0 right-0 w-32 h-32 bg-blue/5 rounded-full blur-xl transform translate-x-16 -translate-y-16" />
+    <div className="absolute bottom-0 left-0 w-24 h-24 bg-yellow/5 rounded-full blur-lg transform -translate-x-12 translate-y-12" />
+  </div>
+
+  {/* Header with icon and title - always relative z-10 */}
+  <div className="relative z-10 flex items-start gap-4">
+    <div className="w-16 h-16 bg-blue/20 rounded-xl flex items-center justify-center border border-blue/30">
+      {/* Icon or image content */}
+    </div>
+    <div className="flex-1 min-w-0">
+      <h3 className="text-white font-bold text-xl">{title}</h3>
+      <p className="text-white/60 text-sm font-medium">{subtitle}</p>
+    </div>
+  </div>
+
+  {/* Content sections with nested containers */}
+  <div className="relative z-10 space-y-4">
+    <div className="bg-dark/50 border border-subtle/30 rounded-lg p-4">
+      {/* Primary content */}
+    </div>
+    {/* Additional sections as needed */}
+  </div>
+
+  {/* Standard action button */}
+  <button className="w-full bg-blue hover:bg-blue/90 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 group">
+    <Icon className="text-lg group-hover:scale-110 transition-transform duration-200" />
+    Action Text
+  </button>
+
+  {/* Depth-creating gradient overlays */}
+  <div className="absolute inset-0 bg-gradient-to-br from-blue/5 via-transparent to-darkBlue/10 pointer-events-none rounded-xl" />
+  <div className="absolute -inset-1 bg-gradient-to-r from-blue/20 via-transparent to-blue/20 rounded-xl blur opacity-30 pointer-events-none" />
+</div>
+```
+
+### Key Design Principles
+
+1. **Layered Architecture**: Use absolute positioned backgrounds with relative z-10 content
+2. **Consistent Containers**: All actions use the same base container pattern
+3. **Icon Standards**: 16x16 rounded containers with blue accent backgrounds
+4. **Typography Hierarchy**: Bold white titles, muted subtitles, readable content
+5. **Interactive Elements**: Hover effects with scale and opacity transitions
+6. **Visual Depth**: Multiple gradient overlays for dimensionality
+7. **Responsive Design**: Use max-width constraints and flexible layouts
+
+### Background Design Strategy
+
+**Avoid External Images**: Don't rely on poster images or external assets for backgrounds as they may fail to load and add unnecessary complexity.
+
+**Use Geometric Gradients**: Create visual interest with:
+- **Primary gradient**: Diagonal gradient using theme colors with low opacity
+- **Geometric shapes**: Blurred circles positioned outside the container edges
+- **Dynamic colors**: Adjust background colors based on content characteristics
+
+**Example Dynamic Background Logic**:
+```tsx
+const getSkillClasses = () => {
+  if (skill.pinned) return { gradient: 'from-yellow/15', primaryOrb: 'bg-yellow/5' };
+  if (skill.name.includes('react')) return { gradient: 'from-blue/15', primaryOrb: 'bg-blue/5' };
+  return { gradient: 'from-blue/15', primaryOrb: 'bg-blue/5' }; // default
+};
+```
+
+This approach ensures:
+- **Reliability**: No external dependencies
+- **Performance**: Pure CSS, no image loading
+- **Consistency**: Always matches the theme
+- **Adaptability**: Colors change based on content context
+
+### Special Cases: Pinned Content Headers
+
+For featured/pinned content, you can optionally include poster images in a dedicated header section:
+
+```tsx
+{/* Pinned Header with Poster (only for featured content) */}
+{content.pinned && (
+  <div className="relative z-10 -mx-6 -mt-6 mb-2 h-24 overflow-hidden rounded-t-xl bg-gradient-to-r from-yellow/10 via-darkBlue/5 to-yellow/10">
+    {content.poster && (
+      <>
+        <img 
+          src={content.poster} 
+          alt={`${content.name} poster`}
+          className="w-full h-full object-cover opacity-30"
+          onError={(e) => e.currentTarget.style.display = 'none'}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-darker/80 via-darker/40 to-darker/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-darker" />
+      </>
+    )}
+    {/* Featured badge overlay */}
+    <div className="absolute top-3 right-3 flex items-center gap-1 px-3 py-1 bg-yellow/90 backdrop-blur-sm border border-yellow/30 rounded-full">
+      <MdStars className="text-darkest text-sm" />
+      <span className="text-darkest text-sm font-bold">Featured</span>
+    </div>
+  </div>
+)}
+```
+
+**Key Features**:
+- **Conditional rendering**: Only for pinned/featured content
+- **Graceful degradation**: Falls back to gradient background if image fails
+- **Negative margins**: `-mx-6 -mt-6` to extend header to container edges
+- **Error handling**: Hides image on error, keeps header structure
+- **Visual hierarchy**: Featured badge always visible regardless of image status
+description:
+globs:
+alwaysApply: false
+---
