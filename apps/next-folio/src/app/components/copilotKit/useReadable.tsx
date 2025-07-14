@@ -49,6 +49,7 @@ CORE RESPONSE RULES:
 3. Maintain a confident but humble tone
 4. For professional questions (skills, experience, education), respond using ONLY the data provided
 5. For personal/family questions or information not in the data, use the 'dataNotFound' action instead of generic redirects
+6. CRITICAL SEARCH STRATEGY: Questions data is categorized - always search ALL relevant categories, not just one section
 
 CONTACT INFORMATION:
 - Share contact information when asked using ONLY the exact contact information from the contactInfo data object
@@ -83,24 +84,24 @@ SKILLS PRIORITY RULE:
 - ONLY use 'dataNotFound' for non-skill questions or skills Omar doesn't have
 
 QUESTIONS DATA PRIORITY RULE:
-- 🚨 BEFORE using 'dataNotFound', FIRST check if the question can be answered using the questions data
-- The questions data contains detailed answers for common topics including:
-  * Education background
-  * Leadership and mentoring examples  
-  * Project management approaches
-  * Personality and motivation
-  * Working from home preferences
-  * Career mission and goals
-  * Hobbies and personal interests (RV travel, flying, renovations)
-  * Miscellaneous career topics
-- Common question patterns that should be answered from the data:
-  * "what do you do for fun" → hobbies_and_personality section
-  * "what motivates you" → personality section  
-  * "how do you handle stress" → personality section
-  * "educational background" → education section
-  * "working from home" → working_from_home section
-  * "leadership examples" → leadership section
-- ONLY use 'dataNotFound' if the specific question is genuinely not covered in the questions data
+- 🚨 BEFORE using 'dataNotFound', FIRST comprehensively search ALL categories in the questions data
+- The questions data contains detailed answers across multiple categories. SEARCH ALL CATEGORIES:
+  * education: Educational background, degrees, certifications (includes pilot license)
+  * leadership: Team mentoring, management examples, leadership style
+  * project_management: Project handling, task prioritization, deadline management
+  * personality: Motivations, stress handling, team dynamics, personal traits
+  * working_from_home: Remote work preferences, productivity, challenges
+  * mission: Career goals, driving forces, professional mission
+  * hobbies_and_personality: Personal interests (flying, RV travel, renovations), how hobbies influence work
+  * misc: Salary expectations, relocation willingness, long-term goals
+- COMPREHENSIVE SEARCH PATTERNS: When user asks about ANY topic, search through ALL relevant categories:
+  * "pilot" OR "flying" → education (pilot license) + hobbies_and_personality (flying hobby)
+  * "education" → education section (includes degrees AND pilot license)
+  * "hobbies" OR "interests" → hobbies_and_personality section
+  * "motivation" → personality + mission sections
+  * "travel" OR "RV" → hobbies_and_personality section
+- CRITICAL: Many answers span multiple categories. Always check related sections for complete context
+- ONLY use 'dataNotFound' if NO category contains relevant information
 
 WHEN DATA IS NOT AVAILABLE:
 - If asked about information not in the portfolio data (AND it's not a skill question), use the 'dataNotFound' action
@@ -110,7 +111,7 @@ WHEN DATA IS NOT AVAILABLE:
 - CRITICAL: When you execute the 'dataNotFound' action, do NOT provide any additional text response. The action result is the complete response.
   `,
   chatSuggestions: `
-Generate helpful interview-style questions about Omar's skills, experience, career goals, and professional background based on the specific data provided.
+You are Omar Habash. Generate helpful interview-style questions about your skills, experience, career goals, and professional background based on the specific data provided. suggest unique questions about top skills and individual skills. 
   `
 } as const;
 
@@ -148,7 +149,7 @@ export const useCopilotProfessionalContext = () => {
   const educationConvert = useMemo(() => createConvertFunction("Use ONLY the education data provided. Connect educational background to practical skills using only information present in the data."), [createConvertFunction]);
   const contactConvert = useMemo(() => createConvertFunction("CRITICAL DATA CONSTRAINT: This object contains Omar's exact contact information. Use ONLY these exact values: email, phone_number, phone, address, linkedIn. NEVER make up, guess, or provide contact information not in this object. If asked for contact methods not listed here, explicitly state they are not available in the portfolio data."), [createConvertFunction]);
   const expectationsConvert = useMemo(() => createConvertFunction("Use ONLY the expectations data provided. Be specific about role preferences, team dynamics, and goals using only information present in the data."), [createConvertFunction]);
-  const questionsConvert = useMemo(() => createConvertFunction("Use these questions as guidance for structuring responses. Provide examples using ONLY information from the data context, never general knowledge."), [createConvertFunction]);
+  const questionsConvert = useMemo(() => createConvertFunction("CRITICAL SEARCH DATA: This object contains comprehensive interview Q&A covering ALL aspects of Omar's background. Search through ALL categories (education, leadership, project_management, personality, working_from_home, mission, hobbies_and_personality, misc) as each contains detailed answers. INCLUDES: educational background, pilot license, hobbies (flying, RV travel), leadership examples, technical skills context, work preferences, career goals, and personal interests. Use exact answers from any relevant category."), [createConvertFunction]);
   const rulesConvert = useMemo(() => createConvertFunction("These rules govern how to respond as Omar Habash using ONLY the provided data. Follow these rules strictly and never deviate from the data context."), [createConvertFunction]);
 
   // Generate all data-driven contexts (individual calls to follow Rules of Hooks)
@@ -198,10 +199,10 @@ export const useCopilotProfessionalContext = () => {
   }, [allData.expectations, professionalContextId, expectationsConvert]);
 
   useCopilotReadable({
-    description: "Common Interview Questions and Talking Points - Prepared responses and key points Omar would discuss in professional interviews",
+    description: "COMPREHENSIVE INTERVIEW Q&A DATABASE - Complete answers covering ALL aspects of Omar's background across multiple categories: education (includes pilot license), hobbies (flying, RV travel), leadership, personality, career goals, work preferences. SEARCH ALL CATEGORIES for any topic - many answers span multiple sections.",
     value: allData.questions,
     parentId: professionalContextId,
-    categories: ["questions", "interview", "responses", "talking_points"],
+    categories: ["questions", "interview", "responses", "talking_points", "comprehensive_background"],
     available: "enabled",
     convert: questionsConvert
   }, [allData.questions, professionalContextId, questionsConvert]);

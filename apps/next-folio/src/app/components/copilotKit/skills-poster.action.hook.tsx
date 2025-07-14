@@ -351,7 +351,7 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
     instructions: `
       🎯 PRIORITY SKILL DETECTION & CONTEXT RULES - EXECUTE FIRST:
       
-      ALWAYS CHECK SKILLS FIRST: Before using any other action (especially 'dataNotFound'), ALWAYS check if the user is asking about technical skills that exist in Omar's skills data.
+      ALWAYS CHECK SKILLS FIRST: Before using any other action (especially 'dataNotFound' or 'referencePortfolioData'), ALWAYS check if the user is asking about technical skills, expertise, competencies, or portfolio highlights that exist in Omar's skills data. ANY mention of "skills", "technologies", "expertise", "portfolio", "top", "featured", "highlighted", or specific technology names should trigger skill showcase.
       
       🚨 CRITICAL: When using the 'showcaseSkill' action, DO NOT generate any additional text response. The action renders a complete UI component that answers the user's question. Simply execute the action and let the rendered component be the full response.
       
@@ -373,6 +373,16 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       - "show me your frontend technologies"
       - "what frameworks have you used?"
       - "tell me about your tech stack"
+      - "what are your top skills?"
+      - "show me your featured skills"
+      - "what skills are highlighted in your portfolio?"
+      - "what are your main technical skills?"
+      - "what are your core competencies?"
+      - "questions about my skills"
+      - "portfolio skills"
+      - "my technical expertise"
+      - "your skill set"
+      - "featured technologies"
       → Use showcaseSkill with "multiple" to show overview of relevant skills
       
       OMAR'S AVAILABLE SKILLS (check against these EXACT names):
@@ -386,6 +396,18 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       - "tell me about [technology]"
       - "what's your [technology] experience?"
       - "how long have you used [technology]?"
+      - "top skills"
+      - "featured skills"
+      - "highlighted skills"
+      - "main skills"
+      - "core skills"
+      - "portfolio skills"
+      - "technical skills"
+      - "skill set"
+      - "expertise"
+      - "competencies"
+      - "questions about [skills/technologies]"
+      - "ask about [skills/technologies]"
       
       🚨 CRITICAL WORKFLOW:
       1. ANALYZE user intent: Single specific skill vs multiple skills overview
@@ -399,6 +421,10 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       ✅ "tell me about React" → showcaseSkill("React") - EXPANDED view
       ✅ "what frontend technologies do you know?" → showcaseSkill("frontend") - COLLAPSED overview
       ✅ "list your skills" → showcaseSkill("multiple") - COLLAPSED overview
+      ✅ "what are your top skills?" → showcaseSkill("multiple") - COLLAPSED overview
+      ✅ "questions about my skills" → showcaseSkill("multiple") - COLLAPSED overview
+      ✅ "what skills are highlighted in your portfolio?" → showcaseSkill("multiple") - COLLAPSED overview
+      ✅ "show me your featured technical skills" → showcaseSkill("multiple") - COLLAPSED overview
       ❌ "do you know COBOL" → dataNotFound (not in skills list)
       
       CONTEXT-AWARE RENDERING: The component automatically sets detailsMode based on whether it's showing single skill (expanded) or multiple skills (collapsed overview).
@@ -407,12 +433,12 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
 
   useCopilotAction({
     name: 'showcaseSkill',
-    description: 'PRIORITY ACTION: Context-aware skill showcase for Omar\'s portfolio. Automatically detects if user wants single skill details (expanded view) or multiple skills overview (collapsed view). Use for ANY skill-related questions - single skill queries like "tell me about React" OR multiple skill queries like "what technologies do you know". This should be the FIRST action considered for skill-related questions.',
+    description: 'PRIORITY ACTION: Context-aware skill showcase for Omar\'s portfolio. Automatically detects if user wants single skill details (expanded view) or multiple skills overview (collapsed view). Use for ANY skill-related questions including: single skill queries like "tell me about React", multiple skill queries like "what technologies do you know", portfolio questions like "what are your top skills", and questions about expertise/competencies. This should be the FIRST action considered for ANY mention of skills, technologies, expertise, portfolio highlights, or specific tech names.',
     parameters: [
       {
         name: 'skillName',
         type: 'string',
-        description: 'For single skill: exact skill name (e.g., "React", "JavaScript", "MongoDB"). For multiple skills: use "multiple", "frontend", "backend", or relevant category based on user intent.',
+        description: 'For single skill: exact skill name (e.g., "React", "JavaScript", "MongoDB"). For multiple skills: use "multiple", "frontend", "backend", "top", "featured", "highlighted", "portfolio", "expertise", "competencies", or relevant category based on user intent.',
         required: true,
       },
     ],
@@ -420,7 +446,7 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       console.log(sig, `🎯 Showcasing skill context: ${skillName}`);
       
       // Check if this is a multiple skills request
-      const isMultipleSkillsContext = ['multiple', 'frontend', 'backend', 'technologies', 'skills', 'stack', 'all'].some(keyword => 
+      const isMultipleSkillsContext = ['multiple', 'frontend', 'backend', 'technologies', 'skills', 'stack', 'all', 'top', 'featured', 'highlighted', 'portfolio', 'expertise', 'competencies', 'main', 'core'].some(keyword => 
         skillName.toLowerCase().includes(keyword)
       );
       
@@ -460,7 +486,7 @@ export const useSkillsPosterAction = ({ detailsMode: defaultDetailsMode }: UseSk
       const skillName = args.skillName;
 
       // Check if this is a multiple skills request
-      const isMultipleSkillsContext = ['multiple', 'frontend', 'backend', 'technologies', 'skills', 'stack', 'all'].some(keyword => 
+      const isMultipleSkillsContext = ['multiple', 'frontend', 'backend', 'technologies', 'skills', 'stack', 'all', 'top', 'featured', 'highlighted', 'portfolio', 'expertise', 'competencies', 'main', 'core'].some(keyword => 
         skillName.toLowerCase().includes(keyword)
       );
 

@@ -107,6 +107,36 @@ export const questions = {
         'I find inspiration in mentoring others and solving complex problems. Seeing a team succeed or delivering a project that exceeds expectations keeps me passionate about what I do.',
     },
   ],
+  accomplishments: [
+    {
+      question: 'What are your most significant professional accomplishments?',
+      answer: 'Throughout my career, I have delivered transformative results across multiple companies. At Fornida, I led the development and launch of their complete ecommerce & ERP software stack, trained and managed development teams, and built systems that achieved first-page Google rankings for industry products. At JOMA Tech, which I co-founded, we sustained five full-time employees and built groundbreaking solutions like Meteorite CMS that overcame BigCommerce API limitations. At SUCCESS Partners, I designed and maintained over 30 ecommerce sites and led the migration of 14 Magento sites to BigCommerce, launching 20 new stores in just 6 months through innovative automation.',
+    },
+    {
+      question: 'Can you tell me about your technical achievements?',
+      answer: 'I have over 12 years of JavaScript experience and have mastered multiple technologies that are now core to modern development. I built production-grade software that requires minimal maintenance, created custom APIs and integrations that are still actively running in production, and developed pricing algorithms that outperformed the competition. Some notable technical achievements include building a server configurator handling 100,000+ potential configurations, creating event listeners for real-time MongoDB replica databases from Microsoft Business Central, and developing a PHP monorepo that streamlined 25 Magento websites with 90% shared business logic.',
+    },
+    {
+      question: 'What leadership accomplishments are you most proud of?',
+      answer: 'My most rewarding leadership accomplishment was implementing an intern training program at Fornida that focused on developer mindset, critical thinking, and problem-solving. Every single intern who joined the program stayed for years and became a significant contributor to the team. I created a stress-free coding and testing environment that allowed them to focus on delivering high-quality work. Additionally, I successfully trained and managed development teams, mentored multiple developers throughout my career, and co-founded JOMA Tech where I led technical innovation while sustaining a team of five full-time employees.',
+    },
+    {
+      question: 'What innovations or unique solutions have you created?',
+      answer: 'I\'ve developed several innovative solutions that solved complex business problems. At JOMA Tech, I created Meteorite CMS, a headless eCommerce solution that used PostgreSQL with real-time webhooks to overcome BigCommerce API limitations, enabling advanced features and workflow automation. I built a custom code generator that could scaffold new stores with complete business logic in a single command, and developed a centralized BigCommerce app for Print on Demand features. At Fornida, I created a sophisticated server configurator that simplified complex component compatibility while managing thousands of configuration possibilities, and built custom Amazon SP-API applications that are still running in production today.',
+    },
+    {
+      question: 'What business impact have your projects delivered?',
+      answer: 'My projects have consistently delivered significant business value. At Fornida, the ecommerce platforms I built achieved first-page Google results for industry products, and the internal listing dashboard enabled admins to add thousands of products efficiently with automated sitemap updates. The ERP dashboard I created centralized orders from BigCommerce, Amazon, Shopify, and eBay while providing live KPIs and streamlining warehouse operations. At SUCCESS Partners, my monorepo architecture eliminated developer overhead from managing separate codebases for 25 websites, and the migration tools I built reduced deployment time from weeks to single commands.',
+    },
+    {
+      question: 'What educational and certification accomplishments do you have?',
+      answer: 'I earned an Associate of Science in Computer Science from Tarrant County College with a 3.8 GPA, which provided me with a strong theoretical foundation. Additionally, I earned my FAA Private Pilot\'s License (VFR/IFR) from Rose State College in 2009, which demonstrates my ability to master complex technical skills and work under pressure. The discipline, attention to detail, and critical decision-making required for aviation directly translates to my software development work. Beyond formal education, I\'ve continuously self-educated and mastered numerous cutting-edge technologies through hands-on projects and real-world applications.',
+    },
+    {
+      question: 'How have you grown professionally over your career?',
+      answer: 'I\'ve experienced tremendous professional growth, evolving from an eCommerce developer to a senior software developer capable of leading teams and architecting complex systems. I started by maintaining individual websites, then progressed to building monorepo architectures supporting dozens of sites, and eventually led the development of enterprise-grade ERP integrations and AI-powered applications. I\'ve grown from working with single technologies to mastering full-stack development with over 20 different technologies. Most importantly, I\'ve evolved from being an individual contributor to mentoring others, with every person I\'ve trained becoming a long-term valuable team member.',
+    },
+  ],
   misc: [
     {
       question: 'Are you willing to relocate for a job?',

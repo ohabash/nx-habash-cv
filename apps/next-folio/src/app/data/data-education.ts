@@ -7,7 +7,7 @@ export const education = [
   },
   {
     institution: 'Rose State College',
-    degree: 'FAA Private Pilots License (VFR/IFR)',
+    degree: "FAA Private Pilot's License (VFR/IFR)",
     graduated: '2009',
   }
 ];
