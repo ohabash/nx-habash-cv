@@ -59,33 +59,90 @@ const Submit = ({ formData, onSuccess, onError, disabled }: SubmitProps) => {
   };
 
   const handleSubmit = async () => {
+    /*
+     * CONTACT FORM SUBMISSION FLOW
+     * =============================
+     * 
+     * CLIENT-SIDE EXECUTION:
+     * 1. Initial setup and logging
+     * 2. UI state updates (loading, error clearing)
+     * 3. Message formatting and service calls
+     * 4. HTTP request to API endpoint
+     * 5. Response handling and UI updates
+     * 
+     * SERVER-SIDE EXECUTION:
+     * 1. API route validation and processing
+     * 2. Postmark email service integration
+     * 3. Email delivery and response handling
+     */
+    
+    // 📱 CLIENT-SIDE: Initial setup and logging
     console.log(sig, '📧 Submit button clicked');
     console.log(sig, 'Form data:', formData);
     
-    setIsLoading(true);
-    setError(null);
+    // 📱 CLIENT-SIDE: Update UI state for loading experience
+    setIsLoading(true);    // Shows "Sending..." spinner on button
+    setError(null);        // Clears any previous error messages
     
     try {
+      // 📱 CLIENT-SIDE: Format contact message and initiate email service
+      // formatContactMessage() - Formats form data into email content
+      // sendContactNotification() - Calls email service with formatted message
+      // This triggers: email.service.ts -> sendEmail() -> fetch('/api/email/send')
       const response = await sendContactNotification(formatContactMessage());
       
+      // 📱 CLIENT-SIDE: Handle successful email sending
       if (response.success) {
         console.log(sig, '✅ Message sent successfully');
-        setMessageSent(true);
-        onSuccess();
+        setMessageSent(true);  // Changes button to "Message Sent" with checkmark
+        onSuccess();           // Triggers parent component to hide form fields
       } else {
+        // 📱 CLIENT-SIDE: Handle email sending failure
         console.error(sig, '❌ Message sending failed:', response.error);
         const errorMsg = response.error || 'Failed to send message';
-        setError(errorMsg);
-        onError(errorMsg);
+        setError(errorMsg);    // Shows error message above button
+        onError(errorMsg);     // Calls parent error handler
       }
     } catch (err) {
+      // 📱 CLIENT-SIDE: Handle unexpected errors (network, parsing, etc.)
       console.error(sig, '❌ Error sending message:', err);
       const errorMsg = err instanceof Error ? err.message : 'Failed to send message';
-      setError(errorMsg);
-      onError(errorMsg);
+      setError(errorMsg);      // Shows error message above button
+      onError(errorMsg);       // Calls parent error handler
     } finally {
-      setIsLoading(false);
+      // 📱 CLIENT-SIDE: Always clean up loading state
+      setIsLoading(false);     // Removes "Sending..." spinner from button
     }
+    
+    /*
+     * DETAILED FLOW BREAKDOWN:
+     * ========================
+     * 
+     * 📱 CLIENT-SIDE STEPS:
+     * - User clicks submit button
+     * - Form validation already passed (button only enabled if valid)
+     * - UI shows loading state
+     * - formatContactMessage() creates email content string
+     * - sendContactNotification() calls sendEmail() 
+     * - sendEmail() makes HTTP POST to /api/email/send
+     * - Response handling updates UI (success/error states)
+     * 
+     * 🖥️ SERVER-SIDE STEPS (triggered by fetch to /api/email/send):
+     * - API route receives POST request with email data
+     * - Validates required fields (subject, body, recipients)
+     * - Adds admin email to recipient list
+     * - Filters out empty/invalid email addresses
+     * - Constructs Postmark API payload
+     * - Makes batch email request to Postmark API
+     * - Processes Postmark response for errors
+     * - Returns success/failure response to client
+     * 
+     * 📧 POSTMARK SERVICE (external):
+     * - Receives batch email request
+     * - Validates sender domain permissions
+     * - Processes and delivers emails
+     * - Returns delivery status and error codes
+     */
   };
 
   return (
@@ -450,7 +507,7 @@ export const ContactForm = ({
                 <h3 className="text-white font-bold mt-2 text-lg mb-2">
                    Thank you!
                 </h3>
-                <p className="text-white/50 text-sm text-center leading-relaxed">
+                <p className="text-green font-medium text-sm text-center leading-relaxed">
                   Message sent successfully. I'll get back to you soon!
                 </p>
               </div>

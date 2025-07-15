@@ -40,10 +40,21 @@ export async function POST(req: NextRequest) {
 
     // alway include admin email in the to array
     const adminEmail = process.env.ADMIN_EMAIL;
-    to.push(adminEmail || '');
-    console.log(sig, `process.env.ADMIN_EMAIL:`, process.env.ADMIN_EMAIL)
-    console.log(sig, 'Sending email to:', to);
+    if (adminEmail) {
+      to.push(adminEmail);
+    }
     
+    // Filter out empty strings and invalid emails
+    const validRecipients = to.filter(email => email && email.trim() !== '');
+    
+    console.log(sig, `process.env.ADMIN_EMAIL:`, process.env.ADMIN_EMAIL)
+    console.log(sig, 'Sending email to:', validRecipients);
+    
+    // Check if we have valid recipients
+    if (validRecipients.length === 0) {
+      return Response.json({ error: "No valid recipients specified" }, { status: 400 });
+    }
+
     // console.log(sig, 'Sending email reQ:', reQ);
 
     if (!subject) {
@@ -81,8 +92,10 @@ export async function POST(req: NextRequest) {
       Metadata: metadata,
       MessageStream: 'outbound',
     });
-    console.log(sig,`POST => payload:`, payload)
-    const messages: PostmarkMessage[] = to.map(payload);
+    const messages: PostmarkMessage[] = validRecipients.map(email => {
+      console.log(sig, `⚠️⚠️⚠️⚠️ POST => payload:`, payload(email));
+      return payload(email)
+    });
 
     // Send via Postmark batch API
     const response = await fetch("https://api.postmarkapp.com/email/batch", {
@@ -105,11 +118,26 @@ export async function POST(req: NextRequest) {
     }
 
     const result = await response.json();
-    console.log(sig, 'Email sent successfully:', result);
+    console.log(sig, 'Postmark response:', result);
+
+    // Check for errors in the batch response
+    const errors = result.filter((msg: any) => msg.ErrorCode && msg.ErrorCode !== 0);
+    
+    if (errors.length > 0) {
+      console.error(sig, 'Email sending errors:', errors);
+      return Response.json({ 
+        success: false,
+        error: "Failed to send one or more emails", 
+        details: errors 
+      }, { status: 400 });
+    }
+
+    const successCount = result.filter((msg: any) => !msg.ErrorCode || msg.ErrorCode === 0).length;
+    console.log(sig, 'Emails sent successfully:', successCount);
 
     return Response.json({ 
       success: true, 
-      messagesSent: result.length,
+      messagesSent: successCount,
       results: result 
     });
 

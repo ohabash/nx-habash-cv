@@ -25,6 +25,7 @@ interface EmailResponse {
  * @returns Promise with the API response
  */
 export async function sendEmail(options: EmailOptions): Promise<EmailResponse> {
+  console.log(sig,`sendEmail => options:`, options)
   try {
     const response = await fetch('/api/email/send', {
       method: 'POST',
@@ -60,6 +61,7 @@ export async function sendContactNotification(
   requestedInfo: string,
   userMessage?: string
 ): Promise<EmailResponse> {
+  console.log(sig,`requestedInfo:`, requestedInfo)
   const subject = `🚨🚨🚨 Portfolio Contact Request: ${requestedInfo}`;
   
   const textBody = `
@@ -90,7 +92,7 @@ ${userMessage ? `<p><strong>User Message:</strong> ${userMessage}</p>` : ''}
   // The API route will handle determining the admin email from environment variables
     console.log(sig, `process.env.ADMIN_EMAIL:`, process.env.ADMIN_EMAIL)
   return sendEmail({
-    to: [process.env.ADMIN_EMAIL || ''], // Empty array - API will use adminEmail from env
+    to: [], // Empty array - API will use adminEmail from env
     subject,
     textBody,
     htmlBody,
