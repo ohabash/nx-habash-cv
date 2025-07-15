@@ -127,14 +127,14 @@ export const useContactFormAction = () => {
       return `Successfully displayed contact form${name || email || phone || company || message ? ' with pre-filled information' : ''}.`;
     },
     render: ({ args }) => {
-      console.log(sig, '🎨 Rendering ContactForm with args:', args);
-      console.log(sig, '🎨 Passing to ContactForm:', {
-        initialName: args.name,
-        initialEmail: args.email,
-        initialPhone: args.phone,
-        initialCompany: args.company,
-        initialMessage: args.message
-      });
+      // console.log(sig, '🎨 Rendering ContactForm with args:', args);
+      // console.log(sig, '🎨 Passing to ContactForm:', {
+      //   initialName: args.name,
+      //   initialEmail: args.email,
+      //   initialPhone: args.phone,
+      //   initialCompany: args.company,
+      //   initialMessage: args.message
+      // });
       
       return (
         <ContactForm

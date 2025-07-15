@@ -273,10 +273,9 @@ export const ContactForm = ({
   return (
     <div className="flex justify-center items-center py-6">
       <div className="relative w-full max-w-lg rounded-2xl overflow-hidden">
-        
         {/* Main Form Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-darkest via-darker to-dark rounded-2xl border border-darkBlue/30" />
-        
+
         {/* Ambient lighting effects */}
         <div className="absolute inset-0 rounded-2xl">
           <div className="absolute top-0 left-1/4 w-48 h-48 bg-blue/5 rounded-full blur-3xl" />
@@ -285,7 +284,6 @@ export const ContactForm = ({
 
         {/* Content Layer */}
         <div className="relative z-20 p-8">
-          
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center justify-between">
@@ -314,7 +312,6 @@ export const ContactForm = ({
           {!isSubmitted && (
             <>
               <div className="space-y-4 mb-8">
-                
                 {/* Name Field */}
                 <div>
                   <div className="relative">
@@ -325,14 +322,18 @@ export const ContactForm = ({
                       type="text"
                       placeholder="Your name *"
                       value={formData.name}
-                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange('name', e.target.value)
+                      }
                       className={`w-full pl-12 pr-4 py-4 bg-darker/40 backdrop-blur-sm border rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue/40 transition-all duration-300 ${
                         errors.name ? 'border-red/50' : 'border-subtle/50'
                       }`}
                     />
                   </div>
                   {errors.name && (
-                    <p className="text-red/90 text-sm mt-2 ml-2">{errors.name}</p>
+                    <p className="text-red/90 text-sm mt-2 ml-2">
+                      {errors.name}
+                    </p>
                   )}
                 </div>
 
@@ -346,14 +347,18 @@ export const ContactForm = ({
                       type="email"
                       placeholder="Your email address *"
                       value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange('email', e.target.value)
+                      }
                       className={`w-full pl-12 pr-4 py-4 bg-darker/40 backdrop-blur-sm border rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-blue/40 transition-all duration-300 ${
                         errors.email ? 'border-red/50' : 'border-subtle/50'
                       }`}
                     />
                   </div>
                   {errors.email && (
-                    <p className="text-red/90 text-sm mt-2 ml-2">{errors.email}</p>
+                    <p className="text-red/90 text-sm mt-2 ml-2">
+                      {errors.email}
+                    </p>
                   )}
                 </div>
 
@@ -367,7 +372,9 @@ export const ContactForm = ({
                       type="tel"
                       placeholder="Phone number (optional)"
                       value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange('phone', e.target.value)
+                      }
                       className="w-full pl-12 pr-4 py-4 bg-darker/40 backdrop-blur-sm border border-subtle/50 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-accent2/40 transition-all duration-300"
                     />
                   </div>
@@ -383,7 +390,9 @@ export const ContactForm = ({
                       type="text"
                       placeholder="Company/Organization (optional)"
                       value={formData.company}
-                      onChange={(e) => handleInputChange('company', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange('company', e.target.value)
+                      }
                       className="w-full pl-12 pr-4 py-4 bg-darker/40 backdrop-blur-sm border border-subtle/50 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-accent3/40 transition-all duration-300"
                     />
                   </div>
@@ -398,7 +407,9 @@ export const ContactForm = ({
                     <textarea
                       placeholder="Your message *"
                       value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange('message', e.target.value)
+                      }
                       rows={4}
                       className={`w-full pl-12 pr-4 py-4 bg-darker/40 backdrop-blur-sm border rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-green/40 transition-all duration-300 resize-none ${
                         errors.message ? 'border-red/50' : 'border-subtle/50'
@@ -406,10 +417,11 @@ export const ContactForm = ({
                     />
                   </div>
                   {errors.message && (
-                    <p className="text-red/90 text-sm mt-2 ml-2">{errors.message}</p>
+                    <p className="text-red/90 text-sm mt-2 ml-2">
+                      {errors.message}
+                    </p>
                   )}
                 </div>
-
               </div>
 
               {/* Submit Component */}
@@ -419,7 +431,10 @@ export const ContactForm = ({
                 onSuccess={() => {
                   console.log(sig, '✅ Message sent successfully');
                   setIsSubmitted(true);
-                  console.log(sig, '📝 Form fields will be hidden, but title and success message remain visible');
+                  console.log(
+                    sig,
+                    '📝 Form fields will be hidden, but title and success message remain visible'
+                  );
                 }}
                 onError={(error) => {
                   console.error(sig, '❌ Message sending failed:', error);
@@ -432,14 +447,11 @@ export const ContactForm = ({
           {isSubmitted && (
             <div className="mb-4">
               <div className="p-6 bg-green/10 border border-green/20 rounded-xl backdrop-blur-sm text-center">
-                <div className="text-4xl mb-3 text-accent3 flex justify-center">
-                  <HiPaperAirplane />
-                </div>
-                <h3 className="text-green/90 text-lg font-medium mb-2">
-                  Thank you!
+                <h3 className="text-white font-bold mt-2 text-lg mb-2">
+                   Thank you!
                 </h3>
-                <p className="text-green/80 text-sm">
-                 Ask for my contact info if you prefer not to wait.
+                <p className="text-white/50 text-sm text-center leading-relaxed">
+                  Message sent successfully. I'll get back to you soon!
                 </p>
               </div>
             </div>
@@ -447,14 +459,12 @@ export const ContactForm = ({
 
           {/* Footer */}
           <div className="mt-6">
-            <p className="text-white/40 text-xs text-center leading-relaxed">
+            <p className="text-white/50 text-xs text-center leading-relaxed">
               {isSubmitted
-                ? 'Feel free to ask me any other questions!'
-                : 'All required fields (*) must be completed before sending.'
-              }
+                ? 'Ask for my contact info if you prefer not to wait.'
+                : 'All required fields (*) must be completed before sending.'}
             </p>
           </div>
-
         </div>
 
         {/* Decorative elements */}
@@ -465,7 +475,6 @@ export const ContactForm = ({
         <div className="absolute bottom-6 left-6 pointer-events-none">
           <div className="w-8 h-8 bg-gradient-to-br from-blue/10 to-accent2/10 rounded-full backdrop-blur-sm border border-blue/20" />
         </div>
-
       </div>
     </div>
   );

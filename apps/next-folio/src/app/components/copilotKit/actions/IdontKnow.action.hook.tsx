@@ -94,11 +94,10 @@ export const useIdontKnowAction = () => {
             </p>
           </div>
 
-          {/* Send Message Component */}
+          {/* Contact Info Component */}
           <SendMessage
-            requestInfo={args.requestedInfo || 'Unknown request'}
-            buttonText="Contact Omar Directly"
-            successMessage="Omar has been notified and will respond soon"
+            requestInfo={args.requestedInfo || 'Request for contact information'}
+            buttonText="Get Omar's Contact Info"
             iconType="email"
             className="mt-2"
           />

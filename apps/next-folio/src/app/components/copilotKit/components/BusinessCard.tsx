@@ -108,12 +108,11 @@ export const BusinessCard = () => {
 
           </div>
 
-          {/* Send Message Component */}
+          {/* Contact Info Component */}
           <SendMessage
-            requestInfo="Business card contact request"
-            buttonText="Send Message"
-            successMessage="Message sent! Omar will be notified."
-            iconType="send"
+            requestInfo="Request for immediate contact information"
+            buttonText="Get Contact Details"
+            iconType="email"
             onSuccess={() => setMessageSent(true)}
           />
 

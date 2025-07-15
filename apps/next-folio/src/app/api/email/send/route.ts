@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Prepare batch messages for Postmark
-    const messages: PostmarkMessage[] = to.map(email => ({
+    const payload = (email: string) => ({
       From: from || defaultFrom!,
       To: email,
       Subject: subject,
@@ -79,8 +79,10 @@ export async function POST(req: NextRequest) {
       ReplyTo: replyTo,
       Tag: tag,
       Metadata: metadata,
-      MessageStream: "outbound"
-    }));
+      MessageStream: 'outbound',
+    });
+    console.log(sig,`POST => payload:`, payload)
+    const messages: PostmarkMessage[] = to.map(payload);
 
     // Send via Postmark batch API
     const response = await fetch("https://api.postmarkapp.com/email/batch", {
