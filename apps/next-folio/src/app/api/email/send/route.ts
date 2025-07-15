@@ -52,24 +52,24 @@ export async function POST(req: NextRequest) {
     
     // Check if we have valid recipients
     if (validRecipients.length === 0) {
-      return Response.json({ error: "No valid recipients specified" }, { status: 400 });
+      return Response.json({ success: false, error: "No valid recipients specified" }, { status: 400 });
     }
 
     // console.log(sig, 'Sending email reQ:', reQ);
 
     if (!subject) {
-      return Response.json({ error: "Subject is required" }, { status: 400 });
+      return Response.json({ success: false, error: "Subject is required" }, { status: 400 });
     }
 
     if (!textBody && !htmlBody) {
-      return Response.json({ error: "Either textBody or htmlBody is required" }, { status: 400 });
+      return Response.json({ success: false, error: "Either textBody or htmlBody is required" }, { status: 400 });
     }
     
     // Check for required environment variables
     const postmarkServerToken = process.env.POSTMARK_SERVER_TOKEN;
     console.log(sig,`postmarkServerToken:`, postmarkServerToken)
     if (!postmarkServerToken) {
-      return Response.json({ error: "Postmark server token not configured" }, { status: 500 });
+      return Response.json({ success: false, error: "Postmark server token not configured" }, { status: 500 });
     }
 
     // Default from address - use environment variable or default
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     console.log(sig,`defaultFrom:`, defaultFrom)
     // console.log(sig,`process.env.DEFAULT_FROM_EMAIL:`, process.env)
     if (!defaultFrom && !from) {
-      return Response.json({ error: "From address not configured" }, { status: 500 });
+      return Response.json({ success: false, error: "From address not configured" }, { status: 500 });
     }
 
     // Prepare batch messages for Postmark
@@ -112,6 +112,7 @@ export async function POST(req: NextRequest) {
       const errorData = await response.json();
       console.error(sig, 'Postmark error:', errorData);
       return Response.json({ 
+        success: false,
         error: "Failed to send email", 
         details: errorData 
       }, { status: response.status });
@@ -124,7 +125,6 @@ export async function POST(req: NextRequest) {
     const errors = result.filter((msg: any) => msg.ErrorCode && msg.ErrorCode !== 0);
     
     if (errors.length > 0) {
-      console.error(sig, 'Email sending errors:', errors);
       return Response.json({ 
         success: false,
         error: "Failed to send one or more emails", 
@@ -139,11 +139,12 @@ export async function POST(req: NextRequest) {
       success: true, 
       messagesSent: successCount,
       results: result 
-    });
+    }, { status: 200 });
 
   } catch (error) {
     console.error(sig, 'Email sending error:', error);
     return Response.json({ 
+      success: false,
       error: "Internal server error", 
       details: error instanceof Error ? error.message : 'Unknown error' 
     }, { status: 500 });

@@ -8,141 +8,219 @@ import { sendContactNotification } from '@/services/email.service';
 
 const sig = `[ ContactForm ] ::: `;
 
+/**
+ * Props interface for ContactForm component
+ * 
+ * @interface ContactFormProps
+ * @description Defines optional props for pre-populating form fields
+ * 
+ * @see {@link ContactForm} - Component that uses these props
+ */
 interface ContactFormProps {
+  /** Pre-populate name field */
   initialName?: string;
+  /** Pre-populate email field */
   initialEmail?: string;
+  /** Pre-populate phone field */
   initialPhone?: string;
+  /** Pre-populate company field */
   initialCompany?: string;
+  /** Pre-populate message field */
   initialMessage?: string;
+  /** Callback function to close the form */
   onClose?: () => void;
 }
 
+/**
+ * Form data structure for contact form
+ * 
+ * @interface FormData
+ * @description Contains all form field values
+ * 
+ * @see {@link ContactForm} - Component managing this form data
+ * @see {@link formatContactMessage} - Function that uses this data
+ */
 interface FormData {
+  /** User's full name (required) */
   name: string;
+  /** User's email address (required) */
   email: string;
+  /** User's phone number (optional) */
   phone: string;
+  /** User's company/organization (optional) */
   company: string;
+  /** User's message content (required) */
   message: string;
 }
 
+/**
+ * Form validation error messages
+ * 
+ * @interface FormErrors
+ * @description Contains validation error messages for form fields
+ * 
+ * @see {@link ContactForm} - Component that manages these errors
+ */
 interface FormErrors {
+  /** Name field validation error */
   name?: string;
+  /** Email field validation error */
   email?: string;
+  /** Message field validation error */
   message?: string;
 }
 
+/**
+ * Props interface for Submit component
+ * 
+ * @interface SubmitProps
+ * @description Defines props for the submit button component
+ * 
+ * @see {@link Submit} - Component that uses these props
+ * @see {@link handleSubmit} - Function that handles the submission logic
+ */
 interface SubmitProps {
+  /** Form data to submit */
   formData: FormData;
+  /** Callback called on successful submission */
   onSuccess: () => void;
+  /** Callback called on submission error */
   onError: (error: string) => void;
+  /** Whether submit button should be disabled */
   disabled: boolean;
 }
 
-// Submit component for handling form submission
+/**
+ * Submit component for handling form submission with loading and error states
+ * 
+ * @component Submit
+ * @description Renders submit button with loading spinner, success state, and error handling
+ * 
+ * @param {SubmitProps} props - Component props
+ * @param {FormData} props.formData - Form data to submit
+ * @param {Function} props.onSuccess - Callback called on successful submission
+ * @param {Function} props.onError - Callback called on submission error
+ * @param {boolean} props.disabled - Whether submit button should be disabled
+ * 
+ * @see {@link SubmitProps} - Interface defining component props
+ * @see {@link ContactForm} - Parent component that uses this Submit component
+ * @see {@link handleSubmit} - Function that calls this component's submit handler
+ * @see {@link sendContactNotification} - Email service function called during submission
+ * 
+ * @example
+ * <Submit
+ *   formData={formData}
+ *   onSuccess={() => setSuccess(true)}
+ *   onError={(error) => setError(error)}
+ *   disabled={!isFormValid}
+ * />
+ * 
+ * @returns {JSX.Element} Submit button with loading and success states
+ */
 const Submit = ({ formData, onSuccess, onError, disabled }: SubmitProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const isDev = process.env.NEXT_PUBLIC_DEBUG_MODE === 'true';
 
+  /**
+   * Formats form data into structured email content
+   * 
+   * @function formatContactMessage
+   * @description Converts form fields into formatted string for email body
+   * 
+   * @see {@link handleSubmit} - Uses this function to prepare email content
+   * @see {@link FormData} - Interface defining form data structure
+   * 
+   * @returns {string} Formatted email content with contact information
+   * 
+   * @example
+   * // Returns formatted string like:
+   * // "Contact Form Submission\nName: John Doe\nEmail: john@example.com..."
+   * const emailContent = formatContactMessage();
+   */
   const formatContactMessage = (): string => {
     const parts = [
       `Contact Form Submission`,
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
+      `<strong>Name: </strong> ${formData.name}`,
+      `<strong>Email: </strong> ${formData.email}`,
     ];
 
-    if (formData.phone) parts.push(`Phone: ${formData.phone}`);
-    if (formData.company) parts.push(`Company: ${formData.company}`);
-    parts.push(`Message: ${formData.message}`);
+    if (formData.phone) parts.push(`<strong>Phone: </strong> ${formData.phone}`);
+    if (formData.company) parts.push(`<strong>Company: </strong> ${formData.company}`);
+    parts.push(`<strong>Message: </strong> \n \n ${formData.message}`);
 
     return parts.join('\n');
   };
 
+  /**
+   * Handles contact form submission with complete email delivery flow
+   * 
+   * @async
+   * @function handleSubmit
+   * @description Processes form data, sends email notification, and updates UI state
+   * 
+   * @see {@link formatContactMessage} - Formats form data into email content
+   * @see {@link sendContactNotification} - Located in @/services/email.service.ts
+   * @see {@link ../../../api/email/send/route.ts} - Server-side API endpoint
+   * @see {@link https://postmarkapp.com/developer/api/email} - Postmark Email API
+   * 
+   * @example
+   * // Called when user clicks submit button
+   * handleSubmit();
+   * 
+   * @returns {Promise<void>} Updates component state based on email send results
+   * 
+   * @throws {Error} Network errors, API failures, or Postmark service errors
+   * 
+   * CHRONOLOGICAL FLOW:
+   * ====================
+   * 
+   * CLIENT: User clicks submit, logging starts, UI shows loading
+   * CLIENT: Format message, prepare email service call
+   * CLIENT: Make HTTP POST to /api/email/send
+   * SERVER: Receive request, validate fields, add admin email
+   * SERVER: Build Postmark payload, send to email service
+   * POSTMARK: Validate domain, process delivery, return status
+   * SERVER: Process response, return success/failure to client
+   * CLIENT: Handle response, update UI, clean up loading state
+   */
   const handleSubmit = async () => {
-    /*
-     * CONTACT FORM SUBMISSION FLOW
-     * =============================
-     * 
-     * CLIENT-SIDE EXECUTION:
-     * 1. Initial setup and logging
-     * 2. UI state updates (loading, error clearing)
-     * 3. Message formatting and service calls
-     * 4. HTTP request to API endpoint
-     * 5. Response handling and UI updates
-     * 
-     * SERVER-SIDE EXECUTION:
-     * 1. API route validation and processing
-     * 2. Postmark email service integration
-     * 3. Email delivery and response handling
-     */
-    
-    // 📱 CLIENT-SIDE: Initial setup and logging
-    console.log(sig, '📧 Submit button clicked');
+    console.log(sig, 'Submit button clicked');
     console.log(sig, 'Form data:', formData);
-    
-    // 📱 CLIENT-SIDE: Update UI state for loading experience
-    setIsLoading(true);    // Shows "Sending..." spinner on button
-    setError(null);        // Clears any previous error messages
+    setIsLoading(true);
+    setError(null);
     
     try {
-      // 📱 CLIENT-SIDE: Format contact message and initiate email service
-      // formatContactMessage() - Formats form data into email content
-      // sendContactNotification() - Calls email service with formatted message
-      // This triggers: email.service.ts -> sendEmail() -> fetch('/api/email/send')
       const response = await sendContactNotification(formatContactMessage());
+      console.log(sig, '📨 Email service response:', response);
       
-      // 📱 CLIENT-SIDE: Handle successful email sending
       if (response.success) {
         console.log(sig, '✅ Message sent successfully');
-        setMessageSent(true);  // Changes button to "Message Sent" with checkmark
-        onSuccess();           // Triggers parent component to hide form fields
+        if (!isDev) {
+          setMessageSent(true);
+          onSuccess();
+        } else {
+          // In dev mode, just show success message but don't hide form
+          setMessageSent(true);
+          setTimeout(() => setMessageSent(false), 3000); // Clear success after 3s in dev mode
+        }
       } else {
-        // 📱 CLIENT-SIDE: Handle email sending failure
         console.error(sig, '❌ Message sending failed:', response.error);
+        console.error(sig, '❌ Error details:', response.details);
+        
         const errorMsg = response.error || 'Failed to send message';
-        setError(errorMsg);    // Shows error message above button
-        onError(errorMsg);     // Calls parent error handler
+        setError(errorMsg);
+        onError(errorMsg);
       }
     } catch (err) {
-      // 📱 CLIENT-SIDE: Handle unexpected errors (network, parsing, etc.)
       console.error(sig, '❌ Error sending message:', err);
       const errorMsg = err instanceof Error ? err.message : 'Failed to send message';
-      setError(errorMsg);      // Shows error message above button
-      onError(errorMsg);       // Calls parent error handler
+      setError(errorMsg);
+      onError(errorMsg);
     } finally {
-      // 📱 CLIENT-SIDE: Always clean up loading state
-      setIsLoading(false);     // Removes "Sending..." spinner from button
+      setIsLoading(false);
     }
-    
-    /*
-     * DETAILED FLOW BREAKDOWN:
-     * ========================
-     * 
-     * 📱 CLIENT-SIDE STEPS:
-     * - User clicks submit button
-     * - Form validation already passed (button only enabled if valid)
-     * - UI shows loading state
-     * - formatContactMessage() creates email content string
-     * - sendContactNotification() calls sendEmail() 
-     * - sendEmail() makes HTTP POST to /api/email/send
-     * - Response handling updates UI (success/error states)
-     * 
-     * 🖥️ SERVER-SIDE STEPS (triggered by fetch to /api/email/send):
-     * - API route receives POST request with email data
-     * - Validates required fields (subject, body, recipients)
-     * - Adds admin email to recipient list
-     * - Filters out empty/invalid email addresses
-     * - Constructs Postmark API payload
-     * - Makes batch email request to Postmark API
-     * - Processes Postmark response for errors
-     * - Returns success/failure response to client
-     * 
-     * 📧 POSTMARK SERVICE (external):
-     * - Receives batch email request
-     * - Validates sender domain permissions
-     * - Processes and delivers emails
-     * - Returns delivery status and error codes
-     */
   };
 
   return (
@@ -162,7 +240,7 @@ const Submit = ({ formData, onSuccess, onError, disabled }: SubmitProps) => {
         <div className="mb-4">
           <div className="p-4 bg-green/10 border border-green/20 rounded-xl backdrop-blur-sm">
             <p className="text-green/90 text-sm text-center font-medium">
-              ✅ Thank you! Your message has been sent successfully.
+              ✅ Message sent successfully! {isDev && '(Dev mode: form remains visible)'}
             </p>
           </div>
         </div>
@@ -172,23 +250,23 @@ const Submit = ({ formData, onSuccess, onError, disabled }: SubmitProps) => {
       {!disabled ? (
         <motion.button
           onClick={handleSubmit}
-          disabled={isLoading || messageSent}
+          disabled={isLoading || (messageSent && !isDev)}
           className={`w-full py-4 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 ${
-            messageSent
+            messageSent && !isDev
               ? 'bg-green/20 text-green cursor-not-allowed border border-green/30'
               : isLoading
               ? 'bg-blue/30 text-blue cursor-not-allowed border border-blue/30'
               : 'bg-gradient-to-r from-blue/20 to-accent3/20 hover:from-blue/30 hover:to-accent3/30 text-white border border-blue/30 hover:border-accent3/50 backdrop-blur-sm'
           }`}
-          whileHover={{ scale: isLoading || messageSent ? 1 : 1.02 }}
-          whileTap={{ scale: isLoading || messageSent ? 1 : 0.98 }}
+          whileHover={{ scale: isLoading || (messageSent && !isDev) ? 1 : 1.02 }}
+          whileTap={{ scale: isLoading || (messageSent && !isDev) ? 1 : 0.98 }}
         >
           {isLoading ? (
             <>
               <div className="animate-spin rounded-full h-5 w-5 border-2 border-blue border-t-transparent"></div>
               <span>Sending...</span>
             </>
-          ) : messageSent ? (
+          ) : messageSent && !isDev ? (
             <>
               <span className="text-lg">✅</span>
               <span>Message Sent</span>
@@ -211,6 +289,34 @@ const Submit = ({ formData, onSuccess, onError, disabled }: SubmitProps) => {
   );
 };
 
+/**
+ * ContactForm component for collecting and submitting user contact information
+ * 
+ * @component ContactForm
+ * @description Main contact form with validation, auto-population, and email submission
+ * 
+ * @param {ContactFormProps} props - Component props
+ * @param {string} [props.initialName=''] - Pre-populate name field
+ * @param {string} [props.initialEmail=''] - Pre-populate email field  
+ * @param {string} [props.initialPhone=''] - Pre-populate phone field
+ * @param {string} [props.initialCompany=''] - Pre-populate company field
+ * @param {string} [props.initialMessage=''] - Pre-populate message field
+ * @param {Function} [props.onClose] - Callback for closing the form
+ * 
+ * @see {@link ContactFormProps} - Interface defining component props
+ * @see {@link Submit} - Child component handling form submission
+ * @see {@link useGlobalContext} - Hook for accessing global profile data
+ * @see {@link @/services/email.service.ts} - Email service used for sending messages
+ * 
+ * @example
+ * <ContactForm
+ *   initialName="John Doe"
+ *   initialEmail="john@example.com"
+ *   onClose={() => setShowForm(false)}
+ * />
+ * 
+ * @returns {JSX.Element} Complete contact form with validation and submission
+ */
 export const ContactForm = ({
   initialName = '',
   initialEmail = '',
@@ -510,6 +616,7 @@ export const ContactForm = ({
                 <p className="text-green font-medium text-sm text-center leading-relaxed">
                   Message sent successfully. I'll get back to you soon!
                 </p>
+                
               </div>
             </div>
           )}
