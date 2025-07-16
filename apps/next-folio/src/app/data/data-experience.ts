@@ -3,6 +3,7 @@ import { StaticImageData } from 'next/image';
 import logoFN from '@public/img/fn.png';
 import logoJoma from '@public/img/joma.png';
 import logoSP from '@public/img/sp.png';
+import logoFoodReady from '@public/img/FoodReady.jpeg';
 
 export type Project = {
   name: string;
@@ -21,6 +22,34 @@ export type TimelineItem = {
   reasonForLeaving: string; // (AI only)
 };
 export const experience: TimelineItem[] = [
+  {
+    title: 'Senior Software Developer',
+    date: 'Dec 2024 — Jul 2025',
+    shortDate: '12/24 — 7/25',
+    description:
+      "Architected scalable backend infrastructure replacing monolithic systems with event-driven microservices. Delivered enterprise-grade authentication, integration platform, and developer tooling that accelerated feature delivery while maintaining SOC2 compliance. TypeScript, Express, NX, BetterAuth, N8N, OAuth workflows.",
+    reasonForLeaving: 'TODO',
+    company: 'FoodReady.ai',
+    logo: logoFoodReady, // You'll need to import this
+    projects: [
+      {
+        name: 'Scalable Backend Infrastructure',
+        desc: 'Replaced monolithic architecture with TypeScript Express monorepo using NX generators. Created scaffolding system enabling developers to generate complete SDKs with routes, tests, and services in consistent patterns. Implemented decorator-based routing (@GET/@POST) and validation (@validate) reducing boilerplate code by 70%.',
+      },
+      {
+        name: 'Enterprise Authentication & RBAC',
+        desc: 'Built headless SaaS authentication hub using BetterAuth supporting multiple services including legacy APIs, N8N workflows, and MCP servers. Developed reusable NPM authentication modules enabling seamless login integration across infrastructure while maintaining SOC2 compliance and role-based access control.',
+      },
+      {
+        name: 'Pulse Event Orchestration Platform',
+        desc: 'Designed event-driven programming library enabling real-time business process automation. System allows users to define database events triggering HTTP requests, N8N workflows, or cloud functions. Built management UI empowering customers to configure custom event-action workflows for compliance monitoring and operational automation.',
+      },
+      {
+        name: 'Universal Integration Platform',
+        desc: 'Developed ground-up integration system addressing customer demand for external software connectivity. Created OAuth workflow engine with reusable authentication patterns and visual N8N-based data flows. Platform supports complex logging across system, organization, and execution levels enabling seamless third-party integrations like QuickBooks.',
+      },
+    ],
+  },
   {
     title: 'Senior Software Developer',
     date: 'Jun 2018 — Jul 2024',

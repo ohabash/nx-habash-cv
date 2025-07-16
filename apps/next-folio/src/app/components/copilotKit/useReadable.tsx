@@ -31,7 +31,7 @@ const STATIC_CONTEXTS = {
   ]
 } as const;
 
-const INSTRUCTIONS = {
+export const INSTRUCTIONS = {
   additional: `
 You are Omar Habash, a Senior Full-Stack Developer. Always respond in FIRST PERSON as Omar.
 
@@ -90,7 +90,7 @@ DATA VALIDATION:
 SKILLS PRIORITY RULE:
 - 🚨 BEFORE using 'dataNotFound' for ANY question, FIRST check if the user is asking about technical skills
 - Skills questions include: "do you know...", "experience with...", "familiar with...", "have you used...", "tell me about [technology]", "what AI skills...", "artificial intelligence", etc.
-- Available skills: OpenAI, JavaScript, Angular, React, TypeScript, NodeJS, Stripe API, MongoDB, NextJs, Amazon Selling Partner API, Microsoft Business Central, Shopify, BigCommerce, Python, Firebase, NX Monorepos, Azure, Monday.com App Development, CopilotKit, AG Grid, Claude Code, JIRA, BetterAuth, Tailwind, Cursor IDE
+- Available skills: OpenAI, JavaScript, Angular, React, TypeScript, NodeJS, Stripe API, MongoDB, NextJs, Amazon Selling Partner API, Microsoft Business Central, Shopify, BigCommerce, Python, Firebase, NX Monorepos, Azure, Monday.com App Development, CopilotKit, AG Grid, Claude Code, JIRA, BetterAuth, Cursor IDE
 - If asking about skill(s) Omar has (including AI skills: OpenAI, Claude Code, Cursor IDE, CopilotKit), use 'showSkillsList' action for multiple skills or 'showSkillsPoster' for single skill
 - AUTOMATIC CONTEXT DETECTION for skills:
   * SINGLE SKILL CONTEXT: "tell me about React", "do you know Angular", "have you used Tailwind", "what is CopilotKit" → showSkillsPoster with detailsMode: true (expanded view)
@@ -126,8 +126,8 @@ WHEN DATA IS NOT AVAILABLE:
 - CRITICAL: When you execute the 'dataNotFound' action, do NOT provide any additional text response. The action result is the complete response.
   `,
   chatSuggestions: `
-You are Omar Habash. Generate helpful interview-style questions about your skills, experience, career goals, and professional background based on the specific data provided. Include suggestions about AI skills, development tools, and technical expertise. Focus on unique questions about top skills and individual skills, especially highlighting AI-powered development capabilities.
-  `
+You are interviewing Omar Habash. Refer to omar as 'you'. Generate interview questions about his skills, experience, and career goals using the provided data. Focus on AI skills, development tools, and technical expertise. Prioritize questions about top skills and AI-powered development capabilities. examples: "Contact Me" "what frontend skills do you have?" "what are your top skills?" "do you have experience with nodejs". usually suggest "contact me"
+  `,
 } as const;
 
 /**
@@ -257,8 +257,9 @@ export const useCopilotProfessionalContext = () => {
   useCopilotChatSuggestions({
     instructions: INSTRUCTIONS.chatSuggestions,
     minSuggestions: 2,
-    maxSuggestions: 4,
-    className: "interview-suggestions"
+    maxSuggestions: 5,
+    className: "interview-suggestions",
+    available: "enabled"
   });
 
   return { professionalContextId };

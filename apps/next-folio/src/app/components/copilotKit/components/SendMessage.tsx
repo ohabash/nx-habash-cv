@@ -29,7 +29,7 @@ interface SendMessageProps {
 }
 
 export const SendMessage = ({
-  buttonText = 'Get Contact Info',
+  buttonText = 'Contact Me',
   iconType = 'email',
   fullWidth = true,
   requestInfo,
@@ -40,8 +40,6 @@ export const SendMessage = ({
   const [isLoading, setIsLoading] = useState(false);
   const { appendMessage } = useCopilotChat();
 
-
-
   const handleClick = async () => {
     console.log(sig, `📞 ${buttonText} button clicked`);
     console.log(sig, `Requesting contact information`);
@@ -49,10 +47,10 @@ export const SendMessage = ({
     setIsLoading(true);
     
     try {
-      // Send message to trigger business card action
-      const message = "Show me your business card and contact information";
+      // Send message to trigger contact request
+      const message = "Start a Contact Request. Use what you know about me as args";
       
-      console.log(sig, '💬 Triggering business card action:', message);
+      console.log(sig, '💬 Triggering contact request:', message);
       
       // Send message to chat using CopilotKit
       appendMessage(
@@ -62,7 +60,7 @@ export const SendMessage = ({
         })
       );
       
-      console.log(sig, '✅ Business card request sent successfully');
+      console.log(sig, '✅ Contact request sent successfully');
       
       // Simulate processing time
       await new Promise(resolve => setTimeout(resolve, 300));
@@ -71,8 +69,8 @@ export const SendMessage = ({
       onSuccess?.();
       
     } catch (err) {
-      console.error(sig, '❌ Error requesting contact info:', err);
-      const errorMsg = err instanceof Error ? err.message : 'Failed to get contact info';
+      console.error(sig, '❌ Error requesting contact:', err);
+      const errorMsg = err instanceof Error ? err.message : 'Failed to start contact request';
       onError?.(errorMsg);
     } finally {
       setIsLoading(false);

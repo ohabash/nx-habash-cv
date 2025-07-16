@@ -8,6 +8,7 @@ import { CopilotSidebar } from '@copilotkit/react-ui';
 import '@copilotkit/react-ui/styles.css';
 import { CopilotKitCSSProperties } from '@copilotkit/react-ui';
 import { Theme } from '../../../theme/theme-vars';
+import AiBody from '@/components/copilotKit/components/AiBody';
 
 // global styles
 import './../styles.scss';
@@ -29,7 +30,10 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <div id="MODAL"></div>
-        <CopilotKit publicApiKey="ck_pub_d9dbf528536f4e9f115badfc68eb13cc">
+        <CopilotKit 
+          publicApiKey="ck_pub_d9dbf528536f4e9f115badfc68eb13cc"
+          enableDebug={true}
+        >
           <QueryProvider>
             <SessionProvider session={session}>
               <GlobalProvider>
@@ -56,6 +60,7 @@ export default async function RootLayout({
                       }}
                       className="[&>button]:hidden"
                     >
+                      <AiBody />
                       <main>{children}</main>
                     </CopilotSidebar>
                   </div>
