@@ -15,49 +15,32 @@ const sig = `[ Suggestions ] ::: `;
 export const Suggestions = () => {
   const [mounted, setMounted] = useState(false);
   const copilotContext = useCopilotContext();
-  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
 
   useEffect(() => {
     console.log(sig, '🔄 Component mounted');
     setMounted(true);
   }, []);
 
-  const result = useCopilotChatSuggestions({
+  const suggestions = useCopilotChatSuggestions({
     instructions: INSTRUCTIONS.chatSuggestions,
     minSuggestions: 2,
     maxSuggestions: 18,
     available: "enabled"
-  });
-  useEffect(() => {
-    const fetchSuggestions = () => {
-      try {
-        console.log(sig, '📝 Raw result:', result);
-        if (result && typeof result === 'object' && 'suggestions' in result) {
-          setSuggestions((result as { suggestions: Suggestion[] }).suggestions);
-        }
-      } catch (error) {
-        console.error(sig, '❌ Error fetching suggestions:', error);
-      }
-    };
-
-    if (mounted) {
-      fetchSuggestions();
-    }
-  }, [mounted]);
+  }, [mounted]) as Suggestion[] | undefined;
 
   useEffect(() => {
     console.log(sig, '📝 Suggestions:', suggestions);
   }, [suggestions]);
 
   // Group suggestions into rows
-  const suggestionRows = [
+  const suggestionRows = suggestions ? [
     suggestions.slice(0, 3),  // Row 1
     suggestions.slice(3, 6),  // Row 2
     suggestions.slice(6, 9),  // Row 3
     suggestions.slice(9, 12), // Row 4
     suggestions.slice(12, 15), // Row 5
     suggestions.slice(15, 18), // Row 6
-  ];
+  ] : [];
 
   if (!mounted) {
     console.log(sig, '⏳ Component not yet mounted');
@@ -86,7 +69,7 @@ export const Suggestions = () => {
             ease: "easeOut"
           }}
         >
-          {rowSuggestions.map((suggestion: Suggestion, index: number) => (
+          {rowSuggestions?.map((suggestion: Suggestion, index: number) => (
             <motion.button
               key={index}
               className="flex-1 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 
