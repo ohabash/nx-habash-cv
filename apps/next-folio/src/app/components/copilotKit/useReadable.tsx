@@ -3,7 +3,11 @@
 import { allData } from "@/data";
 import { useCopilotReadable, useCopilotAdditionalInstructions } from "@copilotkit/react-core";
 import { useCopilotChatSuggestions } from "@copilotkit/react-ui";
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useEffect } from "react";
+import { useSkillsPosterAction } from "./actions/skills-poster.action.hook";
+import { useProjectPosterAction } from "./actions/project-poster.action.hook";
+
+const sig = `[ useReadable ] ::: `;
 
 
 // Static configuration objects 1
@@ -157,6 +161,11 @@ export const useCopilotProfessionalContext = () => {
     categories: ["professional", "overview", "interview"],
     available: "enabled"
   });
+
+  // data
+  useEffect(() => {
+    console.log(sig, 'allData', allData);
+  },[]);
 
   // Memoize convert functions with strict data validation requirements
   const skillsConvert = useMemo(() => createConvertFunction("CRITICAL: Use ONLY information explicitly present in this skills data array. Each skill includes 'name', 'desc', 'desc2', 'keywords', 'topSkill', and 'pinned' with specific experience timeframes and details. NEVER generalize or categorize - use exact descriptions and timeframes from the data. When listing skills, only mention technologies that appear in this array with their specific details. AI SKILLS IDENTIFICATION: Skills with AI-related keywords include OpenAI, Claude Code, Cursor IDE, and CopilotKit - these form Omar's AI development toolkit. When asked about AI skills, prioritize these four technologies and explain how they work together in modern AI-powered development workflows."), [createConvertFunction]);

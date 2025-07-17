@@ -21,5 +21,12 @@ export const allData = {
   rules,
   education,
   contactInfo,
-  expectations
+  expectations,
+  projects: experience.map(exp => {
+    return exp.projects?.map(p => ({
+      ...p,
+      company: exp.company,
+      companyLogo: exp.logo
+    }))
+  }).flat().filter(Boolean)
 };

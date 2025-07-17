@@ -4,6 +4,7 @@ import { useSkillsListAction } from "./actions/skills-list.action.hook";
 import { useSkillsPosterAction } from "./actions/skills-poster.action.hook";
 import { useBusinessCardAction } from "./actions/business-card.action.hook";
 import { useContactFormAction } from "./actions/contact-form.action.hook";
+import { useProjectPosterAction } from "./actions/project-poster.action.hook";
 
 export const useCopilotActions = () => {
 
@@ -14,6 +15,7 @@ export const useCopilotActions = () => {
   useSkillsListAction();
   useBusinessCardAction(); // Business card for contact information
   useContactFormAction(); // Detailed contact form for inquiries
+  useProjectPosterAction({ detailsMode: false }); // Context-aware: auto-detects project details mode
 
   // nothing to return at the moment
   return {};
