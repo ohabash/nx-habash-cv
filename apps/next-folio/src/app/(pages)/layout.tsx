@@ -32,7 +32,6 @@ export default async function RootLayout({
         <div id="MODAL"></div>
         <CopilotKit 
           publicApiKey="ck_pub_d9dbf528536f4e9f115badfc68eb13cc"
-          enableDebug={true}
         >
           <QueryProvider>
             <SessionProvider session={session}>
