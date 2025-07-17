@@ -11,10 +11,10 @@ export const ProjectHeader: React.FC<ProjectHeaderProps> = ({ project }) => {
   return (
     <div className="space-y-2">
       {/* Project Title */}
-      <h3 className="text-white font-medium text-lg">
-        {project.name}
-      </h3>
-
+      <h3 className="text-white font-medium text-lg">{project.name}</h3>
+      <p className="text-white/60 text-sm font-medium">
+        {'Featured Project'}
+      </p>
     </div>
   );
 }; 

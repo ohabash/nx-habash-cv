@@ -8,6 +8,8 @@ import { Project } from './shared/poster.interface';
 import { Project as ExperienceProject } from '@/data/data-experience';
 import { StaticImageData } from 'next/image';
 import Image from 'next/image';
+import { useCopilotChat } from "@copilotkit/react-core";
+import { TextMessage, Role } from "@copilotkit/runtime-client-gql";
 
 const sig = `[ ProjectPoster ] ::: `;
 
@@ -25,6 +27,7 @@ export const ProjectPoster: React.FC<ProjectPosterProps> = ({
   const [detailsMode, setDetailsMode] = useState(defaultDetailsMode);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showAllTechs, setShowAllTechs] = useState(false);
+  const { appendMessage } = useCopilotChat();
 
   if (!projectName) {
     return (
@@ -106,6 +109,15 @@ export const ProjectPoster: React.FC<ProjectPosterProps> = ({
     setDetailsMode(false);
   };
 
+  const handleTechClick = (tech: string) => {
+    appendMessage(
+      new TextMessage({
+        content: `Tell me more about ${tech}`,
+        role: Role.User,
+      })
+    );
+  };
+
   // Dynamic background colors based on project characteristics
   const getProjectClasses = () => {
     if (project.pinned) {
@@ -138,13 +150,14 @@ export const ProjectPoster: React.FC<ProjectPosterProps> = ({
       {/* Technologies */}
       <div className="flex flex-wrap gap-2 m-3 my-4">
         {(showAllTechs ? project.technologies : project.technologies.slice(0, 3)).map((tech, index) => (
-          <div
+          <button
             key={index}
-            className="flex items-center gap-1 bg-blue/20 px-2 py-1 rounded-md"
+            onClick={() => handleTechClick(tech)}
+            className="flex items-center gap-1 bg-blue/20 px-2 py-1 rounded-md hover:bg-blue/30 transition-colors"
           >
             <MdCode className="text-blue text-sm" />
             <span className="text-blue text-xs font-medium">{tech}</span>
-          </div>
+          </button>
         ))}
         {!showAllTechs && project.technologies.length > 3 && (
           <button 

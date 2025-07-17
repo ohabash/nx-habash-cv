@@ -16,6 +16,16 @@ const PROJECT_ALIASES: Record<string, string> = {
   'dash fornida': 'Microsoft Business Central ERP Dashboard',
   'erp dashboard': 'Microsoft Business Central ERP Dashboard',
   'business central': 'Microsoft Business Central ERP Dashboard',
+  'scalable backend': 'Scalable Backend Infrastructure',
+  'backend infrastructure': 'Scalable Backend Infrastructure',
+  'enterprise auth': 'Enterprise Authentication & RBAC',
+  'enterprise authentication': 'Enterprise Authentication & RBAC',
+  'pulse event': 'Pulse Event Orchestration Platform',
+  'pulse platform': 'Pulse Event Orchestration Platform',
+  'bigcommerce stores': 'Launched 20 BigCommerce Stores in 6 Months',
+  'bigcommerce migration': 'Launched 20 BigCommerce Stores in 6 Months',
+  'magento monorepo': 'Magento Monorepo',
+  'magento mono': 'Magento Monorepo',
 } as const;
 
 interface ProjectWithCompany extends Project {
@@ -100,16 +110,59 @@ export const useProjectPosterAction = (defaultDetailsMode = false) => {
         
         // Check various matching criteria
         const checks = [
+          // Exact matches (case-insensitive)
+          p.name.toLowerCase() === input.toLowerCase(),
+          // Normalized exact matches
           normalizeText(p.name) === normalizedInput,
+          // URL matches
           p.link && normalizeText(p.link) === normalizedInput,
           p.link && normalizeText(p.link.split('//')[1]?.split('/')[0] || '') === normalizedInput,
-          // Check if input appears as part of project name or description
+          // Partial matches (only check if no exact match found)
           p.name.toLowerCase().includes(normalized),
-          p.desc.toLowerCase().includes(normalized)
+          p.desc?.toLowerCase().includes(normalized),
+          // Keywords match
+          p.keywords?.toLowerCase().includes(normalized),
+          // Company match (for projects from specific companies)
+          p.company?.toLowerCase() === normalized || p.company?.toLowerCase().includes(normalized)
         ];
         
         return checks.some(Boolean);
       });
+
+    // If no direct match found, try fuzzy matching
+    if (!project) {
+      const projects = getAllProjects();
+      // Find projects with similar names using basic fuzzy matching
+      const matches = projects.filter(p => {
+        if (!p || !p.name) return false;
+        const words = input.toLowerCase().split(/\W+/);
+        const projectWords = p.name.toLowerCase().split(/\W+/);
+        return words.some(word => 
+          word.length > 3 && // Only match significant words
+          projectWords.some(pWord => 
+            pWord.includes(word) || 
+            word.includes(pWord)
+          )
+        );
+      });
+      
+      if (matches.length > 0) {
+        // Sort by relevance (more matching words = higher relevance)
+        const bestMatch = matches.sort((a, b) => {
+          const aScore = a.name.toLowerCase().split(/\W+/).filter(w => 
+            input.toLowerCase().includes(w) || 
+            input.toLowerCase().split(/\W+/).some(iw => w.includes(iw))
+          ).length;
+          const bScore = b.name.toLowerCase().split(/\W+/).filter(w => 
+            input.toLowerCase().includes(w) || 
+            input.toLowerCase().split(/\W+/).some(iw => w.includes(iw))
+          ).length;
+          return bScore - aScore;
+        })[0];
+        
+        return bestMatch ? { name: bestMatch.name, logo: bestMatch.companyLogo } : null;
+      }
+    }
 
     return project ? { name: project.name, logo: project.companyLogo } : null;
   };
@@ -160,7 +213,7 @@ export const useProjectPosterAction = (defaultDetailsMode = false) => {
         <ProjectPoster 
           projectName={resolved.name}
           companyLogo={resolved.logo}
-          defaultDetailsMode={args.detailsMode as boolean ?? defaultDetailsMode} 
+          defaultDetailsMode={false}
         />
       );
     },
