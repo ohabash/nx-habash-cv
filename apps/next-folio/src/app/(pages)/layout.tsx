@@ -10,6 +10,8 @@ import { CopilotKitCSSProperties } from '@copilotkit/react-ui';
 import { Theme } from '../../../theme/theme-vars';
 import AiBody from '@/components/copilotKit/components/AiBody';
 import { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // global styles
 import './../styles.scss';
@@ -109,6 +111,8 @@ export default async function RootLayout({
             </SessionProvider>
           </QueryProvider>
         </CopilotKit>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
