@@ -12,6 +12,7 @@ import AiBody from '@/components/copilotKit/components/AiBody';
 import { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Script from 'next/script';
 
 // global styles
 import './../styles.scss';
@@ -71,7 +72,29 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
+      <head>
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-MWD4424C');
+          `}
+        </Script>
+      </head>
       <body>
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MWD4424C"
+            height="0" 
+            width="0" 
+            style={{
+              display: 'none',
+              visibility: 'hidden'
+            }}
+          />
+        </noscript>
         <div id="MODAL"></div>
         <CopilotKit 
           publicApiKey="ck_pub_d9dbf528536f4e9f115badfc68eb13cc"
