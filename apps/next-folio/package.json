@@ -14,6 +14,7 @@
     "@copilotkit/react-ui": "^1.9.1",
     "@floating-ui/react": "0.22.2",
     "@tanstack/react-query": "^5.63.0",
+    "@vercel/analytics": "^1.5.0",
     "bulma": "^1.0.2",
     "bulma-scss": "^0.9.4",
     "clsx": "^2.1.1",

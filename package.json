@@ -17,6 +17,8 @@
   "private": true,
   "dependencies": {
     "@nrwl/node": "^19.8.4",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "@vitejs/plugin-react": "^4.3.3",
     "axios": "^1.6.0",
     "colors": "^1.4.0",
