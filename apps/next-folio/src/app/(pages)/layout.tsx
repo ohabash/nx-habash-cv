@@ -12,7 +12,7 @@ import AiBody from '@/components/copilotKit/components/AiBody';
 import { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Script from 'next/script';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 // global styles
 import './../styles.scss';
@@ -72,33 +72,10 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <head>
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-MWD4424C');
-          `}
-        </Script>
-      </head>
+      <GoogleTagManager gtmId="GTM-MWD4424C" />
       <body>
-        <noscript>
-          <iframe 
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MWD4424C"
-            height="0" 
-            width="0" 
-            style={{
-              display: 'none',
-              visibility: 'hidden'
-            }}
-          />
-        </noscript>
         <div id="MODAL"></div>
-        <CopilotKit 
-          publicApiKey="ck_pub_d9dbf528536f4e9f115badfc68eb13cc"
-        >
+        <CopilotKit publicApiKey="ck_pub_d9dbf528536f4e9f115badfc68eb13cc">
           <QueryProvider>
             <SessionProvider session={session}>
               <GlobalProvider>
@@ -106,14 +83,16 @@ export default async function RootLayout({
                   <div
                     style={
                       {
-                        "--copilot-kit-primary-color": theme.colors.blue,
-                        "--copilot-kit-contrast-color": theme.colors.dark,
-                        "--copilot-kit-background-color": theme.colors.darker,
-                        "--copilot-kit-input-background-color": theme.colors.dark,
-                        "--copilot-kit-secondary-color": theme.colors.dark,
-                        "--copilot-kit-secondary-contrast-color": '#ffffff',
-                        "--copilot-kit-separator-color": theme.vars['lighten-25'],
-                        "--copilot-kit-muted-color": theme.colors.subtle,
+                        '--copilot-kit-primary-color': theme.colors.blue,
+                        '--copilot-kit-contrast-color': theme.colors.dark,
+                        '--copilot-kit-background-color': theme.colors.darker,
+                        '--copilot-kit-input-background-color':
+                          theme.colors.dark,
+                        '--copilot-kit-secondary-color': theme.colors.dark,
+                        '--copilot-kit-secondary-contrast-color': '#ffffff',
+                        '--copilot-kit-separator-color':
+                          theme.vars['lighten-25'],
+                        '--copilot-kit-muted-color': theme.colors.subtle,
                       } as CopilotKitCSSProperties
                     }
                   >
