@@ -10,6 +10,7 @@ import { Container } from "../layout/Container";
 
 import Image from "next/image";
 import { useCopilotProfessionalContext } from "../copilotKit/useReadable";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 export const Timeline = () => {
   const screen = useWindowSize();
@@ -66,7 +67,9 @@ export const Timeline = () => {
                 <div className="flex items-center bg-gray-800 border-[var(--borderW)] border-white h-[6rem] border-r-0 mr-[-3rem] px-[5rem] max-md:hidden ">
                   <div>
                     <p className="font-bold max-[1000px]:hidden">{item.date}</p>
-                    <p className="font-bold min-[1000px]:hidden">{item.shortDate}</p>
+                    <p className="font-bold min-[1000px]:hidden">
+                      {item.shortDate}
+                    </p>
                     <span className="text-lighten-7 font-medium">
                       {item.company}
                     </span>
@@ -105,7 +108,17 @@ export const Timeline = () => {
                         className="mt-4_"
                         style={{ marginTop: copyMarginTop }}
                       >
-                        <p className="font-bold text-accent3">{project.name}</p>
+                        <p className="font-bold text-accent3 flex items-center gap-2">
+                          {project.name}
+                          {project.link && <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white/40 hover:text-white transition-colors"
+                          >
+                            <FaExternalLinkAlt />
+                          </a>}
+                        </p>
                         <p className="">{project.desc}</p>
                       </motion.div>
                     </FadeIn>
