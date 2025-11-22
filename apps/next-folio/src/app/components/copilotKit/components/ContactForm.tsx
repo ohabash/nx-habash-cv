@@ -121,7 +121,7 @@ const Submit = ({ formData, onSuccess, onError, disabled }: SubmitProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const isDev = process.env.NEXT_PUBLIC_DEBUG_MODE === 'true';
+  const isDev = process.env.NEXT_PUBLIC_DEBUG_MODE === 'false';
 
   /**
    * Formats form data into structured email content

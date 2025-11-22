@@ -64,7 +64,7 @@ interface EmailResponse {
  * @param options - Email configuration options
  * @returns Promise with the API response containing user-friendly error messages
  */
-export async function sendEmail(options: EmailOptions): Promise<EmailResponse> {
+export async function __sendEmail(options: EmailOptions): Promise<EmailResponse> {
   console.log(sig,`sendEmail => options:`, options)
   try {
     const response = await fetch('/api/email/send', {
@@ -120,6 +120,57 @@ export async function sendEmail(options: EmailOptions): Promise<EmailResponse> {
   }
 }
 
+
+
+export async function sendEmail(options: EmailOptions): Promise<EmailResponse> {
+  console.log(sig, `sendEmail => options:`, options);
+  try {
+    const response = await fetch('/api/email/sendN8n', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(options),
+    });
+
+    const result = await response.json();
+    console.log(sig, 'Server response:', result);
+
+    // If server explicitly returns success: false, return that
+    if (result.success === false) {
+      console.error(sig, 'Server returned error:', result.error);
+      return {
+        success: false,
+        error: result.error || 'Email sending failed',
+        details: result.details,
+      };
+    }
+
+    // If HTTP status is not ok, it's also an error
+    if (!response.ok) {
+      console.error(sig, 'HTTP error:', response.status, result);
+      return {
+        success: false,
+        error: result.error || `HTTP ${response.status}: Failed to send email`,
+        details: result.details,
+      };
+    }
+
+    // Check if result has success property, if not assume success
+    if (result.success === undefined) {
+      result.success = true;
+    }
+
+    return result;
+  } catch (error) {
+    console.error(sig, 'Email service error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
+}
+
 /**
  * Truncates metadata values to comply with Postmark limits
  * Field names: max 20 chars
@@ -137,19 +188,13 @@ function truncateMetadata(metadata: Record<string, string>): Record<string, stri
 }
 
 /**
- * Sends a contact notification email to admin
+ * Generates the text body for a contact notification email
  * @param requestedInfo - The information that was requested but not available
  * @param userMessage - Optional message from the user
- * @returns Promise with the API response containing user-friendly error messages
+ * @returns Formatted text body for the email
  */
-export async function sendContactNotification(
-  requestedInfo: string,
-  userMessage?: string
-): Promise<EmailResponse> {
-  console.log(sig,`requestedInfo:`, requestedInfo)
-  const subject = `🚨🚨🚨 Portfolio Contact Request: ${requestedInfo}`;
-  
-  const textBody = `
+function emailBody(requestedInfo: string, userMessage?: string): string {
+  return `
 New contact request from portfolio website:
 
 Requested Information: ${requestedInfo}
@@ -161,6 +206,22 @@ Please follow up with this inquiry.
 ---
 Sent from Omar Habash Portfolio Website
   `.trim();
+}
+
+/**
+ * Sends a contact notification email to admin
+ * @param requestedInfo - The information that was requested but not available
+ * @param userMessage - Optional message from the user
+ * @returns Promise with the API response containing user-friendly error messages
+ */
+export async function sendContactNotification(
+  requestedInfo: string,
+  userMessage?: string
+): Promise<EmailResponse> {
+  console.log(sig,`requestedInfo:`, requestedInfo)
+  const subject = `🚨🚨🚨 Portfolio Contact Request`;
+  
+  const textBody = emailBody(requestedInfo, userMessage);
 
   const htmlBody = `
 <h2>New Contact Request</h2>

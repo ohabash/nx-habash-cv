@@ -13,6 +13,8 @@ import { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleTagManager } from '@next/third-parties/google';
+import { URLTracker } from '@/components/URLTracker';
+import { Suspense } from 'react';
 
 // global styles
 import './../styles.scss';
@@ -74,6 +76,10 @@ export default async function RootLayout({
     <html lang="en">
       <GoogleTagManager gtmId="GTM-MWD4424C" />
       <body>
+        {/* URL Tracker for webhook */}
+        <Suspense fallback={null}>
+          <URLTracker />
+        </Suspense>
         <div id="MODAL"></div>
         <CopilotKit publicApiKey="ck_pub_d9dbf528536f4e9f115badfc68eb13cc">
           <QueryProvider>

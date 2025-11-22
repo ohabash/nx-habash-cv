@@ -1,10 +1,14 @@
 'use client';
 import { useCopilotAction, useCopilotAdditionalInstructions } from "@copilotkit/react-core";
 import { SkillsList } from '../components/SkillsList';
+import { skills } from '@/data/data-skills';
 
 const sig = `[ useSkillsListAction ] ::: `;
 
 export const useSkillsListAction = () => {
+  // Get available skill names dynamically from the skills array
+  const availableSkills = skills.map(skill => skill.name).join(', ');
+
   // Instructions for when to showcase multiple skills
   useCopilotAdditionalInstructions({
     instructions: `
@@ -42,8 +46,8 @@ export const useSkillsListAction = () => {
       
       🚨 CRITICAL: When using the 'showSkillsList' action, DO NOT generate any additional text response. The action renders a complete UI component that answers the user's question.
       
-      OMAR'S AVAILABLE SKILLS (use these exact names for filtering):
-      OpenAI, JavaScript, Angular, React, Tailwind, TypeScript, NodeJS, Stripe API, MongoDB, NextJs, Amazon Selling Partner API, Microsoft Business Central, Shopify, BigCommerce, Python, Firebase, NX Monorepos, Azure, Monday.com App Development, CopilotKit, AG Grid, Claude Code, JIRA, BetterAuth, Cursor IDE
+      OMAR'S AVAILABLE SKILLS (dynamically loaded from data):
+      ${availableSkills}
       
       EXAMPLES:
       ✅ "what frontend technologies do you know?" → showSkillsList(["React", "Angular", "Tailwind", "TypeScript"])
@@ -52,7 +56,7 @@ export const useSkillsListAction = () => {
       ✅ "show me your JavaScript-related skills" → showSkillsList(["JavaScript", "React", "NodeJS", "NextJs"])
       ✅ "what backend technologies do you use?" → showSkillsList(["NodeJS", "MongoDB", "Firebase", "Azure"])
     `,
-  }, []);
+  }, [availableSkills]); // Add availableSkills as a dependency
 
   useCopilotAction({
     name: 'showSkillsList',

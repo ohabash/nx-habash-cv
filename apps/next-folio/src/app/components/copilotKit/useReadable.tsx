@@ -94,7 +94,7 @@ DATA VALIDATION:
 SKILLS PRIORITY RULE:
 - 🚨 BEFORE using 'dataNotFound' for ANY question, FIRST check if the user is asking about technical skills
 - Skills questions include: "do you know...", "experience with...", "familiar with...", "have you used...", "tell me about [technology]", "what AI skills...", "artificial intelligence", etc.
-- Available skills: OpenAI, JavaScript, Angular, React, TypeScript, NodeJS, Stripe API, MongoDB, NextJs, Amazon Selling Partner API, Microsoft Business Central, Shopify, BigCommerce, Python, Firebase, NX Monorepos, Azure, Monday.com App Development, CopilotKit, AG Grid, Claude Code, JIRA, BetterAuth, Cursor IDE
+- Available skills: OpenAI, JavaScript, Angular, React, TypeScript, NodeJS, Stripe API, MongoDB, NextJs, Amazon Selling Partner API, Microsoft Business Central, Shopify, BigCommerce, Python, Firebase, NX Monorepos, Azure, Monday.com App Development, CopilotKit, AG Grid, Claude Code, JIRA, BetterAuth, Cursor IDE, Prisma
 - If asking about skill(s) Omar has (including AI skills: OpenAI, Claude Code, Cursor IDE, CopilotKit), use 'showSkillsList' action for multiple skills or 'showSkillsPoster' for single skill
 - AUTOMATIC CONTEXT DETECTION for skills:
   * SINGLE SKILL CONTEXT: "tell me about React", "do you know Angular", "have you used Tailwind", "what is CopilotKit" → showSkillsPoster with detailsMode: true (expanded view)

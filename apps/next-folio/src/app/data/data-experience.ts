@@ -38,7 +38,7 @@ export const experience: TimelineItem[] = [
     projects: [
       {
         name: 'Scalable Backend Infrastructure',
-        desc: 'Replaced monolithic architecture with TypeScript Express monorepo using NX generators. Created scaffolding system enabling developers to generate complete SDKs with routes, tests, and services in consistent patterns. Implemented decorator-based routing (@GET/@POST) and validation (@validate) reducing boilerplate code by 70%.',
+        desc: 'Architected a complete transformation from monolithic systems to scalable microservices using TypeScript and Express within an NX-managed monorepo. Built intelligent code generators that automatically scaffold complete SDKs with API routes, comprehensive tests, and business services following consistent architectural patterns. Introduced decorator-based routing (@GET/@POST) and validation (@validate) that eliminated repetitive code, reducing development time by 70% while ensuring type safety and maintainability across all services.',
         poster:
           'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
         keywords:
@@ -67,7 +67,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
         keywords:
           'OAuth, Integration Platform, API Connectivity, N8N, Data Flows, Third-party Integrations, QuickBooks, Visual Programming, Logging',
-        link: 'https://foodready.ai'
+        link: 'https://foodready.ai',
       },
     ],
   },
@@ -88,7 +88,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
         keywords:
           'Angular, E-commerce, NestJS, BigCommerce, SEO Optimization, Frontend Development, Dynamic UI, Product Management, Google Rankings',
-        link: 'https://zayntek.com'
+        link: 'https://zayntek.com',
       },
       {
         name: 'Internal Listing Dashboard*',
@@ -97,7 +97,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
         keywords:
           'Admin Dashboard, Product Management, API Integration, Automated SEO, Sitemap Generation, Stock Management, Part Numbers, Google Indexing',
-        link: 'https://admin.fornida.com'
+        link: 'https://admin.fornida.com',
       },
       {
         name: 'Microsoft Business Central ERP Dashboard',
@@ -106,7 +106,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop',
         keywords:
           'React, ERP Systems, Microsoft Business Central, Multi-platform Integration, KPI Dashboards, Order Management, Warehouse Operations, Amazon API, Shopify',
-        link: 'https://dash.fornida.com'
+        link: 'https://dash.fornida.com',
       },
     ],
   },
@@ -135,7 +135,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&h=600&fit=crop',
         keywords:
           'Mortgage Calculators, Geolocation Services, Subdomain Management, SEO Strategy, Real Estate, Financial Tools, Agent Finder, Custom Development',
-        link: 'https://amechomeloans.com'
+        link: 'https://amechomeloans.com',
       },
       {
         name: 'Fornida Custom Server Builder',
@@ -144,7 +144,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop',
         keywords:
           'Server Configuration, Component Compatibility, SKU Management, Product Configurator, Complex Logic, User Experience, High-value Sales, Configuration Management',
-        link: 'https://fornida.com'
+        link: 'https://fornida.com',
       },
     ],
   },
@@ -165,7 +165,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=600&fit=crop',
         keywords:
           'BigCommerce Migration, Rapid Deployment, Code Generation, Print on Demand, Store Scaffolding, Platform Migration, E-commerce Development, Automation',
-        link: 'https://successpartners.com/portfolio'
+        link: 'https://successpartners.com/portfolio',
       },
       {
         name: 'Magento Monorepo',
@@ -174,7 +174,7 @@ export const experience: TimelineItem[] = [
           'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop',
         keywords:
           'PHP, Magento, Monorepo Architecture, Code Centralization, Multi-site Management, Developer Efficiency, Theming Systems, Deployment Automation',
-        link: 'https://github.com/successpartners/magento-monorepo'
+        link: 'https://github.com/successpartners/magento-monorepo',
       },
     ],
   },

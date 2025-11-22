@@ -30,6 +30,17 @@ export const skills: Skill[] = [
     keywords: "AI, artificial intelligence, machine learning, NLP, natural language processing, GPT, chatbots, automation, API integration"
   },
   {
+    poster: '/img/posters/laboratory.webp',
+    name: 'Prisma',
+    desc: 'Modern TypeScript ORM for Node.js and TypeScript, providing type-safe database access with an intuitive data modeling approach.',
+    desc2: 'I use Prisma as my primary ORM for TypeScript projects, leveraging its powerful features like type safety, auto-generated migrations, and intuitive query API. The schema-first approach and excellent TypeScript integration make database operations safer and more maintainable.',
+    icon: '/img/logos/prisma.webp',
+    url: 'https://www.prisma.io/',
+    pinned: false,
+    topSkill: true,
+    keywords: "ORM, database, TypeScript, Node.js, PostgreSQL, MySQL, MongoDB, type safety, migrations, schema, query builder, data modeling"
+  },
+  {
     poster: '/img/posters/js.jpg',
     name: 'JavaScript',
     desc: 'Over a decade of experience building dynamic and interactive web applications using JavaScript. Key for creating user-facing elements and handling client-side logic effectively.',
