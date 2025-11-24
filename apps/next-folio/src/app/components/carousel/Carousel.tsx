@@ -222,6 +222,8 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
             return (
               <motion.div
                 key={idx}
+                role="img"
+                aria-label={`${item.name} skill showcase - ${item.desc}`}
                 style={{
                   backgroundImage: `url(${item.poster})`,
                   backgroundSize: 'cover',
@@ -307,7 +309,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
               imgIndex === pinnedSkills.length - 1 ? 'z-30' : '-z-10'
             )}
           >
-            <Image className="brightness-200" src={imgEnd} alt="" />
+            <Image className="brightness-200" src={imgEnd} alt="End of skills carousel - click to restart" />
             <p
               onClick={startOver}
               className="f cursor-pointer hover:text-white"

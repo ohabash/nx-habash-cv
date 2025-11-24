@@ -177,13 +177,13 @@ const Curtain = ({itemScrollYProg, item}: CurtainProps) => {
         <div className="level max-lg:flex-col">
           <div className="level-left 4">
             <div className="title-block">
-              <h4 className="font-bold text-yellow -mb-2 max-lg:mb-4 max-lg:text-2xl">
+              <h2 className="h4 text-[1.2rem] font-bold text-yellow -mb-1 max-lg:mb-4 max-lg:text-2xl" role="doc-subtitle">
                 Senior Software Engineer
-              </h4>
-              <h3 className="font-bold max-lg:hidden">OMAR HABASH</h3>
+              </h2>
+              <h1 className="h3 text-[2.4rem] font-bold max-lg:hidden">OMAR HABASH</h1>
             </div>
           </div>
-          <div className="level-right a-menu max-lg:pt-3">
+          <nav className="level-right a-menu max-lg:pt-3" aria-label="Main navigation">
             <p className="p-3 px-4 rounded-md hidden max-sm:block bg-red/60 font-bold">
               Short on time. Best viewed on desktop.
             </p>
@@ -201,7 +201,7 @@ const Curtain = ({itemScrollYProg, item}: CurtainProps) => {
                 Contact
               </Link>
             </div>
-          </div>
+          </nav>
         </div>
       </div>
     </motion.div>

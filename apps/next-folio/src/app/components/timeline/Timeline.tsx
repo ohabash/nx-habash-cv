@@ -49,7 +49,7 @@ export const Timeline = () => {
       id="experience"
     >
       <Container className="font-semibold space-y-12 relative z-10 px-[7vw]_">
-        <motion.h1
+        <motion.h2
           className="sticky top-[8.9rem] text-dark text-[3.5rem] max-lg:top-[10.5rem] max-lg:text-[2.5rem] max-md:text-[2rem]"
           style={{
             opacity: titleOpacity,
@@ -57,7 +57,7 @@ export const Timeline = () => {
           }}
         >
           EXPERIENCE
-        </motion.h1>
+        </motion.h2>
         {experience.map((item, index) => (
           <FadeIn key={'e-' + index}>
             <div className="flex border-b-[0px] border-subtle pb-16">

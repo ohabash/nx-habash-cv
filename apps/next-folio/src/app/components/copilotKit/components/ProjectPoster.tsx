@@ -234,13 +234,13 @@ export const ProjectPoster: React.FC<ProjectPosterProps> = ({
               {typeof companyLogo === 'string' ? (
                 <img 
                   src={companyLogo} 
-                  alt="Company logo"
+                  alt={`${project.name} company logo`}
                   className="w-10 h-10 object-contain"
                 />
               ) : (
                 <Image 
                   src={companyLogo}
-                  alt="Company logo"
+                  alt={`${project.name} company logo`}
                   width={40}
                   height={40}
                   className="object-contain"

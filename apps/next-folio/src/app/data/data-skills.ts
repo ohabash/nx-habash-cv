@@ -27,18 +27,21 @@ export const skills: Skill[] = [
     url: 'https://beta.openai.com/docs/',
     pinned: true,
     topSkill: true,
-    keywords: "AI, artificial intelligence, machine learning, NLP, natural language processing, GPT, chatbots, automation, API integration"
+    keywords:
+      'AI, artificial intelligence, machine learning, NLP, natural language processing, GPT, chatbots, automation, API integration',
   },
   {
     poster: '/img/posters/laboratory.webp',
     name: 'Prisma',
     desc: 'Modern TypeScript ORM for Node.js and TypeScript, providing type-safe database access with an intuitive data modeling approach.',
-    desc2: 'I use Prisma as my primary ORM for TypeScript projects, leveraging its powerful features like type safety, auto-generated migrations, and intuitive query API. The schema-first approach and excellent TypeScript integration make database operations safer and more maintainable.',
+    desc2:
+      'I use Prisma as my primary ORM for TypeScript projects, leveraging its powerful features like type safety, auto-generated migrations, and intuitive query API. The schema-first approach and excellent TypeScript integration make database operations safer and more maintainable.',
     icon: '/img/logos/prisma.webp',
     url: 'https://www.prisma.io/',
     pinned: false,
     topSkill: true,
-    keywords: "ORM, database, TypeScript, Node.js, PostgreSQL, MySQL, MongoDB, type safety, migrations, schema, query builder, data modeling"
+    keywords:
+      'ORM, database, TypeScript, Node.js, PostgreSQL, MySQL, MongoDB, type safety, migrations, schema, query builder, data modeling',
   },
   {
     poster: '/img/posters/js.jpg',
@@ -50,19 +53,8 @@ export const skills: Skill[] = [
     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
     pinned: true,
     topSkill: true,
-    keywords: "JS, ECMAScript, frontend, backend, web development, programming, client-side, server-side, DOM manipulation"
-  },
-  {
-    poster: '/img/posters/angular.png',
-    name: 'Angular',
-    desc: 'Expert in Angular, building complex and performant web applications. Leveraged it for projects like eCommerce platforms with dynamic UI and advanced SEO capabilities.',
-    desc2:
-      'I have used Angular for 7 years now. Back when it was called AngularJS even. When it first came out I remember how exciting and different it was to code within a reactive SPA.',
-    icon: '/img/logos/angular.webp',
-    url: 'https://angular.io/',
-    pinned: true,
-    topSkill: true,
-    keywords: "AngularJS, SPA, single page application, TypeScript, frontend framework, Google, reactive, component-based, eCommerce"
+    keywords:
+      'JS, ECMAScript, frontend, backend, web development, programming, client-side, server-side, DOM manipulation',
   },
   {
     poster: '/img/posters/react.png',
@@ -74,7 +66,8 @@ export const skills: Skill[] = [
     url: 'https://reactjs.org/',
     pinned: true,
     topSkill: true,
-    keywords: "ReactJS, JSX, frontend framework, component-based, virtual DOM, Facebook, Meta, hooks, state management, UI library",
+    keywords:
+      'ReactJS, JSX, frontend framework, component-based, virtual DOM, Facebook, Meta, hooks, state management, UI library',
     iconClass: 'w-[60%]',
   },
   {
@@ -87,7 +80,8 @@ export const skills: Skill[] = [
     url: 'https://tailwindcss.com',
     pinned: true,
     topSkill: true,
-    keywords: "TailwindCSS, utility-first, CSS framework, responsive design, UI components, styling, rapid development, mobile-first",
+    keywords:
+      'TailwindCSS, utility-first, CSS framework, responsive design, UI components, styling, rapid development, mobile-first',
     iconClass: 'w-[60%]',
   },
   {
@@ -100,7 +94,8 @@ export const skills: Skill[] = [
     url: 'https://www.typescriptlang.org/',
     pinned: true,
     topSkill: true,
-    keywords: "TS, type safety, static typing, JavaScript superset, Microsoft, scalable code, maintainable, error reduction, development productivity"
+    keywords:
+      'TS, type safety, static typing, JavaScript superset, Microsoft, scalable code, maintainable, error reduction, development productivity',
   },
   {
     poster: '/img/posters/nodejs.png',
@@ -112,7 +107,8 @@ export const skills: Skill[] = [
     url: 'https://nodejs.org/',
     pinned: true,
     topSkill: true,
-    keywords: "Node.js, backend, server-side, API development, JavaScript runtime, V8 engine, npm, full-stack, microservices"
+    keywords:
+      'Node.js, backend, server-side, API development, JavaScript runtime, V8 engine, npm, full-stack, microservices',
   },
   {
     poster: '/img/posters/stripe.png',
@@ -124,7 +120,8 @@ export const skills: Skill[] = [
     url: 'https://stripe.com/docs/api',
     pinned: false,
     topSkill: false,
-    keywords: "payments, payment processing, eCommerce, online payments, fintech, API integration, secure transactions, checkout"
+    keywords:
+      'payments, payment processing, eCommerce, online payments, fintech, API integration, secure transactions, checkout',
   },
   {
     poster: '/img/posters/mongo.png',
@@ -136,7 +133,8 @@ export const skills: Skill[] = [
     url: 'https://www.mongodb.com/',
     pinned: true,
     topSkill: true,
-    keywords: "NoSQL, database, document database, real-time, scalable, data storage, BSON, aggregation, indexing, Atlas"
+    keywords:
+      'NoSQL, database, document database, real-time, scalable, data storage, BSON, aggregation, indexing, Atlas',
   },
   {
     poster: '/img/posters/nextjs.png',
@@ -148,7 +146,8 @@ export const skills: Skill[] = [
     url: 'https://nextjs.org/docs',
     pinned: true,
     topSkill: true,
-    keywords: "Next.js, React framework, SSR, server-side rendering, SEO, full-stack, Vercel, static generation, API routes"
+    keywords:
+      'Next.js, React framework, SSR, server-side rendering, SEO, full-stack, Vercel, static generation, API routes',
   },
   {
     poster: '/img/posters/amazon.png',
@@ -160,43 +159,47 @@ export const skills: Skill[] = [
     url: 'https://developer-docs.amazon.com/sp-api',
     pinned: false,
     topSkill: false,
-    keywords: "Amazon SP-API, eCommerce, inventory management, fulfillment, automation, listing creation, pricing algorithms, marketplace"
+    keywords:
+      'Amazon SP-API, eCommerce, inventory management, fulfillment, automation, listing creation, pricing algorithms, marketplace',
   },
   {
     poster: '/img/posters/msbc.jpg',
     name: 'Microsoft Business Central',
-    desc: 'I have hands-on experience working with Microsoft Business Central, leveraging its robust ERP capabilities to streamline business processes and drive operational efficiency during my time at Fornida. One standout project involved using event listeners to build replica databases in MongoDB for nearly every major dataset in Business Central. This enabled real-time synchronization, enhanced reporting, and seamless custom integrations. Additionally, I implemented tailored workflows, automated reporting, and configured modules for finance, inventory management, and sales to align with organizational needs. My expertise also includes creating custom APIs and integrating third-party tools to ensure scalability and agility. I\'d be happy to provide a demo showcasing these solutions upon request.',
+    desc: "I have hands-on experience working with Microsoft Business Central, leveraging its robust ERP capabilities to streamline business processes and drive operational efficiency during my time at Fornida. One standout project involved using event listeners to build replica databases in MongoDB for nearly every major dataset in Business Central. This enabled real-time synchronization, enhanced reporting, and seamless custom integrations. Additionally, I implemented tailored workflows, automated reporting, and configured modules for finance, inventory management, and sales to align with organizational needs. My expertise also includes creating custom APIs and integrating third-party tools to ensure scalability and agility. I'd be happy to provide a demo showcasing these solutions upon request.",
     desc2: 'defaultCopy',
     icon: '/img/logos/msbc.png',
     iconClass: 'w-[80%]',
     url: 'https://dynamics.microsoft.com/en-us/business-central/',
     pinned: false,
     topSkill: false,
-    keywords: "ERP, enterprise resource planning, Microsoft Dynamics, business processes, finance, inventory management, workflows, reporting"
+    keywords:
+      'ERP, enterprise resource planning, Microsoft Dynamics, business processes, finance, inventory management, workflows, reporting',
   },
   {
     poster: '/img/posters/shopify.jpg',
     name: 'Shopify',
     desc: 'Worked on Shopify integrations, optimizing storefronts and backend systems to align with unique business requirements.',
     desc2:
-      'I used Shopify to build custom eCommerce solutions for clients, including theme development, app integrations, and API customizations. I have experience with Shopify Plus and have developed scalable solutions for high-volume stores. I also created custom apps to automate workflows, enhance customer experiences, and improve operational efficiency. I\'d be happy to provide a demo of these projects upon request.',
+      "I used Shopify to build custom eCommerce solutions for clients, including theme development, app integrations, and API customizations. I have experience with Shopify Plus and have developed scalable solutions for high-volume stores. I also created custom apps to automate workflows, enhance customer experiences, and improve operational efficiency. I'd be happy to provide a demo of these projects upon request.",
     icon: '/img/logos/shopify.png',
     url: 'https://www.shopify.com/',
     pinned: false,
     topSkill: false,
-    keywords: "eCommerce platform, online store, themes, app development, Shopify Plus, customization, storefronts, liquid templating"
+    keywords:
+      'eCommerce platform, online store, themes, app development, Shopify Plus, customization, storefronts, liquid templating',
   },
   {
     poster: '/img/posters/bigcommerce.jpeg',
     name: 'BigCommerce',
-    desc: 'At JOMA Tech, BigCommerce\'s go-to partner, I built innovative tools like a server builder, headless commerce solutions, and dynamic B2B features.',
+    desc: "At JOMA Tech, BigCommerce's go-to partner, I built innovative tools like a server builder, headless commerce solutions, and dynamic B2B features.",
     desc2:
-      'At JOMA Tech, a certified BigCommerce partner and their trusted agency for complex challenges, I led the development of innovative eCommerce solutions that set new standards for the industry. As a co-founder alongside two colleagues from SUCCESS Partners, I helped establish JOMA Tech to address the limitations of the eCommerce tools available at the time. We provided clients with speed, control, and beautiful designs by creating tools that served their unique needs while maintaining individuality across sites. One of our flagship innovations was Meteorite CMS, a headless solution that overcame the limitations of the BigCommerce API by syncing datasets to a Postgres SQL database with webhooks for real-time updates. This allowed us to query and join datasets, automate workflows, and enable non-commerce features like theming and page control. Meteorite not only gave developers the freedom to build any feature but also provided unparalleled SEO capabilities, with several of our sites still performing exceptionally today. In addition to my work at JOMA Tech, I also led groundbreaking projects at SUCCESS Partners and Fornida. At SUCCESS Partners, I created a monorepo architecture to support 25 Magento sites, consolidating 90% of business logic into a single codebase. This streamlined development, allowing new sites to be launched with minimal effort by simply adding a theme and deployment configuration. Later, I spearheaded the migration of 20 Magento stores to BigCommerce in just six months. I developed a code generator that scaffolded stores with all business logic in one command, leaving only the theming to be customized. To support features like Print on Demand (POD), I built a centralized BigCommerce app that allowed for real-time digital customizations and seamless updates across all stores. At Fornida, I tackled the complexities of custom server configurations by building a robust server configurator. This tool allowed administrators to easily set up and manage configurations, interact with clients during the pre-purchase process, and handle thousands of potential component combinations through a user-friendly Angular interface. By overcoming BigCommerce\'s SKU limitations and integrating real-time client collaboration, the configurator empowered customers to confidently invest in high-value, custom-built servers. Through these projects, I demonstrated a consistent ability to leverage cutting-edge technologies, streamline development workflows, and deliver innovative solutions that met complex client needs while maintaining scalability and efficiency.',
+      "At JOMA Tech, a certified BigCommerce partner and their trusted agency for complex challenges, I led the development of innovative eCommerce solutions that set new standards for the industry. As a co-founder alongside two colleagues from SUCCESS Partners, I helped establish JOMA Tech to address the limitations of the eCommerce tools available at the time. We provided clients with speed, control, and beautiful designs by creating tools that served their unique needs while maintaining individuality across sites. One of our flagship innovations was Meteorite CMS, a headless solution that overcame the limitations of the BigCommerce API by syncing datasets to a Postgres SQL database with webhooks for real-time updates. This allowed us to query and join datasets, automate workflows, and enable non-commerce features like theming and page control. Meteorite not only gave developers the freedom to build any feature but also provided unparalleled SEO capabilities, with several of our sites still performing exceptionally today. In addition to my work at JOMA Tech, I also led groundbreaking projects at SUCCESS Partners and Fornida. At SUCCESS Partners, I created a monorepo architecture to support 25 Magento sites, consolidating 90% of business logic into a single codebase. This streamlined development, allowing new sites to be launched with minimal effort by simply adding a theme and deployment configuration. Later, I spearheaded the migration of 20 Magento stores to BigCommerce in just six months. I developed a code generator that scaffolded stores with all business logic in one command, leaving only the theming to be customized. To support features like Print on Demand (POD), I built a centralized BigCommerce app that allowed for real-time digital customizations and seamless updates across all stores. At Fornida, I tackled the complexities of custom server configurations by building a robust server configurator. This tool allowed administrators to easily set up and manage configurations, interact with clients during the pre-purchase process, and handle thousands of potential component combinations through a user-friendly Angular interface. By overcoming BigCommerce's SKU limitations and integrating real-time client collaboration, the configurator empowered customers to confidently invest in high-value, custom-built servers. Through these projects, I demonstrated a consistent ability to leverage cutting-edge technologies, streamline development workflows, and deliver innovative solutions that met complex client needs while maintaining scalability and efficiency.",
     icon: '/img/logos/bigcommerce.png',
     url: 'https://developer.bigcommerce.com/docs/api',
     pinned: false,
     topSkill: false,
-    keywords: "BigCommerce, eCommerce, headless commerce, API integration, B2B, server configurator, webhooks, custom development, partner"
+    keywords:
+      'BigCommerce, eCommerce, headless commerce, API integration, B2B, server configurator, webhooks, custom development, partner',
   },
   {
     poster: '/img/posters/py.jpg',
@@ -208,7 +211,8 @@ export const skills: Skill[] = [
     url: 'https://www.python.org/',
     pinned: false,
     topSkill: false,
-    keywords: "Python, scripting, backend, Flask, Django, data processing, automation, Alexa skills, Drupal integration",
+    keywords:
+      'Python, scripting, backend, Flask, Django, data processing, automation, Alexa skills, Drupal integration',
     iconClass: 'w-[80%] mt-2',
   },
   {
@@ -221,7 +225,8 @@ export const skills: Skill[] = [
     url: 'https://firebase.google.com/',
     pinned: false,
     topSkill: false,
-    keywords: "Firebase, BaaS, backend-as-a-service, real-time database, authentication, hosting, cloud functions, Google Cloud, NoSQL"
+    keywords:
+      'Firebase, BaaS, backend-as-a-service, real-time database, authentication, hosting, cloud functions, Google Cloud, NoSQL',
   },
   {
     poster: '/img/posters/nx.jpg',
@@ -233,7 +238,8 @@ export const skills: Skill[] = [
     url: 'https://nx.dev/',
     pinned: false,
     topSkill: true,
-    keywords: "NX, monorepo, code reuse, development workflows, code generators, scaffolding, team consistency, build tools, Nrwl"
+    keywords:
+      'NX, monorepo, code reuse, development workflows, code generators, scaffolding, team consistency, build tools, Nrwl',
   },
   {
     poster: '/img/posters/azure.jpg',
@@ -245,7 +251,8 @@ export const skills: Skill[] = [
     url: 'https://azure.microsoft.com/',
     pinned: false,
     topSkill: false,
-    keywords: "Microsoft Azure, cloud computing, serverless, hosting, database management, enterprise solutions, cloud services"
+    keywords:
+      'Microsoft Azure, cloud computing, serverless, hosting, database management, enterprise solutions, cloud services',
   },
   {
     poster: '/img/posters/monday.webp',
@@ -257,7 +264,8 @@ export const skills: Skill[] = [
     url: 'https://azure.microsoft.com/',
     pinned: false,
     topSkill: false,
-    keywords: "Monday.com, project management, workflow automation, team collaboration, custom apps, micro SaaS, business automation"
+    keywords:
+      'Monday.com, project management, workflow automation, team collaboration, custom apps, micro SaaS, business automation',
   },
   {
     poster: '/img/posters/copilotkit.webp',
@@ -269,7 +277,8 @@ export const skills: Skill[] = [
     url: 'https://www.copilotkit.ai/',
     pinned: false,
     topSkill: true,
-    keywords: "CopilotKit, AI copilots, chatbots, AI agents, React UI, intelligent assistants, generative UI, AI integration, contextual AI"
+    keywords:
+      'CopilotKit, AI copilots, chatbots, AI agents, React UI, intelligent assistants, generative UI, AI integration, contextual AI',
   },
   {
     poster: '/img/posters/ag-grid.webp',
@@ -281,7 +290,8 @@ export const skills: Skill[] = [
     url: 'https://www.ag-grid.com/',
     pinned: false,
     topSkill: false,
-    keywords: "AG Grid, data grid, data tables, React components, enterprise tables, filtering, sorting, pagination, data visualization"
+    keywords:
+      'AG Grid, data grid, data tables, React components, enterprise tables, filtering, sorting, pagination, data visualization',
   },
   {
     poster: '/img/posters/claude-code.webp',
@@ -293,7 +303,21 @@ export const skills: Skill[] = [
     url: 'https://www.anthropic.com/solutions/coding',
     pinned: false,
     topSkill: false,
-    keywords: "Claude Code, AI coding assistant, VS Code extension, Anthropic, code suggestions, debugging, development productivity, AI tools"
+    keywords:
+      'Claude Code, AI coding assistant, VS Code extension, Anthropic, code suggestions, debugging, development productivity, AI tools',
+  },
+  {
+    poster: '/img/posters/angular.png',
+    name: 'Angular',
+    desc: 'Expert in Angular, building complex and performant web applications. Leveraged it for projects like eCommerce platforms with dynamic UI and advanced SEO capabilities.',
+    desc2:
+      'I have used Angular for 7 years now. Back when it was called AngularJS even. When it first came out I remember how exciting and different it was to code within a reactive SPA.',
+    icon: '/img/logos/angular.webp',
+    url: 'https://angular.io/',
+    pinned: true,
+    topSkill: true,
+    keywords:
+      'AngularJS, SPA, single page application, TypeScript, frontend framework, Google, reactive, component-based, eCommerce',
   },
   {
     poster: '/img/posters/jira.webp',
@@ -305,7 +329,8 @@ export const skills: Skill[] = [
     url: 'https://www.atlassian.com/software/jira',
     pinned: false,
     topSkill: false,
-    keywords: "JIRA, project management, issue tracking, Atlassian, agile development, sprint planning, team collaboration, bug tracking"
+    keywords:
+      'JIRA, project management, issue tracking, Atlassian, agile development, sprint planning, team collaboration, bug tracking',
   },
   {
     poster: '/img/posters/betterauth.webp',
@@ -317,7 +342,8 @@ export const skills: Skill[] = [
     url: 'https://www.better-auth.com/',
     pinned: false,
     topSkill: false,
-    keywords: "BetterAuth, authentication, TypeScript, Next.js, security, MFA, multi-factor authentication, session management, auth library"
+    keywords:
+      'BetterAuth, authentication, TypeScript, Next.js, security, MFA, multi-factor authentication, session management, auth library',
   },
   {
     poster: '/img/posters/cursor.webp',
@@ -327,8 +353,35 @@ export const skills: Skill[] = [
       'Cursor IDE has revolutionized my coding workflow as the ultimate AI-powered development environment. Built as a VS Code fork, it provides all the familiar features I love while adding game-changing AI capabilities. The Tab completion is incredibly smart, predicting multi-line edits and understanding my coding patterns. I use the Chat feature (Cmd+L) to ask questions about my codebase and get instant, contextual answers. The Cmd+K editing feature lets me describe changes in natural language and watch the AI implement them perfectly. What sets Cursor apart is its deep understanding of entire codebases - it can analyze project architecture, suggest improvements, and maintain consistency across files. The seamless VS Code compatibility means I imported all my settings and extensions instantly. Having used it extensively, I can confidently say it has at least doubled my coding productivity.',
     icon: '/img/logos/cursor.png',
     url: 'https://cursor.sh/',
+    pinned: true,
+    topSkill: true,
+    keywords:
+      'Cursor IDE, AI-powered editor, VS Code, AI coding, natural language editing, code completion, development productivity, AI tools',
+  },
+  {
+    poster: '/img/posters/n8n.png',
+    name: 'n8n',
+    desc: 'Fair-code workflow automation tool that connects apps and services. Build complex automation workflows with an intuitive visual interface and extensive integration library.',
+    desc2:
+      'n8n has become my go-to solution for workflow automation and system integration. I use it to connect various services, automate repetitive tasks, and build complex business logic workflows without writing custom code. The visual workflow builder makes it easy to create sophisticated automations, and the self-hosted option gives me complete control over my data. I have built numerous integrations using n8n, from simple webhook handlers to complex multi-step workflows that orchestrate multiple APIs. The extensibility through custom nodes and JavaScript functions means I can handle any edge case. The fair-code licensing model aligns with my values of transparency and control.',
+    icon: '/img/logos/n8n.png',
+    url: 'https://n8n.io/',
+    pinned: true,
+    topSkill: true,
+    keywords:
+      'n8n, workflow automation, integrations, no-code, low-code, webhooks, API orchestration, self-hosted, fair-code, business automation',
+  },
+  {
+    poster: '/img/posters/twilio.webp',
+    name: 'Twilio',
+    desc: 'Cloud communications platform for building SMS, voice, video, and messaging capabilities into applications. Enables seamless communication integration across multiple channels.',
+    desc2:
+      'Twilio has been essential for adding communication features to my applications. I use it to send SMS notifications, make voice calls, handle two-factor authentication, and build messaging capabilities into web and mobile apps. The API is straightforward and well-documented, making it easy to integrate communication features quickly. I have implemented SMS verification systems, automated notification workflows, and voice call features using Twilio. The reliability and global reach of Twilio make it perfect for production applications that need robust communication capabilities.',
+    icon: '/img/logos/twilio.png',
+    url: 'https://www.twilio.com/',
     pinned: false,
     topSkill: true,
-    keywords: "Cursor IDE, AI-powered editor, VS Code, AI coding, natural language editing, code completion, development productivity, AI tools"
+    keywords:
+      'Twilio, SMS, voice calls, messaging, communications API, two-factor authentication, notifications, cloud communications, API integration',
   },
 ];
