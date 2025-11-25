@@ -156,24 +156,24 @@ const AboutMe = () => {
 
   return (
     <div className="absolute_ bottom-0 left-0 w-full h-screen" ref={aboutRef}>
-      <FadeIn className="flex items-center justify-center h-full  -mt-20_ px-16">
-        <div className="w-[40vw] max-w-screen">
+      <FadeIn className="flex items-center justify-center h-full  -mt-20_ px-16 max-md:px-6">
+        <div className="w-[40vw] max-w-screen max-md:w-[92vw]">
           {/* <p
             className="curly text-shadow-lg_ text-[6rem] font-bold leading-relaxed text-yellow -mb-1 max-lg:mb-4 max-lg:text-2xl"
             role="doc-subtitle"
           >
             Welcome
           </p> */}
-          <motion.p 
-            className="about"
+          <motion.p
+            className="about max-md:text-justify__ max-md:text-[2.25rem]"
             style={{
               backgroundSize,
             }}
           >
             a full-stack web engineer who builds with purpose. I exist at the
             intersection of code, design, and experience — creating intuitive
-            experiences and impactful products for developers, end-users, agents, and
-            automation alike.
+            experiences and impactful products for developers, end-users,
+            agents, and automation alike.
           </motion.p>
         </div>
       </FadeIn>

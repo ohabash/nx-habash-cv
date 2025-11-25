@@ -252,7 +252,7 @@ const Images = ({ imgIndex, imageWidth, setImgIndex }: ImageProps) => {
                       y: curtainY,
                     }}
                   >
-                    <div className="p-16 max-lg:text-center max-lg:scale-[0.7]">
+                    <div className="p-16 max-lg:text-center max-lg:scale-[0.3] max-md:p-6">
                       <div className="">
                         <h2 className="font-bold">Skills</h2>
                         <h4 className="font-bold text-yellow">

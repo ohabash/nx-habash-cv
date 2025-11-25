@@ -175,7 +175,7 @@ const Curtain = ({itemScrollYProg, item}: CurtainProps) => {
         }
       }
     >
-      <div className="px-16 py-14">
+      <div className="px-16 py-10 pb-14">
         <div className="level max-lg:flex-col">
           <div className="level-left 4">
             <div className="title-block">

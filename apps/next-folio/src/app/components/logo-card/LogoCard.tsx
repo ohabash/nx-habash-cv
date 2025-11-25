@@ -11,7 +11,7 @@ export const LogoCard = ({ item, ID }: Props) => {
   return (
     <a
       className={twMerge(
-        'w-[15vw] fadeInUp overflow-clip1 shrink-0 aspect-video relative rounded-xl block'
+        'w-[15vw] fadeInUp overflow-clip1 shrink-0 aspect-video relative rounded-xl block max-md:w-[30vw]'
       )}
       href={item.url}
       target="_blank"
