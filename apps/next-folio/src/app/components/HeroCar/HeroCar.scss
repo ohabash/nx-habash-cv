@@ -8,3 +8,22 @@
     }
   }
 }
+
+.text-shadow-lg {
+  text-shadow: -9px 5px 4px rgba(0, 0, 0, 0.9);
+}
+
+.about {
+  @apply text-[2.3rem] font-bold text-left leading-relaxed;
+  // font-size: 2.3rem;
+  color: hsla(0, 0%, 100%, 0.02);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: radial-gradient(circle, #f1ad5e 0%, rgba(241, 173, 94, 0.8) 30%, transparent 70%);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 800px 800px;
+
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}

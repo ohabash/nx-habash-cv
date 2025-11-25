@@ -118,6 +118,8 @@ const Item = () => {
           transition={SPRING_OPTIONS}
           className={`rounded-2xl object-cover bg-black relative overflow-clip w-full h-full`}
         >
+
+
           {/* curtain */}
           <Curtain itemScrollYProg={itemScrollYProg} item={item} />
 
