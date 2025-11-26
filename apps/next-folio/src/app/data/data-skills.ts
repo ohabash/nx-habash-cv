@@ -59,9 +59,9 @@ export const skills: Skill[] = [
   {
     poster: '/img/posters/react.png',
     name: 'React',
-    desc: 'Learning React to expand my skillset in component-based frameworks and enhance my ability to create efficient, reusable front-end components.',
+    desc: 'My go-to framework for modern web applications, particularly when combined with Next.js. React enables me to build efficient, scalable, and maintainable user interfaces with its component-based architecture.',
     desc2:
-      "React is my most recent addition to my skillset. I've been using it for 2 years now. I never remember a time choosing Angular over React. Angular was simply the one i learned first and kept building on to it; making that my go-to. However now that I know both very well I can easily say that they both have pros and cons. There are features from both that i never want to code without. I especially love how portable and loose React components are.",
+      "React, especially when paired with Next.js, has become my primary choice for UI development. While I have deep experience with both Angular and React, I now reach for React for most projects due to its flexibility, extensive ecosystem, and the powerful features Next.js brings to the table. The combination offers the perfect balance of developer experience, performance optimization, and modern patterns like server components and streaming. I especially appreciate React's portable and composable nature, making code reuse and maintenance significantly more enjoyable.",
     icon: '/img/logos/react.webp',
     url: 'https://reactjs.org/',
     pinned: true,
