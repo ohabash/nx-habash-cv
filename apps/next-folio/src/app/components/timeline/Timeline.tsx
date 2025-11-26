@@ -170,10 +170,9 @@ const AboutMe = () => {
               backgroundSize,
             }}
           >
-            a full-stack web engineer who builds with purpose. I exist at the
-            intersection of code, design, and experience — creating intuitive
-            experiences and impactful products for developers, end-users,
-            agents, and automation alike.
+            a full-stack web engineer who builds with purpose. Combining code,
+            design, and experience to create intuitive experiences for
+            developers, end-users, agents, and automation alike.
           </motion.p>
         </div>
       </FadeIn>
