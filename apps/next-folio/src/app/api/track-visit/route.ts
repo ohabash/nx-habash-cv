@@ -2,16 +2,28 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { url, userAgent, referrer, screen, viewport } = await request.json();
+    const body = await request.json();
     
-    console.log('🔵 Sending to webhook:', url);
+    // Extract geo data from Vercel's automatic headers
+    const geo = {
+      ip: request.headers.get('x-forwarded-for')?.split(',')[0] || request.headers.get('x-real-ip'),
+      country: request.headers.get('x-vercel-ip-country'),
+      countryRegion: request.headers.get('x-vercel-ip-country-region'),
+      city: request.headers.get('x-vercel-ip-city'),
+      latitude: request.headers.get('x-vercel-ip-latitude'),
+      longitude: request.headers.get('x-vercel-ip-longitude'),
+    };
+
+    const payload = { ...body, geo };
+    
+    console.log('🔵 Sending to webhook:', body.url, geo.city, geo.country);
 
     const response = await fetch(
       'https://fn9kenzie9iqbu.app.n8n.cloud/webhook/visit',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url, userAgent, referrer, screen, viewport }),
+        body: JSON.stringify(payload),
       }
     );
 

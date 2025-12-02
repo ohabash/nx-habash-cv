@@ -69,7 +69,7 @@ export function URLTracker() {
           viewport: {
             width: window.innerWidth,
             height: window.innerHeight,
-          },
+          }
         }),
       });
     }
