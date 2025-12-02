@@ -58,7 +58,19 @@ export function URLTracker() {
       fetch('/api/track-visit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: window.location.href }),
+        body: JSON.stringify({ 
+          url: window.location.href,
+          userAgent: navigator.userAgent,
+          referrer: document.referrer,
+          screen: {
+            width: window.screen.width,
+            height: window.screen.height,
+          },
+          viewport: {
+            width: window.innerWidth,
+            height: window.innerHeight,
+          },
+        }),
       });
     }
   }, [searchParams]);

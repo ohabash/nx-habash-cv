@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { url } = await request.json();
+    const { url, userAgent, referrer, screen, viewport } = await request.json();
     
     console.log('🔵 Sending to webhook:', url);
 
@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url, userAgent, referrer, screen, viewport }),
       }
     );
 
