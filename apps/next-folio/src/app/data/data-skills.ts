@@ -384,4 +384,30 @@ export const skills: Skill[] = [
     keywords:
       'Twilio, SMS, voice calls, messaging, communications API, two-factor authentication, notifications, cloud communications, API integration',
   },
+  {
+    poster: '/img/posters/mastra.webp',
+    name: 'Mastra',
+    desc: 'Opinionated TypeScript framework for rapidly building AI agents, workflows, and applications with primitives like RAG, memory, tools, and evals.',
+    desc2:
+      'I recently started exploring Mastra for building AI agents and I am already impressed by how elegant it is. The TypeScript-first approach fits perfectly with my existing stack, and the built-in primitives for workflows, RAG, and memory make it incredibly fast to prototype intelligent agents. What I love most is how opinionated it is - it provides clear patterns for structuring agent logic without being restrictive. The ability to deploy locally or on serverless clouds gives me the flexibility I need for different project scales.',
+    icon: '/img/logos/mastra.png',
+    url: 'https://mastra.ai/',
+    pinned: true,
+    topSkill: true,
+    keywords:
+      'Mastra, AI agents, TypeScript, workflows, RAG, retrieval augmented generation, memory, tools, evals, serverless, agent framework',
+  },
+  {
+    poster: '/img/posters/langchain.webp',
+    name: 'LangChain',
+    desc: 'Framework for developing applications powered by large language models, simplifying the creation of complex LLM-driven applications through chaining components.',
+    desc2:
+      'LangChain has become essential for my AI development journey. I use it to build sophisticated LLM applications by chaining together different components like prompts, memory, and tools. The framework makes it easy to integrate with various model providers and create agents that can reason and take actions. Combined with LangGraph for stateful workflows, I can build complex multi-step AI applications that maintain context and handle real-world use cases. The ecosystem of integrations and the active community make it a joy to work with.',
+    icon: '/img/logos/langchain.png',
+    url: 'https://www.langchain.com/',
+    pinned: true,
+    topSkill: true,
+    keywords:
+      'LangChain, LLM, large language models, AI agents, chains, prompts, memory, RAG, LangGraph, AI applications, model integration',
+  },
 ];
