@@ -31,7 +31,7 @@ export const experience: TimelineItem[] = [
     date: 'Dec 2024 — Jul 2025',
     shortDate: '12/24 — 7/25',
     description:
-      'Architected scalable backend infrastructure replacing monolithic systems with event-driven microservices. Delivered enterprise-grade authentication, integration platform, and developer tooling that accelerated feature delivery while maintaining SOC2 compliance. TypeScript, Express, NX, BetterAuth, N8N, OAuth workflows.',
+      'Architected scalable backend infrastructure replacing monolithic systems with event-driven microservices. Delivered enterprise-grade authentication, integration platform, and developer tooling that accelerated feature delivery while maintaining SOC2 compliance. TypeScript, Express, NX, BetterAuth, N8N, OAuth workflows. Built and maintained a React frontend using Redux for predictable state management, enabling scalable UI architecture and seamless integration with backend microservices.',
     reasonForLeaving: 'TODO',
     company: 'FoodReady.ai',
     logo: logoFoodReady,
@@ -76,18 +76,18 @@ export const experience: TimelineItem[] = [
     date: 'Jun 2018 — Jul 2024',
     shortDate: '6/18 — 7/24',
     description:
-      "Trained and managed a team of developers, played a central role in launching the company's ecommerce & ERP software stack. My tenure was marked by achievements that transformed Fornida's autonomous software landscape, Angular, NodeJS, Stripe, Mongo, Amazon SP-API, Microsoft Graph, BigCommerce.",
+      "Trained and managed a team of developers, played a central role in launching the company's ecommerce & ERP software stack. My tenure was marked by achievements that transformed Fornida's autonomous software landscape, React, NodeJS, Stripe, Mongo, Amazon SP-API, Microsoft Graph, BigCommerce.",
     reasonForLeaving: 'TODO',
     company: 'Fornida',
     logo: logoFN,
     projects: [
       {
         name: 'ZaynTek.com & Fornida.com',
-        desc: 'Built dynamic E-commerce storefronts using Angular powered by Meteorite, a first-of-its-kind headless CMS that freed developers from restrictive platform limitations. These stores were recognized by BigCommerce as an innovative headless approach to ecommerce. NestJS backend facilitated seamless BigCommerce integrations while Meteorite enabled unprecedented frontend flexibility. Robust SEO features provided Google with latest product data, achieving first-page results for industry products.',
+        desc: 'Built dynamic E-commerce storefronts using React powered by Meteorite, a first-of-its-kind headless CMS that freed developers from restrictive platform limitations. These stores were recognized by BigCommerce as an innovative headless approach to ecommerce. NestJS backend facilitated seamless BigCommerce integrations while Meteorite enabled unprecedented frontend flexibility. Robust SEO features provided Google with latest product data, achieving first-page results for industry products.',
         poster:
           'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
         keywords:
-          'Angular, E-commerce, NestJS, BigCommerce, SEO Optimization, Frontend Development, Dynamic UI, Product Management, Google Rankings',
+          'React, E-commerce, NestJS, BigCommerce, SEO Optimization, Frontend Development, Dynamic UI, Product Management, Google Rankings',
         link: 'https://zayntek.com',
       },
       {

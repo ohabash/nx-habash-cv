@@ -8,7 +8,7 @@ import { headers } from 'next/headers';
 export default async function Index() {
   const userAgent = (await headers()).get('user-agent');
    const isMobile = userAgent && /Mobile|Android|iPhone/i.test(userAgent);
-   console.log(`🚀 => Index => isMobile:`, isMobile)
+   // console.log(`🚀 => Index => isMobile:`, isMobile)
   
   /*
    * Replace the elements below with your own.

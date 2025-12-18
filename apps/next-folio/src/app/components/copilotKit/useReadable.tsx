@@ -164,7 +164,7 @@ export const useCopilotProfessionalContext = () => {
 
   // data
   useEffect(() => {
-    console.log(sig, 'allData', allData);
+    // console.log(sig, 'allData', allData);
   },[]);
 
   // Memoize convert functions with strict data validation requirements

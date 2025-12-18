@@ -20,7 +20,7 @@ export const ThemeWrapper = ({ children }: Props) => {
   // skip theme on server
   const [isServer, setIsServer] = useState(true);
   // const isServer = typeof window === 'undefined';
-  console.log(`🚀 => Theme => isServer:`, isServer);
+  // console.log(`🚀 => Theme => isServer:`, isServer);
 
   // theme instance
   const theme = new Theme();
