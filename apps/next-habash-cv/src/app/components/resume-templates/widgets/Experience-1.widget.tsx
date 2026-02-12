@@ -14,8 +14,8 @@ type Experience = {
 };
 const data: Experience[] = [
   {
-    title: 'Senior Software Developer',
-    short_title: 'Sr. Software Dev',
+    title: 'Fullstack Engineer',
+    short_title: 'Fullstack Engineer',
     company: 'Fornida',
     date: '2020 - Present',
     time: '5y',

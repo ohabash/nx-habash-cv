@@ -27,7 +27,7 @@ export type TimelineItem = {
 
 export const experience: TimelineItem[] = [
   {
-    title: 'Senior Software Developer',
+    title: 'SaaS Software Engineer',
     date: 'Dec 2024 — Jul 2025',
     shortDate: '12/24 — 7/25',
     description:
@@ -72,7 +72,7 @@ export const experience: TimelineItem[] = [
     ],
   },
   {
-    title: 'Senior Software Developer',
+    title: 'Fullstack Engineer',
     date: 'Jun 2018 — Jul 2024',
     shortDate: '6/18 — 7/24',
     description:
